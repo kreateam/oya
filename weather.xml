@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<weatherdata>
+  <location>
+    <name>Oslo</name>
+    <type>By</type>
+    <country>Norge</country>
+    <timezone id="Europe/Oslo" utcoffsetMinutes="120" />
+    <location altitude="10" latitude="59.912726542422" longitude="10.7460923576733" geobase="ssr" geobaseid="72837" />
+  </location>
+  <credit>
+    <!--For å bruke gratis værdata fra yr.no, MÅ du vise følgende tekst godt synlig på nettsiden din. Teksten skal være en lenke til URL-en som er spesifisert.-->
+    <!--Les mer om vilkår for bruk av gratis værdata + retningslinjer på 
+http://om.yr.no/verdata/ -->
+    <link text="Værvarsel fra yr.no, levert av NRK og Meteorologisk institutt" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/" />
+  </credit>
+  <links>
+    <link id="xmlSource" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/varsel.xml" />
+    <link id="xmlSourceHourByHour" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/varsel_time_for_time.xml" />
+    <link id="overview" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/" />
+    <link id="hourByHour" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/time_for_time.html" />
+    <link id="longTermForecast" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/langtidsvarsel.html" />
+    <link id="radar" url="http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/radar.html" />
+  </links>
+  <meta>
+    <lastupdate>2015-06-29T10:43:00</lastupdate>
+    <nextupdate>2015-06-29T18:00:00</nextupdate>
+  </meta>
+  <sun rise="2015-06-29T03:58:00" set="2015-06-29T22:42:18" />
+  <forecast>
+    <text>
+      <location name="Oslo">
+        <time from="2015-06-29" to="2015-06-29">
+          <title>mandag</title>
+          <body>&lt;strong&gt;Østlandet:&lt;/strong&gt; Skiftende bris, i ettermiddag sørvestlig frisk bris på kysten. Lokale ettermiddagsbyger, kan hende med torden, men også perioder med sol.</body>
+        </time>
+        <time from="2015-06-30" to="2015-06-30">
+          <title>tirsdag</title>
+          <body>&lt;strong&gt;Østlandet:&lt;/strong&gt; Nordlig bris, fra om ettermiddagen skiftende bris. Skiftende skydekke, spredte regnbyger. Fra om ettermiddagen for det meste pent vær.</body>
+        </time>
+        <time from="2015-07-01" to="2015-07-01">
+          <title>onsdag</title>
+          <body>&lt;strong&gt;Østlandet og Telemark:&lt;/strong&gt; Skiftende bris. For det meste pent vær. Stigende temperatur.</body>
+        </time>
+        <time from="2015-07-02" to="2015-07-03">
+          <title>torsdag og fredag</title>
+          <body>&lt;strong&gt;Østafjells:&lt;/strong&gt; Torsdag sørlig bris. For det meste pent vær. Fredag skiftende bris. Kan hende enkelte regnbyger vest for Oslofjorden. Uendret eller litt stigende temperatur.</body>
+        </time>
+        <time from="2015-07-04" to="2015-07-07">
+          <title>lørdag til tirsdag</title>
+          <body>&lt;strong&gt;Sør-Norge:&lt;/strong&gt; Lørdag vil fortsatt høytrykk dominere og gi rolige vindforhold og tørt vær. Søndag til tirsdag vil høytrykket svekkes og gi ustabilt vær. Skiftende vindforhold og perioder med nedbør. Lavere temperatur.</body>
+        </time>
+      </location>
+    </text>
+    <tabular>
+      <time from="2015-06-29T13:00:00" to="2015-06-29T18:00:00" period="2">
+        <!-- Valid from 2015-06-29T13:00:00 to 2015-06-29T18:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" minvalue="0" maxvalue="0.2" />
+        <!-- Valid at 2015-06-29T13:00:00 -->
+        <windDirection deg="200.2" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="2.7" name="Svak vind" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1011.8" />
+      </time>
+      <time from="2015-06-29T18:00:00" to="2015-06-30T00:00:00" period="3">
+        <!-- Valid from 2015-06-29T18:00:00 to 2015-06-30T00:00:00 -->
+        <symbol number="5" numberEx="40" name="Lette regnbyger" var="40d" />
+        <precipitation value="0.8" minvalue="0" maxvalue="4.8" />
+        <!-- Valid at 2015-06-29T18:00:00 -->
+        <windDirection deg="187.1" code="S" name="Sør" />
+        <windSpeed mps="5.6" name="Laber bris" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1011.8" />
+      </time>
+      <time from="2015-06-30T00:00:00" to="2015-06-30T06:00:00" period="0">
+        <!-- Valid from 2015-06-30T00:00:00 to 2015-06-30T06:00:00 -->
+        <symbol number="2" numberEx="2" name="Lettskyet" var="mf/02n.45" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-06-30T00:00:00 -->
+        <windDirection deg="177.4" code="S" name="Sør" />
+        <windSpeed mps="1.3" name="Flau vind" />
+        <temperature unit="celsius" value="14" />
+        <pressure unit="hPa" value="1013.8" />
+      </time>
+      <time from="2015-06-30T06:00:00" to="2015-06-30T12:00:00" period="1">
+        <!-- Valid from 2015-06-30T06:00:00 to 2015-06-30T12:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-06-30T06:00:00 -->
+        <windDirection deg="331.9" code="NNW" name="Nord-nordvest" />
+        <windSpeed mps="0.2" name="Stille" />
+        <temperature unit="celsius" value="15" />
+        <pressure unit="hPa" value="1016.5" />
+      </time>
+      <time from="2015-06-30T12:00:00" to="2015-06-30T18:00:00" period="2">
+        <!-- Valid from 2015-06-30T12:00:00 to 2015-06-30T18:00:00 -->
+        <symbol number="2" numberEx="2" name="Lettskyet" var="02d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-06-30T12:00:00 -->
+        <windDirection deg="3.4" code="N" name="Nord" />
+        <windSpeed mps="2.0" name="Svak vind" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1019.1" />
+      </time>
+      <time from="2015-06-30T18:00:00" to="2015-07-01T00:00:00" period="3">
+        <!-- Valid from 2015-06-30T18:00:00 to 2015-07-01T00:00:00 -->
+        <symbol number="2" numberEx="2" name="Lettskyet" var="02d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-06-30T18:00:00 -->
+        <windDirection deg="241.4" code="WSW" name="Vest-sørvest" />
+        <windSpeed mps="1.6" name="Svak vind" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1019.5" />
+      </time>
+      <time from="2015-07-01T00:00:00" to="2015-07-01T06:00:00" period="0">
+        <!-- Valid from 2015-07-01T00:00:00 to 2015-07-01T06:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.48" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-01T00:00:00 -->
+        <windDirection deg="179.5" code="S" name="Sør" />
+        <windSpeed mps="0.5" name="Flau vind" />
+        <temperature unit="celsius" value="17" />
+        <pressure unit="hPa" value="1021.8" />
+      </time>
+      <time from="2015-07-01T06:00:00" to="2015-07-01T12:00:00" period="1">
+        <!-- Valid from 2015-07-01T06:00:00 to 2015-07-01T12:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-01T06:00:00 -->
+        <windDirection deg="173.1" code="S" name="Sør" />
+        <windSpeed mps="1.5" name="Flau vind" />
+        <temperature unit="celsius" value="15" />
+        <pressure unit="hPa" value="1023.5" />
+      </time>
+      <time from="2015-07-01T12:00:00" to="2015-07-01T18:00:00" period="2">
+        <!-- Valid from 2015-07-01T12:00:00 to 2015-07-01T18:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-01T12:00:00 -->
+        <windDirection deg="234.9" code="SW" name="Sørvest" />
+        <windSpeed mps="1.4" name="Flau vind" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1025.0" />
+      </time>
+      <time from="2015-07-01T20:00:00" to="2015-07-02T02:00:00" period="3">
+        <!-- Valid from 2015-07-01T20:00:00 to 2015-07-02T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-01T20:00:00 -->
+        <windDirection deg="194.5" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="3.3" name="Svak vind" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1024.7" />
+      </time>
+      <time from="2015-07-02T02:00:00" to="2015-07-02T08:00:00" period="0">
+        <!-- Valid from 2015-07-02T02:00:00 to 2015-07-02T08:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.52" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-02T02:00:00 -->
+        <windDirection deg="170.7" code="S" name="Sør" />
+        <windSpeed mps="1.9" name="Svak vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1026.8" />
+      </time>
+      <time from="2015-07-02T08:00:00" to="2015-07-02T14:00:00" period="1">
+        <!-- Valid from 2015-07-02T08:00:00 to 2015-07-02T14:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-02T08:00:00 -->
+        <windDirection deg="180.4" code="S" name="Sør" />
+        <windSpeed mps="2.4" name="Svak vind" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1028.0" />
+      </time>
+      <time from="2015-07-02T14:00:00" to="2015-07-02T20:00:00" period="2">
+        <!-- Valid from 2015-07-02T14:00:00 to 2015-07-02T20:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-02T14:00:00 -->
+        <windDirection deg="195.7" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="5.0" name="Lett bris" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1027.7" />
+      </time>
+      <time from="2015-07-02T20:00:00" to="2015-07-03T02:00:00" period="3">
+        <!-- Valid from 2015-07-02T20:00:00 to 2015-07-03T02:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="01d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-02T20:00:00 -->
+        <windDirection deg="188.2" code="S" name="Sør" />
+        <windSpeed mps="4.3" name="Lett bris" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1027.0" />
+      </time>
+      <time from="2015-07-03T02:00:00" to="2015-07-03T08:00:00" period="0">
+        <!-- Valid from 2015-07-03T02:00:00 to 2015-07-03T08:00:00 -->
+        <symbol number="1" numberEx="1" name="Klarvær" var="mf/01n.55" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-03T02:00:00 -->
+        <windDirection deg="183.4" code="S" name="Sør" />
+        <windSpeed mps="2.5" name="Svak vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1027.3" />
+      </time>
+      <time from="2015-07-03T08:00:00" to="2015-07-03T14:00:00" period="1">
+        <!-- Valid from 2015-07-03T08:00:00 to 2015-07-03T14:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-03T08:00:00 -->
+        <windDirection deg="194.2" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="3.0" name="Svak vind" />
+        <temperature unit="celsius" value="17" />
+        <pressure unit="hPa" value="1025.9" />
+      </time>
+      <time from="2015-07-03T14:00:00" to="2015-07-03T20:00:00" period="2">
+        <!-- Valid from 2015-07-03T14:00:00 to 2015-07-03T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-03T14:00:00 -->
+        <windDirection deg="189.8" code="S" name="Sør" />
+        <windSpeed mps="4.3" name="Lett bris" />
+        <temperature unit="celsius" value="23" />
+        <pressure unit="hPa" value="1024.4" />
+      </time>
+      <time from="2015-07-03T20:00:00" to="2015-07-04T02:00:00" period="3">
+        <!-- Valid from 2015-07-03T20:00:00 to 2015-07-04T02:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-03T20:00:00 -->
+        <windDirection deg="189.1" code="S" name="Sør" />
+        <windSpeed mps="3.4" name="Lett bris" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1023.0" />
+      </time>
+      <time from="2015-07-04T02:00:00" to="2015-07-04T08:00:00" period="0">
+        <!-- Valid from 2015-07-04T02:00:00 to 2015-07-04T08:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="mf/03n.58" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-04T02:00:00 -->
+        <windDirection deg="179.7" code="S" name="Sør" />
+        <windSpeed mps="1.3" name="Flau vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1022.8" />
+      </time>
+      <time from="2015-07-04T08:00:00" to="2015-07-04T14:00:00" period="1">
+        <!-- Valid from 2015-07-04T08:00:00 to 2015-07-04T14:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-04T08:00:00 -->
+        <windDirection deg="57.5" code="ENE" name="Øst-nordøst" />
+        <windSpeed mps="1.2" name="Flau vind" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1022.4" />
+      </time>
+      <time from="2015-07-04T14:00:00" to="2015-07-04T20:00:00" period="2">
+        <!-- Valid from 2015-07-04T14:00:00 to 2015-07-04T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-04T14:00:00 -->
+        <windDirection deg="183.6" code="S" name="Sør" />
+        <windSpeed mps="1.8" name="Svak vind" />
+        <temperature unit="celsius" value="25" />
+        <pressure unit="hPa" value="1021.0" />
+      </time>
+      <time from="2015-07-04T20:00:00" to="2015-07-05T02:00:00" period="3">
+        <!-- Valid from 2015-07-04T20:00:00 to 2015-07-05T02:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-04T20:00:00 -->
+        <windDirection deg="182.7" code="S" name="Sør" />
+        <windSpeed mps="2.7" name="Svak vind" />
+        <temperature unit="celsius" value="24" />
+        <pressure unit="hPa" value="1018.5" />
+      </time>
+      <time from="2015-07-05T02:00:00" to="2015-07-05T08:00:00" period="0">
+        <!-- Valid from 2015-07-05T02:00:00 to 2015-07-05T08:00:00 -->
+        <symbol number="9" numberEx="9" name="Regn" var="09" />
+        <precipitation value="2.4" />
+        <!-- Valid at 2015-07-05T02:00:00 -->
+        <windDirection deg="159.0" code="SSE" name="Sør-sørøst" />
+        <windSpeed mps="1.7" name="Svak vind" />
+        <temperature unit="celsius" value="18" />
+        <pressure unit="hPa" value="1016.0" />
+      </time>
+      <time from="2015-07-05T08:00:00" to="2015-07-05T14:00:00" period="1">
+        <!-- Valid from 2015-07-05T08:00:00 to 2015-07-05T14:00:00 -->
+        <symbol number="9" numberEx="9" name="Regn" var="09" />
+        <precipitation value="2.9" />
+        <!-- Valid at 2015-07-05T08:00:00 -->
+        <windDirection deg="156.6" code="SSE" name="Sør-sørøst" />
+        <windSpeed mps="1.3" name="Flau vind" />
+        <temperature unit="celsius" value="17" />
+        <pressure unit="hPa" value="1014.1" />
+      </time>
+      <time from="2015-07-05T14:00:00" to="2015-07-05T20:00:00" period="2">
+        <!-- Valid from 2015-07-05T14:00:00 to 2015-07-05T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-05T14:00:00 -->
+        <windDirection deg="178.0" code="S" name="Sør" />
+        <windSpeed mps="3.8" name="Lett bris" />
+        <temperature unit="celsius" value="24" />
+        <pressure unit="hPa" value="1012.4" />
+      </time>
+      <time from="2015-07-05T20:00:00" to="2015-07-06T02:00:00" period="3">
+        <!-- Valid from 2015-07-05T20:00:00 to 2015-07-06T02:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-05T20:00:00 -->
+        <windDirection deg="240.8" code="WSW" name="Vest-sørvest" />
+        <windSpeed mps="3.8" name="Lett bris" />
+        <temperature unit="celsius" value="22" />
+        <pressure unit="hPa" value="1010.3" />
+      </time>
+      <time from="2015-07-06T02:00:00" to="2015-07-06T08:00:00" period="0">
+        <!-- Valid from 2015-07-06T02:00:00 to 2015-07-06T08:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="mf/03n.65" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-06T02:00:00 -->
+        <windDirection deg="279.6" code="W" name="Vest" />
+        <windSpeed mps="3.2" name="Svak vind" />
+        <temperature unit="celsius" value="17" />
+        <pressure unit="hPa" value="1011.5" />
+      </time>
+      <time from="2015-07-06T08:00:00" to="2015-07-06T14:00:00" period="1">
+        <!-- Valid from 2015-07-06T08:00:00 to 2015-07-06T14:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-06T08:00:00 -->
+        <windDirection deg="13.1" code="NNE" name="Nord-nordøst" />
+        <windSpeed mps="3.4" name="Lett bris" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1012.4" />
+      </time>
+      <time from="2015-07-06T14:00:00" to="2015-07-06T20:00:00" period="2">
+        <!-- Valid from 2015-07-06T14:00:00 to 2015-07-06T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-06T14:00:00 -->
+        <windDirection deg="276.4" code="W" name="Vest" />
+        <windSpeed mps="3.5" name="Lett bris" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1015.9" />
+      </time>
+      <time from="2015-07-06T20:00:00" to="2015-07-07T02:00:00" period="3">
+        <!-- Valid from 2015-07-06T20:00:00 to 2015-07-07T02:00:00 -->
+        <symbol number="2" numberEx="2" name="Lettskyet" var="02d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-06T20:00:00 -->
+        <windDirection deg="195.3" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="3.2" name="Svak vind" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1015.3" />
+      </time>
+      <time from="2015-07-07T02:00:00" to="2015-07-07T08:00:00" period="0">
+        <!-- Valid from 2015-07-07T02:00:00 to 2015-07-07T08:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="mf/03n.69" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-07T02:00:00 -->
+        <windDirection deg="324.9" code="NW" name="Nordvest" />
+        <windSpeed mps="2.0" name="Svak vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1018.3" />
+      </time>
+      <time from="2015-07-07T08:00:00" to="2015-07-07T14:00:00" period="1">
+        <!-- Valid from 2015-07-07T08:00:00 to 2015-07-07T14:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-07T08:00:00 -->
+        <windDirection deg="41.4" code="NE" name="Nordøst" />
+        <windSpeed mps="1.5" name="Flau vind" />
+        <temperature unit="celsius" value="17" />
+        <pressure unit="hPa" value="1017.2" />
+      </time>
+      <time from="2015-07-07T14:00:00" to="2015-07-07T20:00:00" period="2">
+        <!-- Valid from 2015-07-07T14:00:00 to 2015-07-07T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-07T14:00:00 -->
+        <windDirection deg="173.5" code="S" name="Sør" />
+        <windSpeed mps="2.1" name="Svak vind" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1016.7" />
+      </time>
+      <time from="2015-07-07T20:00:00" to="2015-07-08T02:00:00" period="3">
+        <!-- Valid from 2015-07-07T20:00:00 to 2015-07-08T02:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-07T20:00:00 -->
+        <windDirection deg="201.0" code="SSW" name="Sør-sørvest" />
+        <windSpeed mps="2.5" name="Svak vind" />
+        <temperature unit="celsius" value="20" />
+        <pressure unit="hPa" value="1013.8" />
+      </time>
+      <time from="2015-07-08T02:00:00" to="2015-07-08T08:00:00" period="0">
+        <!-- Valid from 2015-07-08T02:00:00 to 2015-07-08T08:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="mf/03n.72" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-08T02:00:00 -->
+        <windDirection deg="109.0" code="ESE" name="Øst-sørøst" />
+        <windSpeed mps="1.5" name="Flau vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1016.2" />
+      </time>
+      <time from="2015-07-08T08:00:00" to="2015-07-08T14:00:00" period="1">
+        <!-- Valid from 2015-07-08T08:00:00 to 2015-07-08T14:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-08T08:00:00 -->
+        <windDirection deg="289.5" code="WNW" name="Vest-nordvest" />
+        <windSpeed mps="1.6" name="Svak vind" />
+        <temperature unit="celsius" value="16" />
+        <pressure unit="hPa" value="1014.6" />
+      </time>
+      <time from="2015-07-08T14:00:00" to="2015-07-08T20:00:00" period="2">
+        <!-- Valid from 2015-07-08T14:00:00 to 2015-07-08T20:00:00 -->
+        <symbol number="3" numberEx="3" name="Delvis skyet" var="03d" />
+        <precipitation value="0" />
+        <!-- Valid at 2015-07-08T14:00:00 -->
+        <windDirection deg="28.8" code="NNE" name="Nord-nordøst" />
+        <windSpeed mps="3.2" name="Svak vind" />
+        <temperature unit="celsius" value="21" />
+        <pressure unit="hPa" value="1012.9" />
+      </time>
+    </tabular>
+  </forecast>
+  <observations>
+    <weatherstation stno="18700" sttype="eklima" name="Oslo (Blindern)" distance="3596" lat="59.94230" lon="10.72000" source="Meteorologisk Institutt">
+      <symbol number="2" name="Lettskyet" time="2015-06-29T09:00:00Z" />
+      <temperature unit="celsius" value="21.1" time="2015-06-29T10:00:00Z" />
+      <windDirection deg="210.0" code="SSW" name="Sør-sørvest" time="2015-06-29T10:00:00Z" />
+      <windSpeed mps="4.8" name="Lett bris" time="2015-06-29T10:00:00Z" />
+    </weatherstation>
+    <weatherstation stno="18815" sttype="eklima" name="Bygdøy" distance="3633" lat="59.90500" lon="10.68280" source="Meteorologisk Institutt">
+      <temperature unit="celsius" value="21.8" time="2015-06-29T10:00:00Z" />
+    </weatherstation>
+    <weatherstation stno="18230" sttype="eklima" name="Alna" distance="5225" lat="59.92730" lon="10.83520" source="Meteorologisk Institutt" />
+  </observations>
+</weatherdata>
