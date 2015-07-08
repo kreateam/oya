@@ -405,7 +405,7 @@
 	     */
 				result = pi.strPad(now.getHours(), 2, "0", true) + ":" + pi.strPad(now.getMinutes(), 2, "0", true);
 				if (result != currentTime) {
-					console.log("Updating clock: " + result);
+					// console.log("Updating clock: " + result);
 					clock.innerHTML = result;
 					currentTime = result;
 				}
@@ -438,7 +438,7 @@
 						result.to		= new Date(data['to']);
 						result.fromStr 	= formatTime(result.from);
 						result.toStr 		= formatTime(result.to);
-						console.log(data['from'] + " becomes : " + result.from);
+						// console.log(data['from'] + " becomes : " + result.from);
 
 						result.period 	= typeof data['period'] != "undefined" ? parseInt(data['period'], 10) : null;
 						result.symbol 	= data['symbol']['var'];
@@ -466,7 +466,7 @@
 				element.className = "period";
 
 				if (!tempSet) {
-					console.log("Updating temperature: " + chunk.temperature + "&deg;", chunk);
+					// console.log("Updating temperature: " + chunk.temperature + "&deg;", chunk);
 
 					temperature.innerHTML = chunk.temperature + "&deg;";
 					symbol.style.visibility = "visible";
@@ -478,7 +478,7 @@
 				section.appendChild(element);
 			}
 
-			console.log("Created " + i + " elements.");
+			// console.log("Created " + i + " elements.");
 			return i;
 			// result = pi.strPad(now.getUTCHours(), 2, "0", true) + ":" + pi.strPad(now.getUTCMinutes(), 2, "0", true);
 
