@@ -23,8 +23,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/html5/assets/font/mirror.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/contextmenu.css" media="all" />
 
+	<link href='http://fonts.googleapis.com/css?family=Kreon:300,400,700' rel='stylesheet' type='text/css'>
+	
 	<script type="text/javascript" src="assets/js/contextmenu.js"></script>
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
@@ -34,17 +37,17 @@
 		  0% {
 		    opacity: 0;
 		    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-		    transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+		    				transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
 		    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-		    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+		    				animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
 		  }
 
 		  60% {
 		    opacity: 1;
 		    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-		    transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+		    				transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
 		    -webkit-animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-		    animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+		    				animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 		  }
 		}
 
@@ -52,17 +55,17 @@
 		  0% {
 		    opacity: 0;
 		    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
-		    transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+		    				transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
 		    -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-		    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+		    				animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
 		  }
 
 		  60% {
 		    opacity: 1;
 		    -webkit-transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
-		    transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
+		    				transform: scale3d(.475, .475, .475) translate3d(0, 60px, 0);
 		    -webkit-animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-		    animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+		    				animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 		  }
 		}
 
@@ -81,8 +84,22 @@
 
 	<style type="text/css">
 
+		span {
+			-webkit-transition: color .4s ease-out;
+			 				transition: color .4s ease-out;
+		}
+
+		span:hover {
+			color: #fff;
+		}
+
+	</style>
+
+	<style type="text/css">
+
+
 		::-webkit-scrollbar {
-		    width: 12px;
+		    width: 10px;
 		}
 		 
 		::-webkit-scrollbar-track {
@@ -205,11 +222,30 @@
 		.hashtag {
 			font-weight: 600;
 			color: rgba(38,188,244,1);
+
+			-webkit-transition: color 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000);
+							transition: color 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000);
 		}
+
+		.hashtag:hover {
+			color: #fff;
+		}
+
+		.hashtag.twitter {
+			color: rgba(38,188,244,1);
+		}
+
+		.hashtag.instagram {
+			color: #FF0098;
+		}
+
 
 		.screen {
 			display: block;
+
+			/* initial state, because we want to fade in @load */
 			opacity: 0;
+
 			-webkit-transform: scale(0.5, 0.5);
 							transform: scale(0.5, 0.5);
 
@@ -255,7 +291,11 @@
 			text-align: right;
 			width: 17%;
 			height: 100%;
-			min-height: 100%;
+			min-height: 100%;			
+		}
+
+		.right ::selection {
+			background: #EC008C;
 		}
 
 		.right {
@@ -309,10 +349,6 @@
 			font-weight: 300;
 		}
 
-		.fat {
-			font-weight: 900;
-		}
-
 		.day {
 			display: none;
 			font-weight: 300;
@@ -324,24 +360,42 @@
 		}
 
 		.artist {
+
+			/* keep it all on one line, don't break on spaces */
+			white-space: nowrap;
 			font-weight: 900;
+
+     	/* Make text selectable */
+      -webkit-touch-callout: auto;
+        -webkit-user-select: auto;
+           -moz-user-select: auto;
+            -ms-user-select: auto;
+                user-select: auto;
+
+      cursor: text;
+		}
+
+
+		.fat {
+			font-weight: 900;
+			font-size: 125%;
 		}
 
 
 		#scene1-hours {
-			font-weight: 900;
+			/*font-weight: 900;*/
 		}
 
 		#scene1-minutes {
-			font-weight: 900;
+			/*font-weight: 900;*/
 		}
 
 		#scene2-hours {
-			font-weight: 900;
+			/*font-weight: 900;*/
 		}
 
 		#scene2-minutes {
-			font-weight: 900;
+			/*font-weight: 900;*/
 		}
 
 
@@ -353,6 +407,17 @@
 	</style>
 
 </head>
+<script type="text/javascript">
+
+	// set time from server, so there are no discrepancies in timing
+	window.serverTime = new Date(<?php echo time()?>);
+	window.clientTime = new Date();
+
+	// remember delta between server and client clock
+	window.deltaTime = clientTime - serverTime;
+</script>
+
+
 <script type="text/javascript">
 
 	/**
@@ -376,45 +441,57 @@
 
     key = String.fromCharCode(keynum);
 
-    if (key == "1") {
-			if (screens[0].style.opacity == 0) {
-				screens[0].style.opacity = 1;
-			}
-			else {
-				screens[0].style.opacity = 0;
-			}
-    }
-    if (key == "2") {
-			if (screens[1].style.opacity == 0) {
-				screens[1].style.opacity = 1;
-			}
-			else {
-				screens[1].style.opacity = 0;
-			}
-    }
-    if (key == "Z") {
-			if (screens[1].style.transform == "scale(1, 1)") {
-				screens[0].style.transform = "scale(0.5, 0.5)";
-				screens[1].style.transform = "scale(0.5, 0.5)";
-			}
-			else {
-				console.log("transform : " + screens[1].style.transform);
-				screens[0].style.transform = "scale(1, 1)";
-				screens[1].style.transform = "scale(1, 1)";
-			}
-			// if (screens[1].style.webkitTransform == "scale(1, 1)") {
-			// 	screens[0].style.webkitTransform = "scale(0.5, 0.5)";
-			// 	screens[1].style.webkitTransform = "scale(0.5, 0.5)";
-			// }
-			// else {
-			// 	console.log("webkitTransform : " + screens[1].style.webkitTransform);
-			// 	screens[0].style.webkitTransform = "scale(1, 1)";
-			// 	screens[1].style.webkitTransform = "scale(1, 1)";
-			// }
+    /**
+     * Handle keyboard commands
+     * 
+     * @param  {char} 	key The key that was pressed
+     * @return {bool}   Returns true when capturing keystroke, otherwise false.
+     */
+    switch (key) {
+	    case "1":
+				if (screens[0].style.opacity == 0) {
+					screens[0].style.opacity = 1;
+				}
+				else {
+					screens[0].style.opacity = 0;
+				}
+				break;
+			case "2":
+				if (screens[1].style.opacity == 0) {
+					screens[1].style.opacity = 1;
+				}
+				else {
+					screens[1].style.opacity = 0;
+				}
+				break;
 
-    }
+	    case "Z":
+				if (screens[1].style.transform == "scale(1, 1)" || screens[1].style.transform == "scale(1)") {
+					screens[0].style.transform = "scale(0.5, 0.5)";
+					screens[1].style.transform = "scale(0.5, 0.5)";
+				}
+				else {
+					console.log("transform : " + screens[1].style.transform);
+					screens[0].style.transform = "scale(1, 1)";
+					screens[1].style.transform = "scale(1, 1)";
+				}
+				// if (screens[1].style.webkitTransform == "scale(1, 1)") {
+				// 	screens[0].style.webkitTransform = "scale(0.5, 0.5)";
+				// 	screens[1].style.webkitTransform = "scale(0.5, 0.5)";
+				// }
+				// else {
+				// 	console.log("webkitTransform : " + screens[1].style.webkitTransform);
+				// 	screens[0].style.webkitTransform = "scale(1, 1)";
+				// 	screens[1].style.webkitTransform = "scale(1, 1)";
+				// }
+				break;
+			default:
+				// nothing, at the moment
+
+    } // switch
 
     if (key != "M") {
+    	// 
     	return true;
     }
 
@@ -460,12 +537,11 @@
 				<div class="coming-up">
 					<h1>Next</h1>
 					<h2 class="artist">Razika</h2>
-					<span><strong>in</strong> 
-						<br>&nbsp;&nbsp;<span class="fat">1</span> month, 
-						<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fat">9</span> days, 
-					</span>
-					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-hours">4</span> hours, 
-					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-minutes">5</span> minutes.
+					<span><strong>in</strong></span>
+						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-days" class="fat">9</span> days, 
+						</div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-hours" class="fat">4</span> hours, </div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-minutes" class="fat">5</span> minutes.</div>
 				</div>
 
 				<ul id="program1">
@@ -477,12 +553,12 @@
 				<div class="coming-up">
 					<h1>Coming Up</h1>
 					<h2 class="artist">The Switch</h2>
-					<span><strong>in</strong>
-						<br>&nbsp;&nbsp;<span class="fat">1</span> month, 
-						<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fat">9</span> days, 
-					</span>
-					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene2-hours">4</span> hours, 
-					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene2-minutes">50</span> minutes.
+					<span><strong>in</strong></span>
+						<div class="day-counter">
+							<br>&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-days" class="fat">9</span> days, 
+						</div>					
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene2-hours" class="fat">4</span> hours, </div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene2-minutes" class="fat">50</span> minutes.</div>
 				</div>
 				<ul id="program2">
 					
@@ -506,7 +582,7 @@
 					<div class="section-title">Queued</div>
 					<ul>
 						<li class="item">Food report #32 <span class="duration">0:30</span></li>
-						<li class="item">Instagram <span class="hashtag">#osloby #latest</span><span class="duration">3:00</span></li>
+						<li class="item">Instagram <span class="hashtag instagram">#osloby #latest</span><span class="duration">3:00</span></li>
 					</ul>
 				</section>
 
@@ -514,8 +590,8 @@
 					<div class="section-title">Next Items</div>
 					<ul>
 						<li class="item">Announcement : &lt;TBA&gt;<span class="duration">0:30</span></li>
-						<li class="item">Tweets <span class="hashtag">#osloby</span><span class="duration">1:30</span></li>
-						<li class="item">Tweets <span class="hashtag">#oya</span><span class="duration">1:30</span></li>
+						<li class="item">Tweets <span class="hashtag twitter">#osloby</span><span class="duration">1:30</span></li>
+						<li class="item">Tweets <span class="hashtag twitter">#oya</span><span class="duration">1:30</span></li>
 						<li class="item">Coming up...<span class="duration">2:30</span></li>
 					</ul>
 				</section>
@@ -541,13 +617,14 @@
 
 	<script type="text/javascript">
 
-		/** @todo should maybe rewrite the invokation some.. */
+		/** @todo  This seems safe enough, no? */
 		document.querySelector('#image-upload').addEventListener('change', function(e) {
 			  var
 			  	file 	= this.files[0],
 			  	data 	= new FormData(),
 			  	xhr 	= new XMLHttpRequest(),
 
+			  	// @todo Maybe some visual feedback on upload progress
 			  	onprogress = function(e) {
 				    if (e.lengthComputable) {
 				      var
@@ -557,6 +634,10 @@
 				    }
 				  },
 
+				  /**
+				   * When image is returned from server
+				   * @return {void}
+				   */
 				  onload = function() {
 				    if (this.status == 200) {
 				    	var
@@ -568,11 +649,11 @@
 				      image.className = "zoomInDown";
 				      image.style.display = "inline-block";
 				      if (section.firstChild) {
-				      	console.log("insertBefore");
+				      	// console.log("insertBefore");
 					      section.insertBefore(image, section.firstChild);
 				      }
 				      else {
-				      	console.log("appendChild");
+				      	// console.log("appendChild");
 				      	section.appendChild(image);
 				      }
 				    }
@@ -606,6 +687,7 @@
 		var
 			scene1 			= "amfiet",
 			scene2 			= "vindfruen",
+			concerts 		= [],
 			program 		= <?php print(json_encode($program)); ?>,
 			section 		= document.getElementsByClassName("content")[0],
 			currentTime = null;
@@ -658,8 +740,24 @@
 
 		function updateTime() {
 			var
+			_MS_PER_DAY = 1000 * 60 * 60 * 24,
+
+				// a and b are javascript Date objects
 				result 	= "",
-				now 		= new Date();
+				then 		= getNextConcert(),
+				now 		= Date.now || +new Date().getTime(),
+				delta  	= new Date(now - then),
+				remainingDays 		= document.getElementById("scene1-days"),
+				remainingHours 		= document.getElementById("scene1-hours"),
+				remainingMinutes 	= document.getElementById("scene1-minutes"),
+				dateDiff = function(a, b) {
+				  var 
+				  	utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(), a.getUTCHours(), a.getMinutes()),
+				  	utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate(), b.getUTCHours(), b.getMinutes());
+
+				  return new Date(Math.floor((utc2 - utc1)));
+				}
+
 
 
 	    /**
@@ -672,19 +770,23 @@
 	     * 
 	     * @return {string}     The padded string
 	     */
-				result = pi.strPad(now.getHours(), 2, "0", true) + ":" + pi.strPad(now.getMinutes(), 2, "0", true);
-				if (result != currentTime) {
-					console.log("Updating clock: " + result);
-					clock.innerHTML = result;
-					currentTime = result;
-				}
+	     	remainingDays.textContent 		= delta.getDate();
+	     	remainingHours.textContent 		= delta.getHours();
+	     	remainingMinutes.textContent 	= delta.getMinutes();
+
+				// result = pi.strPad(now.getHours(), 2, "0", true) + ":" + pi.strPad(now.getMinutes(), 2, "0", true);
+				// if (result != currentTime) {
+				// 	console.log("Updating clock: " + result);
+				// 	currentTime = result;
+				// }
 		}
 
 
 		function formatTime(when) {
-		    var 
-			    date = when || new Date();
-		    return pi.strPad(date.getUTCHours(), 2, "0", true);
+	    var 
+		    date = when || new Date();
+
+	    return pi.strPad(date.getUTCHours(), 2, "0", true);
 		}
 
 
@@ -692,7 +794,6 @@
 			var
 				result 		= "",
 				element 	= null,
-				concerts 	= [],
 				now 			= new Date(),
 				template 	= document.getElementById("program-template").innerHTML,
 				tempSet		= false,
@@ -724,7 +825,7 @@
 
 					if (data) {
 						arr = data["td"];
-						console.log("arr : " + arr);
+						// console.log("arr : " + arr);
 						result["scene"] = arr[3].trim().toLowerCase();
 						result["time"] = arr[1];
 
@@ -732,9 +833,10 @@
 							var
 								sort = arr[4];
 							result["day"] 	= sort["span"][0];
+							console.log("Date added : " + sort["span"][1]);
 							result["date"] 	= sort["span"][1];
 							result["sort"] 	= sort["@attributes"]["data-sort-value"];
-							result["date"]  = getDate(result["sort"]);
+							// result["date"]  = getDate(result["sort"]);
 
 							result["artist"] = arr[2]["a"];
 							// console.log("Scene: " + result["scene"] + ", index: " + ["sirkus, amfiet"].indexOf(result["scene"]));
@@ -749,9 +851,12 @@
 
 
 
+			// from HTML scraped off of http://oyafestivalen.no/program/
 			if (program && program.program && program.program.tbody && program.program.tbody.tr) {
 				var
 					tr = program.program.tbody.tr;
+
+				while(concerts.pop());
 
 				for (var i = 0; i < tr.length; i++) {
 					// console.log("Chunk no. " + i);
@@ -777,14 +882,16 @@
 
 
 			for (var i = 0; i < concerts.length; i++) {
+
 				element = document.createElement("li");
 				element.innerHTML = Mustache.render(template, concerts[i]);
+
 				if (concerts[i]["scene"] == scene1) {
-					console.log(scene1 + " : " + concerts[i]["artist"]);
+					// console.log(scene1 + " : " + concerts[i]["artist"]);
 					program1.appendChild(element);
 				}
 				else if (concerts[i]["scene"] == scene2) {
-					console.log(scene2 + " : " + concerts[i]["artist"]);
+					// console.log(scene2 + " : " + concerts[i]["artist"]);
 					program2.appendChild(element);
 				}
 				else {
@@ -793,14 +900,42 @@
 				}
 			}
 
+			// because why not
 			return i;
-			// result = pi.strPad(now.getUTCHours(), 2, "0", true) + ":" + pi.strPad(now.getUTCMinutes(), 2, "0", true);
+		}
 
+		/**
+		 * Get full date of next concert
+		 *
+		 * @param  {str} [scene] 	Which scene to check. Optional.
+		 * @return {int}       		Unix timestamp
+		 */
+		function getNextConcert(scene) {
+			var
+				scene 	= scene || null,
+				program = program || null,
+				result 	= null,
+				earliest = Date(0);
+
+			if (scene) {
+				
+			}
+
+			console.log("concerts : ", concerts);
+			for (var i in concerts) {
+				console.log(i + ": " + concerts[i]);
+				if (result === null) {
+					earliest = concerts[i]["date"]
+					return earliest;
+				}
+			}
+			return earliest;
 		}
 
 
+
 		updateProgram();
-		// setInterval(updateProgram, 60000);
+		setInterval(updateTime, 5000);
 
 		// updateProgram();
 
