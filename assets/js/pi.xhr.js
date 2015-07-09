@@ -94,15 +94,15 @@
 
         xhr.onload = function() { 
           if (this.responseText.indexOf(".php</b> on line <b>") !== -1) {
-            eV.log("php error detected : ");
-            eV.log(this.responseText);
+            pi.log("php error detected : ");
+            pi.log(this.responseText);
             if (typeof this.onerror == "function") {
               this.onerror.call(this, this.responseText);
             }
           }
           else {
-            // eV.log("no php error detected : ");
-            // eV.log(this.responseText);
+            // pi.log("no php error detected : ");
+            // pi.log(this.responseText);
           }
 
           if (typeof this.callback == "function") {
@@ -120,13 +120,14 @@
       get : function ( url, callback, onerror ) {
         var
           xhr   = new XMLHttpRequest(),
-          isIe  = π.browser.isIe,
+          isIe  = π.browser.isIe || false,
 
           callback  = callback  || null,
           onerror   = onerror   || π.log;
 
         xhr.callback  = callback;
         xhr.onerror   = onerror;
+
         
         xhr.onreadystatechange = function () {
           //  IE shit
@@ -158,6 +159,7 @@
             this.callback.call(this, response);
           }
         };
+
 
         xhr.open("get", url, true);
         return xhr.send();

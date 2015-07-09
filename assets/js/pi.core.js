@@ -65,7 +65,11 @@
 
       // paths
       PI_ROOT     : "assets/js/",
-      LIB_ROOT    : "../../assets/js/",
+
+      /* !!!  CUSTOM for this project ONLY  !!! */
+      LIB_ROOT    : "assets/js/",
+      // LIB_ROOT    : "../../assets/js/",
+
       API_ROOT    : "/api/",
 
       LOG_URL     : "/api/log/",
@@ -1687,7 +1691,14 @@
 
       var 
         cursor  = document.getElementsByTagName("head")[0] || document.documentElement,
-        path    = '../../assets/js/pi.',
+
+        /**
+         * CUSTOM for this project ONLY 
+         * 
+         */
+        path    = 'assets/js/pi.',
+        // path    = '../../assets/js/pi.',
+
         script  = document.createElement('script');
 
 
@@ -1936,18 +1947,18 @@
 
     elements = document.getElementsByClassName("pi");
     if (!(elements && elements.length)) {
-      pi.log("No pi elements found : " + elements.length);
+      pi.log("No pi elements found.");
     }
     else {
       pi.log("Bootstrapping : " + elements.length + " " + (elements.length === 1 ? "element" : "elements"));
-    }
-
-    for (var i = 0; i < elements.length; i++) {
-      // pi.log("STRAP IT: " + e, e);
-      if (π.__BOOT.checkIt(elements.item(i))) {
-        π.__BOOT.strapIt(elements.item(i));
+      for (var i = 0; i < elements.length; i++) {
+        // pi.log("STRAP IT: " + e, e);
+        if (π.__BOOT.checkIt(elements.item(i))) {
+          π.__BOOT.strapIt(elements.item(i));
+        }
       }
     }
+
     π.timer.stop("_bootstrap");
     pi.events.trigger("pi.ready");
   };

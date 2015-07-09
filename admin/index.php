@@ -19,12 +19,16 @@
 
 	<!-- redirect requests, one dir up -->
 	<base href="../">
+	<script type="text/javascript" src="assets/js/errorhandler.js"></script>
+	<script src="//use.typekit.net/aue5uth.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/mirror.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/contextmenu.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Kreon:300,400,700' rel='stylesheet' type='text/css'>
 	
@@ -122,9 +126,13 @@
 
 			/* our canonical em */
 	  	font-size: 8px;
+			font-weight: 400;
 			min-height: 100%;
 			min-width: 100%;
 			height: 100%;
+
+      -webkit-font-smoothing: subpixel-antialiased;
+
 
      	/* Make text non-selectable */
       -webkit-touch-callout: none;
@@ -196,10 +204,13 @@
 			margin-right: auto;
 			margin-left: auto;
 			width: 66%;
-			height: 45px;
+			min-height: 45px;
 			font-weight: 400;
 			font-size: 1.5em;
 			background-color: #272822;
+
+			-webkit-transition: height .4s ease-out;
+							transition: height .4s ease-out;
 		}
 
 		.content {
@@ -381,20 +392,29 @@
 			font-size: 125%;
 		}
 
+		.unselectable {
+	    -webkit-touch-callout: none;
 
-		#scene1-hours {
+	    -webkit-user-select: none;
+	    	 -moz-user-select: none;
+	    		-ms-user-select: none;
+	    				user-select: none;
+		}
+
+
+		#amfiet-hours {
 			/*font-weight: 900;*/
 		}
 
-		#scene1-minutes {
+		#amfiet-minutes {
 			/*font-weight: 900;*/
 		}
 
-		#scene2-hours {
+		#vindfruen-hours {
 			/*font-weight: 900;*/
 		}
 
-		#scene2-minutes {
+		#vindfruen-minutes {
 			/*font-weight: 900;*/
 		}
 
@@ -404,17 +424,34 @@
 			
 		}
 
+		#toolbar {
+			font-family: "Open Sans", sans-serif;
+			font-weight: 300;
+
+			-webkit-transition: height .4s ease-out;
+			 				transition: height .4s ease-out;
+		}
+
+		#toolbar.active {
+			height: 300px;
+		}
+
 	</style>
 
-</head>
 <script type="text/javascript">
 
 	// set time from server, so there are no discrepancies in timing
-	window.serverTime = new Date(<?php echo time()?>);
-	window.clientTime = new Date();
+	window.serverTime = <?php print(time()*1000)?>;
+	window.serverTimeRaw = "<?php echo (time()*1000)?>";
+	
+	window.clientTime = new Date().getTime();
 
-	// remember delta between server and client clock
+	console.log("serverTime : " + serverTime);
+	console.log("clientTime : " + clientTime);
+
+	// remember delta between server and client clock, in millisecs
 	window.deltaTime = clientTime - serverTime;
+
 </script>
 
 
@@ -508,6 +545,7 @@
 	}
 
 </script>
+</head>
 <body onkeydown="return keypressed(event);">
 	<script type="text/javascript">
 
@@ -524,11 +562,9 @@
 
 	</script>
 
-	<script id="program-template" type="text/template">
-		<span class="artist">{{artist}}</span>
-		<span class="day">{{day}}</span>
-		<span class="time">{{time}}</span>
-	</script>
+	<?php
+		include '../templates.html';
+	?>
 
 
 	<div class="wrapper">
@@ -538,10 +574,10 @@
 					<h1>Next</h1>
 					<h2 class="artist">Razika</h2>
 					<span><strong>in</strong></span>
-						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-days" class="fat">9</span> days, 
+						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days, 
 						</div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-hours" class="fat">4</span> hours, </div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-minutes" class="fat">5</span> minutes.</div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-hours" class="fat"></span> hours, </div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-minutes" class="fat"></span> minutes.</div>
 				</div>
 
 				<ul id="program1">
@@ -555,10 +591,10 @@
 					<h2 class="artist">The Switch</h2>
 					<span><strong>in</strong></span>
 						<div class="day-counter">
-							<br>&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene1-days" class="fat">9</span> days, 
+							<br>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days, 
 						</div>					
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene2-hours" class="fat">4</span> hours, </div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="scene2-minutes" class="fat">50</span> minutes.</div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-hours" class="fat"></span> hours, </div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-minutes" class="fat"></span> minutes.</div>
 				</div>
 				<ul id="program2">
 					
@@ -574,7 +610,7 @@
 					<div class="section-title">Now playing</div>
 		
 					<ul>
-						<li class="item">Weather - today<span class="duration">0:42</span></li>
+						<li class="item playing">Weather - today<span class="duration">0:42</span></li>
 					</ul>
 					
 				</section>
@@ -600,14 +636,99 @@
 				</section>
 			</section>
 			<footer>
-				<span>+</span>
-				<input type="file" name="image-upload" id="image-upload" accept="image/*"/>
+			<div id="toolbar" class="tabstrip">
+		    <ul>
+	        <li>
+            <input type="radio" name="tabstrip-0" checked="checked" id="tabstrip-0-0" />
+            <label for="tabstrip-0-0">New...</label>
+            <div>
+            	<input type="file" name="image-upload" id="image-upload" accept="image/*"/>
+              <p>Lorem Ipsum is simply dummy text of the printing and 
+                  typesetting industry. Lorem Ipsum has been the industry's 
+                  standard dummy text ever since the 1500s, when an unknown 
+                  printer took a galley of type and scrambled it to make a 
+                  type specimen book. It has survived not only five centuries, 
+                  but also the leap into electronic typesetting, remaining 
+                  essentially unchanged. It was popularised in the 1960s 
+                  with the release of Letraset sheets containing Lorem 
+                  Ipsum passages, and more recently with desktop publishing 
+                  software like Aldus PageMaker including 
+                  versions of Lorem Ipsum.
+                </p>
+            </div>
+	        </li>
+	        <li>
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-1" />
+            <label for="tabstrip-0-1">Library</label>
+            <div>
+              <h3>Why do we use it?</h3>
+              <p>It is a long established fact that a reader will be distracted 
+                  by the readable content of a page when looking at its layout. 
+                  The point of using Lorem Ipsum is that it has a more-or-less 
+                  normal distribution of letters, as opposed to using 'Content 
+                  here, content here', making it look like readable English. 
+                  Many desktop publishing packages and web page editors 
+                  now use Lorem Ipsum as their default model text, and a 
+                  search for 'lorem ipsum' will uncover many web sites still 
+                  in their infancy. Various versions have evolved over the 
+                  years, sometimes by accident, sometimes on purpose 
+                  (injected humour and the like).
+              </p>
+            </div>
+	        </li>
+	        <li>
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
+            <label for="tabstrip-0-2">Tweets</label>
+            <div>
+              <h3>Where does it come from?</h3>
+              <p>Contrary to popular belief, Lorem Ipsum is not simply 
+                  random text. It has roots in a piece of classical 
+                  Latin literature from 45 BC, making it over 2000 years 
+                  old. Richard McClintock, a Latin professor at Hampden-Sydney 
+                  College in Virginia, looked up one of the more obscure 
+                  Latin words, consectetur, from a Lorem Ipsum passage, 
+                  and going through the cites of the word in classical 
+                  literature, discovered the undoubtable source. Lorem 
+                  Ipsum comes from sections 1.10.32 and 1.10.33 of "de 
+                  Finibus Bonorum et Malorum" (The Extremes of Good and Evil) 
+                  by Cicero, written in 45 BC. This book is a treatise on 
+                  the theory of ethics, very popular during the Renaissance. 
+                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", 
+                  comes from a line in section 1.10.32.
+
+              </p>
+            </div>
+	        </li>
+	        <li>
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-3" />
+            <label for="tabstrip-0-3">Instagram</label>
+            <div>
+              <h3>Where can I get some?</h3>
+              <p>There are many variations of passages of Lorem Ipsum available, 
+                  but the majority have suffered alteration in some form, 
+                  by injected humour, or randomised words which don't look 
+                  even slightly believable. If you are going to use a 
+                  passage of Lorem Ipsum, you need to be sure there isn't 
+                  anything embarrassing hidden in the middle of text. All 
+                  the Lorem Ipsum generators on the Internet tend to 
+                  repeat predefined chunks as necessary, making this the 
+                  first true generator on the Internet. It uses a dictionary
+                  of over 200 Latin words, combined with a handful of model 
+                  sentence structures, to generate Lorem Ipsum which looks 
+                  reasonable. The generated Lorem Ipsum is therefore 
+                  always free from repetition, injected humour, or 
+                  non-characteristic words etc.
+              </p>
+            </div>
+	        </li>
+		    </ul>
+			</div>
 			</footer>
 		</div>
 
 	</div>
 
-	<iframe id="screen1" class="screen" scrolling="no" src="weather.php" width="512" height="704" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="512" height="704" onload="iframeloaded(this)"></iframe>
 	<iframe id="screen2" class="screen" scrolling="no" src="weather.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
 	
 	<script type="text/javascript">
@@ -678,6 +799,37 @@
 			}, false);
 	</script>
 
+	<script type="text/javascript">
+
+
+		document.addEventListener("DOMContentLoaded", function () {
+			var
+				tabs = document.querySelectorAll("#toolbar li");
+
+			function onTabClicked(e) {
+				var
+					toolbar = document.getElementById("toolbar");
+
+				if (toolbar && toolbar.classList.contains("active")) {
+					console.log("toolbar already active");
+					// nada
+				}
+				else {
+					console.log("activating toolbar");
+					toolbar.classList.add("active");
+				}
+			}
+
+			if (tabs && tabs.length) {
+				for (var i = 0; i < tabs.length; i++) {
+					tabs[i].addEventListener("click", onTabClicked);
+				}
+			}
+
+		});
+
+		</script>
+
 
 	<script type="text/javascript">
 
@@ -738,47 +890,71 @@
 		}
 
 
-		function updateTime() {
+
+		function hideDayCounters() {
 			var
-			_MS_PER_DAY = 1000 * 60 * 60 * 24,
+				counters = document.getElementsByClassName("day-counter");
+
+			if (counters && counters.length) {
+				for (var i = 0; i < counters.length; i++) {
+					counters[i].style.display = "none";
+				}
+			}
+
+		}
+
+
+
+		function updateTime(scene) {
+			if (typeof scene == "undefined") {
+				updateTime("amfiet");
+				updateTime("vindfruen");
+				return;
+			}
+
+			var
+				scene = scene || false,
 
 				// a and b are javascript Date objects
 				result 	= "",
-				then 		= getNextConcert(),
-				now 		= Date.now || +new Date().getTime(),
-				delta  	= new Date(now - then),
-				remainingDays 		= document.getElementById("scene1-days"),
-				remainingHours 		= document.getElementById("scene1-hours"),
-				remainingMinutes 	= document.getElementById("scene1-minutes"),
+				then 		= getNextConcert(scene),
+				now 		= new Date(),
+				days, hours, minutes,
+				remainingDays 		= scene ? document.getElementById(scene + "-days") : document.getElementById("amfiet-days"),
+				remainingHours 		= scene ? document.getElementById(scene + "-hours") : document.getElementById("amfiet-hours"),
+				remainingMinutes 	= scene ? document.getElementById(scene + "-minutes") : document.getElementById("amfiet-minutes"),
+				remainingSeconds 	= 0,
 				dateDiff = function(a, b) {
 				  var 
 				  	utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(), a.getUTCHours(), a.getMinutes()),
 				  	utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate(), b.getUTCHours(), b.getMinutes());
 
-				  return new Date(Math.floor((utc2 - utc1)));
-				}
+				  return (utc2 - utc1);
+				};
 
 
+			remainingSeconds = Math.round(dateDiff(now, then)/1000);
 
-	    /**
-	     * pi.strPad():  JS version of PHP's str_pad()
-	     * 
-	     * @param  {string} str       The string to pad
-	     * @param  {int}    padto     Desired length
-	     * @param  {string} padstr    Pad string
-	     * @param  {bool}   padleft   Flag to pad string from the left (default is pad from right)
-	     * 
-	     * @return {string}     The padded string
-	     */
-	     	remainingDays.textContent 		= delta.getDate();
-	     	remainingHours.textContent 		= delta.getHours();
-	     	remainingMinutes.textContent 	= delta.getMinutes();
+			days 		= Math.floor(remainingSeconds / (60 * 60 * 24));
+			hours 	= Math.floor((remainingSeconds / (60 * 60)) % 24);
+			minutes = Math.floor((remainingSeconds/60) % 60);
 
-				// result = pi.strPad(now.getHours(), 2, "0", true) + ":" + pi.strPad(now.getMinutes(), 2, "0", true);
-				// if (result != currentTime) {
-				// 	console.log("Updating clock: " + result);
-				// 	currentTime = result;
-				// }
+     	if (remainingDays.textContent != days) {
+     		console.log("updating days, " + remainingDays.textContent + " => " + days);
+     		remainingDays.textContent = days;
+     		if (days === 0 && hours < 23) {
+     			hideDayCounters();
+     		}
+     	}
+     	if (remainingHours.textContent != hours) {
+     		console.log("updating hours, " + remainingHours.textContent + " => " + hours);
+     		remainingHours.textContent = hours;
+     	}
+     	if (remainingMinutes.textContent != minutes) {
+     		console.log("updating minutes, " + remainingMinutes.textContent + " => " + minutes);
+     		remainingMinutes.textContent = minutes;
+     	}
+
 		}
 
 
@@ -810,9 +986,9 @@
 					day = tmp[0];
 					time = tmp[1].split(":");
 
-					console.log("time : " + time);
+					// console.log("time : " + time);
 					// year, month, day, hours, minutes, seconds, milliseconds);
-					return new Date(2015, 7, 11 + parseInt(day, 10), 2+parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
+					return new Date(2015, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
 
 				},
 
@@ -833,10 +1009,10 @@
 							var
 								sort = arr[4];
 							result["day"] 	= sort["span"][0];
-							console.log("Date added : " + sort["span"][1]);
-							result["date"] 	= sort["span"][1];
+							// console.log("Date added : " + sort["span"][1]);
+							// result["date"] 	= sort["span"][1];
 							result["sort"] 	= sort["@attributes"]["data-sort-value"];
-							// result["date"]  = getDate(result["sort"]);
+							result["date"]  = getDate(result["sort"]);
 
 							result["artist"] = arr[2]["a"];
 							// console.log("Scene: " + result["scene"] + ", index: " + ["sirkus, amfiet"].indexOf(result["scene"]));
@@ -900,9 +1076,12 @@
 				}
 			}
 
+			// getNextConcert();
+
 			// because why not
 			return i;
-		}
+		}; // function updateProgram()
+
 
 		/**
 		 * Get full date of next concert
@@ -917,15 +1096,15 @@
 				result 	= null,
 				earliest = Date(0);
 
-			if (scene) {
-				
-			}
-
-			console.log("concerts : ", concerts);
 			for (var i in concerts) {
-				console.log(i + ": " + concerts[i]);
+				if (scene && concerts[i]["scene"] != scene) {
+					// console.log("skipping: " + concerts[i], concerts[i]);
+					continue;
+				}
 				if (result === null) {
-					earliest = concerts[i]["date"]
+					// console.log("Scene : " + scene + ", earliest : " + concerts[i]["date"]);
+					earliest = concerts[i]["date"];
+					// console.log("returning earliest : " + earliest, earliest);
 					return earliest;
 				}
 			}
@@ -933,8 +1112,10 @@
 		}
 
 
-
 		updateProgram();
+		updateTime("vindfruen");
+		updateTime("amfiet");
+
 		setInterval(updateTime, 5000);
 
 		// updateProgram();
