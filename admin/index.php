@@ -20,6 +20,8 @@
 	<!-- redirect requests, one dir up -->
 	<base href="../">
 	<script type="text/javascript" src="assets/js/errorhandler.js"></script>
+
+	<!-- P22 ... ? -->
 	<script src="//use.typekit.net/aue5uth.js"></script>
 	<script>try{Typekit.load();}catch(e){}</script>
 
@@ -31,13 +33,15 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Kreon:300,400,700' rel='stylesheet' type='text/css'>
-	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="assets/js/contextmenu.js"></script>
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
+	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
 
 	<style type="text/css">
-			@-webkit-keyframes zoomInDown {
+
+		@-webkit-keyframes zoomInDown {
 		  0% {
 		    opacity: 0;
 		    -webkit-transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
@@ -178,15 +182,15 @@
 		}
 
 		li {
-			padding-left: 4px;
-			padding-right: 4px;
-			text-align: right;
+			padding-left 	: 0.25em;
+			padding-right : 0.25em;
+			text-align 		: right;
 		}
 
 
 		iframe {
 			background-color: #fff;
-			border: solid 16px rgba(0, 0, 0, 0.3);
+			border: solid 1.5em rgba(0, 0, 0, 0.3);
 			/*background: none repeat scroll 0% 0% transparent; */
 			/*width: 100%;*/
 
@@ -195,7 +199,7 @@
     }
 
 		header {
-			margin-bottom: 1em;
+			margin-bottom: .4em;
 		}
 
 		footer {
@@ -260,49 +264,55 @@
 			-webkit-transform: scale(0.5, 0.5);
 							transform: scale(0.5, 0.5);
 
-			-webkit-transition: opacity .4s ease-out, -webkit-transform .2s ease-out; /* Safari */
-			-webkit-transition: opacity .4s ease-out, transform .2s ease-out;
-							transition: opacity .4s ease-out, transform .2s ease-out;
+			-webkit-transition: border .4s ease-out, opacity .4s ease-out, -webkit-transform .2s ease-out; /* Safari */
+			-webkit-transition: border .4s ease-out, opacity .4s ease-out, transform .2s ease-out;
+							transition: border .4s ease-out, opacity .4s ease-out, transform .2s ease-out;
 
 		}
 
 		#screen1 {
-			position: fixed;
-			left: 0px;
-			bottom: 0px;
+			position 	: fixed;
+			left 			: 0;
+			bottom 		: 0;
+
 			-webkit-transform-origin : bottom left;
 					-ms-transform-origin : bottom left;
 							transform-origin : bottom left;
 		}
 
 		#screen2 {
-			position: fixed;
-			right: 0px;
-			bottom: 0px;
+			position 	: fixed;
+			right 		: 0;
+			bottom 		: 0;
+
 			-webkit-transform-origin : bottom right;
 					-ms-transform-origin : bottom right;
 							transform-origin : bottom right;
 		}
 
 		.wrapper {
+			position 		: relative;
+			margin 			: 0;
+			padding 		: 0;
+			width 			: 100%;
+			height 			: 100%;
+			min-height 	: 100%;
+
 			background-color: #fff;
-			position: relative;
-			margin : 0;
-			padding: 0;
-			width: 100%;
-			height: 100%;
-			min-height: 100%;
 		}
 
 		.left {
-			float: left;
+			float 		: left;
+			width 		: 17%;
+			height 		: 100%;
+			min-height: 100%;			
+
+			padding-right: 8px;
+
 			color: #fff;
 			background-color: #C21E29;
-			padding-right: 8px;
+
 			text-align: right;
-			width: 17%;
-			height: 100%;
-			min-height: 100%;			
 		}
 
 		.right ::selection {
@@ -310,9 +320,9 @@
 		}
 
 		.right {
-			float: right;
-			width: 17%;
-			height: 100%;
+			float 		: right;
+			width 		: 17%;
+			height 		: 100%;
 			min-height: 100%;
 
 			padding-left: 8px;
@@ -324,19 +334,23 @@
 		}
 
 		.middle {
-			color: #fff;
-			margin: 0;
-			padding: 0;
-			font-size: 2em;
-			font-weight: 300;
-			position: relative;
-			background-color: rgba(39, 40, 34, 0.8);
-			width: 66%;
+			position 	: relative;
+			width 		: 66%;
 			min-height: 100%;
-			height: 100%;
-			text-align: center;
-			margin-left: auto;
+			height 		: 100%;
+			margin 		: 0;
+			padding 	: 0;
+
+			margin-left : auto;
 			margin-right: auto;
+
+			font-size 	: 1.5em;
+			font-weight : 300;
+
+			color: #fff;
+			background-color: rgba(39, 40, 34, 0.8);
+
+			text-align: center;
 		}
 		
 
@@ -346,7 +360,6 @@
 
 		.section-title {
 			font-weight: 900;
-
 		}
 
 		.duration {
@@ -354,10 +367,11 @@
 		}
 
 		.coming-up {
-			margin-left: 40px;
-			text-align: left;
-			margin-bottom: 40px;
-			font-weight: 300;
+			margin-left 	: 2.5em;
+			margin-bottom : 2.5em;
+
+			text-align 	: left;
+			font-weight : 300;
 		}
 
 		.day {
@@ -367,7 +381,7 @@
 
 		.time {
 			font-weight: 300;
-			margin-right: 4px;
+			margin-right: .25em;
 		}
 
 		.artist {
@@ -424,16 +438,28 @@
 			
 		}
 
-		#toolbar {
-			font-family: "Open Sans", sans-serif;
-			font-weight: 300;
 
-			-webkit-transition: height .4s ease-out;
-			 				transition: height .4s ease-out;
+		/* the content divs of the tabbed toolbar  */
+		.tabstrip div {
+			text-align: left;
+		}
+
+		#toolbar {
+			position: relative;
+			z-index: 100;
+
+			font-family: "Open Sans", sans-serif;
+			font-weight: 100;
+			font-size: 66%;
+			/*text-align: left;*/
+
+			/* doesn't work ... why o whai */
+			-webkit-transition: height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); 
+			 				transition: height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
 		}
 
 		#toolbar.active {
-			height: 300px;
+			height: 20em;
 		}
 
 	</style>
@@ -506,11 +532,15 @@
 				if (screens[1].style.transform == "scale(1, 1)" || screens[1].style.transform == "scale(1)") {
 					screens[0].style.transform = "scale(0.5, 0.5)";
 					screens[1].style.transform = "scale(0.5, 0.5)";
+					screens[0].style.border = "1em solid rgba(0,0,0,0.3)";
+					screens[1].style.border = "1em solid rgba(0,0,0,0.3)";
 				}
 				else {
 					console.log("transform : " + screens[1].style.transform);
 					screens[0].style.transform = "scale(1, 1)";
 					screens[1].style.transform = "scale(1, 1)";
+					screens[0].style.border = "2px solid rgba(0,0,0,0.4)";
+					screens[1].style.border = "2px solid rgba(0,0,0,0.4)";
 				}
 				// if (screens[1].style.webkitTransform == "scale(1, 1)") {
 				// 	screens[0].style.webkitTransform = "scale(0.5, 0.5)";
@@ -557,15 +587,16 @@
 		 */
 		function iframeloaded(elem) {
 			console.log("iframe loaded : " + elem.id);
-			elem.style.opacity = 1;
+			elem.style.opacity = 0.1;
 		}
 
 	</script>
 
 	<?php
+
+		/** Mustache templates  */
 		include '../templates.html';
 	?>
-
 
 	<div class="wrapper">
 		<div class="left">
@@ -576,7 +607,7 @@
 					<span><strong>in</strong></span>
 						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days, 
 						</div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-hours" class="fat"></span> hours, </div>
+					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-hours" class="fat"></span> hours, </div>
 					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-minutes" class="fat"></span> minutes.</div>
 				</div>
 
@@ -591,9 +622,9 @@
 					<h2 class="artist">The Switch</h2>
 					<span><strong>in</strong></span>
 						<div class="day-counter">
-							<br>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days, 
+							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days, 
 						</div>					
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-hours" class="fat"></span> hours, </div>
+					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-hours" class="fat"></span> hours, </div>
 					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-minutes" class="fat"></span> minutes.</div>
 				</div>
 				<ul id="program2">
@@ -801,6 +832,9 @@
 
 	<script type="text/javascript">
 
+		/**
+		 * Just to show/hide the toolbar
+		 */
 
 		document.addEventListener("DOMContentLoaded", function () {
 			var
@@ -812,6 +846,7 @@
 
 				if (toolbar && toolbar.classList.contains("active")) {
 					console.log("toolbar already active");
+					// toolbar.classList.remove("active");
 					// nada
 				}
 				else {
@@ -900,8 +935,8 @@
 					counters[i].style.display = "none";
 				}
 			}
-
 		}
+
 
 
 
@@ -939,22 +974,21 @@
 			hours 	= Math.floor((remainingSeconds / (60 * 60)) % 24);
 			minutes = Math.floor((remainingSeconds/60) % 60);
 
+			// kind of pedantic, but still. don't touch the DOM unless you have to
      	if (remainingDays.textContent != days) {
-     		console.log("updating days, " + remainingDays.textContent + " => " + days);
      		remainingDays.textContent = days;
      		if (days === 0 && hours < 23) {
+
+     			// removes the row displaying days left
      			hideDayCounters();
      		}
      	}
      	if (remainingHours.textContent != hours) {
-     		console.log("updating hours, " + remainingHours.textContent + " => " + hours);
      		remainingHours.textContent = hours;
      	}
      	if (remainingMinutes.textContent != minutes) {
-     		console.log("updating minutes, " + remainingMinutes.textContent + " => " + minutes);
      		remainingMinutes.textContent = minutes;
      	}
-
 		}
 
 
