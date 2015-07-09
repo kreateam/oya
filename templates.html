@@ -1,0 +1,21 @@
+
+	<!--  Mustache templates and partials for OyaPlayer + Admin  -->
+
+
+	<!--  partial for concert list items -->
+	<script id="program-template" type="text/template">
+		<span class="artist">{{artist}}</span>
+		<span class="day">{{day}}</span>
+		<span class="time unselectable">{{time}}</span>
+	</script>
+
+
+	<!--  partial for weather periods -->
+	<script id="weather-template" type="text/template">
+		<div><strong>{{fromStr}} - {{toStr}}</strong>
+			<img src="assets/img/sym/svg/{{symbol}}.svg" width="45" height="45" style="margin: -2px">
+			<span class="temperature">{{temperature}}&deg;</span>
+			<span class="precipitation">{{precipitation}} mm</span>
+			<span class="windSpeed">{{windSpeed}} m/s</span>
+		</div>
+	</script>
