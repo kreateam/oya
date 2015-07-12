@@ -19,12 +19,12 @@
 
 	<!-- redirect requests, one dir up -->
 	<base href="../" target="_blank">
-	<script type="text/javascript" src="assets/js/errorhandler.js"></script>
+	<!--script type="text/javascript" src="assets/js/errorhandler.js"></script-->
 
-	<!-- P22 ... ? -->
+	<!-- P22 ... ? 
 	<script src="//use.typekit.net/aue5uth.js"></script>
 	<script>try{Typekit.load();}catch(e){}</script>
-
+-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
@@ -220,6 +220,7 @@
 		}
 
 		.item {
+			display: block;
 			margin: 2px 0.5em;
 			padding-top: 2px;
 			text-align: left;
@@ -229,7 +230,6 @@
 		.item::before {
 			content: "+ ";
 		}
-
 
 		.hashtag {
 			font-weight: 600;
@@ -407,6 +407,7 @@
 		}
 
 		.item-menu {
+			display: inline-block;
 			color: rgba(255,255,255,0.1);
 			float: right;
 			text-align: left;
@@ -511,12 +512,12 @@
 			font-family: Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
-			height: 20em;
+			/*height: 20em;*/
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
-			-webkit-transition: height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); 
-			 				transition: height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
+			-webkit-transition: top 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000), height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); 
+			 				transition: top 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000), height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
 		}
 
 		#toolbar.active {
@@ -570,6 +571,8 @@
       }
     }
 
+    console.log("keypressed : " + document.activeElement);
+
     key = String.fromCharCode(keynum);
 
     /**
@@ -604,21 +607,12 @@
 					screens[1].style.border = "1em solid rgba(0,0,0,0.3)";
 				}
 				else {
-					console.log("transform : " + screens[1].style.transform);
+					// console.log("transform : " + screens[1].style.transform);
 					screens[0].style.transform = "scale(1, 1)";
 					screens[1].style.transform = "scale(1, 1)";
 					screens[0].style.border = "2px solid rgba(0,0,0,0.4)";
 					screens[1].style.border = "2px solid rgba(0,0,0,0.4)";
 				}
-				// if (screens[1].style.webkitTransform == "scale(1, 1)") {
-				// 	screens[0].style.webkitTransform = "scale(0.5, 0.5)";
-				// 	screens[1].style.webkitTransform = "scale(0.5, 0.5)";
-				// }
-				// else {
-				// 	console.log("webkitTransform : " + screens[1].style.webkitTransform);
-				// 	screens[0].style.webkitTransform = "scale(1, 1)";
-				// 	screens[1].style.webkitTransform = "scale(1, 1)";
-				// }
 				break;
 			default:
 				// nothing, at the moment
@@ -626,7 +620,6 @@
     } // switch
 
     if (key != "M") {
-    	// 
     	return true;
     }
 
@@ -654,7 +647,7 @@
 		 * @return {void}
 		 */
 		function iframeloaded(elem) {
-			console.log("iframe loaded : " + elem.id);
+			// console.log("iframe loaded : " + elem.id);
 			elem.style.opacity = 0.1;
 		}
 
@@ -691,7 +684,7 @@
 					<span><strong>in</strong></span>
 						<div class="day-counter">
 							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days
-						</div>					
+						</div>
 					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-hours" class="fat"></span> hours</div>
 					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-minutes" class="fat"></span> minutes</div>
 				</div>
@@ -708,7 +701,7 @@
 				<section id="current">
 					<div class="section-title">Now playing</div>
 					<ul>
-						<li id="item-0" class="item playing">Weather - today<span class="duration">0:42</span></li>
+						<li id="item-0" class="item playing">Weather - today<span class="duration">2:45</span></li>
 					</ul>
 				</section>
 
@@ -717,40 +710,78 @@
 					<ul>
 						<li id="item-1" class="item">Food report #32 
 							<span class="duration">0:30</span>
-							<span class="item-menu">
+							<div class="item-menu">
 								<span class="up-arrow"></span>
 								<span class="down-arrow"></span>
-							</span>
+							</div>
 						</li>
 						<li id="item-2" class="item">Instagram 
 							<span class="hashtag instagram">#osloby #latest</span>
-							<span class="duration">3:00</span>
+							<span class="duration">1:00</span>
+							<div class="item-menu">
+								<span class="up-arrow"></span>
+								<span class="down-arrow"></span>
+							</div>
 						</li>
 					</ul>
 				</section>
 
-				<section id="next-tracks">
+				<section id="next-items">
 					<div class="section-title">Next Items</div>
 					<ul>
 						<li class="item">Announcement : &lt;TBA&gt;
 							<span class="duration">0:30</span>
+							<div class="item-menu">
+								<span class="up-arrow"></span>
+								<span class="down-arrow"></span>
+							</div>
 						</li>
-						<li class="item">Tweets 
+						<li class="item">Instagram
 							<span class="hashtag twitter">#osloby</span>
 							<span class="duration">1:30</span>
+							<div class="item-menu">
+								<span class="up-arrow"></span>
+								<span class="down-arrow"></span>
+							</div>
 						</li>
-						<li class="item">Tweets 
+						<li class="item">Instagram
 							<span class="hashtag twitter">#oya</span>
 							<span class="duration">1:30</span>
+							<div class="item-menu">
+								<span class="up-arrow"></span>
+								<span class="down-arrow"></span>
+							</div>
 						</li>
 						<li class="item">Coming up...
 							<span class="duration">2:30</span>
+							<div class="item-menu">
+								<span class="up-arrow"></span>
+								<span class="down-arrow"></span>
+							</div>
 						</li>
 					</ul>
 				</section>
 
 				<section id="demo"></section>
 			</section>
+
+<style type="text/css">
+	optgroup {
+		text-transform: capitalize;
+	}
+ 	#image-search {
+ 		width: 20em;
+ 	}
+	.editor {
+		float: left;
+		height: 100%;
+		width: 4em;
+	}
+
+	.preview {
+		float: left;
+	}
+</style>
 
 			<footer>
 			<div id="toolbar" class="tabstrip selectable">
@@ -759,70 +790,50 @@
             <input type="radio" name="tabstrip-0" checked="checked" id="tabstrip-0-0" />
             <label for="tabstrip-0-0">New...</label>
             <div>
-							<select>
-							  <option value="volvo">Volvo</option>
-							  <option value="saab">Saab</option>
-							  <option value="mercedes">Mercedes</option>
-							  <option value="audi">Audi</option>
-							</select>
             	<select>
-						    <optgroup label="groupe1">
-						        <option value="alpha">Alpha</option>
-						        <option value="beta">Beta</option>
+						    <optgroup label="Announcement">
+						        <option value="announcement-important">important</option>
+						        <option value="announcement-time">time change</option>
 						    </optgroup>
-						    <optgroup label="groupe2">
-						        <option value="one">One</option>
-						        <option value="two">Two</option>
+						    <optgroup label="Food">
+						        <option value="food-review">review</option>
+						        <option value="food-article">article</option>
+						    </optgroup>
+						    <optgroup label="Concerts">
+						        <option value="concert-review">review</option>
+						        <option value="concert-pictures">pictures</option>
 						    </optgroup>
 							</select>
-              <p>Lorem Ipsum is simply dummy text of the printing and 
-                  typesetting industry. Lorem Ipsum has been the industry's 
-                  standard dummy text ever since the 1500s, when an unknown 
-                  printer took a galley of type and scrambled it to make a 
-                  type specimen book. It has survived not only five centuries, 
-                  but also the leap into electronic typesetting, remaining 
-                  essentially unchanged. It was popularised in the 1960s 
-                  with the release of Letraset sheets containing Lorem 
-                  Ipsum passages, and more recently with desktop publishing 
-                  software like Aldus PageMaker including 
-                  versions of Lorem Ipsum.
-                </p>
+
             </div>
 	        </li>
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-1" />
             <label for="tabstrip-0-1">Images</label>
-            <div>
-            	<input type="file" name="image-upload" id="image-upload" accept="image/*"/>
+            <div class="images">
+            	<input type="file" name="image-upload" id="image-upload" accept="image/*" />
+            	filter <input type="text" name="image-search" id="image-search" />
+							<div>
+	            	<div id="image-editor" class="editor">
+	            		
+	            	</div>
+	            	<div id="image-preview" class="preview">
+	            		list
+	            	</div>
+							</div>
             </div>
 	        </li>
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
             <label for="tabstrip-0-2">Videos</label>
-            <div>
-            	<input type="file" name="video-upload" id="video-upload" accept="video/*"/>
-              <p>Contrary to popular belief, Lorem Ipsum is not simply 
-                  random text. It has roots in a piece of classical 
-                  Latin literature from 45 BC, making it over 2000 years 
-                  old. Richard McClintock, a Latin professor at Hampden-Sydney 
-                  College in Virginia, looked up one of the more obscure 
-                  Latin words, consectetur, from a Lorem Ipsum passage, 
-                  and going through the cites of the word in classical 
-                  literature, discovered the undoubtable source. Lorem 
-                  Ipsum comes from sections 1.10.32 and 1.10.33 of "de 
-                  Finibus Bonorum et Malorum" (The Extremes of Good and Evil) 
-                  by Cicero, written in 45 BC. This book is a treatise on 
-                  the theory of ethics, very popular during the Renaissance. 
-                  The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", 
-                  comes from a line in section 1.10.32.
-
-              </p>
+            <div class="videos">
+            	<input type="file" name="video-upload" id="video-upload" accept="video/*" />
             </div>
 	        </li>
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-3" />
             <label for="tabstrip-0-3">Instagram</label>
-            <div>
+            <div class="instagram">
               <style>
               	.ig-b- { 
               		display: inline-block; 
@@ -832,25 +843,25 @@
 									visibility: hidden; 
 								}
 
-								.ig-b-:hover { 
+								.ig-b-:hover {
 									background-position: 0 -60px; 
 									} 
 
-								.ig-b-:active { 
-									background-position: 0 -120px; 
+								.ig-b-:active {
+									background-position: 0 -120px;
 								}
 
-								.ig-b-48 { 
-									width: 48px; 
-									height: 48px; 
+								.ig-b-48 {
+									width: 48px;
+									height: 48px;
 									background: url(//badges.instagram.com/static/images/ig-badge-sprite-48.png) no-repeat 0 0; 
 								}
 
 								@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-									.ig-b-48 { 
+									.ig-b-48 {
 										background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-48@2x.png); 
-										background-size: 60px 178px; 
-									} 
+										background-size: 60px 178px;
+									}
 								}
 							</style>
 
@@ -889,6 +900,56 @@
 	
 	<script type="text/javascript">
 
+		document.addEventListener("DOMContentLoaded", function () {
+			var
+				images = [],
+				imageSearch = document.getElementById("image-search"),
+				people = ['Daniel', 'Dustin', 'David', 'Damarcus', 'Russ'];
+
+
+			// pi.xhr.get("../assets/php/data/");
+
+
+			imageSearch.addEventListener("input", function(e) {
+				if (this && this.value) {
+					console.log("input: " + this.value);
+					// e.stopPropagation();
+				}
+				else {
+					console.error("No value", this);
+				}
+
+			});
+
+			function fuzzyMatchImages(input) {
+			  var
+			  	thorough = input.toString().length > 5,
+			  	reg = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
+
+			  return images.filter(function(image) {
+	
+		    if (image.title.match(reg)) {
+			      return image;
+			    }
+			    else if (image.tags.match(reg)) {
+			    	return image;
+			    }
+			    else if (image.filename.match(reg)) {
+			    	return image;
+			    }
+			    else if (thorough) {
+			    	if (image.description.match(reg)) {
+			    		return image;
+			    	}
+			    }
+			    else {
+			    	return false;
+			    }
+			  });
+			}
+
+		});
+
 		
 	</script>
 
@@ -918,20 +979,46 @@
 				  onload = function() {
 				    if (this.status == 200) {
 				    	var
-				    		section = document.getElementById("demo"),
-					      image 	= document.createElement('img'),
-					      resp 		= JSON.parse(this.response);
+					      resp 		= JSON.parse(this.response),
+				    		preview = document.getElementById("image-preview"),
+				    		editor  = document.getElementById("image-editor"),
+					      images 	= editor.getElementsByTagName("img"),
+								template= document.getElementById("form-image-editor-template").innerHTML,
+								data 		= {},
+								image;
 
-				      image.src = resp.dataUri;
-				      image.className = "zoomInDown";
+							if (images && images.length) {
+								for (var i = 0; i < images.length; i++) {
+									editor.removeChild(images[i]);
+								}
+							}
+
+							image = document.createElement("img");
+
+
+				      image.src 					= resp.dataUri;
+				      image.className 		= "zoomInDown";
 				      image.style.display = "inline-block";
-				      if (section.firstChild) {
+				      image.style.height 	= "8em";
+				      editor.style.width = "auto";
+				      editor.innerHTML = Mustache.render(template);
+
+			// <legend>New Image</legend>
+			// <input type="text" name="title" value="" />
+			// <input type="text" name="message" value="" />
+			// <input type="text" name="description" value="" />
+			// <input type="text" name="time" value="" />
+			// <input type="text" name="date" value="" />
+			// <input type="text" name="tags" value="" />
+
+
+				      if (preview.firstChild) {
 				      	// console.log("insertBefore");
-					      section.insertBefore(image, section.firstChild);
+					      preview.insertBefore(image, preview.firstChild);
 				      }
 				      else {
 				      	// console.log("appendChild");
-				      	section.appendChild(image);
+				      	preview.appendChild(image);
 				      }
 				    }
 				    else {
@@ -1040,12 +1127,16 @@
 					footers = document.getElementsByTagName("footer"),
 					toolbar = document.getElementById("toolbar");
 
-				console.log("this : " + this, this);
+				console.log("onTabClicked() this : " + this, this);
 
 				if (this && this.classList && this.classList.contains("closebutton")) {
 					if (toolbar && toolbar.classList.contains("active")) {
+						console.log("deactivating toolbar");
 						toolbar.classList.remove("active");
-						return false;
+						// toolbar.classList.remove("active");
+						e.preventDefault();
+						e.stopPropagation();
+						return true;
 					}
 				}
 
@@ -1375,6 +1466,115 @@
 		// updateProgram();
 
 	});
+
+	</script>
+
+	<script type="text/javascript">
+
+	var
+		data = window.data || {},
+		previousTime = "",
+		currentItem = document.querySelectorAll(".item.playing")[0];
+
+	console.log("data : " + data, data);
+
+
+	function rotatePlaylist() {
+		var
+			upnext = null,
+			currentQueue = document.querySelectorAll("#current ul")[0], 
+			currentItem = document.querySelectorAll(".item.playing")[0],
+			queuedItems = document.querySelectorAll("#queue ul > li"),
+			nextItems = document.querySelectorAll("#next-items ul > li");
+
+
+		if (queuedItems && queuedItems.length) {
+			upnext = queuedItems[0];
+			// console.log("queued: " + upnext, upnext);
+		}
+		else if (nextItems && nextItems.length) {
+			upnext = nextItems[0];
+			// console.log("up next: " + upnext, upnext);
+		}
+		else {
+			upnext = nextItems.length;
+			// console.log("no more items: " + upnext, upnext);
+		}
+
+				// <section id="queue">
+				// 	<div class="section-title">Queued</div>
+				// 	<ul>
+				// 		<li id="item-1" class="item">Food report #32 
+
+
+		if (upnext && upnext.classList) {
+			currentItem.classList.remove("playing");
+			currentQueue.replaceChild(upnext, currentItem);
+			upnext.classList.add("playing");
+			// console.log("rotatePlaylist : " + upnext);
+		}
+		else {
+			console.error("no more items in rotatePlaylist()!");
+		}
+
+	}
+
+
+
+	function updatePlaylist() {
+		var
+			item,
+			now = new Date(),
+			currentTime = null,
+			currentItem = document.querySelectorAll(".item.playing"),
+
+			subtractSecond = function (timeStr) {
+				var
+					parts = timeStr.split(":"),
+					minutes = seconds = 0;
+
+				if (parts && parts.length >= 2) {
+					minutes = parseInt(parts[0], 10);
+					seconds = parseInt(parts[1], 10);
+				}
+				else {
+					console.error("no parts!");
+				}
+
+				if (seconds == 0) {
+					if (minutes > 0) {
+						minutes--;
+						seconds = 60;
+					}
+					else {
+						console.log("rotatePlaylist()");
+						rotatePlaylist();
+					}
+				}
+				seconds--;
+
+				return pi.strPad(minutes, 1, "0", true) + ":" + pi.strPad(seconds, 2, "0", true);
+			};
+
+
+		if (currentItem && currentItem.length) {
+			item = currentItem[0];
+			currentTime = item.getElementsByClassName("duration")[0];
+			if (previousTime != currentTime.textContent) {
+				// console.log("previous time: " + previousTime);
+				previousTime = currentTime.textContent;
+				// console.log("current time: " + currentTime.textContent);
+				currentTime.textContent = subtractSecond(currentTime.textContent);
+			}
+		}
+		else {
+			console.error("no currentItem !");
+		}
+
+	}
+
+
+	setInterval(updatePlaylist, 1000);
 
 	</script>
 </body>
