@@ -1,6 +1,45 @@
 {
-	"tags" 	: "tags.json",
-	"types" : "types.json",
-	"media" : "media.json"
+	"defaults" : {
+			"title" : "No title",
+			"width" : 1,
+			"height": 1,
+			"type"  : "default",
+			"uri" 	: "assets/php/data/",
+ 			"duration" : 30,
+			"template" : "default-template"
+		},
+	"images" : [
+		{
+			"id" 		: 0,
+			"title" : "",
+			"width" : 640,
+			"height": 360,
+ 			"tags" 	: "",
+			"type"  : "image/png",
+			"uri" 	: "assets/php/data/",
+			"filename" : "",
+			"filesize" : 0,
+			"filetime" : 0,
+ 			"duration" : 0,
+			"description" : "",
+			"template" : ""
+		}
+	],
+	"videos" : [
+		{
+			"id" 		: 0,
+			"title" : "",
+			"width" : 640,
+			"height": 360,
+ 			"tags" 	: "",
+			"filename" : "",
+			"filesize" : 0,
+			"filetime" : 0,
+ 			"duration" : 0,
+			"type" 	: "video/mp4",
+			"media" : "assets/php/data/",
+			"description" : "",
+			"template" : ""
+		}
+	]
 }
-

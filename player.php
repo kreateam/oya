@@ -269,11 +269,12 @@
 	<script type="text/javascript">
 
 		function onPlaylistLoaded(data) {
-			console.log("received playlist data: ", data);
+			console.log("Playlist loaded.");
+			// console.log("received playlist data: ", data);
 		}
 
 		function onLoadError(error) {
-			console.error("LoadError: " + error, error);
+			console.error("Playlist LoadError: " + error, error);
 		}
 
 		function getJSON (list, callback, onerror) {

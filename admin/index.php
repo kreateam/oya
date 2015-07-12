@@ -18,7 +18,7 @@
 	<title>Øyafestivalen 2015</title>
 
 	<!-- redirect requests, one dir up -->
-	<base href="../">
+	<base href="../" target="_blank">
 	<script type="text/javascript" src="assets/js/errorhandler.js"></script>
 
 	<!-- P22 ... ? -->
@@ -28,6 +28,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/html5/assets/font/dosis.css">
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/mirror.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/contextmenu.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
@@ -97,10 +98,6 @@
 			 				transition: color .4s ease-out;
 		}
 
-		span:hover {
-			color: #fff;
-		}
-
 	</style>
 
 	<style type="text/css">
@@ -135,7 +132,7 @@
 			min-width: 100%;
 			height: 100%;
 
-      -webkit-font-smoothing: subpixel-antialiased;
+      /*-webkit-font-smoothing: antialiased;*/
 
 
      	/* Make text non-selectable */
@@ -256,6 +253,7 @@
 
 
 		.screen {
+			/* to override the iframes's inline */
 			display: block;
 
 			/* initial state, because we want to fade in @load */
@@ -366,6 +364,58 @@
 			float: right;
 		}
 
+		.up-arrow:before {
+			font-weight: 100;
+			content: "<";
+		}
+
+		.up-arrow {
+			display: inline-block;
+			position: relative;
+			margin-right: 0.4em;
+			margin-left: 0.4em;
+			font-weight: 100;
+			top:-0.1em;
+			-webkit-transform : rotate(90deg) scale(1, 1.8);
+							transform : rotate(90deg) scale(1, 1.8);
+			cursor: pointer;
+		}
+
+		.down-arrow:before {
+			font-weight: 100;
+			content: ">";
+		}
+
+		.down-arrow {
+			display: inline-block;
+			position: relative;
+			margin-right: 0.4em;
+			margin-left: 0.4em;
+			font-weight: 100;
+			top:-0.1em;
+			-webkit-transform : rotate(90deg) scale(1, 1.8);
+							transform : rotate(90deg) scale(1, 1.8);
+			cursor: pointer;
+		}
+
+		.down-arrow:hover {
+			color: #fff;
+		}
+
+		.up-arrow:hover {
+			color: #fff;
+		}
+
+		.item-menu {
+			color: rgba(255,255,255,0.1);
+			float: right;
+			text-align: left;
+			width: 6em;
+			font-size: 1.2em;
+			font-weight: 100;
+			overflow-y: visible;
+		}
+
 		.coming-up {
 			margin-left 	: 2.5em;
 			margin-bottom : 2.5em;
@@ -415,6 +465,16 @@
 	    				user-select: none;
 		}
 
+		.selectable {
+	    -webkit-touch-callout: auto;
+
+	    -webkit-user-select: auto;
+	    	 -moz-user-select: auto;
+	    		-ms-user-select: auto;
+	    				user-select: auto;			
+	    cursor: auto;
+		}
+
 
 		#amfiet-hours {
 			/*font-weight: 900;*/
@@ -448,9 +508,10 @@
 			position: relative;
 			z-index: 100;
 
-			font-family: "Open Sans", sans-serif;
-			font-weight: 100;
+			font-family: Helvetica, Lato, sans-serif;
+			font-weight: 400;
 			font-size: 66%;
+			height: 20em;
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
@@ -461,6 +522,13 @@
 		#toolbar.active {
 			height: 20em;
 		}
+
+	#toolbar .closebutton {
+		background-color: #272822;
+		color: #fff;
+		font-weight: 900;
+		cursor: pointer;
+	}
 
 	</style>
 
@@ -605,10 +673,10 @@
 					<h1>Next</h1>
 					<h2 class="artist">Razika</h2>
 					<span><strong>in</strong></span>
-						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days, 
+						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days
 						</div>
-					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-hours" class="fat"></span> hours, </div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-minutes" class="fat"></span> minutes.</div>
+					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-hours" class="fat"></span> hours</div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-minutes" class="fat"></span> minutes</div>
 				</div>
 
 				<ul id="program1">
@@ -622,10 +690,10 @@
 					<h2 class="artist">The Switch</h2>
 					<span><strong>in</strong></span>
 						<div class="day-counter">
-							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days, 
+							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days
 						</div>					
-					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-hours" class="fat"></span> hours, </div>
-					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-minutes" class="fat"></span> minutes.</div>
+					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-hours" class="fat"></span> hours</div>
+					<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-minutes" class="fat"></span> minutes</div>
 				</div>
 				<ul id="program2">
 					
@@ -639,41 +707,74 @@
 
 				<section id="current">
 					<div class="section-title">Now playing</div>
-		
 					<ul>
-						<li class="item playing">Weather - today<span class="duration">0:42</span></li>
+						<li id="item-0" class="item playing">Weather - today<span class="duration">0:42</span></li>
 					</ul>
-					
 				</section>
+
 				<section id="queue">
 					<div class="section-title">Queued</div>
 					<ul>
-						<li class="item">Food report #32 <span class="duration">0:30</span></li>
-						<li class="item">Instagram <span class="hashtag instagram">#osloby #latest</span><span class="duration">3:00</span></li>
+						<li id="item-1" class="item">Food report #32 
+							<span class="duration">0:30</span>
+							<span class="item-menu">
+								<span class="up-arrow"></span>
+								<span class="down-arrow"></span>
+							</span>
+						</li>
+						<li id="item-2" class="item">Instagram 
+							<span class="hashtag instagram">#osloby #latest</span>
+							<span class="duration">3:00</span>
+						</li>
 					</ul>
 				</section>
 
 				<section id="next-tracks">
 					<div class="section-title">Next Items</div>
 					<ul>
-						<li class="item">Announcement : &lt;TBA&gt;<span class="duration">0:30</span></li>
-						<li class="item">Tweets <span class="hashtag twitter">#osloby</span><span class="duration">1:30</span></li>
-						<li class="item">Tweets <span class="hashtag twitter">#oya</span><span class="duration">1:30</span></li>
-						<li class="item">Coming up...<span class="duration">2:30</span></li>
+						<li class="item">Announcement : &lt;TBA&gt;
+							<span class="duration">0:30</span>
+						</li>
+						<li class="item">Tweets 
+							<span class="hashtag twitter">#osloby</span>
+							<span class="duration">1:30</span>
+						</li>
+						<li class="item">Tweets 
+							<span class="hashtag twitter">#oya</span>
+							<span class="duration">1:30</span>
+						</li>
+						<li class="item">Coming up...
+							<span class="duration">2:30</span>
+						</li>
 					</ul>
 				</section>
-				<section id="demo">
-					
-				</section>
+
+				<section id="demo"></section>
 			</section>
+
 			<footer>
-			<div id="toolbar" class="tabstrip">
+			<div id="toolbar" class="tabstrip selectable">
 		    <ul>
 	        <li>
             <input type="radio" name="tabstrip-0" checked="checked" id="tabstrip-0-0" />
             <label for="tabstrip-0-0">New...</label>
             <div>
-            	<input type="file" name="image-upload" id="image-upload" accept="image/*"/>
+							<select>
+							  <option value="volvo">Volvo</option>
+							  <option value="saab">Saab</option>
+							  <option value="mercedes">Mercedes</option>
+							  <option value="audi">Audi</option>
+							</select>
+            	<select>
+						    <optgroup label="groupe1">
+						        <option value="alpha">Alpha</option>
+						        <option value="beta">Beta</option>
+						    </optgroup>
+						    <optgroup label="groupe2">
+						        <option value="one">One</option>
+						        <option value="two">Two</option>
+						    </optgroup>
+							</select>
               <p>Lorem Ipsum is simply dummy text of the printing and 
                   typesetting industry. Lorem Ipsum has been the industry's 
                   standard dummy text ever since the 1500s, when an unknown 
@@ -690,28 +791,16 @@
 	        </li>
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-1" />
-            <label for="tabstrip-0-1">Library</label>
+            <label for="tabstrip-0-1">Images</label>
             <div>
-              <h3>Why do we use it?</h3>
-              <p>It is a long established fact that a reader will be distracted 
-                  by the readable content of a page when looking at its layout. 
-                  The point of using Lorem Ipsum is that it has a more-or-less 
-                  normal distribution of letters, as opposed to using 'Content 
-                  here, content here', making it look like readable English. 
-                  Many desktop publishing packages and web page editors 
-                  now use Lorem Ipsum as their default model text, and a 
-                  search for 'lorem ipsum' will uncover many web sites still 
-                  in their infancy. Various versions have evolved over the 
-                  years, sometimes by accident, sometimes on purpose 
-                  (injected humour and the like).
-              </p>
+            	<input type="file" name="image-upload" id="image-upload" accept="image/*"/>
             </div>
 	        </li>
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
-            <label for="tabstrip-0-2">Tweets</label>
+            <label for="tabstrip-0-2">Videos</label>
             <div>
-              <h3>Where does it come from?</h3>
+            	<input type="file" name="video-upload" id="video-upload" accept="video/*"/>
               <p>Contrary to popular belief, Lorem Ipsum is not simply 
                   random text. It has roots in a piece of classical 
                   Latin literature from 45 BC, making it over 2000 years 
@@ -734,7 +823,39 @@
             <input type="radio" name="tabstrip-0" id="tabstrip-0-3" />
             <label for="tabstrip-0-3">Instagram</label>
             <div>
-              <h3>Where can I get some?</h3>
+              <style>
+              	.ig-b- { 
+              		display: inline-block; 
+              	}
+
+								.ig-b- img { 
+									visibility: hidden; 
+								}
+
+								.ig-b-:hover { 
+									background-position: 0 -60px; 
+									} 
+
+								.ig-b-:active { 
+									background-position: 0 -120px; 
+								}
+
+								.ig-b-48 { 
+									width: 48px; 
+									height: 48px; 
+									background: url(//badges.instagram.com/static/images/ig-badge-sprite-48.png) no-repeat 0 0; 
+								}
+
+								@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+									.ig-b-48 { 
+										background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-48@2x.png); 
+										background-size: 60px 178px; 
+									} 
+								}
+							</style>
+
+							<a href="http://instagram.com/osloby_no?ref=badge" class="ig-b- ig-b-48"><img src="//badges.instagram.com/static/images/ig-badge-48.png" alt="Osloby.no - Instagram" />osloby.no</a>
+
               <p>There are many variations of passages of Lorem Ipsum available, 
                   but the majority have suffered alteration in some form, 
                   by injected humour, or randomised words which don't look 
@@ -751,6 +872,10 @@
                   non-characteristic words etc.
               </p>
             </div>
+	        </li>
+	        <li class="closebutton">
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-4" />
+            <label for="tabstrip-0-4" class="closebutton">x</label>
 	        </li>
 		    </ul>
 			</div>
@@ -830,34 +955,129 @@
 			}, false);
 	</script>
 
+
+
 	<script type="text/javascript">
+
+		document.querySelector('#video-upload').addEventListener('change', function(e) {
+			  var
+			  	file 	= this.files[0],
+			  	data 	= new FormData(),
+			  	xhr 	= new XMLHttpRequest(),
+
+			  	// @todo Maybe some visual feedback on upload progress
+			  	onprogress = function(e) {
+				    if (e.lengthComputable) {
+				      var
+				      	percentComplete = (e.loaded / e.total) * 100;
+
+				      console.log(percentComplete + '% uploaded');
+				    }
+				  },
+
+				  /**
+				   * When video link is returned from server
+				   * @return {void}
+				   */
+				  onload = function() {
+				    if (this.status == 200) {
+				    	console.log("uploaded");
+				    }
+				    else {
+				    	// throws to window.onerror, where we trap and redirect to server
+				    	throw "Xhr error: " + this.status;
+				    }
+			    };
+
+
+			   // populate formdata
+			  data.append("video-upload", file);
+			  data.append("username", "<?php echo $_SESSION['username'];?>");
+			  data.append("postId", pi.uuid());
+
+			  xhr.upload.onprogress = onprogress;
+			  xhr.onload = onload;
+
+			  xhr.open('POST', 'admin/video-upload.php', true);
+			  xhr.send(data);
+
+			}, false);
+	</script>
+
+
+	<script type="text/javascript">
+
+
 
 		/**
 		 * Just to show/hide the toolbar
 		 */
 
+
+		function hideToolbar() {
+		 	var
+		 		toolbar = document.getElementById("toolbar");
+
+		 	if (toolbar && toolbar.classList) {
+		 		console.log("removing class 'active'");
+			 	toolbar.classList.remove("active");
+		 	}
+		 	else {
+		 		console.error("smthn wrng in hideToolbar()");
+		 	}
+		 	return false;
+		}
+
+
 		document.addEventListener("DOMContentLoaded", function () {
 			var
-				tabs = document.querySelectorAll("#toolbar li");
+				visible 	= false,
+				tabs 			= document.querySelectorAll("#toolbar li"),
+				handlers 	= [];
 
 			function onTabClicked(e) {
 				var
+					footers = document.getElementsByTagName("footer"),
 					toolbar = document.getElementById("toolbar");
 
+				console.log("this : " + this, this);
+
+				if (this && this.classList && this.classList.contains("closebutton")) {
+					if (toolbar && toolbar.classList.contains("active")) {
+						toolbar.classList.remove("active");
+						return false;
+					}
+				}
+
 				if (toolbar && toolbar.classList.contains("active")) {
-					console.log("toolbar already active");
+					// console.log("toolbar already active : " + this, this);
 					// toolbar.classList.remove("active");
 					// nada
 				}
 				else {
-					console.log("activating toolbar");
+					console.log("activating toolbar : " + this, this);
+					visible = true;
+					// if (handlers && handlers.length) {
+					// 	for (var i = 0; i < handlers.length; i++) {
+					// 		console.log("removing event listener : " + i, handlers[i]);
+					// 		handlers[i].removeEventListener("click", onTabClicked);
+					// 	}
+					// }
 					toolbar.classList.add("active");
 				}
+				e.stopPropagation();
+
 			}
 
 			if (tabs && tabs.length) {
 				for (var i = 0; i < tabs.length; i++) {
-					tabs[i].addEventListener("click", onTabClicked);
+					if (handlers.indexOf(tabs[i]) == -1 ) {
+						tabs[i].addEventListener("click", onTabClicked);
+						handlers.push(tabs[i]);
+					}
+					else {
+						console.error("already has a handler : " + tabs[i], tabs[i]);
+					}
 				}
 			}
 

@@ -19,3 +19,32 @@
 			<span class="windSpeed">{{windSpeed}} m/s</span>
 		</div>
 	</script>
+
+
+	<script id="form-score-template" type="text/template">
+		<fieldset>
+			<legend>Score</legend>
+			<input type="radio" name="1" value="1" />
+			<input type="radio" name="2" value="2" />
+			<input type="radio" name="3" value="3" />
+			<input type="radio" name="4" value="4" />
+			<input type="radio" name="5" value="5" />
+			<input type="radio" name="6" value="6" />
+		</fieldset>
+  </script>
+
+
+	<!--  default template for playlist items's inline menu -->
+	<script id="item-menu-template" type="text/template">
+		<span class="up-arrow">OPP</span>
+		<span class="down-arrow">NED</span>
+	</script>
+
+
+
+	<!--  default template for playlist items -->
+	<script id="item-template" type="text/template">
+		<span class="artist">{{artist}}</span>
+		<span class="day">{{day}}</span>
+		<span class="time unselectable">{{time}}</span>
+	</script>
