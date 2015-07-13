@@ -21,6 +21,14 @@
 	</script>
 
 
+	<script id="imagelist-item-template" type="text/template">
+		<figure>
+			<img src="{{uri}}" class="preview">
+			<figcaption>{{title}}</figcaption>
+		</figure>
+	</script>
+
+
 	<script id="form-score-template" type="text/template">
 		<fieldset>
 			<legend>Score</legend>
@@ -35,15 +43,18 @@
 
 
 	<script id="form-image-editor-template" type="text/template">
-		<fieldset>
-			<legend>New Image</legend>
-			<input type="text" name="title" value="" />
-			<input type="text" name="message" value="" />
-			<input type="text" name="description" value="" />
-			<input type="text" name="time" value="" />
-			<input type="text" name="date" value="" />
-			<input type="text" name="tags" value="" />
-		</fieldset>
+			<fieldset id="form-image-editor-fieldset" style="width:20em">
+				<legend>New Image</legend>
+				<label for="title">Title</label>
+				<input type="text" width="32" id="form-image-editor-title" name="title" value="{{title}}" />
+				<label for="tags">Tags</label>
+				<input type="text" width="32" id="tags" name="tags" />
+				<label for="description">Description</label>
+				<textarea type="textarea" width="32" id="description" name="description" rows="2"></textarea>
+
+				<input type="hidden" id="filename" name="filename" value="{{filename}}" />
+				<input id="form-image-editor-submit" type="submit" name="submit" value="Save" />
+			</fieldset>
   </script>
 
 

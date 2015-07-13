@@ -32,6 +32,7 @@
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/mirror.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/contextmenu.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Kreon:300,400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -89,13 +90,27 @@
 		  				animation-fill-mode: both;
   		}
 
+
+		/* animation and transition defaults */
+		* {
+			-webkit-animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+							animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+			-webkit-animation-duration: 1s;
+							animation-duration: 1s;
+
+			-webkit-transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+							transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+			-webkit-transition-duration: .4s;
+							transition-duration: .4s;
+		}
+
 	</style>
 
 	<style type="text/css">
 
 		span {
-			-webkit-transition: color .4s ease-out;
-			 				transition: color .4s ease-out;
+			-webkit-transition: color .4s;
+			 				transition: color .4s;
 		}
 
 	</style>
@@ -210,8 +225,8 @@
 			font-size: 1.5em;
 			background-color: #272822;
 
-			-webkit-transition: height .4s ease-out;
-							transition: height .4s ease-out;
+			-webkit-transition: height .4s;
+							transition: height .4s;
 		}
 
 		.content {
@@ -225,6 +240,8 @@
 			padding-top: 2px;
 			text-align: left;
 			background-color: rgba(39, 40, 34, 0.6);
+			-webkit-transition: top .4s;
+							transition: top .4s;
 		}
 
 		.item::before {
@@ -262,9 +279,9 @@
 			-webkit-transform: scale(0.5, 0.5);
 							transform: scale(0.5, 0.5);
 
-			-webkit-transition: border .4s ease-out, opacity .4s ease-out, -webkit-transform .2s ease-out; /* Safari */
-			-webkit-transition: border .4s ease-out, opacity .4s ease-out, transform .2s ease-out;
-							transition: border .4s ease-out, opacity .4s ease-out, transform .2s ease-out;
+			-webkit-transition: border .4s, opacity .4s, -webkit-transform .2s; /* Safari */
+			-webkit-transition: border .4s, opacity .4s, transform .2s;
+							transition: border .4s, opacity .4s, transform .2s;
 
 		}
 
@@ -409,7 +426,7 @@
 		.item-menu {
 			display: inline-block;
 			color: rgba(255,255,255,0.1);
-			float: right;
+			/*float: right;*/
 			text-align: left;
 			width: 6em;
 			font-size: 1.2em;
@@ -512,7 +529,7 @@
 			font-family: Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
-			/*height: 20em;*/
+			height: 20em;
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
@@ -524,12 +541,22 @@
 			height: 20em;
 		}
 
-	#toolbar .closebutton {
-		background-color: #272822;
-		color: #fff;
-		font-weight: 900;
-		cursor: pointer;
-	}
+		#toolbar .closebutton {
+			background-color: #272822;
+			color: #fff;
+			font-weight: 900;
+			cursor: pointer;
+		}
+
+
+		#queue-duration {
+
+			} 
+
+		.queue-total {
+			font-size: 66%;
+			font-weight: 100;
+		}
 
 	</style>
 
@@ -558,6 +585,12 @@
 	 * @param  {[type]} e [description]
 	 */
 	function keypressed(e) {
+
+		// early escape
+    if (document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement) {
+    	return;
+    }
+
 		var
 			screens = document.getElementsByClassName("screen"),
 			keynum, key;
@@ -692,6 +725,19 @@
 					
 				</ul>
 		</div>
+		<style type="text/css">
+			[draggable] {
+			  -webkit-user-select: none;
+			  -khtml-user-select: none;
+			  -moz-user-select: none;
+			  user-select: none;
+
+			  /* Required to make elements draggable in old WebKit */
+			  -khtml-user-drag: element;
+			  -webkit-user-drag: element;
+			}
+		</style>
+
 		<div class="middle">
 			<section class="content">
 				<header>
@@ -706,7 +752,7 @@
 				</section>
 
 				<section id="queue">
-					<div class="section-title">Queued</div>
+					<div class="section-title">Queued <span id="queue-duration" class="queue-total">1:30</span></div>
 					<ul>
 						<li id="item-1" class="item">Food report #32 
 							<span class="duration">0:30</span>
@@ -727,7 +773,7 @@
 				</section>
 
 				<section id="next-items">
-					<div class="section-title">Next Items</div>
+					<div class="section-title">Next Items <span id="queue-duration" class="queue-total">6:00</span></div>
 					<ul>
 						<li class="item">Announcement : &lt;TBA&gt;
 							<span class="duration">0:30</span>
@@ -736,7 +782,7 @@
 								<span class="down-arrow"></span>
 							</div>
 						</li>
-						<li class="item">Instagram
+						<li class="item" draggable="true">Instagram
 							<span class="hashtag twitter">#osloby</span>
 							<span class="duration">1:30</span>
 							<div class="item-menu">
@@ -744,7 +790,7 @@
 								<span class="down-arrow"></span>
 							</div>
 						</li>
-						<li class="item">Instagram
+						<li class="item" draggable="true">Instagram
 							<span class="hashtag twitter">#oya</span>
 							<span class="duration">1:30</span>
 							<div class="item-menu">
@@ -752,7 +798,7 @@
 								<span class="down-arrow"></span>
 							</div>
 						</li>
-						<li class="item">Coming up...
+						<li class="item" draggable="true">Coming up...
 							<span class="duration">2:30</span>
 							<div class="item-menu">
 								<span class="up-arrow"></span>
@@ -766,20 +812,90 @@
 			</section>
 
 <style type="text/css">
+
+	progress {
+		visibility: hidden;
+	}
+
 	optgroup {
 		text-transform: capitalize;
 	}
+
+	textarea,
+	input[type="text"] {
+	  display: inline-block;
+	  margin: 0;
+	  width: 90%;
+	  font-family: sans-serif;
+	  font-size: 75%;
+	  -webkit-appearance: none;
+	  appearance: none;
+	  
+	  box-shadow: none;
+	  border-radius: none;
+	  padding: .4em;
+	  border: solid 1px #dcdcdc;
+	  transition: box-shadow 0.3s, border 0.3s;
+	}
+
+	textarea:focus,
+	textarea.focus,
+	input[type="text"]:focus,
+	input[type="text"].focus {
+	  outline: none;
+	  border: solid 1px rgba(38,188,244,.8);
+
+  	box-shadow: 0 0 15px 5px rgba(39,40,34,.3);
+	}
+
  	#image-search {
  		width: 20em;
  	}
+
+	.error {
+		display: none;
+		background-color: #ff0545;
+		padding: 0.2em 0.5em;
+		color: #fff;
+	}
+
+	.status {
+		display: none;
+		background-color: #0545ff;
+		padding: 0.2em 0.5em;
+		color: #fff;
+	}
+
 	.editor {
+		/*background-color: rgba(39,40,34,0.4);*/
 		float: left;
 		height: 100%;
 		width: 4em;
 	}
 
+
+	figure {
+		display: inline-block;
+		margin: .2em .8em;
+	}
+
+	img.preview {
+		margin: 2px;
+		padding: 0;
+		height: 6em;
+	}
+
+	img.preview:hover {
+		height: 16em;
+	}
+
 	.preview {
+		display: inline;
+		clear: both;
 		float: left;
+		text-align: left;
+
+		/*margin-top: .6em;*/
 	}
 </style>
 
@@ -787,7 +903,7 @@
 			<div id="toolbar" class="tabstrip selectable">
 		    <ul>
 	        <li>
-            <input type="radio" name="tabstrip-0" checked="checked" id="tabstrip-0-0" />
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-0" />
             <label for="tabstrip-0-0">New...</label>
             <div>
             	<select>
@@ -808,18 +924,16 @@
             </div>
 	        </li>
 	        <li>
-            <input type="radio" name="tabstrip-0" id="tabstrip-0-1" />
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-1" checked="checked" />
             <label for="tabstrip-0-1">Images</label>
             <div class="images">
             	<input type="file" name="image-upload" id="image-upload" accept="image/*" />
-            	filter <input type="text" name="image-search" id="image-search" />
+            	&nbsp;&nbsp;filter &nbsp;&nbsp;<input type="text" name="image-search" id="image-search" />
+            	<progress id="image-upload-progress" max="100"></progress>
+            	<span id="image-upload-status" class="status"></span>
 							<div>
-	            	<div id="image-editor" class="editor">
-	            		
-	            	</div>
-	            	<div id="image-preview" class="preview">
-	            		list
-	            	</div>
+	            	<div id="image-editor" class="editor"></div>
+	            	<div id="image-preview" class="preview"></div>
 							</div>
             </div>
 	        </li>
@@ -828,6 +942,39 @@
             <label for="tabstrip-0-2">Videos</label>
             <div class="videos">
             	<input type="file" name="video-upload" id="video-upload" accept="video/*" />
+            	<progress id="video-upload-progress" max="100"></progress>
+
+							<form class="go-bottom">
+								<h2>To Bottom</h2>
+								<div>    
+									<input id="name" name="name" type="text" required>
+									<label for="name">Your Name</label>
+								</div>
+								<div>
+									<input id="phone" name="phone" type="tel" required>
+									<label for="phone">Primary Phone</label>  
+								</div>  
+								<div>
+									<textarea id="message" name="message" required></textarea>    
+									<label for="message">Message</label>  
+								</div>
+							</form>
+							<form class="go-right">  
+								<h2>To Right</h2>
+								<div>    
+									<input id="name" name="name" type="text" required>    
+									<label for="name">Your Name</label>  
+								</div>  
+								<div>    
+									<input id="phone" name="phone" type="tel" required>    
+									<label for="phone">Primary Phone</label>  
+								</div>  
+								<div>    
+									<textarea id="message" name="message" required></textarea>    
+									<label for="message">Message</label>  
+								</div>
+							</form>
+
             </div>
 	        </li>
 	        <li>
@@ -857,9 +1004,9 @@
 									background: url(//badges.instagram.com/static/images/ig-badge-sprite-48.png) no-repeat 0 0; 
 								}
 
-								@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+								@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
 									.ig-b-48 {
-										background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-48@2x.png); 
+										background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-48@2x.png);
 										background-size: 60px 178px;
 									}
 								}
@@ -955,18 +1102,73 @@
 
 	<script type="text/javascript">
 
+
+		function onImageSave(e) {
+    	var 
+    		fields,
+    		xhr = new XMLHttpRequest(),
+    		fieldset = document.getElementById("form-image-editor-fieldset").children,
+    		formData = new FormData(fieldset),
+	      status  = document.getElementById("image-upload-status");
+
+
+			console.log("fieldset" + fieldset, fieldset);
+
+			if (fieldset && fieldset.length) {
+				for (var i = 0; i < fieldset.length; i++) {
+					if (fieldset[i] instanceof HTMLInputElement || fieldset[i] instanceof HTMLTextAreaElement) {
+						console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
+			    	formData.append(fieldset[i].name || fieldset[i].id, fieldset[i].value);
+					}
+				}
+			}
+
+    	// fieldset.forEach(function(p,i,a) {
+    	// 	console.log(i + " : " + p, p);
+    	// });
+
+    	console.log("Sending: " + formData, formData);
+
+
+    	xhr.open("POST", "admin/image-update.php");
+    	xhr.send(formData);
+
+    	xhr.onload = function() {
+    		if (this.status == 200) {
+    			status.textContent = "Success.";
+	  			status.className = "status";
+    			console.log("Success!");
+    			console.log(this.responseText);
+    		}
+    	};
+    	xhr.onerror = function() {
+  			status.textContent = "Success.";
+  			status.className = "error";
+  			console.log("Error!");
+    	};
+
+
+    }
+
+
 		/** @todo  This seems safe enough, no? */
 		document.querySelector('#image-upload').addEventListener('change', function(e) {
 			  var
 			  	file 	= this.files[0],
+			  	progress = document.getElementById("image-upload-progress"),
 			  	data 	= new FormData(),
 			  	xhr 	= new XMLHttpRequest(),
+
 
 			  	// @todo Maybe some visual feedback on upload progress
 			  	onprogress = function(e) {
 				    if (e.lengthComputable) {
 				      var
 				      	percentComplete = (e.loaded / e.total) * 100;
+
+				      if (progress) {
+				      	progress.value = percentComplete;
+				      }
 
 				      console.log(percentComplete + '% uploaded');
 				    }
@@ -977,15 +1179,37 @@
 				   * @return {void}
 				   */
 				  onload = function() {
+				  	if (progress) {
+				  		progress.style.visibility = "hidden";
+				  	}
 				    if (this.status == 200) {
 				    	var
 					      resp 		= JSON.parse(this.response),
 				    		preview = document.getElementById("image-preview"),
 				    		editor  = document.getElementById("image-editor"),
 					      images 	= editor.getElementsByTagName("img"),
+					      status  = document.getElementById("image-upload-status"),
 								template= document.getElementById("form-image-editor-template").innerHTML,
 								data 		= {},
-								image;
+								image, filename = "";
+
+							if (resp.error) {
+								status.style.display = "inline";
+								status.style.className = "error";
+								status.textContent = resp.error;
+							}
+							else if (resp.status) {
+								status.style.display = "inline";
+								status.style.className = "status";
+								status.textContent = resp.status;
+							}
+
+							if (resp.filename) {
+								filename = resp.filename;
+							}
+							else {
+								filename = file.name;
+							}
 
 							if (images && images.length) {
 								for (var i = 0; i < images.length; i++) {
@@ -999,9 +1223,22 @@
 				      image.src 					= resp.dataUri;
 				      image.className 		= "zoomInDown";
 				      image.style.display = "inline-block";
-				      image.style.height 	= "8em";
+				      image.style.height 	= "16em";
 				      editor.style.width = "auto";
-				      editor.innerHTML = Mustache.render(template);
+
+				      // console.log("file.name : " + file.name);
+				      editor.innerHTML = Mustache.render(template, {"title" : file.name, "filename" : filename});
+
+				      var
+				      	submit = document.getElementById("form-image-editor-submit"),
+				      	titleField = document.getElementById("form-image-editor-title");
+
+				      submit.addEventListener("click", onImageSave);
+
+				      if (titleField && titleField instanceof HTMLInputElement) {
+				      	titleField.focus();
+				      	titleField.select();
+				      }
 
 			// <legend>New Image</legend>
 			// <input type="text" name="title" value="" />
@@ -1012,13 +1249,14 @@
 			// <input type="text" name="tags" value="" />
 
 
-				      if (preview.firstChild) {
+				      if (editor.firstChild) {
 				      	// console.log("insertBefore");
-					      preview.insertBefore(image, preview.firstChild);
+				      	editor.appendChild(image);
+					      // editor.insertBefore(image, editor.firstChild);
 				      }
 				      else {
 				      	// console.log("appendChild");
-				      	preview.appendChild(image);
+				      	editor.appendChild(image);
 				      }
 				    }
 				    else {
@@ -1028,6 +1266,16 @@
 			    };
 
 
+		  	if (progress) {
+		  		progress.style.visibility = "visible";
+		  	}
+
+		  	if (!file) {
+		  		console.error("No file selected!");
+		  		return;
+		  	}
+
+			  console.log("file : ", file);
 			   // populate formdata
 			  data.append("image-upload", file);
 			  data.append("username", "<?php echo $_SESSION['username'];?>");
@@ -1048,6 +1296,7 @@
 
 		document.querySelector('#video-upload').addEventListener('change', function(e) {
 			  var
+			  	progress = document.getElementById("video-upload-progress"),
 			  	file 	= this.files[0],
 			  	data 	= new FormData(),
 			  	xhr 	= new XMLHttpRequest(),
@@ -1058,7 +1307,13 @@
 				      var
 				      	percentComplete = (e.loaded / e.total) * 100;
 
+				      if (progress) {
+				      	progress.value = percentComplete;
+				      }
 				      console.log(percentComplete + '% uploaded');
+				    }
+				    else {
+				    	console.error("Length not computable!");
 				    }
 				  },
 
@@ -1076,6 +1331,9 @@
 				    }
 			    };
 
+		  	if (progress) {
+		  		progress.style.visibility = "visible";
+		  	}
 
 			   // populate formdata
 			  data.append("video-upload", file);
@@ -1127,7 +1385,7 @@
 					footers = document.getElementsByTagName("footer"),
 					toolbar = document.getElementById("toolbar");
 
-				console.log("onTabClicked() this : " + this, this);
+				// console.log("onTabClicked() this : " + this, this);
 
 				if (this && this.classList && this.classList.contains("closebutton")) {
 					if (toolbar && toolbar.classList.contains("active")) {
@@ -1484,6 +1742,7 @@
 			upnext = null,
 			currentQueue = document.querySelectorAll("#current ul")[0], 
 			currentItem = document.querySelectorAll(".item.playing")[0],
+			nextQueue = document.querySelector("#next-items > ul"),
 			queuedItems = document.querySelectorAll("#queue ul > li"),
 			nextItems = document.querySelectorAll("#next-items ul > li");
 
@@ -1509,6 +1768,9 @@
 
 		if (upnext && upnext.classList) {
 			currentItem.classList.remove("playing");
+			// if (nextQueue) {
+			// 	nextQueue.appendChild(currentItem);
+			// }
 			currentQueue.replaceChild(upnext, currentItem);
 			upnext.classList.add("playing");
 			// console.log("rotatePlaylist : " + upnext);
@@ -1576,6 +1838,47 @@
 
 	setInterval(updatePlaylist, 1000);
 
+	</script>
+
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function() {
+			var
+				json,
+				// imagelist = document.getE
+				images = [],
+				list = document.getElementById("image-preview");
+
+			json = pi.xhr.get("assets/php/data-load.php?file=images.json", function(json) {
+				// console.log("Received json from server: " + json);
+				try {
+					var data = JSON.parse(json);
+				}
+				catch (e) {
+					console.error("Error parsing JSON : " + json);
+				}
+				if (data && data.length && typeof data.forEach == "function") {
+					data.forEach(function(p, i, a) {
+						var
+							template = document.getElementById("imagelist-item-template").innerHTML,
+							image = document.createElement("span");
+
+
+						console.log("rendering : " + p, p);
+						image.innerHTML = Mustache.render(template, p);
+						// image.src = p.uri;
+						// image.style.height = "8em";
+
+						list.appendChild(image);
+					});
+				}
+				else {
+					console.error("data is not an array: " + typeof data);
+				}
+			}, pi.log);
+
+
+
+		});
 	</script>
 </body>
 </html>

@@ -89,8 +89,9 @@
    
   .tabstrip input[type="radio"]:checked + label {
     z-index: 1;
-    background: rgb(38,188,244);
-    border-bottom-color: #fff;
+    background: #0545ff;
+    color: #fff;
+    border-bottom-color: #ff0545;
     cursor: default;
   }
    

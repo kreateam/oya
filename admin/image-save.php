@@ -1,22 +1,9 @@
 <?php
 
-	header('Content-Type: application/json');
-	
 	define('IMAGE_PATH', __DIR__ . '/../assets/php/data/files');
 	define('IMAGE_LIBRARY', __DIR__ . '/../assets/php/data/images.json');
 
 	$status = "ok";
-
-	if (!file_exists(IMAGE_PATH)) {
-		if (!mkdir(IMAGE_PATH)) {
-			$error = "Unable to create dir '" . IMAGE_PATH . "'";
-		}
-	}
-
-	if (!file_exists(IMAGE_LIBRARY)) {
-		file_put_contents(IMAGE_LIBRARY, "[");
-	}
-
 
 	$filecontent = file_get_contents($_FILES['image-upload']['tmp_name']);
 
@@ -49,7 +36,7 @@
 	  'postId' => $_REQUEST['postId']
 	);
 
-	$data['title'] = isset($_REQUEST['title']) ? $_REQUEST['title'] : $name;
+	$data['title'] = $_REQUEST['title'];
 	$data['message'] = $_REQUEST['message'];
 	$data['description'] = $_REQUEST['description'];
 	$data['tags'] = $_REQUEST['tags'];
@@ -68,6 +55,7 @@
 	else {
 		$reply['status'] = $status;
 	}
+
 
 	$json = json_encode($reply);
 
