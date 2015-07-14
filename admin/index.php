@@ -4,6 +4,38 @@
 
 	error_reporting(E_ALL);
 
+	$users = array(
+		"xman" => "tsxx",
+		"rune" => "apnettopp1",
+		"kreateam" => "apnettopp1",
+		"osloby_no" => "osloby.no"
+		);
+
+
+	function denied($message) {
+    header('WWW-Authenticate: Basic realm="Kreateam Admin"');
+    header('HTTP/1.0 401 Unauthorized');
+    die($message || "Unauthorized.");
+	}
+
+	if (!isset($_SERVER['PHP_AUTH_USER'])) {
+		denied("No user.");
+	} 
+	elseif (!isset($_SERVER['PHP_AUTH_PW'])) {
+		denied("Empty password.");
+	}
+	else {
+
+		$user = strtolower($_SERVER['PHP_AUTH_USER']);
+		$pass = $_SERVER['PHP_AUTH_PW'];
+
+		$_SESSION['user'] = $user;
+
+		if (!isset($users[$user]) || $users[$user] != $pass) {
+			denied("Rejected.");
+		}
+	}
+
 	// require_once("../assets/php/weather.php");
 	// $weather = getWeather();
 
@@ -231,6 +263,12 @@
 			-webkit-transition: height .4s;
 							transition: height .4s;
 		}
+
+		.highlighted {
+			color: #000;
+			font-weight: 700;
+		}
+
 
 		.content {
 			width: 100%;
@@ -532,12 +570,12 @@
 			font-family: Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
-			/*height: 20em;*/
+			height: 5em;
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
-			-webkit-transition: top 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000), height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); 
-			 				transition: top 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000), height 1.2s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
+			-webkit-transition: top .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), height .3s cubic-bezier(0.190, 1.000, 0.220, 1.000); 
+			 				transition: top .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), height .3s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
 		}
 
 		#toolbar.active {
@@ -885,13 +923,11 @@
 
 	img.preview {
 		padding: 0;
-		margin-top: 1em;
 		height: 6em;
 	}
 
 	img.preview:hover {
-		margin-top: 0;
-		height: 7em;
+
 	}
 
 	.preview {
@@ -902,6 +938,14 @@
 
 		/*margin-top: .6em;*/
 	}
+
+	/* the spans that hold individual preview images */
+	.preview-image {	
+    display : inline-block;
+    width: 25%;
+
+	}
+
 </style>
 
 			<footer>
@@ -1053,6 +1097,126 @@
 	<script type="text/javascript">
 
 
+		function editImage(id) {
+    	var
+    		data = findImage(id),
+    		editor  = document.getElementById("modal-dialog"),
+	      images 	= editor.getElementsByTagName("img"),
+				template= document.getElementById("image-modal-dialog-template").innerHTML,
+				image, filename = "";
+
+
+			if (images && images.length) {
+				for (var i = 0; i < images.length; i++) {
+					editor.removeChild(images[i]);
+				}
+			}
+
+			image = document.createElement("img");
+
+
+      image.src 					= data.uri;
+      image.className 		= "zoomInDown";
+      image.style.display = "inline";
+      image.style.height 	= "16em";
+      // editor.style.width = "auto";
+
+      // console.log("file.name : " + file.name);
+      editor.innerHTML = Mustache.render(template, data);
+
+      var
+      	submit = document.getElementById("form-image-editor-submit"),
+      	titleField = document.getElementById("form-image-editor-title");
+
+      submit.addEventListener("click", onImageSave);
+
+      if (titleField && titleField instanceof HTMLInputElement) {
+      	titleField.focus();
+      	titleField.select();
+      }
+
+
+      if (editor.firstChild) {
+      	console.log("editor.insertBefore");
+      	// editor.appendChild(image);
+	      editor.insertBefore(image, editor.firstChild);
+      }
+      else {
+      	console.log("editor.appendChild");
+      	editor.appendChild(image);
+      }
+			var
+				modalForm = document.getElementById("modal-one");
+
+			console.log("toggling modal");
+			if (modalForm.classList.contains("active")) {
+				modalForm.classList.remove("showing");
+				setTimeout(function(){
+					modalForm.classList.toggle("active");
+				}, 1000);
+			}
+			else {
+				modalForm.classList.add("active");
+				setTimeout(function(){
+					modalForm.classList.toggle("showing");
+				}, 1);
+			}
+		}; // editImage
+
+
+		function findImageElement(id) {
+			var
+				result = false,
+				id = id || null,
+				images = window.data.images || [];
+
+			if (id && images && images.length) {
+				for (var i = 0; i < images.length; i++) {
+					console.log(i + " : " + images[i].postId);
+					if (images[i].postId == id) {
+						
+						result = document.getElementById("i" + id);
+
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		function findImage(id) {
+			var
+				result = false,
+				id = id || null,
+				images = window.data.images || [];
+
+			if (id && images && images.length) {
+				for (var i = 0; i < images.length; i++) {
+					// console.log(i + " : " + images[i].postId);
+					if (images[i].postId == id) {
+						result = images[i];
+						break;
+					}
+				}
+			}
+
+			return result;
+		}
+
+
+		function highlight(container, what, spanClass) {
+	    var
+	    	spanClass = spanClass || "highlighted",
+	    	content = container.innerHTML,
+	      pattern = new RegExp('(>[^<.]*)(' + what + ')([^<.]*)','gi'),
+	      replaceWith = '$1<span ' + ( spanClass ? 'class="' + spanClass + '"' : '' ) + '">$2</span>$3',
+	      highlighted = content.replace(pattern, replaceWith);
+
+	    return (container.innerHTML = highlighted) !== content;
+		}
+
+
 		/**
 		 * global support function
 		 * @param  {array|null} images [description]
@@ -1062,6 +1226,7 @@
 			var
 				image,
 				images = images || window.data.images || [],
+		    imageSearch = document.getElementById("image-search"),
 				template = document.getElementById("imagelist-item-template").innerHTML,
 				previews = document.getElementById("image-preview"),
 				fragment = document.createDocumentFragment();
@@ -1073,15 +1238,20 @@
 	
 			previews.innerHTML = "";
 
-			for (var i = 0; i < images.length; i++) {
+			for (var i = images.length-1; i >= 0; i--) {
 				image = document.createElement("span");
-				// console.log ("template : " + template);
+				image.className = "preview-image";
+				// console.log ("image : ", images[i]);
 				image.innerHTML = Mustache.render(template, images[i]);
 				fragment.appendChild(image);
 			}
 
 			previews.appendChild(fragment);
 
+			if (imageSearch && imageSearch.value) {
+				// console.log("highlighting : " + imageSearch.value);
+				highlight(previews, imageSearch.value);
+			}
 		}
 
 		document.addEventListener("DOMContentLoaded", function () {
@@ -1182,8 +1352,33 @@
     			status.textContent = "Success.";
 	  			status.className = "status";
     			console.log("Success!");
-    			console.log(this.responseText);
+    			console.log("response: " + this.responseText);
     			hideModal();
+  				try {
+	    			var 
+	    				response = JSON.parse(this.responseText),
+	    				span = document.createElement("span"),
+	    				preview = document.getElementById("image-preview"),
+	    				template = document.getElementById("imagelist-item-template").innerHTML;
+
+	    			// new image ?
+	    			if (!findImage(response.postId)) {
+	 	    			window.data.images.push(response);
+	    			}
+	    			updateImages();
+
+	    			// // console.log("RESPONSE: ", response);
+	    			// span.innerHTML = Mustache.render(template, response);
+	    			// if (preview.firstChild) {
+	    			// 	preview.insertBefore(span, preview.firstChild);
+	    			// }
+	    			// else {
+	    			// 	preview.appendChild(span);
+	    			// }    				
+    			}
+    			catch(e) {
+    				console.error(e);
+    			}
     		}
     	};
     	xhr.onerror = function() {
@@ -1324,7 +1519,7 @@
 				    	// throws to window.onerror, where we trap and redirect to server
 				    	throw "Xhr error: " + this.status;
 				    }
-			    };
+			    }; // onload
 
 
 		  	if (progress) {
@@ -2034,13 +2229,17 @@
 	
 	function showModal(figure) {
 		var
+			figure = figure || null,
 			image = document.createElement("div"),
 			modal = document.getElementById("modal-one");
 
-		modal.classList.add("active");
-		setTimeout(function() {
-			modal.classList.add("showing");
-		}, 1);
+		if (figure) {
+
+			modal.classList.add("active");
+			setTimeout(function() {
+				modal.classList.add("showing");
+			}, 1);			
+		}
 	}
 
 
@@ -2080,6 +2279,9 @@
 		pi.xhr.get("assets/php/data/settings.json", function(json) {
 			if (json) {
 				data.settings = JSON.parse(json);
+				data.session = {
+					user : "<?php print($user); ?>"
+				};
 
 				pi.log("data : " + data.settings, data.settings);
 			}
@@ -2095,6 +2297,8 @@
 				try {
 					data.images = JSON.parse(json);
 					console.log("loaded " + data.images.length + " images.");
+					// lazy-load(ish)
+					setTimeout(updateImages, 1000);
 				}
 				catch (e) {
 					console.error("Exception: " + e);
@@ -2112,6 +2316,10 @@
 	});
 </script>
 
-
+<?php 
+	if (isset($DEBUG)) {
+		echo $DEBUG;
+	}
+?>
 </body>
 </html>

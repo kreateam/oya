@@ -22,7 +22,7 @@
 
 
 	<script id="imagelist-item-template" type="text/template">
-		<figure onclick="showModal(this);" id="{{uuid}}">
+		<figure onclick="editImage('{{postId}}');" id="i{{postId}}" data-item="{{*}}">
 			<img src="{{uri}}" class="preview">
 			<figcaption>{{title}}</figcaption>
 		</figure>
@@ -51,19 +51,19 @@
 	    	<fieldset id="form-image-editor-fieldset" style="width:20em">
 					<legend>New Image</legend>
 					<label for="title">Title</label>
-					<input type="text" width="32" id="form-image-editor-title" name="title" value="{{title}}" />
+					<input type="text" width="32" id="form-image-editor-title" name="title" value="{{title}}" required />
 					<label for="tags">Tags</label>
-					<input type="text" width="32" id="tags" name="tags" />
+					<input type="text" width="32" id="tags" name="tags" value="{{tags}}" />
 					<label for="description">Description</label>
-					<textarea type="textarea" width="32" id="description" name="description" rows="2"></textarea>
+					<textarea type="textarea" width="32" id="description" name="description" rows="2">{{description}}</textarea>
 
 					<input type="hidden" id="filename" name="filename" value="{{filename}}" />
 					<input id="form-image-editor-submit" type="submit" name="submit" value="Save" />
 				</fieldset>
 	  </div>
-	  <div class="modal-footer">
+	  <!--div class="modal-footer">
 	    <span class="btn">Niceness!</span>
-	  </div>
+	  </div-->
 	</script>
 
 
@@ -73,9 +73,9 @@
 				<label for="title">Title</label>
 				<input type="text" width="40" id="form-image-editor-title" name="title" value="{{title}}" />
 				<label for="tags">Tags</label>
-				<input type="text" width="40" id="tags" name="tags" />
+				<input type="text" width="40" id="tags" name="tags" value="{{tags}}" />
 				<label for="description">Description</label>
-				<textarea type="textarea" width="40" id="description" name="description" rows="2"></textarea>
+				<textarea type="textarea" width="40" id="description" name="description" rows="2">{{description}}</textarea>
 
 				<input type="hidden" id="filename" name="filename" value="{{filename}}" />
 				<input id="form-image-editor-submit" type="submit" name="submit" value="Save" />

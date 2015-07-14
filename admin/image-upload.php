@@ -45,19 +45,18 @@
 	  'dataUri' => $dataUri,
 	  'uri' 		=> $uri,
 	  'filename' => $filename,
-	  'username' => $_REQUEST['username'],
+	  'user' => $_REQUEST['user'],
 	  'postId' => $_REQUEST['postId']
 	);
 
 	$data['title'] = isset($_REQUEST['title']) ? $_REQUEST['title'] : $name;
-	$data['message'] = $_REQUEST['message'];
 	$data['description'] = $_REQUEST['description'];
 	$data['tags'] = $_REQUEST['tags'];
   $data['name'] = $name;
   $data['type'] = $filetype;
   $data['uri'] 		= $uri;
   $data['filename'] = $filename;
-  $data['username'] = $_REQUEST['username'];
+  $data['user'] = $_REQUEST['user'];
   $data['postId'] = $_REQUEST['postId'];
 
 	file_put_contents(IMAGE_LIBRARY, "\n" . json_encode($data) . ",", FILE_APPEND);
