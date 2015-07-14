@@ -18,7 +18,7 @@
 	<title>Øyafestivalen 2015</title>
 
 	<!-- redirect requests, one dir up -->
-	<base href="../" target="_blank">
+	<base href="../">
 	<!--script type="text/javascript" src="assets/js/errorhandler.js"></script-->
 
 	<!-- P22 ... ? 
@@ -97,6 +97,9 @@
 							animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 			-webkit-animation-duration: 1s;
 							animation-duration: 1s;
+
+			-webkit-animation-fill-mode: both;
+							animation-fill-mode: both;
 
 			-webkit-transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 							transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
@@ -389,8 +392,8 @@
 		.up-arrow {
 			display: inline-block;
 			position: relative;
-			margin-right: 0.4em;
-			margin-left: 0.4em;
+			margin-right: 0.1em;
+			margin-left: 0.1em;
 			font-weight: 100;
 			top:-0.1em;
 			-webkit-transform : rotate(90deg) scale(1, 1.8);
@@ -406,8 +409,8 @@
 		.down-arrow {
 			display: inline-block;
 			position: relative;
-			margin-right: 0.4em;
-			margin-left: 0.4em;
+			margin-right: 0.1em;
+			margin-left: 0.1em;
 			font-weight: 100;
 			top:-0.1em;
 			-webkit-transform : rotate(90deg) scale(1, 1.8);
@@ -428,7 +431,7 @@
 			color: rgba(255,255,255,0.1);
 			/*float: right;*/
 			text-align: left;
-			width: 6em;
+			width: auto;
 			font-size: 1.2em;
 			font-weight: 100;
 			overflow-y: visible;
@@ -529,7 +532,7 @@
 			font-family: Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
-			height: 20em;
+			/*height: 20em;*/
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
@@ -643,6 +646,7 @@
 					// console.log("transform : " + screens[1].style.transform);
 					screens[0].style.transform = "scale(1, 1)";
 					screens[1].style.transform = "scale(1, 1)";
+					screens[1].style.webKitTransform = "scale(1, 1)";
 					screens[0].style.border = "2px solid rgba(0,0,0,0.4)";
 					screens[1].style.border = "2px solid rgba(0,0,0,0.4)";
 				}
@@ -754,20 +758,20 @@
 				<section id="queue">
 					<div class="section-title">Queued <span id="queue-duration" class="queue-total">1:30</span></div>
 					<ul>
-						<li id="item-1" class="item">Food report #32 
+						<li id="item-1" class="item">
+							Food report #32 
+							<div class="item-menu">
+								<span class="down-arrow"></span>
+							</div>
 							<span class="duration">0:30</span>
-							<div class="item-menu">
-								<span class="up-arrow"></span>
-								<span class="down-arrow"></span>
-							</div>
 						</li>
-						<li id="item-2" class="item">Instagram 
+						<li id="item-2" class="item">
+							Instagram 
 							<span class="hashtag instagram">#osloby #latest</span>
-							<span class="duration">1:00</span>
 							<div class="item-menu">
 								<span class="up-arrow"></span>
-								<span class="down-arrow"></span>
 							</div>
+							<span class="duration">1:00</span>
 						</li>
 					</ul>
 				</section>
@@ -880,13 +884,14 @@
 	}
 
 	img.preview {
-		margin: 2px;
 		padding: 0;
+		margin-top: 1em;
 		height: 6em;
 	}
 
 	img.preview:hover {
-		height: 16em;
+		margin-top: 0;
+		height: 7em;
 	}
 
 	.preview {
@@ -927,7 +932,7 @@
             <input type="radio" name="tabstrip-0" id="tabstrip-0-1" checked="checked" />
             <label for="tabstrip-0-1">Images</label>
             <div class="images">
-            	<input type="file" name="image-upload" id="image-upload" accept="image/*" />
+            	+ <input type="file" name="image-upload" id="image-upload" accept="image/*" />
             	&nbsp;&nbsp;filter &nbsp;&nbsp;<input type="text" name="image-search" id="image-search" />
             	<progress id="image-upload-progress" max="100"></progress>
             	<span id="image-upload-status" class="status"></span>
@@ -945,33 +950,33 @@
             	<progress id="video-upload-progress" max="100"></progress>
 
 							<form class="go-bottom">
-								<h2>To Bottom</h2>
-								<div>    
-									<input id="name" name="name" type="text" required>
-									<label for="name">Your Name</label>
+								<h2>Under</h2>
+								<div>
+									<input id="title" name="title" type="text" required>
+									<label for="title">Title</label>
 								</div>
 								<div>
-									<input id="phone" name="phone" type="tel" required>
-									<label for="phone">Primary Phone</label>  
-								</div>  
+									<input id="tags" name="tags" type="text" required>
+									<label for="tags">Tags</label>
+								</div>
 								<div>
-									<textarea id="message" name="message" required></textarea>    
-									<label for="message">Message</label>  
+									<textarea id="description" name="description" required></textarea>    
+									<label for="description">Description</label>  
 								</div>
 							</form>
 							<form class="go-right">  
-								<h2>To Right</h2>
-								<div>    
-									<input id="name" name="name" type="text" required>    
-									<label for="name">Your Name</label>  
-								</div>  
-								<div>    
-									<input id="phone" name="phone" type="tel" required>    
-									<label for="phone">Primary Phone</label>  
-								</div>  
-								<div>    
-									<textarea id="message" name="message" required></textarea>    
-									<label for="message">Message</label>  
+								<h2>Til høyre</h2>
+								<div>
+									<input id="title" name="title" type="text" required>
+									<label for="title">Title</label>
+								</div>
+								<div>
+									<input id="tags" name="tags" type="text" required>
+									<label for="tags">Tags</label>
+								</div>
+								<div>
+									<textarea id="description" name="description" required></textarea>    
+									<label for="description">Description</label>  
 								</div>
 							</form>
 
@@ -1047,45 +1052,83 @@
 	
 	<script type="text/javascript">
 
+
+		/**
+		 * global support function
+		 * @param  {array|null} images [description]
+		 * @return {[type]}        [description]
+		 */
+		function updateImages(images) {
+			var
+				image,
+				images = images || window.data.images || [],
+				template = document.getElementById("imagelist-item-template").innerHTML,
+				previews = document.getElementById("image-preview"),
+				fragment = document.createDocumentFragment();
+
+			if (!images || typeof images.length != "number") {
+				console.error("no images!");
+				return;
+			}
+	
+			previews.innerHTML = "";
+
+			for (var i = 0; i < images.length; i++) {
+				image = document.createElement("span");
+				// console.log ("template : " + template);
+				image.innerHTML = Mustache.render(template, images[i]);
+				fragment.appendChild(image);
+			}
+
+			previews.appendChild(fragment);
+
+		}
+
 		document.addEventListener("DOMContentLoaded", function () {
 			var
-				images = [],
+				result = null,
 				imageSearch = document.getElementById("image-search"),
-				people = ['Daniel', 'Dustin', 'David', 'Damarcus', 'Russ'];
+				imageList   = document.getElementById("image-preview");
 
 
-			// pi.xhr.get("../assets/php/data/");
 
 
 			imageSearch.addEventListener("input", function(e) {
 				if (this && this.value) {
-					console.log("input: " + this.value);
-					// e.stopPropagation();
+					result = fuzzyMatchImages(this.value);
+					updateImages(result);
 				}
 				else {
-					console.error("No value", this);
+					// no search term, so show everything
+					updateImages();
+					// suppress
 				}
 
 			});
 
 			function fuzzyMatchImages(input) {
 			  var
+  				images = window.data.images,
 			  	thorough = input.toString().length > 5,
 			  	reg = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
 
 			  return images.filter(function(image) {
 	
-		    if (image.title.match(reg)) {
+			  // console.log("image : " + image, image);
+		    if (image.title && image.title.match(reg)) {
 			      return image;
 			    }
-			    else if (image.tags.match(reg)) {
+			    else if (image.tags && image.tags.match(reg)) {
 			    	return image;
 			    }
-			    else if (image.filename.match(reg)) {
+			    else if (image.filename && image.filename.match(reg)) {
+			    	return image;
+			    }
+			    else if (image.name && image.name.match(reg)) {
 			    	return image;
 			    }
 			    else if (thorough) {
-			    	if (image.description.match(reg)) {
+			    	if (image.description && image.description.match(reg)) {
 			    		return image;
 			    	}
 			    }
@@ -1109,7 +1152,8 @@
     		xhr = new XMLHttpRequest(),
     		fieldset = document.getElementById("form-image-editor-fieldset").children,
     		formData = new FormData(fieldset),
-	      status  = document.getElementById("image-upload-status");
+	      status  = document.getElementById("image-upload-status"),
+	      modalForm = document.getElementById("modal-one");
 
 
 			console.log("fieldset" + fieldset, fieldset);
@@ -1139,6 +1183,7 @@
 	  			status.className = "status";
     			console.log("Success!");
     			console.log(this.responseText);
+    			hideModal();
     		}
     	};
     	xhr.onerror = function() {
@@ -1186,10 +1231,10 @@
 				    	var
 					      resp 		= JSON.parse(this.response),
 				    		preview = document.getElementById("image-preview"),
-				    		editor  = document.getElementById("image-editor"),
+				    		editor  = document.getElementById("modal-dialog"),
 					      images 	= editor.getElementsByTagName("img"),
 					      status  = document.getElementById("image-upload-status"),
-								template= document.getElementById("form-image-editor-template").innerHTML,
+								template= document.getElementById("image-modal-dialog-template").innerHTML,
 								data 		= {},
 								image, filename = "";
 
@@ -1222,9 +1267,9 @@
 
 				      image.src 					= resp.dataUri;
 				      image.className 		= "zoomInDown";
-				      image.style.display = "inline-block";
+				      image.style.display = "inline";
 				      image.style.height 	= "16em";
-				      editor.style.width = "auto";
+				      // editor.style.width = "auto";
 
 				      // console.log("file.name : " + file.name);
 				      editor.innerHTML = Mustache.render(template, {"title" : file.name, "filename" : filename});
@@ -1250,14 +1295,30 @@
 
 
 				      if (editor.firstChild) {
-				      	// console.log("insertBefore");
-				      	editor.appendChild(image);
-					      // editor.insertBefore(image, editor.firstChild);
+				      	console.log("editor.insertBefore");
+				      	// editor.appendChild(image);
+					      editor.insertBefore(image, editor.firstChild);
 				      }
 				      else {
-				      	// console.log("appendChild");
+				      	console.log("editor.appendChild");
 				      	editor.appendChild(image);
 				      }
+							var
+								modalForm = document.getElementById("modal-one");
+
+							console.log("toggling modal");
+							if (modalForm.classList.contains("active")) {
+								modalForm.classList.remove("showing");
+								setTimeout(function(){
+									modalForm.classList.toggle("active");
+								}, 1000);
+							}
+							else {
+								modalForm.classList.add("active");
+								setTimeout(function(){
+									modalForm.classList.toggle("showing");
+								}, 1);
+							}
 				    }
 				    else {
 				    	// throws to window.onerror, where we trap and redirect to server
@@ -1840,45 +1901,217 @@
 
 	</script>
 
+
+<style type="text/css">
+
+	.btn {
+	  position: relative;
+	  display: inline-block;
+	  padding: 8px 15px;
+	  background: #428bca;
+	  border: #357ebd solid 1px;
+	  border-radius: 3px;
+	  color: #fff;
+	  font-size: 14px;
+	  text-decoration: none;
+	  text-align: center;
+	  min-width: 60px;
+	  transition: color .1s ease;
+	  /* top: 40em;*/
+	}
+
+	.btn:hover {
+	  background: #357ebd;
+	}
+
+	.btn.btn-big {
+	  font-size: 18px;
+	  padding: 15px 20px;
+	  min-width: 100px;
+	}
+
+	.btn-close {
+	  color: #aaaaaa;
+	  font-size: 30px;
+	  text-decoration: none;
+	  position: absolute;
+	  right: 5px;
+	  top: 0;
+	  cursor: pointer;
+	}
+
+	.btn-close:hover {
+	  color: #919191;
+	}
+
+	.modal-body {
+	  padding: 20px;
+	}
+
+	.modal-dialog {
+		color: #272822;
+	 	position: relative;
+	  background: #fefefe;
+	  border: #333333 solid 1px;
+	  border-radius: 5px;
+	  text-align: left;
+	  /*position: fixed;*/
+	  z-index: 11;
+		width: 33em;
+    margin: 10% auto;
+  	/*top: 50%;*/
+/*  	-webkit-transform: translateY(-25%);    
+  	transform: translateY(-25%);    
+*/  }
+
+	.modal-header,
+	.modal-footer {
+	  padding: 10px 20px;
+	}
+
+	.modal-header {
+	  border-bottom: #eeeeee solid 1px;
+	}
+
+	.modal-header h2 {
+	  font-size: 20px;
+	}
+
+	.modal-footer {
+	  border-top: #eeeeee solid 1px;
+	  text-align: right;
+	}
+
+
+	.modal {
+		position: fixed;
+		display: none;
+		opacity: 0;
+		min-height: 100%;
+		min-width: 100%;
+		top: 0;
+		right: 0;
+		color : #fff;
+		background-color: rgba(0, 0, 0, 0.4);
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%, rgba(55,0,255,0.21) 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.5)), color-stop(100%,rgba(55,0,255,0.21)));
+		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
+		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
+		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
+		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
+
+		z-index: 4998;
+
+		-webkit-transition: opacity .1s;
+		transition: opacity .1s;
+
+	}
+
+	.modal .relative-wrapper {
+		position: relative;
+	}
+
+	.modal.active {
+		display: block;
+	}
+
+	.modal.showing {
+		opacity: 1;
+	}
+
+</style>
+
+
+
+	<div class="modal" id="modal-one">
+		<div class="relative-wrapper">
+		  <div id="modal-dialog" class="modal-dialog">
+	    </div>
+	  </div>
+	</div>
+
+<script type="text/javascript">
+	
+	function showModal(figure) {
+		var
+			image = document.createElement("div"),
+			modal = document.getElementById("modal-one");
+
+		modal.classList.add("active");
+		setTimeout(function() {
+			modal.classList.add("showing");
+		}, 1);
+	}
+
+
+	function hideModal() {
+		var
+			modal = document.getElementById("modal-one");
+
+		modal.classList.remove("showing");
+		setTimeout(function() {
+			modal.classList.remove("active");
+		}, 60);
+	}
+
+</script>
+
+
 	<script type="text/javascript">
 		document.addEventListener("DOMContentLoaded", function() {
-			var
-				json,
-				// imagelist = document.getE
-				images = [],
-				list = document.getElementById("image-preview");
-
-			json = pi.xhr.get("assets/php/data-load.php?file=images.json", function(json) {
-				// console.log("Received json from server: " + json);
-				try {
-					var data = JSON.parse(json);
-				}
-				catch (e) {
-					console.error("Error parsing JSON : " + json);
-				}
-				if (data && data.length && typeof data.forEach == "function") {
-					data.forEach(function(p, i, a) {
-						var
-							template = document.getElementById("imagelist-item-template").innerHTML,
-							image = document.createElement("span");
-
-
-						console.log("rendering : " + p, p);
-						image.innerHTML = Mustache.render(template, p);
-						// image.src = p.uri;
-						// image.style.height = "8em";
-
-						list.appendChild(image);
-					});
-				}
-				else {
-					console.error("data is not an array: " + typeof data);
-				}
-			}, pi.log);
-
-
-
+			updateImages();
 		});
 	</script>
+
+
+<script type="text/javascript">
+
+	/**
+	 * Load data from JSON files
+	 */
+	document.addEventListener("DOMContentLoaded", function() {
+		var
+			data = window.data || {};
+
+
+		/**
+		 * load settings
+		 */
+		pi.xhr.get("assets/php/data/settings.json", function(json) {
+			if (json) {
+				data.settings = JSON.parse(json);
+
+				pi.log("data : " + data.settings, data.settings);
+			}
+
+		}, pi.log);
+
+		/**
+		 * load images
+		 */
+		pi.xhr.get("admin/data-load.php?file=images.json", function(json) {
+			if (json) {
+				// console.log("Received JSON: " + json);
+				try {
+					data.images = JSON.parse(json);
+					console.log("loaded " + data.images.length + " images.");
+				}
+				catch (e) {
+					console.error("Exception: " + e);
+				}
+			}
+		}, pi.log);
+
+
+
+
+
+		if (!window.data) {
+			window.data = data;
+		}
+	});
+</script>
+
+
 </body>
 </html>

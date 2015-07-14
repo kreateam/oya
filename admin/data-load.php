@@ -19,8 +19,6 @@
 
 	$status = "ok";
 
-	echo "OK";
-
 	$filename =  DATA_PATH . $_REQUEST['file'];
 
 	if (!file_exists($filename)) {

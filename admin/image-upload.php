@@ -60,7 +60,7 @@
   $data['username'] = $_REQUEST['username'];
   $data['postId'] = $_REQUEST['postId'];
 
-	file_put_contents(IMAGE_LIBRARY, "\n\t" . json_encode($data) . ",\n", FILE_APPEND);
+	file_put_contents(IMAGE_LIBRARY, "\n" . json_encode($data) . ",", FILE_APPEND);
 
 	if (isset($error)) {
 		$reply['error'] = "ERROR: " . $error;
