@@ -62,12 +62,17 @@
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="assets/js/mustache.js"></script>
-	<script type="text/javascript" src="assets/js/pi.core.js"></script>
-	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
+
+	<!-- needed for buttons.js -->
+	<script src="/html5/assets/js/jquery.min.js"></script>
+	<script src="assets/js/buttons.js"> </script>
+	<script src="assets/js/mustache.js"></script>
+	<script src="assets/js/pi.core.js"></script>
+	<script src="assets/js/pi.xhr.js"></script>
 
 	<style type="text/css">
 
@@ -418,45 +423,37 @@
 			float: right;
 		}
 
-		.up-arrow:before {
-			font-weight: 100;
-			content: "<";
-		}
-
 		.up-arrow {
+			width : .8em;
+			height : .8em;
 			display: inline-block;
 			position: relative;
+			padding-top: 0.2em;
 			margin-right: 0.1em;
 			margin-left: 0.1em;
 			font-weight: 100;
-			top:-0.1em;
-			-webkit-transform : rotate(90deg) scale(1, 1.8);
-							transform : rotate(90deg) scale(1, 1.8);
 			cursor: pointer;
-		}
-
-		.down-arrow:before {
-			font-weight: 100;
-			content: ">";
 		}
 
 		.down-arrow {
+			width : .8em;
+			height : .8em;
 			display: inline-block;
 			position: relative;
+			padding-top: 0.2em;
 			margin-right: 0.1em;
 			margin-left: 0.1em;
 			font-weight: 100;
-			top:-0.1em;
-			-webkit-transform : rotate(90deg) scale(1, 1.8);
-							transform : rotate(90deg) scale(1, 1.8);
 			cursor: pointer;
 		}
 
-		.down-arrow:hover {
+		.arrow-down:hover {
+			stroke : #fff;
 			color: #fff;
 		}
 
-		.up-arrow:hover {
+		.arrow-up:hover {
+			stroke : #fff;
 			color: #fff;
 		}
 
@@ -566,7 +563,7 @@
 			font-family: Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
-			height: 4em;
+			height: 3.6em;
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
@@ -641,7 +638,7 @@
       }
     }
 
-    console.log("keypressed (" + keynum + ") : " + document.activeElement);
+    // console.log("keypressed (" + keynum + ") : " + document.activeElement);
 
     key = String.fromCharCode(keynum);
 
@@ -799,7 +796,16 @@
 						<li id="item-1" class="item">
 							Food report #32 
 							<div class="item-menu">
-								<span class="down-arrow"></span>
+								<span class="up-arrow">
+									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
+									</svg>
+								</span>
+								<span class="down-arrow">
+									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
+									</svg>
+								</span>
 							</div>
 							<span class="duration">0:30</span>
 						</li>
@@ -807,7 +813,16 @@
 							Instagram 
 							<span class="hashtag instagram">#osloby #latest</span>
 							<div class="item-menu">
-								<span class="up-arrow"></span>
+								<span class="up-arrow">
+									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
+									</svg>
+								</span>
+								<span class="down-arrow">
+									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
+									</svg>
+								</span>
 							</div>
 							<span class="duration">1:00</span>
 						</li>
@@ -820,16 +835,32 @@
 						<li class="item">Announcement : &lt;TBA&gt;
 							<span class="duration">0:30</span>
 							<div class="item-menu">
-								<span class="up-arrow"></span>
-								<span class="down-arrow"></span>
+								<span class="up-arrow">
+									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
+									</svg>
+								</span>
+								<span class="down-arrow">
+									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
+									</svg>
+								</span>
 							</div>
 						</li>
 						<li class="item" draggable="true">Instagram
 							<span class="hashtag twitter">#osloby</span>
 							<span class="duration">1:30</span>
 							<div class="item-menu">
-								<span class="up-arrow"></span>
-								<span class="down-arrow"></span>
+								<span class="up-arrow">
+									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
+									</svg>
+								</span>
+								<span class="down-arrow">
+									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
+									</svg>
+								</span>
 							</div>
 						</li>
 						<li class="item" draggable="true">Instagram
@@ -843,8 +874,16 @@
 						<li class="item" draggable="true">Coming up...
 							<span class="duration">2:30</span>
 							<div class="item-menu">
-								<span class="up-arrow"></span>
-								<span class="down-arrow"></span>
+								<span class="up-arrow">
+									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
+									</svg>
+								</span>
+								<span class="down-arrow">
+									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
+									</svg>
+								</span>
 							</div>
 						</li>
 					</ul>

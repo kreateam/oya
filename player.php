@@ -9,7 +9,11 @@
 
 	// error_reporting(E_ALL);
 
+	// support functions for weather
 	require_once("./assets/php/weather.php");
+
+	// Mustache engine for PHP
+	require_once("./../assets/php/mustache/Engine.php");
 	$weather = getWeather();
 
 ?>
