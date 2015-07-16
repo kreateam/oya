@@ -21,6 +21,7 @@
 	</script>
 
 
+	<!--  partial for image list  -->
 	<script id="imagelist-item-template" type="text/template">
 		<figure onclick="editImage('{{postId}}');" id="i{{postId}}" data-item="{{*}}">
 			<img src="{{uri}}" class="preview">
@@ -83,7 +84,7 @@
   </script>
 
 
-	<!--  default template for playlist items's inline menu -->
+	<!--  partial for playlist items's inline menu -->
 	<script id="item-menu-template" type="text/template">
 		<span class="up-arrow">OPP</span>
 		<span class="down-arrow">NED</span>
@@ -91,7 +92,7 @@
 
 
 
-	<!--  default template for playlist items -->
+	<!--  template for concert items -->
 	<script id="item-template" type="text/template">
 		<span class="artist">{{artist}}</span>
 		<span class="day">{{day}}</span>

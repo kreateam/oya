@@ -8,7 +8,8 @@
 		"xman" => "tsxx",
 		"rune" => "apnettopp1",
 		"kreateam" => "apnettopp1",
-		"osloby_no" => "osloby.no"
+		"osloby_no" => "osloby.no",
+		"chakarls" =>	"Karlsen2015"
 		);
 
 
@@ -60,15 +61,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/dosis.css">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/mirror.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/contextmenu.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
-	<link href='http://fonts.googleapis.com/css?family=Kreon:300,400,700' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="assets/js/contextmenu.js"></script>
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
@@ -570,7 +566,7 @@
 			font-family: Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
-			height: 5em;
+			height: 4em;
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
@@ -645,9 +641,13 @@
       }
     }
 
-    console.log("keypressed : " + document.activeElement);
+    console.log("keypressed (" + keynum + ") : " + document.activeElement);
 
     key = String.fromCharCode(keynum);
+
+    if (keynum == 27) {
+    	hideModal();
+    }
 
     /**
      * Handle keyboard commands
@@ -942,7 +942,8 @@
 	/* the spans that hold individual preview images */
 	.preview-image {	
     display : inline-block;
-    width: 25%;
+    /*width: 25%;*/
+		/*margin: .2em .8em;*/
 
 	}
 
@@ -992,38 +993,6 @@
             <div class="videos">
             	<input type="file" name="video-upload" id="video-upload" accept="video/*" />
             	<progress id="video-upload-progress" max="100"></progress>
-
-							<form class="go-bottom">
-								<h2>Under</h2>
-								<div>
-									<input id="title" name="title" type="text" required>
-									<label for="title">Title</label>
-								</div>
-								<div>
-									<input id="tags" name="tags" type="text" required>
-									<label for="tags">Tags</label>
-								</div>
-								<div>
-									<textarea id="description" name="description" required></textarea>    
-									<label for="description">Description</label>  
-								</div>
-							</form>
-							<form class="go-right">  
-								<h2>Til høyre</h2>
-								<div>
-									<input id="title" name="title" type="text" required>
-									<label for="title">Title</label>
-								</div>
-								<div>
-									<input id="tags" name="tags" type="text" required>
-									<label for="tags">Tags</label>
-								</div>
-								<div>
-									<textarea id="description" name="description" required></textarea>    
-									<label for="description">Description</label>  
-								</div>
-							</form>
-
             </div>
 	        </li>
 	        <li>
@@ -1061,7 +1030,7 @@
 								}
 							</style>
 
-							<a href="http://instagram.com/osloby_no?ref=badge" class="ig-b- ig-b-48"><img src="//badges.instagram.com/static/images/ig-badge-48.png" alt="Osloby.no - Instagram" />osloby.no</a>
+							<a target="_blank" href="http://instagram.com/osloby_no?ref=badge" class="ig-b- ig-b-48"><img src="//badges.instagram.com/static/images/ig-badge-48.png" alt="Osloby.no - Instagram" />osloby.no</a>
 
               <p>There are many variations of passages of Lorem Ipsum available, 
                   but the majority have suffered alteration in some form, 
@@ -2197,8 +2166,8 @@
 
 		z-index: 4998;
 
-		-webkit-transition: opacity .1s;
-		transition: opacity .1s;
+		-webkit-transition: opacity 0.4s;
+		transition: opacity 0.4s;
 
 	}
 
@@ -2218,15 +2187,43 @@
 
 
 
-	<div class="modal" id="modal-one">
+	<div class="modal" id="modal-one" onclick="onModalClick(this);">
 		<div class="relative-wrapper">
-		  <div id="modal-dialog" class="modal-dialog">
+		  <div id="modal-dialog" class="modal-dialog" onclick="noClick();">
 	    </div>
 	  </div>
 	</div>
 
 <script type="text/javascript">
-	
+
+
+	function noClick(e) {
+ 		if (!e) {
+	    if (window.event) {
+	     	e = window.event;
+	     }
+	    else {
+	     	return;
+			}
+ 		}
+		if (e && typeof e.preventDefault == "function") {
+			e.preventDefault();
+			e.stopPropagation();
+		}
+ 		if (e.cancelBubble != null) e.cancelBubble = true;
+		if (e.stopPropagation) e.stopPropagation();
+		if (e.preventDefault) e.preventDefault();
+		if (window.event) e.returnValue = false;
+		if (e.cancel != null) e.cancel = true;
+		// console.log("Clicked outside modal dialog. This : ", e);
+	}
+
+
+	function onModalClick(e) {
+		hideModal();
+		console.log("Clicked outside modal dialog. This : ", e);
+	}
+ 	
 	function showModal(figure) {
 		var
 			figure = figure || null,
@@ -2250,7 +2247,7 @@
 		modal.classList.remove("showing");
 		setTimeout(function() {
 			modal.classList.remove("active");
-		}, 60);
+		}, 400);
 	}
 
 </script>
