@@ -448,12 +448,10 @@
 		}
 
 		.arrow-down:hover {
-			stroke : #fff;
 			color: #fff;
 		}
 
 		.arrow-up:hover {
-			stroke : #fff;
 			color: #fff;
 		}
 
@@ -892,7 +890,122 @@
 				<section id="demo"></section>
 			</section>
 
+
+
+<script>
+	
+	/* playlist and stuff */
+
+	document.addEventListener("DOMContentLoaded", function() {
+		var
+			playlist = {
+				updated : Date.now() || 0,
+
+				onupdate : function() {
+					console.info("playlist updated!")
+				},
+
+				update : function() {
+					console.info("updating playlist")
+				},
+
+				onload : function(json) {
+					var 
+						_data = JSON.parse(json) || null;
+
+					if (_data) {
+						console.info("playlist loaded: " + _data);
+					}
+					else {
+						console.error("No playlist data");
+					}
+				},
+
+				load : function(list, callback, onerror) {
+					var
+						result = null,
+						list = list || "assets/php/data/playlist.json";
+
+					// console.info("loading playlist");
+
+					pi.require("xhr", false, false, function() {
+						// console.log("Sending xhr");
+						result = pi.xhr.get(list, callback, onerror);
+					});
+
+				}
+			}; // playlist
+
+
+			// heigh ho
+			playlist.load(null, playlist.onload);
+
+
+			var 
+				player = {
+					_frames 	: document.querySelectorAll("iframe.screen"),
+					_playlist : playlist,
+					_created 	: Date.now(),
+					_started 	: null,
+
+					init : function() {
+						this.sendMessage("ping");
+					},
+					
+					start : function() {
+						console.log("player.start called!");
+						if (this._started === null) {
+							this.init();
+							this._started = Date.now();
+							console.info("_started : " + this._started);
+						}
+					},
+
+					sendMessage: function(msg, domain) {
+						var
+							domain = domain || null,
+							iframe;
+
+						if (domain === null) {
+							var 
+								l = window.location;
+								domain = l.protocol + "//" + l.host;
+						}
+						if (this._frames && this._frames.length) {
+							for (var i = 0; i < this._frames.length; i++) {
+								iframe = this._frames[i];
+								if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
+									console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
+
+									iframe.contentWindow.postMessage(msg, domain);
+								}
+							}
+						}
+					},
+
+					onFrameMessage: function(e) {
+						// on reply from iframe
+						console.log("iframe says: " + e, e);
+					}
+
+			}; // player
+
+		window.addEventListener('message', player.onFrameMessage, false);
+
+		// let's go 
+		player.start();
+
+	});
+
+</script>
+
+
+
+
 <style type="text/css">
+	
+	/* forms and stuff */
+
 
 	progress {
 		visibility: hidden;

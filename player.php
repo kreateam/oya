@@ -261,7 +261,7 @@
 	</header>
 
 	<section id="content" class="content">
-		<iframe src="" class="contentframe"></iframe>
+		<iframe src="" id="contentframe" class="contentframe"></iframe>
 	</section>
 	<footer id="footer">
 		Les mer på osloby.no/oya
@@ -269,41 +269,6 @@
 
 
 
-
-	<script type="text/javascript">
-
-		function onPlaylistLoaded(data) {
-			console.log("Playlist loaded.");
-			// console.log("received playlist data: ", data);
-		}
-
-		function onLoadError(error) {
-			console.error("Playlist LoadError: " + error, error);
-		}
-
-		function getJSON (list, callback, onerror) {
-			var
-				result = null,
-				list = list || "assets/php/data/playlist.json";
-
-			// console.log("Retrieving playlist");
-
-			pi.require("xhr", false, false, function() {
-				// console.log("Sending xhr");
-				result = pi.xhr.get(list, callback, onerror);
-			});
-		}
-
-
-		document.addEventListener("DOMContentLoaded", function(){
-			var
-				i = 0;
-
-			getJSON(null, onPlaylistLoaded);
-
-		});
-
-	</script>
 
 
 
