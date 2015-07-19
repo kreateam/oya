@@ -1,14 +1,37 @@
 {
-	"current" : 1,
+	"current" : {
+		"id" : 1,
+		"name" : "Navn",
+		"template" : "food-1.html",
+		"data" : {
+			"duration" : 120,
+			"title": "Tittel"
+		}
+	},
 	"queue" : [
-		{ 
-			"id" : 1,
-			"duration" : 120
+		{
+			"id" : 10,
+			"name" : "Navn",
+			"template" : "food-1.html",
+			"data" : {
+				"duration" : 120,
+				"title": "Tittel"
+			}
+		},
+		{
+			"id" : 12,
+			"name" : "Navn",
+			"template" : "food-1.html",
+			"data" : {
+				"duration" : 120,
+				"title": "Tittel"
+			}
 		}
 	],
 	"comingup" : [
-		{ 
+		{
 			"id" : 2,
+			"uri" : "weather.php",
 			"duration" : 150
 		}
 	]

@@ -69,7 +69,6 @@
 
 	<!-- needed for buttons.js -->
 	<script src="/html5/assets/js/jquery.min.js"></script>
-	<script src="assets/js/buttons.js"> </script>
 	<script src="assets/js/mustache.js"></script>
 	<script src="assets/js/pi.core.js"></script>
 	<script src="assets/js/pi.xhr.js"></script>
@@ -287,7 +286,7 @@
 		}
 
 		.item::before {
-			content: "+ ";
+			/*content: "+ ";*/
 		}
 
 		.hashtag {
@@ -788,101 +787,147 @@
 					</ul>
 				</section>
 
+
+<style type="text/css">
+
+	.item-menu ul {
+		-webkit-padding-start : 0px;
+	  text-align: left;
+	  display: inline;
+	  margin: 0;
+	  /*padding: 15px 4px 17px 0;*/
+	  list-style: none;
+	  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	  				box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	}
+
+	.item-menu ul li {
+	  font: bold 10px/16px sans-serif;
+	  display: inline-block;
+	  margin-right: -4px;
+	  position: relative;
+	  padding: 1px 10px;
+	  cursor: pointer;
+	  -webkit-transition: all 0.2s;
+	  		-ms-transition: all 0.2s;
+	  				transition: all 0.2s;
+	}
+
+	.item-menu ul li:hover {
+	  background: #555;
+	  color: #fff;
+	}
+
+	.item-menu ul li ul {
+	  padding: 0;
+	  position: absolute;
+	  /*top: 48px;*/
+	  left: 0;
+	  width: 150px;
+	  -webkit-box-shadow: none;
+	  -moz-box-shadow: none;
+	  box-shadow: none;
+	  display: none;
+	  opacity: 0;
+	  visibility: hidden;
+	  -webkit-transiton: opacity 0.2s;
+	  transition: opacity 0.2s;
+	}
+
+	.item-menu ul li ul li { 
+	  background: rgba(0,0,0,0.66); 
+	  display: block; 
+	  color: #fff;
+	  text-shadow: 0 -1px 0 #000;
+	}
+
+	.item-menu ul li ul li:hover { 
+	  background: rgba(99,99,99,0.66); 
+	}
+
+	.item-menu ul li:hover ul {
+	  display: block;
+	  opacity: 1;
+	  visibility: visible;
+	}
+</style>
+
+
 				<section id="queue">
 					<div class="section-title">Queued <span id="queue-duration" class="queue-total">1:30</span></div>
 					<ul>
 						<li id="item-1" class="item">
 							Food report #32 
-							<div class="item-menu">
-								<span class="up-arrow">
-									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
-									</svg>
-								</span>
-								<span class="down-arrow">
-									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
-									</svg>
-								</span>
-							</div>
 							<span class="duration">0:30</span>
 						</li>
 						<li id="item-2" class="item">
 							Instagram 
 							<span class="hashtag instagram">#osloby #latest</span>
-							<div class="item-menu">
-								<span class="up-arrow">
-									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
-									</svg>
-								</span>
-								<span class="down-arrow">
-									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
-									</svg>
-								</span>
-							</div>
 							<span class="duration">1:00</span>
 						</li>
 					</ul>
 				</section>
 
 				<section id="next-items">
-					<div class="section-title">Next Items <span id="queue-duration" class="queue-total">6:00</span></div>
+					<div class="section-title">Next Items <span id="next-duration" class="queue-total">6:00</span></div>
 					<ul>
-						<li class="item">Announcement : &lt;TBA&gt;
-							<span class="duration">0:30</span>
+						<li class="item">
 							<div class="item-menu">
-								<span class="up-arrow">
-									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
-									</svg>
-								</span>
-								<span class="down-arrow">
-									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
-									</svg>
-								</span>
+								<ul>
+								  <li>+<ul>
+								      <li>Play next</li>
+								      <li>Add to Queue</li>
+								      <li>Add to Next tracks</li>
+								    </ul>
+								  </li>
+								</ul>	
 							</div>
+							Announcement : &lt;TBA&gt;
+							<span class="duration">0:30</span>
 						</li>
-						<li class="item" draggable="true">Instagram
+						<li class="item" draggable="true">
+							<div class="item-menu">
+								<ul>
+								  <li>+<ul>
+								      <li>Play next</li>
+								      <li>Add to Queue</li>
+								      <li>Add to Next tracks</li>
+								    </ul>
+								  </li>
+								</ul>	
+							</div>
+							Instagram
 							<span class="hashtag twitter">#osloby</span>
 							<span class="duration">1:30</span>
-							<div class="item-menu">
-								<span class="up-arrow">
-									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
-									</svg>
-								</span>
-								<span class="down-arrow">
-									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
-									</svg>
-								</span>
-							</div>
 						</li>
-						<li class="item" draggable="true">Instagram
+						<li class="item" draggable="true">
+							<div class="item-menu">
+								<ul>
+								  <li>+<ul>
+								      <li>Play next</li>
+								      <li>Add to Queue</li>
+								      <li>Add to Next tracks</li>
+								    </ul>
+								  </li>
+								</ul>	
+							</div>
+							Instagram
 							<span class="hashtag twitter">#oya</span>
 							<span class="duration">1:30</span>
-							<div class="item-menu">
-								<span class="up-arrow"></span>
-								<span class="down-arrow"></span>
-							</div>
 						</li>
-						<li class="item" draggable="true">Coming up...
-							<span class="duration">2:30</span>
+						<li class="item" draggable="true">
 							<div class="item-menu">
-								<span class="up-arrow">
-									<svg version="1.1" class="arrow-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 "/>
-									</svg>
-								</span>
-								<span class="down-arrow">
-									<svg version="1.1" class="arrow-down" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-										<polyline fill="none" stroke="#CCC" stroke-miterlimit="10" points="1.4,45.3 32,14.7 62.6,45.3 " transform="rotate(180 32 32)"/>
-									</svg>
-								</span>
+								<ul>
+								  <li>+<ul>
+								      <li>Play next</li>
+								      <li>Add to Queue</li>
+								      <li>Add to Next tracks</li>
+								    </ul>
+								  </li>
+								</ul>	
 							</div>
+							Coming up...
+							<span class="duration">2:30</span>
 						</li>
 					</ul>
 				</section>
@@ -900,6 +945,7 @@
 		var
 			playlist = {
 				updated : Date.now() || 0,
+				_loaded : false,
 
 				onupdate : function() {
 					console.info("playlist updated!")
@@ -911,10 +957,15 @@
 
 				onload : function(json) {
 					var 
+						self = playlist,
 						_data = JSON.parse(json) || null;
 
 					if (_data) {
-						console.info("playlist loaded: " + _data);
+						if (self._loaded === false) {
+							self._loaded = Date.now();
+						}
+
+						console.info("playlist loaded: " + self._loaded, _data);
 					}
 					else {
 						console.error("No playlist data");
@@ -2470,5 +2521,6 @@
 		echo $DEBUG;
 	}
 ?>
+	<script src="assets/js/buttons.js"> </script>
 </body>
 </html>
