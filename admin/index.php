@@ -54,10 +54,6 @@
 	<base href="../">
 	<!--script type="text/javascript" src="assets/js/errorhandler.js"></script-->
 
-	<!-- P22 ... ? 
-	<script src="//use.typekit.net/aue5uth.js"></script>
-	<script>try{Typekit.load();}catch(e){}</script>
--->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
@@ -599,8 +595,8 @@
 	
 	window.clientTime = new Date().getTime();
 
-	console.log("serverTime : " + serverTime);
-	console.log("clientTime : " + clientTime);
+	// console.log("serverTime : " + serverTime);
+	// console.log("clientTime : " + clientTime);
 
 	// remember delta between server and client clock, in millisecs
 	window.deltaTime = clientTime - serverTime;
@@ -1004,11 +1000,11 @@
 					},
 					
 					start : function() {
-						console.log("player.start called!");
+						// console.log("player.start called!");
 						if (this._started === null) {
 							this.init();
 							this._started = Date.now();
-							console.info("_started : " + this._started);
+							// console.info("_started : " + this._started);
 						}
 					},
 
@@ -1158,22 +1154,8 @@
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-0" />
             <label for="tabstrip-0-0">New...</label>
-            <div>
-            	<select>
-						    <optgroup label="Announcement">
-						        <option value="announcement-important">important</option>
-						        <option value="announcement-time">time change</option>
-						    </optgroup>
-						    <optgroup label="Food">
-						        <option value="food-review">review</option>
-						        <option value="food-article">article</option>
-						    </optgroup>
-						    <optgroup label="Concerts">
-						        <option value="concert-review">review</option>
-						        <option value="concert-pictures">pictures</option>
-						    </optgroup>
-							</select>
-
+            <div id="template-selector">
+            	<!-- will be rendered from template -->
             </div>
 	        </li>
 	        <li>
@@ -1192,7 +1174,7 @@
 	        </li>
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
-            <label for="tabstrip-0-2">Videos</label>
+            <label for="tabstrip-0-2">Screens</label>
             <div class="videos">
             	<input type="file" name="video-upload" id="video-upload" accept="video/*" />
             	<progress id="video-upload-progress" max="100"></progress>
@@ -1265,6 +1247,91 @@
 
 	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="512" height="704" onload="iframeloaded(this)"></iframe>
 	<iframe id="screen2" class="screen" scrolling="no" src="weather.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
+
+	<script type="text/javascript">
+
+
+		function updateTemplateList() {
+			var
+				template, templates,
+				templateSelector = document.getElementById("template-selector"),
+				itemTemplate = document.getElementById("template-selector-item-template").innerHTML,
+				li, obj,
+				ul = document.createElement("ul");
+
+			// console.log("updateTemplateList()!");
+
+			if (window.data && window.data.templates && window.data.templates.length) {
+				templates = window.data.templates;
+				for (var i = 0; i < templates.length; i++) {
+					obj = !!templates[i].json ? templates[i].json : templates[i];
+					console.info("rendering : ", obj);
+					li = document.createElement("li");
+					li.innerHTML = Mustache.render(itemTemplate, obj);
+					ul.appendChild(li);
+				}
+				templateSelector.appendChild(ul);
+				return i;
+			}
+			else {
+				console.error("No templates!");
+			}
+			return null;
+		}
+
+
+		function getTemplate(name) {
+			var
+				templates, template,
+				name = name || "default";
+
+			if (window.data && window.data.templates && window.data.templates.length) {
+				templates = window.data.templates;
+				for (var i = 0; i < templates.length; i++) {
+					template = templates[i];
+					if (template.name && template.name == name) {
+						return template.filecontent;
+					}
+				}
+			}
+			return null;
+		}
+
+
+		window.addEventListener('load', function() {
+			var
+				screen = document.getElementById("screen1"),
+				templates = {
+					updated : 0
+				},
+				onTemplatesLoaded = function(json) {
+					var
+						data,
+						json = json || null;
+
+					if (json) {
+						data = JSON.parse(json) || null;
+
+						if (data && data.files && data.files.length) {
+							if (!window.data) {
+								window.data = {};
+							}
+							window.data.templates = data.files;
+							console.info("window.data.templates are loaded: ", window.data.templates);
+							updateTemplateList();
+						}
+					}
+					// console.info("templates loaded: ", data);
+				};
+
+			// console.info("loading templates: " + data);
+			pi.xhr.get("templates.php", onTemplatesLoaded)
+
+		});
+
+	</script>
+
+
 	
 	<script type="text/javascript">
 
@@ -1301,6 +1368,7 @@
       	titleField = document.getElementById("form-image-editor-title");
 
       submit.addEventListener("click", onImageSave);
+
 
       if (titleField && titleField instanceof HTMLInputElement) {
       	titleField.focus();
@@ -1950,7 +2018,9 @@
 				// a and b are javascript Date objects
 				result 	= "",
 				then 		= getNextConcert(scene),
-				now 		= new Date(),
+
+				// set clock forwards by n weeks
+				now 		= new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)),
 				days, hours, minutes,
 				remainingDays 		= scene ? document.getElementById(scene + "-days") : document.getElementById("amfiet-days"),
 				remainingHours 		= scene ? document.getElementById(scene + "-hours") : document.getElementById("amfiet-hours"),
@@ -2120,11 +2190,12 @@
 		 * @param  {str} [scene] 	Which scene to check. Optional.
 		 * @return {int}       		Unix timestamp
 		 */
-		function getNextConcert(scene) {
+		function getNextConcert(scene, dummyDate) {
 			var
 				scene 	= scene || null,
 				program = program || null,
 				result 	= null,
+				dummyDate = dummyDate || new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)),
 				earliest = Date(0);
 
 			for (var i in concerts) {
@@ -2135,6 +2206,12 @@
 				if (result === null) {
 					// console.log("Scene : " + scene + ", earliest : " + concerts[i]["date"]);
 					earliest = concerts[i]["date"];
+					if (earliest < dummyDate) {
+
+						// already started, on to the next one
+						continue;
+					}
+
 					// console.log("returning earliest : " + earliest, earliest);
 					return earliest;
 				}
@@ -2162,7 +2239,7 @@
 		previousTime = "",
 		currentItem = document.querySelectorAll(".item.playing")[0];
 
-	console.log("data : " + data, data);
+	// console.log("data : " + data, data);
 
 
 	function rotatePlaylist() {
@@ -2483,7 +2560,7 @@
 					user : "<?php print($user); ?>"
 				};
 
-				pi.log("data : " + data.settings, data.settings);
+				pi.log("settings : " + data.settings, data.settings);
 			}
 
 		}, pi.log);
@@ -2506,7 +2583,31 @@
 			}
 		}, pi.log);
 
+		if (!window.data) {
+			window.data = data;
+		}
+	});
+</script>
 
+<script type="text/javascript">
+
+	/**
+	 * Load screens from SQLite database
+	 */
+	document.addEventListener("DOMContentLoaded", function() {
+		var
+			screens = {},
+			data = window.data || {};
+
+		/**
+		 * load settings
+		 */
+		pi.xhr.get("assets/php/screens.php", function(json) {
+			if (json) {
+				screens = JSON.parse(json);
+				// pi.log("screens : " + json);
+			}
+		}, pi.log);
 
 
 
@@ -2515,6 +2616,7 @@
 		}
 	});
 </script>
+
 
 <?php 
 	if (isset($DEBUG)) {
