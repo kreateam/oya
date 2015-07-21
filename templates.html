@@ -110,6 +110,16 @@
 
 	<!--  template for template-selector items -->
 	<script id="template-selector-item-template" type="text/template">
-		<span class="template-selector-item">{{name}} - {{uri}}</span>
+	<!-- 	
+		"title" : "",
+		"ingress" : "",
+		"name" : "Mat",
+		"variant" : "anmeldelse",
+		"tags" : "",
+		"description" : null,
+		"score" : 0,
+		"frequency" : 0
+	 -->
+		<span class="template-selector-item" data-uri="{{uri}}" onclick="newFromTemplate({{filename}})">{{name}} - {{variant}}</span>
 	</script>
 

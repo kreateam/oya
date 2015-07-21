@@ -1251,6 +1251,11 @@
 	<script type="text/javascript">
 
 
+		function newFromTemplate(tpl) {
+			console.info("newFromTemplate(" + tpl + ")");
+		}
+
+
 		function updateTemplateList() {
 			var
 				template, templates,
@@ -1885,7 +1890,7 @@
 
 				if (this && this.classList && this.classList.contains("closebutton")) {
 					if (toolbar && toolbar.classList.contains("active")) {
-						console.log("deactivating toolbar");
+						// console.log("deactivating toolbar");
 						toolbar.classList.remove("active");
 						// toolbar.classList.remove("active");
 						e.preventDefault();
@@ -1900,7 +1905,7 @@
 					// nada
 				}
 				else {
-					console.log("activating toolbar : " + this, this);
+					// console.log("activating toolbar : " + this, this);
 					visible = true;
 					// if (handlers && handlers.length) {
 					// 	for (var i = 0; i < handlers.length; i++) {
