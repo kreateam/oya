@@ -362,9 +362,12 @@
 			padding-right: 8px;
 
 			color: #fff;
-			background-color: #C21E29;
+			/*background-color: #C21E29;*/
+			background-color: #0099D6;
 
 			text-align: right;
+			-webkit-transition: background-color .4s;
+			transition: background-color .4s;
 		}
 
 		.right ::selection {
@@ -383,7 +386,14 @@
 			background-color: #0099D6;
 
 			text-align: right;
+			-webkit-transition: background-color .4s;
+			transition: background-color .4s;
 		}
+
+		.left.next, .right.next {
+			background-color: #C21E29;
+		}
+
 
 		.middle {
 			position 	: relative;
@@ -553,7 +563,7 @@
 			position: relative;
 			z-index: 100;
 
-			font-family: Helvetica, Lato, sans-serif;
+			font-family: "Open Sans", Helvetica, Lato, sans-serif;
 			font-weight: 400;
 			font-size: 66%;
 			height: 3.6em;
@@ -585,6 +595,23 @@
 			font-weight: 100;
 		}
 
+
+		.template-selector-item-menu {
+			color: #fff;
+			font-size: 14px;
+			background-color: rgba(39,40,34,0.6);
+			padding-left: 1em;
+			padding-right: 1em;
+			cursor: pointer;
+
+			-webkit-transition: all 0.4s;
+			transition: all 0.4s;
+		}
+
+		.template-selector-item-menu:hover {
+			color: #fff;
+			background-color: #ff0545;
+		}
 	</style>
 
 <script type="text/javascript">
@@ -725,11 +752,11 @@
 	?>
 
 	<div class="wrapper">
-		<div class="left">
+		<div id="amfiet" class="left">
 				<h4>Amfiet</h4>
 				<div class="coming-up">
-					<h1>Next</h1>
-					<h2 class="artist">Razika</h2>
+					<h1 id="amfiet-header">Next</h1>
+					<h2 id="amfiet-artist" class="artist">Razika</h2>
 					<span><strong>in</strong></span>
 						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days
 						</div>
@@ -741,11 +768,11 @@
 					
 				</ul>
 		</div>
-		<div class="right">
+		<div id="vindfruen" class="right">
 				<h4>Vindfruen</h4>
 				<div class="coming-up">
-					<h1>Coming Up</h1>
-					<h2 class="artist">The Switch</h2>
+					<h1 id="vindfruen-header">Coming Up</h1>
+					<h2 id="vindfruen-artist" class="artist">The Switch</h2>
 					<span><strong>in</strong></span>
 						<div class="day-counter">
 							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days
@@ -1067,9 +1094,9 @@
 	  display: inline-block;
 	  margin: 0;
 	  width: 90%;
-	  font-family: sans-serif;
+/*	  font-family: sans-serif;
 	  font-size: 75%;
-	  -webkit-appearance: none;
+*/	  -webkit-appearance: none;
 	  appearance: none;
 	  
 	  box-shadow: none;
@@ -1146,6 +1173,10 @@
 
 	}
 
+	#toolbar {
+		font-weight: 300;
+	}
+
 </style>
 
 			<footer>
@@ -1164,8 +1195,8 @@
             <div class="images">
             	+ <input type="file" name="image-upload" id="image-upload" accept="image/*" />
             	&nbsp;&nbsp;filter &nbsp;&nbsp;<input type="text" name="image-search" id="image-search" />
-            	<progress id="image-upload-progress" max="100"></progress>
-            	<span id="image-upload-status" class="status"></span>
+            	<progress id="form-upload-progress" max="100"></progress>
+            	<span id="form-status" class="status"></span>
 							<div>
 	            	<div id="image-editor" class="editor"></div>
 	            	<div id="image-preview" class="preview"></div>
@@ -1250,10 +1281,128 @@
 
 	<script type="text/javascript">
 
+		function onScreenSave(e) {
+    	var
+    		fields,
+    		xhr = new XMLHttpRequest(),
+    		fieldset = document.getElementById("form-screen-fieldset").children,
+    		formData = new FormData(fieldset),
+	      status  = document.getElementById("form-status"),
+	      modalForm = document.getElementById("modal-one");
+
+
+			console.log("fieldset" + fieldset, fieldset);
+
+			if (fieldset && fieldset.length) {
+				for (var i = 0; i < fieldset.length; i++) {
+					if (fieldset[i] instanceof HTMLInputElement || fieldset[i] instanceof HTMLTextAreaElement) {
+						console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
+			    	formData.append(fieldset[i].name || fieldset[i].id, fieldset[i].value);
+					}
+				}
+			}
+
+    	// fieldset.forEach(function(p,i,a) {
+    	// 	console.log(i + " : " + p, p);
+    	// });
+
+    	console.log("Sending: " + formData, formData);
+
+    	formData.append("action", "save");
+
+    	xhr.open("POST", "assets/php/screens.php");
+    	xhr.send(formData);
+
+    	xhr.onload = function() {
+    		if (this.status == 200) {
+    			status.textContent = "Success.";
+	  			status.className = "status";
+    			console.log("Success!");
+    			console.log("response: " + this.responseText);
+    			hideModal();
+  				try {
+	    			var 
+	    				response = JSON.parse(this.responseText),
+	    				span = document.createElement("span"),
+	    				preview = document.getElementById("screen-preview");
+	    				// console.info();
+    			}
+    			catch(e) {
+    				console.error(e);
+    			}
+    		}
+    	};
+    	xhr.onerror = function() {
+  			status.textContent = "Success.";
+  			status.className = "error";
+  			console.log("Error!");
+    	};
+
+
+    }
+
+
 
 		function newFromTemplate(tpl) {
-			console.info("newFromTemplate(" + tpl + ")");
-		}
+
+			var
+				tmpl = getTemplate(tpl),
+				data = getJson(tpl),
+				form = getForm(tpl),
+    		editor  = document.getElementById("modal-dialog"),
+	      images 	= editor.getElementsByTagName("img"),
+	      status  = document.getElementById("form-status"),
+				image, filename = "";
+
+
+			if (data.filename) {
+				filename = data.filename;
+			}
+			else {
+				filename = data.name;
+			}
+
+			console.info("data : " + JSON.stringify(data));
+
+			// remove any images from previous form usage
+			if (images && images.length) {
+				for (var i = 0; i < images.length; i++) {
+					editor.removeChild(images[i]);
+				}
+			}
+
+      // console.log("file.name : " + file.name);
+      editor.innerHTML = Mustache.render(form, data);
+
+      var
+      	submit = document.getElementById("form-screen-submit"),
+      	titleField = document.getElementById("form-screen-title");
+
+      submit.addEventListener("click", onScreenSave);
+
+      if (titleField && titleField instanceof HTMLInputElement) {
+      	titleField.focus();
+      	titleField.select();
+      }
+
+			var
+				modalForm = document.getElementById("modal-one");
+
+			console.log("toggling modal");
+			if (modalForm.classList.contains("active")) {
+				modalForm.classList.remove("showing");
+				setTimeout(function(){
+					modalForm.classList.toggle("active");
+				}, 1000);
+			}
+			else {
+				modalForm.classList.add("active");
+				setTimeout(function(){
+					modalForm.classList.toggle("showing");
+				}, 1);
+			}
+	    console.info("AFTER all the code");
+		}; // newFromTemplate()
 
 
 		function updateTemplateList() {
@@ -1294,13 +1443,74 @@
 				templates = window.data.templates;
 				for (var i = 0; i < templates.length; i++) {
 					template = templates[i];
-					if (template.name && template.name == name) {
+					if (template.name && template.name == name || template.filename && template.filename == name) {
 						return template.filecontent;
 					}
 				}
 			}
 			return null;
 		}
+
+
+		function getJson(name) {
+			var
+				templates, template,
+				name = name || "default";
+
+			console.log("Now in getJson!");
+			if (window.data && window.data.templates && window.data.templates.length) {
+				templates = window.data.templates;
+				for (var i = 0; i < templates.length; i++) {
+					template = templates[i];
+					if (template.name && template.name == name || template.filename && template.filename == name) {
+						if (template.json) {
+							console.info("returning : " + template.json, template.json);
+							return template.json
+						}
+						else {
+							console.info("returning : " + template, template);
+							return template;
+						}
+					}
+				}
+			}
+			else {
+				console.info("No templates!");
+			}
+			console.info("returning NULL");
+			return null;
+		}
+
+
+		function getForm(name) {
+			var
+				templates, template,
+				name = name || "default";
+
+			console.log("Now in getForm!");
+			if (window.data && window.data.templates && window.data.templates.length) {
+				templates = window.data.templates;
+				for (var i = 0; i < templates.length; i++) {
+					template = templates[i];
+					if (template.name && template.name == name || template.filename && template.filename == name) {
+						if (template.form) {
+							console.info("returning : " + template.form, template.form);
+							return template.form
+						}
+						else {
+							console.info("returning empty string");
+							return "";
+						}
+					}
+				}
+			}
+			else {
+				console.info("No templates!");
+			}
+			console.info("returning NULL");
+			return null;
+		}
+
 
 
 		window.addEventListener('load', function() {
@@ -1567,11 +1777,11 @@
     		xhr = new XMLHttpRequest(),
     		fieldset = document.getElementById("form-image-editor-fieldset").children,
     		formData = new FormData(fieldset),
-	      status  = document.getElementById("image-upload-status"),
+	      status  = document.getElementById("form-status"),
 	      modalForm = document.getElementById("modal-one");
 
 
-			console.log("fieldset" + fieldset, fieldset);
+			// console.log("fieldset" + fieldset, fieldset);
 
 			if (fieldset && fieldset.length) {
 				for (var i = 0; i < fieldset.length; i++) {
@@ -1596,8 +1806,8 @@
     		if (this.status == 200) {
     			status.textContent = "Success.";
 	  			status.className = "status";
-    			console.log("Success!");
-    			console.log("response: " + this.responseText);
+    			console.info("Success!");
+    			// console.log("response: " + this.responseText);
     			hideModal();
   				try {
 	    			var 
@@ -1627,12 +1837,10 @@
     		}
     	};
     	xhr.onerror = function() {
-  			status.textContent = "Success.";
+  			status.textContent = "Error.";
   			status.className = "error";
-  			console.log("Error!");
+  			console.error("Error in xhr!");
     	};
-
-
     }
 
 
@@ -1640,7 +1848,7 @@
 		document.querySelector('#image-upload').addEventListener('change', function(e) {
 			  var
 			  	file 	= this.files[0],
-			  	progress = document.getElementById("image-upload-progress"),
+			  	progress = document.getElementById("form-upload-progress"),
 			  	data 	= new FormData(),
 			  	xhr 	= new XMLHttpRequest(),
 
@@ -1673,7 +1881,7 @@
 				    		preview = document.getElementById("image-preview"),
 				    		editor  = document.getElementById("modal-dialog"),
 					      images 	= editor.getElementsByTagName("img"),
-					      status  = document.getElementById("image-upload-status"),
+					      status  = document.getElementById("form-status"),
 								template= document.getElementById("image-modal-dialog-template").innerHTML,
 								data 		= {},
 								image, filename = "";
@@ -2002,18 +2210,55 @@
 
 			if (counters && counters.length) {
 				for (var i = 0; i < counters.length; i++) {
+					console.info("Hiding day counters : " + i);
 					counters[i].style.display = "none";
 				}
 			}
 		}
 
 
+		function setNextScene(scene) {
+			var
+				header1, header2,
+				div, otherdiv,
+				scene = scene || "amfiet";
+
+			div = document.getElementById(scene);
+			if (!div) {
+				return false;
+			}
+			if (scene.toLowerCase() == "amfiet") {
+				otherdiv = document.getElementById("vindfruen");
+				header1 = document.getElementById("vindfruen-header");
+				header2 = document.getElementById("amfiet-header");
+			}
+			else {
+				otherdiv = document.getElementById("amfiet");
+				header2 = document.getElementById("vindfruen-header");
+				header1 = document.getElementById("amfiet-header");
+			}
+
+			div.classList.add("next");
+			otherdiv.classList.remove("next");
+			header1.textContent = "Next";
+			header2.textContent = "Coming Up";
+
+		}
 
 
 		function updateTime(scene) {
+			var
+				delay1, delay2 = 0;
+
 			if (typeof scene == "undefined") {
-				updateTime("amfiet");
-				updateTime("vindfruen");
+				delay1 = updateTime("amfiet");
+				delay2 = updateTime("vindfruen");
+				if (delay1 > delay2) {
+					setNextScene("vindfruen");
+				}
+				else {
+					setNextScene("amfiet");
+				}
 				return;
 			}
 
@@ -2032,7 +2277,7 @@
 				remainingMinutes 	= scene ? document.getElementById(scene + "-minutes") : document.getElementById("amfiet-minutes"),
 				remainingSeconds 	= 0,
 				dateDiff = function(a, b) {
-				  var 
+				  var
 				  	utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(), a.getUTCHours(), a.getMinutes()),
 				  	utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate(), b.getUTCHours(), b.getMinutes());
 
@@ -2046,21 +2291,30 @@
 			hours 	= Math.floor((remainingSeconds / (60 * 60)) % 24);
 			minutes = Math.floor((remainingSeconds/60) % 60);
 
+			// just to fix display when days are not shown
+   		if (days == 1 && hours == 0) {
+   			days = 0;
+   			hours = 24;
+   		}
+
 			// kind of pedantic, but still. don't touch the DOM unless you have to
-     	if (remainingDays.textContent != days) {
+     	if (remainingDays.textContent !== days.toString()) {
      		remainingDays.textContent = days;
-     		if (days === 0 && hours < 23) {
+     		if (days == 0 && hours <= 23) {
 
      			// removes the row displaying days left
      			hideDayCounters();
      		}
      	}
-     	if (remainingHours.textContent != hours) {
+     	if (remainingHours.textContent !== hours.toString()) {
+     		// console.info("Setting hours : " + hours + ", remainingHours : " + remainingHours.textContent);
      		remainingHours.textContent = hours;
      	}
-     	if (remainingMinutes.textContent != minutes) {
+     	if (remainingMinutes.textContent !== minutes.toString()) {
      		remainingMinutes.textContent = minutes;
      	}
+     	// return time of next concert
+     	return then;
 		}
 
 

@@ -43,6 +43,32 @@
   </script>
 
 
+	<script id="screen-modal-dialog-template" type="text/template">
+	  <div class="modal-header">
+	    <h2>{{header}}</h2>
+	    <span class="btn-close" onclick="hideModal(this);">×</span>
+	  </div>
+	  <div class="modal-body">
+    	<fieldset id="form-screen-editor-fieldset" style="width:20em">
+				<legend>New Screen</legend>
+				<label for="title">Title</label>
+				<input type="text" width="32" id="form-screen-editor-title" name="title" value="{{title}}" required />
+				<label for="duration">Duration</label>
+				<input type="number" width="10" id="form-screen-editor-duration" name="duration" value="{{duration}}" min="1" max="300" required />
+				<label for="score">Score</label>
+				<input type="number" width="10" id="form-screen-editor-score" name="score" value="{{score}}" min="1" max="6" required  />
+				<label for="tags">Tags</label>
+				<input type="text" width="32" id="tags" name="tags" value="{{tags}}" />
+				<label for="description">Description</label>
+				<textarea type="textarea" width="32" id="description" name="description" rows="2">{{description}}</textarea>
+
+				<input type="hidden" id="filename" name="filename" value="{{filename}}" />
+				<input id="form-screen-editor-submit" type="submit" name="submit" value="Save" />
+			</fieldset>
+	  </div>
+	</script>
+
+
 	<script id="image-modal-dialog-template" type="text/template">
 	  <div class="modal-header">
 	    <h2>{{header}}</h2>
@@ -120,6 +146,6 @@
 		"score" : 0,
 		"frequency" : 0
 	 -->
-		<span class="template-selector-item" data-uri="{{uri}}" onclick="newFromTemplate({{filename}})">{{name}} - {{variant}}</span>
+		<span class="template-selector-item" data-score="{{score}}" data-tags="{{tags}}" data-uri="{{uri}}" onclick="newFromTemplate('{{filename}}')">{{name}} - {{variant}}<span class="template-selector-item-menu">NEW</span></span>
 	</script>
 
