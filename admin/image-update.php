@@ -27,13 +27,13 @@
 	$uri = "assets/php/data/files/" . $filename;
 	$tags = $_REQUEST['tags'];
 	$description = $_REQUEST['description'];
-	$postId =  $_REQUEST['postId'];
+	$uuid =  $_REQUEST['uuid'];
 
 	$DEBUG[] = "POST data:";
 	$DEBUG[] = "Title : $title";
 	$DEBUG[] = "filename : $filename";
 	$DEBUG[] = "uri : $uri";
-	$DEBUG[] = "postId : $postId";
+	$DEBUG[] = "uuid : $uuid";
 	$DEBUG[] = "tags : $tags";
 	$DEBUG[] = "description : $description";
 
@@ -63,9 +63,9 @@
 				$image['uri'] = $uri;
 				$image['tags'] = $tags;
 				$image['description'] = $description;
-				if (isset($image['postId'])) {
-					$reply['postId'] = $image['postId'];
-					$DEBUG[] = "FOUND THE postId: ". $image['postId'];
+				if (isset($image['uuid'])) {
+					$reply['uuid'] = $image['uuid'];
+					$DEBUG[] = "FOUND THE uuid: ". $image['uuid'];
 				}
 				$DEBUG[] = "Found it: $filename";
 		}

@@ -61,8 +61,8 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
 	<!-- needed for buttons.js -->
 	<script src="/html5/assets/js/jquery.min.js"></script>
 	<script src="assets/js/mustache.js"></script>
@@ -563,8 +563,8 @@
 			position: relative;
 			z-index: 100;
 
-			font-family: "Open Sans", Helvetica, Lato, sans-serif;
-			font-weight: 400;
+			font-family: Roboto, Helvetica, Lato, sans-serif;
+			font-weight: 300;
 			font-size: 66%;
 			height: 3.6em;
 			/*text-align: left;*/
@@ -595,6 +595,20 @@
 			font-weight: 100;
 		}
 
+		.screen-list-item, .template-selector-item {
+			font-size: 14px;
+			padding-left: 1em;
+			padding-right: 1em;
+			cursor: pointer;
+
+			-webkit-transition: all 0.4s;
+			transition: all 0.4s;
+		}
+
+		.screen-list-item:hover, .template-selector-item:hover {
+			color: #fff;
+			background-color: #0099D6;
+		}
 
 		.template-selector-item-menu {
 			color: #fff;
@@ -612,6 +626,8 @@
 			color: #fff;
 			background-color: #ff0545;
 		}
+
+
 	</style>
 
 <script type="text/javascript">
@@ -689,6 +705,10 @@
 					screens[1].style.opacity = 0;
 				}
 				break;
+			case "N" :
+				var
+					newButton = document.getElementById()
+				 l.click();			
 
 	    case "Z":
 				if (screens[1].style.transform == "scale(1, 1)" || screens[1].style.transform == "scale(1)") {
@@ -988,7 +1008,7 @@
 							self._loaded = Date.now();
 						}
 
-						console.info("playlist loaded: " + self._loaded, _data);
+						// console.info("playlist loaded: " + self._loaded, _data);
 					}
 					else {
 						console.error("No playlist data");
@@ -1090,13 +1110,13 @@
 	}
 
 	textarea,
-	input[type="text"] {
+	input[type="text"],
+	input[type="number"] {
 	  display: inline-block;
 	  margin: 0;
-	  width: 90%;
-/*	  font-family: sans-serif;
-	  font-size: 75%;
-*/	  -webkit-appearance: none;
+	  width: 96%;
+	  font-family: 'Roboto', sans-serif;
+	  -webkit-appearance: none;
 	  appearance: none;
 	  
 	  box-shadow: none;
@@ -1108,6 +1128,8 @@
 
 	textarea:focus,
 	textarea.focus,
+	input[type="number"]:focus,
+	input[type="number"].focus,
 	input[type="text"]:focus,
 	input[type="text"].focus {
 	  outline: none;
@@ -1122,14 +1144,15 @@
 
 	.error {
 		display: none;
-		background-color: #ff0545;
+		background-color: #C21E29;
+		/*background-color: #ff0545;*/
 		padding: 0.2em 0.5em;
 		color: #fff;
 	}
 
 	.status {
 		display: none;
-		background-color: #0545ff;
+		background-color: #0099D6;
 		padding: 0.2em 0.5em;
 		color: #fff;
 	}
@@ -1165,12 +1188,26 @@
 		/*margin-top: .6em;*/
 	}
 
+	#screen-preview li {
+		display: block;
+	}
+
+
 	/* the spans that hold individual preview images */
 	.preview-image {	
     display : inline-block;
     /*width: 25%;*/
 		/*margin: .2em .8em;*/
 
+	}
+
+	.preview-image figcaption {
+		font-size: 0.75em;
+	}
+
+	label {
+	  font-weight: 300;
+	  font-size: 75%;
 	}
 
 	#toolbar {
@@ -1206,9 +1243,11 @@
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
             <label for="tabstrip-0-2">Screens</label>
-            <div class="videos">
-            	<input type="file" name="video-upload" id="video-upload" accept="video/*" />
-            	<progress id="video-upload-progress" max="100"></progress>
+            <div class="screens">
+            	&nbsp;&nbsp;filter &nbsp;&nbsp;<input type="text" name="screen-search" id="screen-search" />
+							<div>
+	            	<div id="screen-preview" class="preview"></div>
+							</div>
             </div>
 	        </li>
 	        <li>
@@ -1265,9 +1304,20 @@
               </p>
             </div>
 	        </li>
-	        <li class="closebutton">
+	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-4" />
-            <label for="tabstrip-0-4" class="closebutton">x</label>
+            <label for="tabstrip-0-4">Video</label>
+            <div class="videos">
+            	<input type="file" name="video-upload" id="video-upload" accept="video/*" />
+            	<progress id="video-upload-progress" max="100"></progress>
+							<div>
+	            	<div id="video-preview" class="preview"></div>
+							</div>
+            </div>
+	        </li>
+	        <li class="closebutton">
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-5" />
+            <label for="tabstrip-0-5" class="closebutton">x</label>
 	        </li>
 		    </ul>
 			</div>
@@ -1281,6 +1331,151 @@
 
 	<script type="text/javascript">
 
+
+
+		/**
+		 * global support function
+		 * @param  {array|null} images [description]
+		 * @return {[type]}        [description]
+		 */
+		function updateScreens(screens) {
+			var
+				screen,
+				screens = screens || window.data.screens || [],
+		    screenSearch = document.getElementById("screen-search"),
+				template = document.getElementById("screen-list-item-template").innerHTML,
+				previews = document.getElementById("screen-preview"),
+				fragment = document.createDocumentFragment();
+
+			if (!screens || typeof screens.length != "number") {
+				console.error("no screens!");
+				return;
+			}
+	
+			previews.innerHTML = "";
+
+			for (var i = screens.length-1; i >= 0; i--) {
+				screen = document.createElement("span");
+				screen.className = "preview-screen";
+				// console.log ("screen : ", screens[i]);
+				screen.innerHTML = Mustache.render(template, screens[i]);
+				fragment.appendChild(screen);
+			}
+
+			previews.appendChild(fragment);
+
+			if (screenSearch && screenSearch.value) {
+				// console.log("highlighting : " + screenSearch.value);
+				highlight(previews, screenSearch.value);
+			}
+		}
+
+		document.addEventListener("DOMContentLoaded", function () {
+			var
+				result = null,
+				screenSearch = document.getElementById("screen-search"),
+				screenList   = document.getElementById("screen-preview");
+
+			screenSearch.addEventListener("input", function(e) {
+				if (this && this.value) {
+					result = fuzzyMatchScreens(this.value);
+					updateScreens(result);
+				}
+				else {
+					// no search term, so show everything
+					updateScreens();
+					// suppress
+				}
+
+			});
+
+			function fuzzyMatchScreens(input) {
+			  var
+  				screens = window.data.screens,
+			  	thorough = input.toString().length > 5,
+			  	reg = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
+
+			  if (!screens) {
+			  	return false;
+			  }
+
+			  return screens.filter(function(screen) {
+	
+			  // console.log("screen : " + screen, screen);
+		    if (screen.title && screen.title.match(reg)) {
+			      return screen;
+			    }
+			    else if (screen.tags && screen.tags.match(reg)) {
+			    	return screen;
+			    }
+			    else if (screen.filename && screen.filename.match(reg)) {
+			    	return screen;
+			    }
+			    else if (screen.name && screen.name.match(reg)) {
+			    	return screen;
+			    }
+			    else if (thorough) {
+			    	if (screen.description && screen.description.match(reg)) {
+			    		return screen;
+			    	}
+			    }
+			    else {
+			    	return false;
+			    }
+			  });
+			}
+
+		});
+
+
+
+		function editScreen(index) {
+			var
+				index = index || null;
+
+			if (index === null) {
+				console.error("No index parameter in editScreen()");
+				return false;
+			}
+			if (typeof index != "number") {
+				index = parseInt(index, 10);
+			}
+
+			console.info("editing screen: " + index);
+
+		}
+
+
+		function updateScreenList() {
+			var
+				screen, screens,
+				screenPreview = document.getElementById("screen-preview"),
+				itemTemplate = document.getElementById("screen-list-item-template").innerHTML,
+				li, obj,
+				ul = document.createElement("ul");
+
+			// console.log("updateTemplateList()!");
+
+			if (window.data && window.data.screens && window.data.screens.length) {
+				screens = window.data.screens;
+				for (var i = 0; i < screens.length; i++) {
+					obj = !!screens[i].json ? screens[i].json : screens[i];
+					// console.info("rendering : ", obj);
+					li = document.createElement("li");
+					li.innerHTML = Mustache.render(itemTemplate, obj);
+					ul.appendChild(li);
+				}
+				screenPreview.appendChild(ul);
+				return i;
+			}
+			else {
+				console.error("No screens!");
+			}
+			return null;
+		}
+
+
+
 		function onScreenSave(e) {
     	var
     		fields,
@@ -1291,7 +1486,7 @@
 	      modalForm = document.getElementById("modal-one");
 
 
-			console.log("fieldset" + fieldset, fieldset);
+			// console.log("fieldset" + fieldset, fieldset);
 
 			if (fieldset && fieldset.length) {
 				for (var i = 0; i < fieldset.length; i++) {
@@ -1307,8 +1502,6 @@
     	// });
 
     	console.log("Sending: " + formData, formData);
-
-    	formData.append("action", "save");
 
     	xhr.open("POST", "assets/php/screens.php");
     	xhr.send(formData);
@@ -1419,7 +1612,7 @@
 				templates = window.data.templates;
 				for (var i = 0; i < templates.length; i++) {
 					obj = !!templates[i].json ? templates[i].json : templates[i];
-					console.info("rendering : ", obj);
+					// console.info("rendering : ", obj);
 					li = document.createElement("li");
 					li.innerHTML = Mustache.render(itemTemplate, obj);
 					ul.appendChild(li);
@@ -1457,18 +1650,17 @@
 				templates, template,
 				name = name || "default";
 
-			console.log("Now in getJson!");
 			if (window.data && window.data.templates && window.data.templates.length) {
 				templates = window.data.templates;
 				for (var i = 0; i < templates.length; i++) {
 					template = templates[i];
 					if (template.name && template.name == name || template.filename && template.filename == name) {
 						if (template.json) {
-							console.info("returning : " + template.json, template.json);
+							// console.info("returning : " + template.json, template.json);
 							return template.json
 						}
 						else {
-							console.info("returning : " + template, template);
+							// console.info("returning : " + template, template);
 							return template;
 						}
 					}
@@ -1487,14 +1679,13 @@
 				templates, template,
 				name = name || "default";
 
-			console.log("Now in getForm!");
 			if (window.data && window.data.templates && window.data.templates.length) {
 				templates = window.data.templates;
 				for (var i = 0; i < templates.length; i++) {
 					template = templates[i];
 					if (template.name && template.name == name || template.filename && template.filename == name) {
 						if (template.form) {
-							console.info("returning : " + template.form, template.form);
+							// console.info("returning : " + template.form, template.form);
 							return template.form
 						}
 						else {
@@ -1532,14 +1723,11 @@
 								window.data = {};
 							}
 							window.data.templates = data.files;
-							console.info("window.data.templates are loaded: ", window.data.templates);
 							updateTemplateList();
 						}
 					}
-					// console.info("templates loaded: ", data);
 				};
 
-			// console.info("loading templates: " + data);
 			pi.xhr.get("templates.php", onTemplatesLoaded)
 
 		});
@@ -1627,8 +1815,8 @@
 
 			if (id && images && images.length) {
 				for (var i = 0; i < images.length; i++) {
-					console.log(i + " : " + images[i].postId);
-					if (images[i].postId == id) {
+					console.log(i + " : " + images[i].uuid);
+					if (images[i].uuid == id) {
 						
 						result = document.getElementById("i" + id);
 
@@ -1648,8 +1836,8 @@
 
 			if (id && images && images.length) {
 				for (var i = 0; i < images.length; i++) {
-					// console.log(i + " : " + images[i].postId);
-					if (images[i].postId == id) {
+					// console.log(i + " : " + images[i].uuid);
+					if (images[i].uuid == id) {
 						result = images[i];
 						break;
 					}
@@ -1817,7 +2005,7 @@
 	    				template = document.getElementById("imagelist-item-template").innerHTML;
 
 	    			// new image ?
-	    			if (!findImage(response.postId)) {
+	    			if (!findImage(response.uuid)) {
 	 	    			window.data.images.push(response);
 	    			}
 	    			updateImages();
@@ -1988,7 +2176,7 @@
 			   // populate formdata
 			  data.append("image-upload", file);
 			  data.append("username", "<?php echo $_SESSION['username'];?>");
-			  data.append("postId", pi.uuid());
+			  data.append("uuid", pi.uuid());
 
 			  xhr.upload.onprogress = onprogress;
 			  xhr.onload = onload;
@@ -2047,7 +2235,7 @@
 			   // populate formdata
 			  data.append("video-upload", file);
 			  data.append("username", "<?php echo $_SESSION['username'];?>");
-			  data.append("postId", pi.uuid());
+			  data.append("uuid", pi.uuid());
 
 			  xhr.upload.onprogress = onprogress;
 			  xhr.onload = onload;
@@ -2210,7 +2398,7 @@
 
 			if (counters && counters.length) {
 				for (var i = 0; i < counters.length; i++) {
-					console.info("Hiding day counters : " + i);
+					// console.info("Hiding day counters : " + i);
 					counters[i].style.display = "none";
 				}
 			}
@@ -2267,7 +2455,8 @@
 
 				// a and b are javascript Date objects
 				result 	= "",
-				then 		= getNextConcert(scene),
+				concert = getNextConcert(scene),
+				artist  = document.getElementById(scene + "-artist"),
 
 				// set clock forwards by n weeks
 				now 		= new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)),
@@ -2285,7 +2474,7 @@
 				};
 
 
-			remainingSeconds = Math.round(dateDiff(now, then)/1000);
+			remainingSeconds = Math.round(dateDiff(now, concert.when)/1000);
 
 			days 		= Math.floor(remainingSeconds / (60 * 60 * 24));
 			hours 	= Math.floor((remainingSeconds / (60 * 60)) % 24);
@@ -2295,6 +2484,10 @@
    		if (days == 1 && hours == 0) {
    			days = 0;
    			hours = 24;
+   		}
+
+   		if (artist.textContent != concert.artist) {
+   			artist.textContent = concert.artist;
    		}
 
 			// kind of pedantic, but still. don't touch the DOM unless you have to
@@ -2314,7 +2507,7 @@
      		remainingMinutes.textContent = minutes;
      	}
      	// return time of next concert
-     	return then;
+     	return concert.when;
 		}
 
 
@@ -2436,8 +2629,6 @@
 				}
 			}
 
-			// getNextConcert();
-
 			// because why not
 			return i;
 		}; // function updateProgram()
@@ -2455,7 +2646,8 @@
 				program = program || null,
 				result 	= null,
 				dummyDate = dummyDate || new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)),
-				earliest = Date(0);
+				earliest 	= Date(0),
+				concert 	= { artist : null, when : null};
 
 			for (var i in concerts) {
 				if (scene && concerts[i]["scene"] != scene) {
@@ -2470,12 +2662,15 @@
 						// already started, on to the next one
 						continue;
 					}
+					concert.artist = concerts[i]["artist"];
+					concert.when = earliest;
 
-					// console.log("returning earliest : " + earliest, earliest);
-					return earliest;
+					// console.log("returning concert : " + concert, concert);
+					return concert;
 				}
 			}
-			return earliest;
+			// console.log("returning concert : " + concert, concert);
+			return concert;
 		}
 
 
@@ -2619,6 +2814,7 @@
 	  text-decoration: none;
 	  text-align: center;
 	  min-width: 60px;
+	  -webkit-transition: color .1s ease;
 	  transition: color .1s ease;
 	  /* top: 40em;*/
 	}
@@ -2652,7 +2848,7 @@
 	}
 
 	.modal-dialog {
-		color: #272822;
+		color: #000;
 	 	position: relative;
 	  background: #fefefe;
 	  border: #333333 solid 1px;
@@ -2660,8 +2856,8 @@
 	  text-align: left;
 	  /*position: fixed;*/
 	  z-index: 11;
-		width: 33em;
-    margin: 10% auto;
+		width: 50em;
+    margin: 5% auto;
   	/*top: 50%;*/
 /*  	-webkit-transform: translateY(-25%);    
   	transform: translateY(-25%);    
@@ -2687,6 +2883,7 @@
 
 
 	.modal {
+		font-family: Roboto, sans-serif;
 		position: fixed;
 		display: none;
 		opacity: 0;
@@ -2696,12 +2893,12 @@
 		right: 0;
 		color : #fff;
 		background-color: rgba(0, 0, 0, 0.4);
-		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%, rgba(55,0,255,0.21) 100%);
-		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.5)), color-stop(100%,rgba(55,0,255,0.21)));
-		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
-		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
-		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
-		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.5) 0%,rgba(55,0,255,0.21) 100%);
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%, rgba(0,128,45,0.25) 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.4)), color-stop(100%,rgba(0,128,45,0.25)));
+		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
+		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
+		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
+		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
 
 		z-index: 4998;
 
@@ -2832,7 +3029,7 @@
 				// console.log("Received JSON: " + json);
 				try {
 					data.images = JSON.parse(json);
-					console.log("loaded " + data.images.length + " images.");
+					// console.log("loaded " + data.images.length + " images.");
 					// lazy-load(ish)
 					setTimeout(updateImages, 1000);
 				}
@@ -2863,8 +3060,36 @@
 		 */
 		pi.xhr.get("assets/php/screens.php", function(json) {
 			if (json) {
-				screens = JSON.parse(json);
-				// pi.log("screens : " + json);
+				try {
+					screens = JSON.parse(json);
+				}
+				catch(e) {
+					console.error(e);
+				}
+				if (screens && screens.screens && screens.screens.length) {
+					for (var i = 0; i < screens.screens.length; i++) {
+						if (typeof screens.screens[i]['data'] == "string") {
+							console.info("new screen : " + screens.screens[i], screens.screens[i]);
+							console.info("parsing JSON : " + screens.screens[i]['data']);
+							try {
+							var
+								obj = JSON.parse(screens.screens[i]['data']);
+							}
+							catch (e) {
+								console.error(e);
+							}
+
+								for (var key in obj) {
+									if (typeof screens.screens[i][key] == "undefined") {
+										screens.screens[i][key] = obj[key];
+									}
+								}
+						}
+					}
+					data.screens = screens.screens;
+					updateScreenList();
+				}
+				// pi.log("loaded screens : " + json);
 			}
 		}, pi.log);
 

@@ -33,7 +33,7 @@
 	  'uri' 		=> $uri,
 	  'filename' => $filename,
 	  'username' => $_REQUEST['username'],
-	  'postId' => $_REQUEST['postId']
+	  'uuid' => $_REQUEST['uuid']
 	);
 
 	$data['title'] = $_REQUEST['title'];
@@ -45,7 +45,7 @@
   $data['uri'] 		= $uri;
   $data['filename'] = $filename;
   $data['username'] = $_REQUEST['username'];
-  $data['postId'] = $_REQUEST['postId'];
+  $data['uuid'] = $_REQUEST['uuid'];
 
 	file_put_contents(IMAGE_LIBRARY, "\n\t" . json_encode($data) . ",\n", FILE_APPEND);
 

@@ -10,6 +10,7 @@
 	define('SQLITE_FILE', __DIR__ . '/data/files.sqlite');
 
 	$nocache = false;
+	$doCreate = false;
 
 	if (!file_exists(CACHE_FILE)) {
 		$nocache = true;
@@ -22,11 +23,7 @@
 
 	$reply = array('DEBUG' => array(), 'files' => array());
 
-	$request = file_get_contents("php://input");
-	if ($request) {
-		$request = json_decode($request);
-		$reply['request'] = $request;
-	}
+
 	// $localhost = $_SERVER['SERVER_ADDR'];
 
   try {
@@ -40,49 +37,51 @@
     $reply['DEBUG'][] = "Error connecting to the database : " . $e->getMessage();
   }
 
-  $query = "
-  CREATE TABLE IF NOT EXISTS oya_files (
-	  id INT PRIMARY KEY NOT NULL,
-	  filename TEXT NOT NULL,
-	  filetype TEXT NOT NULL,
-	  name TEXT NOT NULL,
-	  uri TEXT,
-	  tags TEXT,
-	  uuid char(40),
-	  duration FLOAT NOT NULL DEFAULT '0',
-	  width INT NOT NULL DEFAULT '1',
-	  height INT NOT NULL DEFAULT '1',
-	  title TEXT NOT NULL,
-	  description TEXT,
-	  user TEXT NOT NULL,
-	  updated DATETIME DEFAULT CURRENT_TIMESTAMP
-	);
-";
 
-  // $sqliteResult = $sqlite->query($query);
-  // if (!$sqliteResult) {
-  //   // the query failed and debugging is enabled
-  //   $reply['DEBUG'][] = "There was an error in query: $query";
-  //   $reply['DEBUG'][] =  $sqlite->lastErrorMsg();
-  // }
-  // else {
-  //   $reply['DEBUG'][] = "Created table oya_files";
-  // }
+	if (!function_exists('getallheaders'))  {
+	  function getallheaders()
+	  {
+	    if (!is_array($_SERVER)) {
+	      return array();
+	    }
+
+	    $headers = array();
+	    foreach ($_SERVER as $name => $value) {
+	      if (substr($name, 0, 5) == 'HTTP_') {
+	        $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+	      }
+	    }
+	    return $headers;
+	  }
+	}
+
+	$isFormData = false;
+	$headers = getallheaders();
+
+	foreach ($headers as $header => $value) {
+		if (strtolower($header) == "content-type") {
+			if (strpos(strtolower($value), "multipart/form-data") > -1) {
+				$isFormData = true;
+		    $reply['DEBUG'][] = "That's a multipart form!";
+			}
+		}
+    // $reply['DEBUG'][] = "$header: $value";
+	}
+
+	if ($isFormData) {
+		$request = $_REQUEST;
+	}
+	else {
+		$request = file_get_contents("php://input");	
+		if ($request) {
+			$request = json_decode($request, true);
+		}
+	}
 
 
-	$query = "CREATE INDEX filename ON oya_files (filename); CREATE INDEX updated ON oya_files (updated); CREATE INDEX filename ON oya_files (filename); ";
-
-	// $reply['DEBUG'][] = "Adding indexes";
-	// $sqliteResult = $sqlite->query($query);
-
-	// if (!$sqliteResult) {
-	//   // the query failed and debugging is enabled
-	//   $reply['DEBUG'][] = "There was an error in query: $query";
-	//   $reply['DEBUG'][] =  $sqlite->lastErrorMsg();
-	// }
-	// else {
-	//   $reply['DEBUG'][] = "Added indexes to table oya_files";
-	// }
+	if (isset($request['submit'])) {
+		unset($request['submit']);
+	}
 
 
 
@@ -95,6 +94,96 @@
   	$reply['DEBUG'][] = "No action given in request : set to default action READ";
   	$request["action"] = "read";
   }
+
+
+	if ($isFormData && isset($request['action']) && $request['action'] == "save") {
+		if (isset($request['id']) && is_numeric($request['id'])) {
+			$request['action'] = "update";
+		}
+		else {
+			$request['action'] = "create";
+		}
+	}
+
+
+	if ($isFormData && !isset($request['action'])) {
+  	if (!isset($request['id']) || !is_numeric($request['id'])) {
+			$request['action'] = "create";
+  	}
+  	else {
+			$request['action'] = "update";
+  	}
+	}
+
+
+	if (!file_exists(SQLITE_FILE)) {
+		$doCreate = true;
+	}
+
+
+	try {
+
+	  if ($doCreate) {
+	  	$reply['DEBUG'][] = "Creating missing DB: " . SQLITE_FILE;
+
+		  $query = "
+		  CREATE TABLE IF NOT EXISTS oya_files (
+			  id INT PRIMARY KEY NOT NULL,
+			  filename TEXT NOT NULL,
+			  filetype TEXT NOT NULL,
+			  name TEXT NOT NULL,
+			  uri TEXT,
+			  tags TEXT,
+			  uuid char(40),
+			  duration FLOAT NOT NULL DEFAULT '0',
+			  width INT NOT NULL DEFAULT '1',
+			  height INT NOT NULL DEFAULT '1',
+			  title TEXT NOT NULL,
+			  description TEXT,
+			  user TEXT NOT NULL,
+			  updated DATETIME DEFAULT CURRENT_TIMESTAMP
+			);";
+
+			// create table
+		  $sqliteResult = $sqlite->query($query);
+
+		  if (!$sqliteResult) {
+		    $reply['error'] = $sqlite->lastErrorMsg();
+		    $reply['DEBUG'][] = "There was an error in query: $query";
+		    $reply['DEBUG'][] =  $reply['error'];
+		  }
+		  if ($sqliteResult) {
+		    // the query was successful
+		    $reply['status'] = "ok";
+		    $sqliteResult->finalize();
+		  }
+
+		  $reply['DEBUG'][] = "Created table : " . (bool) $sqliteResult;
+
+
+			$query = "CREATE INDEX filename ON oya_files (filename); CREATE INDEX updated ON oya_files (updated); CREATE INDEX filename ON oya_files (filename); ";
+
+			// create table
+		  $sqliteResult = $sqlite->query($query);
+
+		  if (!$sqliteResult) {
+		    $reply['error'] = $sqlite->lastErrorMsg();
+		    $reply['DEBUG'][] = "There was an error in query: $query";
+		    $reply['DEBUG'][] =  $reply['error'];
+		  }
+		  if ($sqliteResult) {
+		    // the query was successful
+		    $reply['status'] = "ok";
+		    $sqliteResult->finalize();
+			  $reply['DEBUG'][] = "Added indexes : " . (bool) $sqliteResult;
+		  }
+
+	  }
+	}
+	catch(Exception $e) {
+		$reply['error'] = get_class($e) . " : " . $e->getMessage();
+	}
+
 
  
 

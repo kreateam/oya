@@ -14,6 +14,7 @@
 
 	$reply = array('DEBUG' => array(), 'screens' => array());
 	$nocache = false;
+	$doCreate = false;
 
 	if (!file_exists(CACHE_FILE)) {
 		$nocache = true;
@@ -67,7 +68,14 @@
 		}
 	}
 
+
+	if (isset($request['submit'])) {
+		unset($request['submit']);
+	}
+
 	$reply['request'] = $request;
+
+
 
 	if ($isFormData && isset($request['action']) && $request['action'] == "save") {
 		if (isset($request['id']) && is_numeric($request['id'])) {
@@ -86,6 +94,11 @@
   	else {
 			$request['action'] = "update";
   	}
+	}
+
+
+	if (!file_exists(SQLITE_FILE)) {
+		$doCreate = true;
 	}
 
 
@@ -111,7 +124,75 @@
   	$request["action"] = "read";
   }
 
- 
+  if (!isset($request['data'])) {
+	  $data = array();
+	  foreach ($request as $key => $value) {
+		  if ($key == "title" || $key == "template" || $key == "action") {
+		  	continue;
+		  }
+		  $data[$key] = $value;
+	  }
+	  if (count($data)) {
+			$request['data'] = SQLite3::escapeString(json_encode($data, JSON_PRETTY_PRINT));
+	  }
+  }
+  elseif (!is_string($request['data'])) {
+  	$request['data'] = SQLite3::escapeString(json_encode($request['data'], JSON_PRETTY_PRINT));
+  }
+
+try {
+
+  if ($doCreate) {
+  	$reply['DEBUG'][] = "Creating missing DB: " . SQLITE_FILE;
+	  $query = "CREATE TABLE IF NOT EXISTS oya_screens (
+			id INTEGER PRIMARY KEY,
+		  title char(127) NOT NULL,
+		  data text NOT NULL,
+		  template char(255) NOT NULL,
+		  updated timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+			)";
+		// create table
+	  $sqliteResult = $sqlite->query($query);
+
+	  if (!$sqliteResult) {
+	    $reply['error'] = $sqlite->lastErrorMsg();
+	    $reply['DEBUG'][] = "There was an error in query: $query";
+	    $reply['DEBUG'][] =  $reply['error'];
+	  }
+	  if ($sqliteResult) {
+	    // the query was successful
+	    $reply['status'] = "ok";
+	    $sqliteResult->finalize();
+	  }
+
+	  $reply['DEBUG'][] = "Created table : " . (bool) $sqliteResult;
+
+	  $query = "CREATE INDEX updated ON oya_screens (updated);
+			CREATE INDEX title ON oya_screens (title);
+			CREATE INDEX template ON oya_screens (template);
+		";
+		// create table
+	  $sqliteResult = $sqlite->query($query);
+
+	  if (!$sqliteResult) {
+	    $reply['error'] = $sqlite->lastErrorMsg();
+	    $reply['DEBUG'][] = "There was an error in query: $query";
+	    $reply['DEBUG'][] =  $reply['error'];
+	  }
+	  if ($sqliteResult) {
+	    // the query was successful
+	    $reply['status'] = "ok";
+	    $sqliteResult->finalize();
+		  $reply['DEBUG'][] = "Added indexes : " . (bool) $sqliteResult;
+	  }
+
+  }
+}
+catch(Exception $e) {
+	$reply['error'] = get_class($e) . " : " . $e->getMessage();
+}
+
+
 
   switch ($request['action']) {
   	case 'add':
@@ -119,8 +200,8 @@
   	case 'create':
 		  // create a query that should return a single record
 		  $query = "INSERT INTO oya_screens 
-		  				(title, template, data) 
-		  VALUES 	('{$request['title']}', '{$request['template']}', '{$request['data']}')";
+		  				(id, title, template, data) 
+		  VALUES 	(NULL,'{$request['title']}', '{$request['template']}', '{$request['data']}')";
 		  // execute the query
 		  // query returns FALSE on error, and a result object on success
 		  $sqliteResult = $sqlite->query($query);
@@ -144,7 +225,7 @@
   			break;
   		}
 		  // create a query that should return a single record
-		  $query = "UPDATE oya_screens SET title ='{$request['title']}', template ='{$request['template']}',data ='{$request['data']}') WHERE id = {$request['id']}";
+		  $query = "UPDATE oya_screens SET title ='{$request['title']}', template ='{$request['template']}',data ='{$request['data']}',updated = CURRENT_TIMESTAMP) WHERE id = {$request['id']}";
 		  // execute the query
 		  // query returns FALSE on error, and a result object on success
 		  $sqliteResult = $sqlite->query($query);
