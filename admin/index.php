@@ -322,6 +322,11 @@
 
 		}
 
+		.screen.preview {
+			opacity: 1;
+			z-index: 4999999;
+		}
+
 		#screen1 {
 			position 	: fixed;
 			left 			: 0;
@@ -760,7 +765,7 @@
 		 */
 		function iframeloaded(elem) {
 			// console.log("iframe loaded : " + elem.id);
-			elem.style.opacity = 0.1;
+			// elem.style.opacity = 0.1;
 		}
 
 	</script>
@@ -1331,6 +1336,52 @@
 
 	<script type="text/javascript">
 
+		var 
+			previewProto = {
+				active : false,
+				screen1 : document.getElementById("screen1"),
+				screen2 : document.getElementById("screen2"),
+				initial : {
+					src1 : null,
+					src2 : null
+				},
+
+				init : function () {
+				}
+			}; // preview
+
+
+		function enterPreviewMode(previewItem) {
+			var
+				preview = window.data.preview;
+			preview.active = true;
+			preview.initial.src1 = preview.screen1.src;
+			preview.initial.src2 = preview.screen2.src;
+			preview.screen1.classList.add("preview");
+			preview.screen2.classList.add("preview");
+		}
+
+
+		function exitPreviewMode(previewItem) {
+			var
+				preview = window.data.preview;
+
+			preview.screen1.src = preview.initial.src1;
+			preview.screen2.src = preview.initial.src2;
+			preview.screen1.classList.remove("preview");
+			preview.screen2.classList.remove("preview");
+
+		}
+
+		previewProto.init();
+		window.data = window.data || {};
+		window.data.preview = previewProto;
+
+	</script>
+
+
+	<script type="text/javascript">
+
 
 
 		/**
@@ -1556,6 +1607,7 @@
 			}
 
 			console.info("data : " + JSON.stringify(data));
+			console.info("tmpl : " + tmpl);
 
 			// remove any images from previous form usage
 			if (images && images.length) {
@@ -1572,6 +1624,7 @@
       	titleField = document.getElementById("form-screen-title");
 
       submit.addEventListener("click", onScreenSave);
+      enterPreviewMode(tmpl, data);
 
       if (titleField && titleField instanceof HTMLInputElement) {
       	titleField.focus();
@@ -1581,7 +1634,6 @@
 			var
 				modalForm = document.getElementById("modal-one");
 
-			console.log("toggling modal");
 			if (modalForm.classList.contains("active")) {
 				modalForm.classList.remove("showing");
 				setTimeout(function(){
@@ -1594,7 +1646,7 @@
 					modalForm.classList.toggle("showing");
 				}, 1);
 			}
-	    console.info("AFTER all the code");
+	    // console.info("AFTER all the code");
 		}; // newFromTemplate()
 
 
@@ -1780,7 +1832,7 @@
 
 
       if (editor.firstChild) {
-      	console.log("editor.insertBefore");
+      	// console.log("editor.insertBefore");
       	// editor.appendChild(image);
 	      editor.insertBefore(image, editor.firstChild);
       }
@@ -1791,7 +1843,6 @@
 			var
 				modalForm = document.getElementById("modal-one");
 
-			console.log("toggling modal");
 			if (modalForm.classList.contains("active")) {
 				modalForm.classList.remove("showing");
 				setTimeout(function(){
@@ -2162,14 +2213,21 @@
 				    }
 			    }; // onload
 
-
-		  	if (progress) {
-		  		progress.style.visibility = "visible";
-		  	}
-
 		  	if (!file) {
 		  		console.error("No file selected!");
 		  		return;
+		  	}
+
+			  if (file && file.size) {
+			  	if (window.data.settings['MAX_UPLOAD_SIZE'] && window.data.settings['MAX_UPLOAD_SIZE'] < file.size) {
+			  		alert("File is too large ( > " + window.data.settings['MAX_UPLOAD_SIZE'] + ' bytes');
+			  		return false;
+			  	}
+			  	console.info("Uploading file, " + file.size + " bytes");
+			  }
+
+		  	if (progress) {
+		  		progress.style.visibility = "visible";
 		  	}
 
 			  console.log("file : ", file);
@@ -2459,7 +2517,7 @@
 				artist  = document.getElementById(scene + "-artist"),
 
 				// set clock forwards by n weeks
-				now 		= new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)),
+				now 		= new Date(Date.now() + (2 * 7 * 24 * 60 * 60 * 1000)),
 				days, hours, minutes,
 				remainingDays 		= scene ? document.getElementById(scene + "-days") : document.getElementById("amfiet-days"),
 				remainingHours 		= scene ? document.getElementById(scene + "-hours") : document.getElementById("amfiet-hours"),
@@ -2645,7 +2703,7 @@
 				scene 	= scene || null,
 				program = program || null,
 				result 	= null,
-				dummyDate = dummyDate || new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)),
+				dummyDate = dummyDate || new Date(Date.now() + (2 * 7 * 24 * 60 * 60 * 1000)),
 				earliest 	= Date(0),
 				concert 	= { artist : null, when : null};
 
@@ -2980,6 +3038,7 @@
 		var
 			modal = document.getElementById("modal-one");
 
+		exitPreviewMode();
 		modal.classList.remove("showing");
 		setTimeout(function() {
 			modal.classList.remove("active");
@@ -3016,7 +3075,7 @@
 					user : "<?php print($user); ?>"
 				};
 
-				pi.log("settings : " + data.settings, data.settings);
+				// pi.log("settings : " + data.settings, data.settings);
 			}
 
 		}, pi.log);
@@ -3069,8 +3128,7 @@
 				if (screens && screens.screens && screens.screens.length) {
 					for (var i = 0; i < screens.screens.length; i++) {
 						if (typeof screens.screens[i]['data'] == "string") {
-							console.info("new screen : " + screens.screens[i], screens.screens[i]);
-							console.info("parsing JSON : " + screens.screens[i]['data']);
+							// console.info("new screen : " + screens.screens[i], screens.screens[i]);
 							try {
 							var
 								obj = JSON.parse(screens.screens[i]['data']);

@@ -446,6 +446,7 @@
 
 		// initial update from data
 		updateTime();
+		setInterval(updateTime, 5000);
 		updateWeather();
 
 

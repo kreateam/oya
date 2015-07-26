@@ -54,7 +54,7 @@
 	$data['tags'] = $_REQUEST['tags'];
   $data['name'] = $name;
   $data['type'] = $filetype;
-  $data['uri'] 		= $uri;
+  $data['uri'] 	= $uri;
   $data['filename'] = $filename;
   $data['user'] = $_REQUEST['user'];
   $data['uuid'] = $_REQUEST['uuid'];
