@@ -1,0 +1,4514 @@
+{
+    "debug": [
+        "Loading XML : 24739",
+        "Resulting size : 7",
+        "Loaded XML successfully.",
+        "ADDING forecast",
+        "ADDING detailed forecast"
+    ],
+    "forecast": [
+        {
+            "@attributes": {
+                "from": "2015-07-14T16:00:00",
+                "to": "2015-07-14T18:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "247.5",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.0",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "22"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T18:00:00",
+                "to": "2015-07-15T00:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "1.8"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "217.6",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "22"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T00:00:00",
+                "to": "2015-07-15T06:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "75.3",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.1",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T06:00:00",
+                "to": "2015-07-15T12:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "60.1",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.8",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T12:00:00",
+                "to": "2015-07-15T18:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "2.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "294.2",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.5",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T18:00:00",
+                "to": "2015-07-16T00:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "5",
+                    "numberEx": "40",
+                    "name": "Lette regnbyger",
+                    "var": "40d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0.6",
+                    "minvalue": "0",
+                    "maxvalue": "1.9"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "29.5",
+                    "code": "NNE",
+                    "name": "Nord-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T00:00:00",
+                "to": "2015-07-16T06:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.99"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "313.6",
+                    "code": "NW",
+                    "name": "Nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.3",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1011.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T06:00:00",
+                "to": "2015-07-16T12:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "283.0",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1012.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T12:00:00",
+                "to": "2015-07-16T18:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.4"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "334.8",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.5",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1014.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T18:00:00",
+                "to": "2015-07-17T00:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.3"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "45.0",
+                    "code": "NE",
+                    "name": "Nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "4.0",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1015.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-17T02:00:00",
+                "to": "2015-07-17T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.02"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "59.9",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.4",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "11"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1017.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-17T08:00:00",
+                "to": "2015-07-17T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "93.5",
+                    "code": "E",
+                    "name": "\u00d8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.2",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1017.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-17T14:00:00",
+                "to": "2015-07-17T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "4",
+                    "numberEx": "4",
+                    "name": "Skyet",
+                    "var": "04"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "157.8",
+                    "code": "SSE",
+                    "name": "S\u00f8r-s\u00f8r\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.4",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1014.9"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-17T20:00:00",
+                "to": "2015-07-18T02:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "9",
+                    "name": "Regn",
+                    "var": "09"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "2.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "173.0",
+                    "code": "S",
+                    "name": "S\u00f8r"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.6",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1011.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-18T02:00:00",
+                "to": "2015-07-18T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "9",
+                    "name": "Regn",
+                    "var": "09"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "3.6"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "137.9",
+                    "code": "SE",
+                    "name": "S\u00f8r\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-18T08:00:00",
+                "to": "2015-07-18T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "9",
+                    "name": "Regn",
+                    "var": "09"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "2.4"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "135.4",
+                    "code": "SE",
+                    "name": "S\u00f8r\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.4",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1006.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-18T14:00:00",
+                "to": "2015-07-18T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "199.5",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "4.8",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1003.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-18T20:00:00",
+                "to": "2015-07-19T02:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "02d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "183.0",
+                    "code": "S",
+                    "name": "S\u00f8r"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "4.8",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1002.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-19T02:00:00",
+                "to": "2015-07-19T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.09"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "209.2",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1004.8"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-19T08:00:00",
+                "to": "2015-07-19T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "216.5",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.7",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1002.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-19T14:00:00",
+                "to": "2015-07-19T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "251.7",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.7",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1002.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-19T20:00:00",
+                "to": "2015-07-20T02:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "188.1",
+                    "code": "S",
+                    "name": "S\u00f8r"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.9",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1002.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-20T02:00:00",
+                "to": "2015-07-20T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.13"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "339.7",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1005.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-20T08:00:00",
+                "to": "2015-07-20T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "272.6",
+                    "code": "W",
+                    "name": "Vest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.9",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-20T14:00:00",
+                "to": "2015-07-20T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "227.5",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-20T20:00:00",
+                "to": "2015-07-21T02:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "245.8",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.7",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-21T02:00:00",
+                "to": "2015-07-21T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.16"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "306.4",
+                    "code": "NW",
+                    "name": "Nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.9",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-21T08:00:00",
+                "to": "2015-07-21T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "201.5",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.9",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-21T14:00:00",
+                "to": "2015-07-21T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "298.9",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.6",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-21T20:00:00",
+                "to": "2015-07-22T02:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "249.0",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.6",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1006.9"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-22T02:00:00",
+                "to": "2015-07-22T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.19"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "227.0",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1006.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-22T08:00:00",
+                "to": "2015-07-22T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "55.2",
+                    "code": "NE",
+                    "name": "Nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-22T14:00:00",
+                "to": "2015-07-22T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "260.7",
+                    "code": "W",
+                    "name": "Vest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.7",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-22T20:00:00",
+                "to": "2015-07-23T02:00:00",
+                "period": "3"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "192.7",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.5",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-23T02:00:00",
+                "to": "2015-07-23T08:00:00",
+                "period": "0"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.23"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "26.1",
+                    "code": "NNE",
+                    "name": "Nord-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1005.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-23T08:00:00",
+                "to": "2015-07-23T14:00:00",
+                "period": "1"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "202.4",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.8"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-23T14:00:00",
+                "to": "2015-07-23T20:00:00",
+                "period": "2"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "150.5",
+                    "code": "SSE",
+                    "name": "S\u00f8r-s\u00f8r\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.8",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.2"
+                }
+            }
+        }
+    ],
+    "detailed": [
+        {
+            "@attributes": {
+                "from": "2015-07-14T16:00:00",
+                "to": "2015-07-14T17:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "247.5",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.0",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "22"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T17:00:00",
+                "to": "2015-07-14T18:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "252.9",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.7",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "22"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T18:00:00",
+                "to": "2015-07-14T19:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "217.6",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "22"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T19:00:00",
+                "to": "2015-07-14T20:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "1.8"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "143.6",
+                    "code": "SE",
+                    "name": "S\u00f8r\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "4.2",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "20"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T20:00:00",
+                "to": "2015-07-14T21:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.9"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "90.0",
+                    "code": "E",
+                    "name": "\u00d8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1007.9"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T21:00:00",
+                "to": "2015-07-14T22:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "358.6",
+                    "code": "N",
+                    "name": "Nord"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.4",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "16"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T22:00:00",
+                "to": "2015-07-14T23:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "02d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "67.4",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.4",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "16"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-14T23:00:00",
+                "to": "2015-07-15T00:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.92"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "24.2",
+                    "code": "NNE",
+                    "name": "Nord-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.1",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "16"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T00:00:00",
+                "to": "2015-07-15T01:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "75.3",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.1",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1008.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T01:00:00",
+                "to": "2015-07-15T02:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "mf\/02n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "101.0",
+                    "code": "E",
+                    "name": "\u00d8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.3",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T02:00:00",
+                "to": "2015-07-15T03:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "mf\/02n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "58.1",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.4",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T03:00:00",
+                "to": "2015-07-15T04:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "94.9",
+                    "code": "E",
+                    "name": "\u00d8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.3",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T04:00:00",
+                "to": "2015-07-15T05:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "54.2",
+                    "code": "NE",
+                    "name": "Nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.4",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "13"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T05:00:00",
+                "to": "2015-07-15T06:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "02d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "45.1",
+                    "code": "NE",
+                    "name": "Nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.8",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "13"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T06:00:00",
+                "to": "2015-07-15T07:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "60.1",
+                    "code": "ENE",
+                    "name": "\u00d8st-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.8",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T07:00:00",
+                "to": "2015-07-15T08:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "189.3",
+                    "code": "S",
+                    "name": "S\u00f8r"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.3",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "16"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1009.7"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T08:00:00",
+                "to": "2015-07-15T09:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "246.1",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.2",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T09:00:00",
+                "to": "2015-07-15T10:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "247.7",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.8",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T10:00:00",
+                "to": "2015-07-15T11:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "257.8",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.7",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T11:00:00",
+                "to": "2015-07-15T12:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "235.8",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.0",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "20"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T12:00:00",
+                "to": "2015-07-15T13:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.5"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "294.2",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.5",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T13:00:00",
+                "to": "2015-07-15T14:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.1"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "337.7",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.1",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.9"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T14:00:00",
+                "to": "2015-07-15T15:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "29.3",
+                    "code": "NNE",
+                    "name": "Nord-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.5",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T15:00:00",
+                "to": "2015-07-15T16:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.9"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "291.0",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.6",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "20"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T16:00:00",
+                "to": "2015-07-15T17:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "46",
+                    "name": "Lett regn",
+                    "var": "46"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0.1",
+                    "minvalue": "0",
+                    "maxvalue": "2.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "272.6",
+                    "code": "W",
+                    "name": "Vest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.6",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "20"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T17:00:00",
+                "to": "2015-07-15T18:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "46",
+                    "name": "Lett regn",
+                    "var": "46"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0.2",
+                    "minvalue": "0",
+                    "maxvalue": "1.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "358.4",
+                    "code": "N",
+                    "name": "Nord"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T18:00:00",
+                "to": "2015-07-15T19:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "4",
+                    "numberEx": "4",
+                    "name": "Skyet",
+                    "var": "04"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.6"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "29.5",
+                    "code": "NNE",
+                    "name": "Nord-nord\u00f8st"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T19:00:00",
+                "to": "2015-07-15T20:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "46",
+                    "name": "Lett regn",
+                    "var": "46"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0.2",
+                    "minvalue": "0",
+                    "maxvalue": "1.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "226.3",
+                    "code": "SW",
+                    "name": "S\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.4",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T20:00:00",
+                "to": "2015-07-15T21:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "9",
+                    "numberEx": "9",
+                    "name": "Regn",
+                    "var": "09"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0.4",
+                    "minvalue": "0",
+                    "maxvalue": "1.3"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "266.1",
+                    "code": "W",
+                    "name": "Vest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.5",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "16"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T21:00:00",
+                "to": "2015-07-15T22:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.3"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "203.6",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.9",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T22:00:00",
+                "to": "2015-07-15T23:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "02d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.1"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "205.6",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.1",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-15T23:00:00",
+                "to": "2015-07-16T00:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.96"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "211.9",
+                    "code": "SSW",
+                    "name": "S\u00f8r-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.0",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1010.7"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T00:00:00",
+                "to": "2015-07-16T01:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "1",
+                    "numberEx": "1",
+                    "name": "Klarv\u00e6r",
+                    "var": "mf\/01n.99"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "313.6",
+                    "code": "NW",
+                    "name": "Nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.3",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1011.2"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T01:00:00",
+                "to": "2015-07-16T02:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.99"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "289.5",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.9",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1011.4"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T02:00:00",
+                "to": "2015-07-16T03:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "mf\/03n.99"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "271.6",
+                    "code": "W",
+                    "name": "Vest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.0",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1011.7"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T03:00:00",
+                "to": "2015-07-16T04:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "4",
+                    "numberEx": "4",
+                    "name": "Skyet",
+                    "var": "04"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "267.2",
+                    "code": "W",
+                    "name": "Vest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.9",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1011.9"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T04:00:00",
+                "to": "2015-07-16T05:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "4",
+                    "numberEx": "4",
+                    "name": "Skyet",
+                    "var": "04"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "254.1",
+                    "code": "WSW",
+                    "name": "Vest-s\u00f8rvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "0.9",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1012.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T05:00:00",
+                "to": "2015-07-16T06:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "4",
+                    "numberEx": "4",
+                    "name": "Skyet",
+                    "var": "04"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "0.0",
+                    "code": "N",
+                    "name": "Nord"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "1.2",
+                    "name": "Flau vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1012.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T06:00:00",
+                "to": "2015-07-16T07:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "283.0",
+                    "code": "WNW",
+                    "name": "Vest-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "14"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1012.6"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T07:00:00",
+                "to": "2015-07-16T08:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "322.5",
+                    "code": "NW",
+                    "name": "Nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.2",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "15"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1013.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T08:00:00",
+                "to": "2015-07-16T09:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "339.9",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.7",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "16"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1013.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T09:00:00",
+                "to": "2015-07-16T10:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "342.2",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.0",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "17"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1013.8"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T10:00:00",
+                "to": "2015-07-16T11:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "341.6",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.2",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "18"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1014.1"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T11:00:00",
+                "to": "2015-07-16T12:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "336.0",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.1",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1014.3"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T12:00:00",
+                "to": "2015-07-16T13:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "334.8",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.5",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1014.5"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T13:00:00",
+                "to": "2015-07-16T14:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "3",
+                    "numberEx": "3",
+                    "name": "Delvis skyet",
+                    "var": "03d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.2"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "348.5",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.5",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "19"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1014.8"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T14:00:00",
+                "to": "2015-07-16T15:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "02d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0",
+                    "minvalue": "0",
+                    "maxvalue": "0.1"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "338.1",
+                    "code": "NNW",
+                    "name": "Nord-nordvest"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "2.3",
+                    "name": "Svak vind"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "20"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1015.0"
+                }
+            }
+        },
+        {
+            "@attributes": {
+                "from": "2015-07-16T15:00:00",
+                "to": "2015-07-16T16:00:00"
+            },
+            "comment": [
+                [
+
+                ],
+                [
+
+                ]
+            ],
+            "symbol": {
+                "@attributes": {
+                    "number": "2",
+                    "numberEx": "2",
+                    "name": "Lettskyet",
+                    "var": "02d"
+                }
+            },
+            "precipitation": {
+                "@attributes": {
+                    "value": "0"
+                }
+            },
+            "windDirection": {
+                "@attributes": {
+                    "deg": "351.7",
+                    "code": "N",
+                    "name": "Nord"
+                }
+            },
+            "windSpeed": {
+                "@attributes": {
+                    "mps": "3.7",
+                    "name": "Lett bris"
+                }
+            },
+            "temperature": {
+                "@attributes": {
+                    "unit": "celsius",
+                    "value": "20"
+                }
+            },
+            "pressure": {
+                "@attributes": {
+                    "unit": "hPa",
+                    "value": "1015.4"
+                }
+            }
+        }
+    ]
+}

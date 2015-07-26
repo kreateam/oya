@@ -1,0 +1,68 @@
+<style type="text/css">
+
+	/* template styles */
+	.food {
+
+	}
+
+	.food .image {
+		background-image: url({{uri}});
+
+	}
+
+	.food .hashtag {
+		
+	}
+
+	.food .hashtag::before {
+		content: "#";
+	}
+
+
+
+
+</style>
+
+<div class="food">
+	<div class="hashtag" data-name="hashtag" contenteditable="true">
+		{{hashtag}}
+	</div>
+	<div class="image">
+	</div>
+	<div class="title" data-name="title" contenteditable="true">
+		{{title}}
+	</div>
+	<div class="score" data-name="score" contenteditable="true">
+		{{score}}
+	</div>
+	<div class="ingress" data-name="ingress" contenteditable="true">
+		{{ingress}}
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	/**
+	 * Communicate with parent through postMessage
+	 */
+
+		var 
+			parent = null,
+
+			onWindowMessage = function(e) {
+		  	console.info("onmessage: " + e.origin);
+		    if (!parent && e.source) {
+		    	parent = e.source;
+		    }
+
+		    // e.data is the string sent by the origin with postMessage.
+		    if(e.data == 'ping') {
+		      e.source.postMessage('pong:'+document.body.scrollHeight+','+document.body.scrollWidth, e.origin);
+		    }
+		    console.log ("e.data:", e.data);
+			};
+
+		window.addEventListener('message', onWindowMessage, false);
+
+
+</script>
