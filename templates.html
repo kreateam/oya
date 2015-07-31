@@ -23,7 +23,15 @@
 
 	<!--  partial for image list  -->
 	<script id="imagelist-item-template" type="text/template">
-		<figure onclick="editImage('{{uuid}}');" id="i{{uuid}}" data-item="{{*}}">
+		<figure onclick="editImage('{{uuid}}');" id="i{{uuid}}" data-item="{{.}}">
+			<img src="{{uri}}" class="preview">
+			<figcaption>{{title}}</figcaption>
+		</figure>
+	</script>
+
+	<!--  partial for screen image selector - image list  -->
+	<script id="screen-imagelist-item-template" type="text/template">
+		<figure onclick="setScreenImage('{{uuid}}');" id="i{{uuid}}" data-item="{{.}}">
 			<img src="{{uri}}" class="preview">
 			<figcaption>{{title}}</figcaption>
 		</figure>
@@ -46,7 +54,7 @@
 	<script id="screen-modal-dialog-template" type="text/template">
 	  <div class="modal-header">
 	    <h2>{{header}}</h2>
-	    <span class="btn-close" onclick="hideModal(this);">×</span>
+	    <span class="btn-close" onclick="hideModal(this);">×&nbsp;</span>
 	  </div>
 	  <div class="modal-body">
     	<fieldset id="form-screen-editor-fieldset" style="width:20em">
@@ -63,6 +71,7 @@
 				<textarea type="textarea" width="32" id="description" name="description" rows="2">{{description}}</textarea>
 
 				<input type="hidden" id="filename" name="filename" value="{{filename}}" />
+				<input type="hidden" name="image" id="form-screen-editor-image" value="{{image}}" />
 				<input id="form-screen-editor-submit" type="submit" name="submit" value="Save" />
 			</fieldset>
 	  </div>
@@ -72,7 +81,7 @@
 	<script id="image-modal-dialog-template" type="text/template">
 	  <div class="modal-header">
 	    <h2>{{header}}</h2>
-	    <span class="btn-close" onclick="hideModal(this);">×</span>
+	    <span class="btn-close" onclick="hideModal(this);">×&nbsp;</span>
 	  </div>
 	  <div class="modal-body">
 	    	<fieldset id="form-image-editor-fieldset" style="width:20em">
@@ -158,3 +167,41 @@
 	</script>
 
 
+
+	<script id="playlist-current-template" type="text/template">
+		<div class="section-title">Now playing</div>
+			<ul>
+				<li id="item-0" class="item playing">{{data}} - {{title}} - {{data.title}}<span class="duration">{{duration}}</span></li>
+			</ul>
+	</script>
+
+	<script id="playlist-queue-template" type="text/template">
+		<div class="section-title">Queued</div>
+			<ul>
+			{{#.}}
+				<li id="item-{{id}}" class="item">{{data.title}}<span class="duration">{{duration}}</span></li>
+			{{/.}}
+			</ul>
+	</script>
+
+	<script id="playlist-next-template" type="text/template">
+		<div class="section-title">Next Items <span id="next-duration" class="queue-total">6:00</span></div>
+			<ul>
+			{{#.}}
+				<li id="item-{{id}}" class="item">
+					<div class="item-menu">
+						<ul>
+						  <li>+<ul>
+						      <li>Play next</li>
+						      <li>Add to Queue</li>
+						      <li>Add to Next tracks</li>
+						    </ul>
+						  </li>
+						</ul>	
+					</div>
+					{{data.title}}
+					<span class="duration">{{duration}}</span>
+				</li>
+			{{/.}}
+			</ul>
+	</script>

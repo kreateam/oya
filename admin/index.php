@@ -111,8 +111,8 @@
 		  -webkit-animation-name: zoomInDown;
 		  				animation-name: zoomInDown;
 
-		 	-webkit-animation-duration: .7s;
-		  			 	animation-duration: .7s;
+		 	-webkit-animation-duration: .4s;
+		  			 	animation-duration: .4s;
 
 		  -webkit-animation-fill-mode: both;
 		  				animation-fill-mode: both;
@@ -131,8 +131,8 @@
 
 			-webkit-transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 							transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-			-webkit-transition-duration: .4s;
-							transition-duration: .4s;
+			-webkit-transition-duration: .3s;
+							transition-duration: .3s;
 		}
 
 	</style>
@@ -166,6 +166,8 @@
 		html, body {
 			color: #000;
 			background: rgb(38,188,244);
+			/*background: rgb(39,40,34);*/
+			/*background: #52534E;*/
 			margin: 0;
 			padding: 0;
 
@@ -195,10 +197,19 @@
 							box-sizing: border-box;
 		}
 
+		.blur {
+		  -webkit-filter: blur(4px);
+		  -webkit-filter: -webkit-blur(4px);
+		  		-ms-filter: blur(4px);
+							filter: blur(4px);
+		}
+
 		h1, h2, h3, h4, h5, h6 {
 			font-weight: 300;
 			text-align: center;
 		}	
+
+
 
 		@media (max-width: 1280px) {
 		  html, body {
@@ -242,6 +253,7 @@
     }
 
 		header {
+			padding-top: .4em;
 			margin-bottom: .4em;
 		}
 
@@ -273,7 +285,7 @@
 
 		.item {
 			display: block;
-			margin: 2px 0.5em;
+			margin: 1px 0.5em;
 			padding-top: 2px;
 			text-align: left;
 			background-color: rgba(39, 40, 34, 0.6);
@@ -302,7 +314,7 @@
 		}
 
 		.hashtag.instagram {
-			color: #FF0098;
+			color: #e6007e;
 		}
 
 
@@ -311,7 +323,7 @@
 			display: block;
 
 			/* initial state, because we want to fade in @load */
-			opacity: 0;
+			opacity: 0.1;
 
 			-webkit-transform: scale(0.5, 0.5);
 							transform: scale(0.5, 0.5);
@@ -322,10 +334,19 @@
 
 		}
 
+
+
 		.screen.preview {
 			opacity: 1;
 			z-index: 4999999;
 		}
+
+
+		#playqueue {
+			-webkit-transition: -webkit-filter 0.5s ease-out; 
+	 				transition: -webkit-filter 0.5s ease-out; /* easeOutExpo */			
+		}
+
 
 		#screen1 {
 			position 	: fixed;
@@ -358,6 +379,7 @@
 			background-color: #fff;
 		}
 
+
 		.left {
 			float 		: left;
 			width 		: 17%;
@@ -368,7 +390,7 @@
 
 			color: #fff;
 			/*background-color: #C21E29;*/
-			background-color: #0099D6;
+			background-color: #0080c3;
 
 			text-align: right;
 			-webkit-transition: background-color .4s;
@@ -388,7 +410,7 @@
 			padding-left: 8px;
 
 			color: #fff;
-			background-color: #0099D6;
+			background-color: #0080c3;
 
 			text-align: right;
 			-webkit-transition: background-color .4s;
@@ -424,6 +446,44 @@
 		.right ::after {
 			clear: both;
 		}
+
+
+		@media (max-width: 1080px) {
+			body {
+				font-size: 10px;
+			}
+
+			/* hide on mobile */
+			footer,
+			#toolbar,
+			#amfiet-header,
+			#vindfruen-header,
+		  .screen, #program1, #program2 {
+		  	display: none;
+		  }
+		  .right, .left {
+		  	margin: 0;
+		  	padding: 0;
+
+		  	width: 50%;
+		  	max-width: 50%;
+		  	height: auto;
+		  	min-height: 100px;
+		  }
+		  .middle {
+		  	width: 100%;
+		  	clear: both;
+		  	position: relative;
+		  }
+		  #toolbar {
+		  	font-size: 8px;
+		  }
+		  footer {
+				width: 100%;
+		  }
+
+		}
+
 
 		.section-title {
 			font-weight: 900;
@@ -571,12 +631,12 @@
 			font-family: Roboto, Helvetica, Lato, sans-serif;
 			font-weight: 300;
 			font-size: 66%;
-			height: 3.6em;
+			height: 32px;
 			/*text-align: left;*/
 
 			/* doesn't work ... why o whai */
-			-webkit-transition: top .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), height .3s cubic-bezier(0.190, 1.000, 0.220, 1.000); 
-			 				transition: top .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), height .3s cubic-bezier(0.190, 1.000, 0.220, 1.000); /* easeOutExpo */
+			-webkit-transition: top .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), height .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), -webkit-filter 0.5s ease-out; 
+			 				transition: top .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), height .3s cubic-bezier(0.190, 1.000, 0.220, 1.000), -webkit-filter 0.5s ease-out; /* easeOutExpo */
 		}
 
 		#toolbar.active {
@@ -584,10 +644,11 @@
 		}
 
 		#toolbar .closebutton {
-			background-color: #272822;
+			background-color: #000;
 			color: #fff;
-			font-weight: 900;
+			/*font-weight: 400;*/
 			cursor: pointer;
+			font-size: 100%;
 		}
 
 
@@ -600,6 +661,11 @@
 			font-weight: 100;
 		}
 
+
+		div.images {
+			display: block;
+		}
+
 		.screen-list-item, .template-selector-item {
 			font-size: 14px;
 			padding-left: 1em;
@@ -607,12 +673,13 @@
 			cursor: pointer;
 
 			-webkit-transition: all 0.4s;
-			transition: all 0.4s;
+							transition: all 0.4s;
 		}
 
 		.screen-list-item:hover, .template-selector-item:hover {
-			color: #fff;
-			background-color: #0099D6;
+			color: #fff;	
+		/*font-weight: 400;*/
+			background-color: #0080c3;
 		}
 
 		.template-selector-item-menu {
@@ -624,7 +691,7 @@
 			cursor: pointer;
 
 			-webkit-transition: all 0.4s;
-			transition: all 0.4s;
+							transition: all 0.4s;
 		}
 
 		.template-selector-item-menu:hover {
@@ -776,7 +843,7 @@
 		include '../templates.html';
 	?>
 
-	<div class="wrapper">
+	<div id="wrapper" class="wrapper">
 		<div id="amfiet" class="left">
 				<h4>Amfiet</h4>
 				<div class="coming-up">
@@ -823,7 +890,7 @@
 		</style>
 
 		<div class="middle">
-			<section class="content">
+			<section id="playqueue" class="content">
 				<header>
 					Play Queue
 				</header>
@@ -992,7 +1059,8 @@
 	document.addEventListener("DOMContentLoaded", function() {
 		var
 			playlist = {
-				updated : Date.now() || 0,
+				updated : 0,
+				_data : null,
 				_loaded : false,
 
 				onupdate : function() {
@@ -1000,7 +1068,9 @@
 				},
 
 				update : function() {
-					console.info("updating playlist")
+					var
+						self = playlist;
+					pi.xhr.get("assets/php/playlist.php", self.onload, console.error);
 				},
 
 				onload : function(json) {
@@ -1011,9 +1081,17 @@
 					if (_data) {
 						if (self._loaded === false) {
 							self._loaded = Date.now();
-						}
+							if (_data['playlist'] && _data['status'] && _data['status'] == "ok") {
+								if (!window.data) {
+									window.data = {};
+								}
+								console.info("playlist loaded: " + self._loaded, _data.playlist);
 
-						// console.info("playlist loaded: " + self._loaded, _data);
+								window.data.playlist = _data.playlist;
+								// console.info("calling self.render()");
+								self.render();
+							}
+						}
 					}
 					else {
 						console.error("No playlist data");
@@ -1023,7 +1101,7 @@
 				load : function(list, callback, onerror) {
 					var
 						result = null,
-						list = list || "assets/php/data/playlist.json";
+						list = list || "assets/php/playlist.php";
 
 					// console.info("loading playlist");
 
@@ -1032,12 +1110,57 @@
 						result = pi.xhr.get(list, callback, onerror);
 					});
 
+				},
+
+				/**
+				 * Render playlist to DOM
+				 */
+				render : function () {
+					var
+						playlist = window.data.playlist || null,
+						currentTmpl = document.getElementById("playlist-current-template").innerHTML,
+						queueTmpl 	= document.getElementById("playlist-queue-template").innerHTML,
+						nextTmpl 		= document.getElementById("playlist-next-template").innerHTML,
+						current = document.getElementById("current"),
+						queue 	= document.getElementById("queue"),
+						next 		= document.getElementById("next-items");
+
+					if (!playlist) {
+						console.error("No playlist in window.data !");
+						return false;
+					}
+					else {
+						// console.info("Ready to render : " + playlist, playlist);
+					}
+					if (current && currentTmpl) {
+						// console.info("rendering current : " + playlist.current, playlist.current);
+						current.innerHTML = Mustache.render(currentTmpl, playlist.current);
+					}
+					if (queue && queueTmpl) {
+						if (playlist.queue && playlist.queue.length) {
+							queue.innerHTML = Mustache.render(queueTmpl, playlist.queue);
+							// console.info("rendering queue : ", playlist.queue);
+						}
+						else {
+							console.info("queue is empty : ", playlist.queue);
+						}
+					}
+					if (next && nextTmpl) {
+						if (playlist.next && playlist.next.length) {
+							// console.info("rendering next-items: ", playlist.next);
+							next.innerHTML = Mustache.render(nextTmpl, playlist.next);
+						}
+						else {
+							console.info("next-items is empty : ", playlist.next);
+						}
+					}
+					return false;
 				}
 			}; // playlist
 
 
 			// heigh ho
-			playlist.load(null, playlist.onload);
+			playlist.load(null, playlist.onload, pi.log);
 
 
 			var 
@@ -1147,6 +1270,11 @@
  		width: 20em;
  	}
 
+ 	#screen-search {
+ 		width: 40em;
+ 	}
+
+
 	.error {
 		display: none;
 		background-color: #C21E29;
@@ -1157,7 +1285,7 @@
 
 	.status {
 		display: none;
-		background-color: #0099D6;
+		background-color: #0080c3;
 		padding: 0.2em 0.5em;
 		color: #fff;
 	}
@@ -1189,7 +1317,6 @@
 		clear: both;
 		float: left;
 		text-align: left;
-
 		/*margin-top: .6em;*/
 	}
 
@@ -1219,6 +1346,14 @@
 		font-weight: 300;
 	}
 
+	.searchsymbol {
+		position: relative;
+		opacity: 0.78;
+		height: 1em;
+		top: 0.2em;
+	}
+
+
 </style>
 
 			<footer>
@@ -1236,7 +1371,8 @@
             <label for="tabstrip-0-1">Images</label>
             <div class="images">
             	+ <input type="file" name="image-upload" id="image-upload" accept="image/*" />
-            	&nbsp;&nbsp;filter &nbsp;&nbsp;<input type="text" name="image-search" id="image-search" />
+            	<img src="assets/img/search.svg" height="24" class="searchsymbol">
+            	<input type="text" name="image-search" id="image-search" />
             	<progress id="form-upload-progress" max="100"></progress>
             	<span id="form-status" class="status"></span>
 							<div>
@@ -1249,7 +1385,8 @@
             <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
             <label for="tabstrip-0-2">Screens</label>
             <div class="screens">
-            	&nbsp;&nbsp;filter &nbsp;&nbsp;<input type="text" name="screen-search" id="screen-search" />
+            	<img src="assets/img/search.svg" height="24" class="searchsymbol">
+            	<input type="text" name="screen-search" id="screen-search" />
 							<div>
 	            	<div id="screen-preview" class="preview"></div>
 							</div>
@@ -1322,7 +1459,7 @@
 	        </li>
 	        <li class="closebutton">
             <input type="radio" name="tabstrip-0" id="tabstrip-0-5" />
-            <label for="tabstrip-0-5" class="closebutton">x</label>
+            <label for="tabstrip-0-5" class="closebutton">×</label>
 	        </li>
 		    </ul>
 			</div>
@@ -1332,13 +1469,14 @@
 	</div>
 
 	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="512" height="704" onload="iframeloaded(this)"></iframe>
-	<iframe id="screen2" class="screen" scrolling="no" src="weather.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen2" class="screen" scrolling="no" src="player.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
 
 	<script type="text/javascript">
 
 		var 
 			previewProto = {
 				active : false,
+				current : null,
 				screen1 : document.getElementById("screen1"),
 				screen2 : document.getElementById("screen2"),
 				initial : {
@@ -1347,18 +1485,34 @@
 				},
 
 				init : function () {
+					this.initial.src1 = this.screen1.src;
+					this.initial.src2 = this.screen2.src;
 				}
 			}; // preview
+
+		previewProto.init();
+		window.data = window.data || {};
+		window.data.preview = previewProto;
 
 
 		function enterPreviewMode(previewItem) {
 			var
+				fieldsets = document.getElementsByTagName("fieldset"),
 				preview = window.data.preview;
+
+			if (!preview.screen1.src) {
+				alert("error : no previous src for preview screens");
+				return false;
+			}
+			// console.info("previewItem : " + previewItem, previewItem);
 			preview.active = true;
+			preview.current = previewItem;
 			preview.initial.src1 = preview.screen1.src;
 			preview.initial.src2 = preview.screen2.src;
 			preview.screen1.classList.add("preview");
 			preview.screen2.classList.add("preview");
+			addFieldsetChangeListeners();
+
 		}
 
 
@@ -1366,16 +1520,159 @@
 			var
 				preview = window.data.preview;
 
+			console.info("previewItem : " + previewItem, previewItem);
+			if (!preview.initial.src1) {
+				alert("error : no previous src for preview screens");
+				return false;
+			}
 			preview.screen1.src = preview.initial.src1;
 			preview.screen2.src = preview.initial.src2;
 			preview.screen1.classList.remove("preview");
 			preview.screen2.classList.remove("preview");
+			preview.current = null;
+		}
+
+
+		function updatePreviews(data) {
+			var 
+				contentframe1, contentframe2, tmpl,
+				previews = [],
+				iframes = null,
+				preview = window.data.preview || null,
+				data = data || null;
+			if (!data || !preview) {
+				console.error("either param data is null, or window.data.preview is null.")
+				return false;
+			}
+			if (!preview.current) {
+				console.error("No current template! Aborting update...");
+				return false;
+			}
+			else {
+				// console.info("preview.current : " + preview.current, preview.current);
+			}
+
+			// if we already have a handle to the contentElement within the iframe's body,
+			// and if the handle is still valid
+			if (preview.contentElements && preview.contentElements.length >= 2 && preview.contentElements[0].contentDocument) {
+				contentframe1 = preview.contentElements[0];
+				contentframe2 = preview.contentElements[1];
+			}
+			else {
+				iframes = document.querySelectorAll("iframe");
+				if (iframes && iframes.length) {
+					for (var i = 0; i < iframes.length; i++) {
+						previews.push(iframes[i].contentDocument || iframes[i].contentWindow.document);
+					}
+				}
+				if (previews.length == 2) {
+					previews[0] = previews[0].getElementById("contentframe");
+					previews[1] = previews[1].getElementById("contentframe");
+					// contentframe1 = previews[0];
+					// contentframe2 = previews[1];
+					if (window.data.preview) {
+						window.data.preview.contentElements = previews;
+					}
+					else {
+						console.error("No preview object in window.data!");
+					}
+				}
+				// console.info("data : " + JSON.stringify(data));
+				// console.info("tmpl : " + tmpl);
+				// console.info("previews : " + previews, previews);
+			}
+
+			contentframe1 = preview.contentElements[0];
+			contentframe2 = preview.contentElements[1];
+
+			if (contentframe1) {
+				var 
+					domdoc = contentframe1.contentDocument || contentframe1.contentWindow.document,
+					domwin = contentframe1.contentWindow;
+				// console.info("Rendering : contentframe1, data = ", data);
+				domdoc.body.innerHTML = Mustache.render(preview.current, data)
+				// console.info("Result : " + domdoc.innerHTML);
+			}
+			else {
+				console.error("contentframe1 is nought");
+			}
+			if (contentframe2) {
+				var 
+					domdoc = contentframe2.contentDocument || contentframe2.contentWindow.document,
+					domwin = contentframe1.contentWindow;
+				// console.info("Rendering : contentframe2");
+				domdoc.body.innerHTML = Mustache.render(preview.current, data)
+				domwin.postMessage("", "*")
+				// console.info("Result : " + domdoc.body.innerHTML);
+			}
+			else {
+				console.error("contentframe2 is nought");
+			}
+
+			// console.log("contentframe1 : " + contentframe1, contentframe1);
+			// console.log("contentframe2 : " + contentframe2, contentframe2);
+			// contentframe1.innerHTML = Mustache.render(tmpl, data);
+			// contentframe2.innerHTML = Mustache.render(tmpl, data);
 
 		}
 
-		previewProto.init();
-		window.data = window.data || {};
-		window.data.preview = previewProto;
+		function onStatusTextUpdate(e) {
+			console.info("onStatusTextUpdate");
+			onFieldsetChange(e);
+		}
+
+
+		function onFieldsetChange(e) {
+			var
+				fieldset = document.getElementsByTagName("fieldset"),
+				hiddens = null,
+				data = {};
+
+			
+			if (this && this.children && this.children.length) {
+
+				// get all input elements with "hidden" attribute
+				hiddens = this.querySelectorAll("input[type=\"hidden\"]");
+
+				// console.log("this.children.length : " + this.children.length);
+				// console.log("hiddens : " + hiddens, hiddens);
+				for (var i = 0; i < this.children.length; i++) {
+					if (this.children[i] instanceof HTMLInputElement || this.children[i] instanceof HTMLTextAreaElement) {
+						// console.log(typeof this.children[i] + " : " + this.children[i], this.children[i]);
+						// console.info("name : " + this.children[i].name);
+						// console.info("value : " + this.children[i].value);
+			    	data[this.children[i].name] = this.children[i].value;
+					}
+					else {
+						// console.info(i + ": " + typeof this.children[i] + " " + this.children[i], this.children[i]);
+					}
+				}
+			}
+			else {
+				console.error("No fieldsets found! this.children : " + typeof this.children, this.children);
+				return;
+			}
+
+			updatePreviews(data);
+			// console.info("onFieldsetChange: " + e, e);
+			// console.info("this.children: " + this.children, this.children);
+			// console.info("data: " + data, data);
+		}
+
+		function addFieldsetChangeListeners(e) {
+			var
+				fieldsets = document.getElementsByTagName('fieldset');
+
+			if (fieldsets && fieldsets.length) {
+				for (var i = 0; i < fieldsets.length; i++) {
+					// fieldsets[i].addEventListener("change", onFieldsetChange);
+					fieldsets[i].addEventListener("input", onFieldsetChange);
+					// fieldsets[i].onChange();
+				}
+			}
+		}
+
+
 
 	</script>
 
@@ -1480,8 +1777,34 @@
 
 
 
+		function getScreen(index) {
+			var
+				screens = window.data.screens || null,
+				result = null;
+			if (typeof index == "string") {
+				index = parseInt(index, 10);
+			}
+
+			if (isNaN(index)) {
+				return null;
+			}
+
+			if (screens && screens.length) {
+				for (var i = 0; i < screens.length; i++) {
+					if (screens[i]['id'] == index) {
+						result = screens[i];
+						break;
+					}
+				}
+			}
+			return result;
+		}
+
+
 		function editScreen(index) {
 			var
+				tpl = null,
+				screen = null,
 				index = index || null;
 
 			if (index === null) {
@@ -1492,7 +1815,94 @@
 				index = parseInt(index, 10);
 			}
 
-			console.info("editing screen: " + index);
+			screen = getScreen(index);
+			tpl = screen['filename'] ? screen['filename'] : null;
+			console.info("editing screen: " + index, screen);
+
+			var
+				tmpl = getTemplate(tpl),
+				data = screen,
+				previews = [],
+				iframes = document.querySelectorAll("iframe"),
+				form = getForm(tpl),
+    		editor  = document.getElementById("modal-dialog"),
+	      images 	= editor.getElementsByTagName("img"),
+	      status  = document.getElementById("form-status"),
+				image, filename = "";
+
+
+			if (data.filename) {
+				filename = data.filename;
+			}
+			else {
+				filename = data.name;
+			}
+
+			if (iframes && iframes.length) {
+				for (var i = 0; i < iframes.length; i++) {
+					previews.push(iframes[i].contentDocument || iframes[i].contentWindow.document);
+					// var iframe = document.getElementById('iframeId');
+					// var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+				}
+			}
+			if (previews.length == 2) {
+				previews[0] = previews[0].getElementById("contentframe");
+				previews[1] = previews[1].getElementById("contentframe");
+				if (window.data.preview) {
+					window.data.preview.contentElements = previews;
+				}
+				else {
+					console.error("No preview object in window.data!");
+				}
+			}
+			// console.info("data : " + JSON.stringify(data));
+			// console.info("tmpl : " + tmpl);
+			// console.info("previews : " + previews, previews);
+
+			// remove any images from previous form usage
+			if (images && images.length) {
+				for (var i = 0; i < images.length; i++) {
+					if (images[i].parentNode == editor) {
+						editor.removeChild(images[i]);
+					}
+				}
+			}
+
+      // console.log("rendering : " + form, data);
+      editor.innerHTML = Mustache.render(form, data);
+
+
+      var
+      	submit = document.getElementById("form-screen-submit"),
+      	titleField = document.getElementById("form-screen-title");
+
+      submit.addEventListener("click", onScreenSave);
+      
+      enterPreviewMode(tmpl, data);
+      console.info("updating previews!!!!");
+      updatePreviews(data);
+
+      if (titleField && titleField instanceof HTMLInputElement) {
+      	titleField.focus();
+      	titleField.select();
+      }
+
+			var
+				modalForm = document.getElementById("modal-one");
+
+			if (modalForm.classList.contains("active")) {
+				modalForm.classList.remove("showing");
+				setTimeout(function(){
+					modalForm.classList.toggle("active");
+				}, 1000);
+			}
+			else {
+				modalForm.classList.add("active");
+				setTimeout(function(){
+					modalForm.classList.toggle("showing");
+				}, 1);
+			}
+	    // console.info("AFTER all the code");
 
 		}
 
@@ -1606,13 +2016,15 @@
 				filename = data.name;
 			}
 
-			console.info("data : " + JSON.stringify(data));
-			console.info("tmpl : " + tmpl);
+			// console.info("data : " + JSON.stringify(data));
+			// console.info("tmpl : " + tmpl);
 
 			// remove any images from previous form usage
 			if (images && images.length) {
 				for (var i = 0; i < images.length; i++) {
-					editor.removeChild(images[i]);
+					if (images[i].parentNode == editor) {
+						editor.removeChild(images[i]);
+					}
 				}
 			}
 
@@ -1625,6 +2037,8 @@
 
       submit.addEventListener("click", onScreenSave);
       enterPreviewMode(tmpl, data);
+      console.info("updating previews!!!!");
+      updatePreviews(data);
 
       if (titleField && titleField instanceof HTMLInputElement) {
       	titleField.focus();
@@ -1637,13 +2051,13 @@
 			if (modalForm.classList.contains("active")) {
 				modalForm.classList.remove("showing");
 				setTimeout(function(){
-					modalForm.classList.toggle("active");
+					modalForm.classList.remove("active");
 				}, 1000);
 			}
 			else {
 				modalForm.classList.add("active");
 				setTimeout(function(){
-					modalForm.classList.toggle("showing");
+					modalForm.classList.add("showing");
 				}, 1);
 			}
 	    // console.info("AFTER all the code");
@@ -1802,7 +2216,9 @@
 
 			if (images && images.length) {
 				for (var i = 0; i < images.length; i++) {
-					editor.removeChild(images[i]);
+					if (images[i].parentNode == editor) {
+						editor.removeChild(images[i]);
+					}
 				}
 			}
 
@@ -1844,15 +2260,17 @@
 				modalForm = document.getElementById("modal-one");
 
 			if (modalForm.classList.contains("active")) {
+				unblur();
 				modalForm.classList.remove("showing");
 				setTimeout(function(){
-					modalForm.classList.toggle("active");
+					modalForm.classList.remove("active");
 				}, 1000);
 			}
 			else {
+				blurBackground();
 				modalForm.classList.add("active");
 				setTimeout(function(){
-					modalForm.classList.toggle("showing");
+					modalForm.classList.add("showing");
 				}, 1);
 			}
 		}; // editImage
@@ -1911,6 +2329,167 @@
 		}
 
 
+		function addUploadedImage(resp) {
+			var
+				resp = resp || null,
+				image = {}, 
+				images;
+
+			if (!resp) {
+				console.error("No param in addUploadedImage()");
+				return false;
+			}
+			if (!window.data) {
+				window.data = {};
+			}
+			if (!window.data.images) {
+				window.data.images = {};
+			}
+			if (resp.uuid && findImage(resp.uuid)) {
+				console.error("That image has already been added!");
+				return false;
+			}
+			console.info("adding image now");
+
+			if (resp.name && resp.type && resp.uri && resp.uuid && resp.filename) {
+				// copy
+				image.name = resp['name'] || "";
+				image.type = resp['type'] || "";
+				image.uri = resp['uri'] || "";
+				image.user = resp['user'] || "";
+				image.uuid = resp['uuid'] || "";
+
+				// add
+				image.title = resp.title || image.name;
+				image.description = resp.description || "";
+				image.tags = resp.tags || "";
+				console.info("pushing");
+				window.data.images.unshift(image);
+			}
+			else {
+				console.error("trying to add image without necessary properties");
+				return false;
+			}
+
+		}
+
+
+		function setScreenImage(id) {
+			var
+				image,
+				screenForm 	= document.getElementById("form-screen-editor-image"),
+				placeholder = document.getElementById("current-screen-image");
+
+			image = findImage(id);
+			if (image) {
+				placeholder.src = image.uri;
+				console.log("Changing " + screenForm.value + " => ");
+				screenForm.value = image.uri;
+				console.log("to => " + screenForm.value);
+				console.info("found image: " + image, image);
+				hideImageSelector();
+				setTimeout(function(){
+					placeholder.style.height = "16em";
+				}, 1);
+			}
+
+
+			console.info("Setting screen image: " + id);
+		}
+
+
+		function showImageSelector() {
+			var
+				selector = document.getElementById("imageselector");
+
+			if (imageselector) {
+				console.info("showing imageselector");
+				imageselector.classList.add("active");
+				updateScreenImages();
+			}
+			else {
+				console.error("no imageselector found!");
+			}
+		}
+
+		function hideImageSelector() {
+			var
+				selector = document.getElementById("imageselector");
+
+			if (imageselector) {
+				imageselector.classList.remove("active");
+			}
+
+		}
+
+
+		function instrumentScreenImageSelector() {
+			var
+				result = null,
+				imageSearch = document.getElementById("screen-image-search"),
+				imageList   = document.getElementById("screen-image-preview");
+
+
+			if (!imageSearch || !imageList) {
+				console.error("One or more missing elements!");
+				return false;
+			}
+			else {
+				console.info("Escaping from instrumentScreenImageSelector()");
+				return false;
+			}
+
+			console.info("instrumenting screenImageSelector");
+			imageSearch.addEventListener("input", function(e) {
+				if (this && this.value) {
+					result = fuzzyMatchImages(this.value);
+					updateScreenImages(result);
+				}
+				else {
+					// no search term, so show everything
+					updateScreenImages();
+				}
+			});
+		}
+
+		/**
+		 * global support function
+		 * @param  {array|null} images [description]
+		 * @return {[type]}        [description]
+		 */
+		function updateScreenImages(images) {
+			var
+				image,
+				images = images || window.data.images || [],
+		    imageSearch = document.getElementById("screen-image-search"),
+				template = document.getElementById("screen-imagelist-item-template").innerHTML,
+				previews = document.getElementById("screen-image-preview"),
+				fragment = document.createDocumentFragment();
+
+			if (!images || typeof images.length != "number") {
+				console.error("no images!");
+				return;
+			}
+	
+			previews.innerHTML = "";
+
+			for (var i = images.length-1; i >= 0; i--) {
+				image = document.createElement("span");
+				image.className = "preview-image";
+				// console.log ("image : ", images[i]);
+				image.innerHTML = Mustache.render(template, images[i]);
+				fragment.appendChild(image);
+			}
+
+			previews.appendChild(fragment);
+
+			if (imageSearch && imageSearch.value) {
+				// console.log("highlighting : " + imageSearch.value);
+				highlight(previews, imageSearch.value);
+			}
+		}
+
+
 		/**
 		 * global support function
 		 * @param  {array|null} images [description]
@@ -1948,6 +2527,40 @@
 			}
 		}
 
+
+		function fuzzyMatchImages(input) {
+		  var
+				images = window.data.images,
+		  	thorough = input.toString().length > 5,
+		  	reg = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
+
+		  return images.filter(function(image) {
+
+		  // console.log("image : " + image, image);
+	    if (image.title && image.title.match(reg)) {
+		      return image;
+		    }
+		    else if (image.tags && image.tags.match(reg)) {
+		    	return image;
+		    }
+		    else if (image.filename && image.filename.match(reg)) {
+		    	return image;
+		    }
+		    else if (image.name && image.name.match(reg)) {
+		    	return image;
+		    }
+		    else if (thorough) {
+		    	if (image.description && image.description.match(reg)) {
+		    		return image;
+		    	}
+		    }
+		    else {
+		    	return false;
+		    }
+		  });
+		}
+
+
 		document.addEventListener("DOMContentLoaded", function () {
 			var
 				result = null,
@@ -1970,39 +2583,32 @@
 
 			});
 
-			function fuzzyMatchImages(input) {
-			  var
-  				images = window.data.images,
-			  	thorough = input.toString().length > 5,
-			  	reg = new RegExp(input.split('').join('\\w*').replace(/\W/, ""), 'i');
-
-			  return images.filter(function(image) {
-	
-			  // console.log("image : " + image, image);
-		    if (image.title && image.title.match(reg)) {
-			      return image;
-			    }
-			    else if (image.tags && image.tags.match(reg)) {
-			    	return image;
-			    }
-			    else if (image.filename && image.filename.match(reg)) {
-			    	return image;
-			    }
-			    else if (image.name && image.name.match(reg)) {
-			    	return image;
-			    }
-			    else if (thorough) {
-			    	if (image.description && image.description.match(reg)) {
-			    		return image;
-			    	}
-			    }
-			    else {
-			    	return false;
-			    }
-			  });
-			}
 
 		});
+
+
+		document.addEventListener("DOMContentLoaded", function () {
+			var
+				result = null,
+				imageSearch = document.getElementById("screen-image-search"),
+				imageList   = document.getElementById("screen-image-preview");
+
+			imageSearch.addEventListener("input", function(e) {
+				if (this && this.value) {
+					result = fuzzyMatchImages(this.value);
+					updateScreenImages(result);
+				}
+				else {
+					// no search term, so show everything
+					updateScreenImages();
+					// suppress
+				}
+
+			});
+
+
+		});
+
 
 		
 	</script>
@@ -2057,7 +2663,9 @@
 
 	    			// new image ?
 	    			if (!findImage(response.uuid)) {
-	 	    			window.data.images.push(response);
+	    				console.info("unshifting uploaded Image");
+							addUploadedImage(response);
+	 	    			// window.data.images.push(response);
 	    			}
 	    			updateImages();
 
@@ -2081,6 +2689,8 @@
   			console.error("Error in xhr!");
     	};
     }
+
+
 
 
 		/** @todo  This seems safe enough, no? */
@@ -2143,9 +2753,14 @@
 								filename = file.name;
 							}
 
+							console.info("Adding uploaded image");
+							// addUploadedImage(resp);
+
 							if (images && images.length) {
 								for (var i = 0; i < images.length; i++) {
-									editor.removeChild(images[i]);
+									if (images[i].parentNode == editor) {
+										editor.removeChild(images[i]);
+									}
 								}
 							}
 
@@ -2166,6 +2781,8 @@
 				      	titleField = document.getElementById("form-image-editor-title");
 
 				      submit.addEventListener("click", onImageSave);
+				      console.info("updating previews!!!!");
+				      updatePreviews(data);
 
 				      if (titleField && titleField instanceof HTMLInputElement) {
 				      	titleField.focus();
@@ -2212,6 +2829,8 @@
 				    	throw "Xhr error: " + this.status;
 				    }
 			    }; // onload
+
+
 
 		  	if (!file) {
 		  		console.error("No file selected!");
@@ -2488,6 +3107,7 @@
 			otherdiv.classList.remove("next");
 			header1.textContent = "Next";
 			header2.textContent = "Coming Up";
+
 
 		}
 
@@ -2817,7 +3437,15 @@
 					seconds = parseInt(parts[1], 10);
 				}
 				else {
-					console.error("no parts!");
+					if (pi.isNumeric(timeStr)) {
+						var
+							time = parseFloat(timeStr);
+						minutes = Math.floor(time / 60);
+						seconds = Math.floor(time % 60);
+					}
+					else {
+						console.error("unable to decipher as time : " + timeStr);
+					}
 				}
 
 				if (seconds == 0) {
@@ -2903,6 +3531,7 @@
 
 	.modal-body {
 	  padding: 20px;
+	  height: auto;
 	}
 
 	.modal-dialog {
@@ -2951,13 +3580,22 @@
 		right: 0;
 		color : #fff;
 		background-color: rgba(0, 0, 0, 0.4);
-		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%, rgba(0,128,45,0.25) 100%);
-		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.4)), color-stop(100%,rgba(0,128,45,0.25)));
-		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
-		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
-		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
-		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.4) 0%,rgba(0,128,45,0.25) 100%);
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%, rgba(25,128,0,0.26) 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.33)), color-stop(100%,rgba(25,128,0,0.26)));
+		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
+		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
+		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
+		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 
+/*rgba(255,0,59,0.4)
+
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(0,128,45,0.5) 0%, rgba(255,0,59,0.25) 100%);
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,128,45,0.5)), color-stop(100%,rgba(255,0,59,0.25)));
+		background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,128,45,0.5) 0%,rgba(255,0,59,0.25) 100%);
+		background: -o-radial-gradient(center, ellipse cover,  rgba(0,128,45,0.5) 0%,rgba(255,0,59,0.25) 100%);
+		background: -ms-radial-gradient(center, ellipse cover,  rgba(0,128,45,0.5) 0%,rgba(255,0,59,0.25) 100%);
+		background: radial-gradient(ellipse at center,  rgba(0,128,45,0.5) 0%,rgba(255,0,59,0.25) 100%);
+*/
 		z-index: 4998;
 
 		-webkit-transition: opacity 0.4s;
@@ -2977,9 +3615,64 @@
 		opacity: 1;
 	}
 
+
+
+	#imageselector {
+		display: none;
+    position:fixed;
+		font-family: Roboto, sans-serif;
+			/*opacity: 1;*/
+    top: 0;
+    left: 0;
+    width:100%;
+    height:100%;
+/*    margin-top: -25%;
+    margin-left: -25%;
+*/    border: 1px solid #ccc;
+    background: transparent;
+    z-index: 5001;
+
+/*		font-family: Roboto, sans-serif;
+		position: fixed;
+		display: none;
+		opacity: 0;
+		min-height: 100%;
+		min-width: 100%;
+		top: 0;
+		right: 0;
+		color : #fff;
+		background-color: rgba(0, 0, 0, 0.4);
+*/
+	}
+
+	#imageselector.active {
+		display: block;
+	}
+
+
 </style>
 
-
+	<div id="imageselector" onclick="onModalImageClick()">
+		<div class="relative-wrapper">
+		  <div class="images modal-dialog">
+		  	<div class="modal-header">
+			    <h2>Add/Select Image</h2>
+			    <span class="btn-close" onclick="hideImageSelector(this);">×&nbsp;</span>
+		  	</div>
+		  	<div class="modal-body" style="min-height: 600px;">
+		  		<input type="file" name="screen-image-upload" id="screen-image-upload" accept="image/*" />
+		  		<img src="assets/img/search.svg" height="24" class="searchsymbol">
+			  	<input type="text" name="screen-image-search" id="screen-image-search" style="width:50%;" />
+			  	<progress id="screen-form-upload-progress" max="100"></progress>
+			  	<span id="screen-form-status" class="status"></span>
+					<div>
+			    	<div id="screen-image-editor" class="editor"></div>
+			    	<div id="screen-image-preview" class="preview" style="width: 100%;overflow-y: scroll;"></div>
+					</div>
+				</div>
+		  </div>
+		</div>
+	</div>
 
 	<div class="modal" id="modal-one" onclick="onModalClick(this);">
 		<div class="relative-wrapper">
@@ -2989,6 +3682,124 @@
 	</div>
 
 <script type="text/javascript">
+
+
+		document.querySelector('#screen-image-upload').addEventListener('change', function(e) {
+			  var
+			  	file 	= this.files[0],
+			  	progress = document.getElementById("screen-form-upload-progress"),
+			  	data 	= new FormData(),
+			  	xhr 	= new XMLHttpRequest(),
+
+
+			  	// @todo Maybe some visual feedback on upload progress
+			  	onprogress = function(e) {
+				    if (e.lengthComputable) {
+				      var
+				      	percentComplete = (e.loaded / e.total) * 100;
+
+				      if (progress) {
+				      	progress.value = percentComplete;
+				      }
+
+				      console.log(percentComplete + '% uploaded');
+				    }
+				  },
+
+				  /**
+				   * When image is returned from server
+				   * @return {void}
+				   */
+				  onload = function() {
+				  	if (progress) {
+				  		progress.style.visibility = "hidden";
+				  	}
+				    if (this.status == 200) {
+				    	var
+					      resp 		= JSON.parse(this.response),
+				    		preview = document.getElementById("screen-image-preview"),
+					      status  = document.getElementById("screen-form-status"),
+								image 	= document.getElementById("screen-image-preview"),
+								data 		= {},
+								filename = "";
+
+							if (resp.error) {
+								status.style.display = "inline";
+								status.style.className = "error";
+								status.textContent = resp.error;
+							}
+							else if (resp.status) {
+								status.style.display = "inline";
+								status.style.className = "status";
+								status.textContent = resp.status;
+							}
+
+							if (resp.filename) {
+								filename = resp.filename;
+							}
+							else {
+								filename = file.name;
+							}
+
+							console.log("response : ", JSON.stringify(resp));
+							console.log("image[0] : ", JSON.stringify(window.data.images[0]));
+							console.info("Adding uploaded image to globals");
+							addUploadedImage(resp);
+
+				      image.src 					= resp.dataUri;
+				      image.className 		= "zoomInDown";
+				      if (window.data && window.data.session) {
+				      	console.info("setting currentImage : " + resp.uri);
+				      	window.data.session.currentImage = resp.uri;
+				      }
+				      image.style.display = "inline";
+				      image.style.height 	= "16em";
+				      // editor.style.width = "auto";
+
+				      // console.log("file.name : " + file.name);
+				     // renders the form
+				      // editor.innerHTML = Mustache.render(template, {"title" : file.name, "filename" : filename});
+
+				      // submit.addEventListener("click", onImageSave);
+
+				    }
+				    else {
+				    	// throws to window.onerror, where we trap and redirect to server
+				    	throw "Xhr error: " + this.status;
+				    }
+			    }; // onload
+
+		  	if (!file) {
+		  		console.error("No file selected!");
+		  		return;
+		  	}
+
+			  if (file && file.size) {
+			  	if (window.data.settings['MAX_UPLOAD_SIZE'] && window.data.settings['MAX_UPLOAD_SIZE'] < file.size) {
+			  		alert("File is too large ( > " + window.data.settings['MAX_UPLOAD_SIZE'] + ' bytes');
+			  		return false;
+			  	}
+			  	console.info("Uploading file, " + file.size + " bytes");
+			  }
+
+		  	if (progress) {
+		  		progress.style.visibility = "visible";
+		  	}
+
+			  console.log("file : ", file);
+			   // populate formdata
+			  data.append("image-upload", file);
+			  data.append("username", "<?php echo $_SESSION['username'];?>");
+			  data.append("uuid", pi.uuid());
+
+			  xhr.upload.onprogress = onprogress;
+			  xhr.onload = onload;
+
+			  xhr.open('POST', 'admin/image-upload.php', true);
+			  xhr.send(data);
+
+			}, false);
+
 
 
 	function noClick(e) {
@@ -3013,20 +3824,67 @@
 	}
 
 
+	function onModalImageClick(e) {
+		var
+			imageselector = document.getElementById("imageselector");
+
+		if (this == imageselector) {
+			console.info("DO HIDE!");
+		}
+		else {
+			console.log("do NOT hide, this : " + this, this);
+		}
+	}
+
+
 	function onModalClick(e) {
 		hideModal();
 		console.log("Clicked outside modal dialog. This : ", e);
 	}
  	
+
+	function blurBackground() {
+		// disable
+		return;
+		var
+			toolbar = document.getElementById("toolbar"),
+			playqueue = document.getElementById("playqueue");
+
+		if (toolbar && playqueue) {
+			console.info("Blurring...");
+			toolbar.classList.add("blur");
+			playqueue.classList.add("blur");
+		}
+		else {
+			console.error("Not found");
+		}
+	}
+
+	function unblur() {
+		// disable
+		return;
+		var
+			toolbar = document.getElementById("toolbar"),
+			playqueue = document.getElementById("playqueue");
+
+		if (toolbar && playqueue) {
+			toolbar.classList.remove("blur");
+			playqueue.classList.remove("blur");
+		}
+	}
+
 	function showModal(figure) {
 		var
 			figure = figure || null,
 			image = document.createElement("div"),
+			wrapper = document.getElementById("wrapper"),
 			modal = document.getElementById("modal-one");
 
 		if (figure) {
 
 			modal.classList.add("active");
+			console.info("calling blurBackground()");
+			blurBackground();
 			setTimeout(function() {
 				modal.classList.add("showing");
 			}, 1);			
@@ -3036,9 +3894,12 @@
 
 	function hideModal() {
 		var
+			wrapper = document.getElementById("wrapper"),
 			modal = document.getElementById("modal-one");
 
 		exitPreviewMode();
+		// console.info("calling unblur()");
+		// unblur();
 		modal.classList.remove("showing");
 		setTimeout(function() {
 			modal.classList.remove("active");

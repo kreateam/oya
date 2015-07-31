@@ -21,9 +21,9 @@
 	$filecontent = file_get_contents($_FILES['image-upload']['tmp_name']);
 
 
-	$dataUri 	= 'data:' . $filetype . ';base64,' . base64_encode($filecontent);
 	$name 		= $_FILES['image-upload']['name'];
 	$filetype = $_FILES['image-upload']['type'];
+	$dataUri 	= 'data:' . $filetype . ';base64,' . base64_encode($filecontent);
 
 	$filename =  time() . "_" . $name;
 
@@ -58,6 +58,10 @@
   $data['filename'] = $filename;
   $data['user'] = $_REQUEST['user'];
   $data['uuid'] = $_REQUEST['uuid'];
+
+  $reply['tags'] = $data['tags'];
+  $reply['title'] = $data['title'];
+  $reply['description'] = $data['description'];
 
 	file_put_contents(IMAGE_LIBRARY, "\n" . json_encode($data) . ",", FILE_APPEND);
 

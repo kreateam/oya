@@ -1,10 +1,12 @@
 {
-	"title" : "",
+	"title" : "Serveringssted",
 	"ingress" : "",
 	"name" : "Mat",
 	"variant" : "anmeldelse",
 	"tags" : "",
 	"description" : null,
+	"duration": 30,
 	"score" : 0,
-	"frequency" : 0
+	"hashtag": "#matfraoya2015",
+	"frequency" : 10
 }

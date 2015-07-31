@@ -1,41 +1,86 @@
+<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+<link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css">
 <style type="text/css">
 
 	/* template styles */
 	.food {
-
+		font-family: "ClanOT", sans-serif;
+		font-size : 32px;
 	}
 
 	.food .image {
-		background-image: url({{uri}});
-
+		height : 10em;
 	}
 
 	.food .hashtag {
 		
 	}
 
-	.food .hashtag::before {
-		content: "#";
+	.food .title {
+		font-weight: 800;
+	}
+
+	.food .score{
+		/*color: rgba(38,188,244,1);*/
+		color: #e6007e;
+		font-family: 'aPi';
+		font-size: 96px;
+	}
+
+	.food .ingress {
+		font-size: 80%;
+		font-weight: 600;
 	}
 
 
+	/* icon font */
 
+	.icon-score-0:before {
+		content: "\30";
+	}
+	.icon-score-1:before {
+		content: "\31";
+	}
+	.icon-score-2:before {
+		content: "\32";
+	}
+	.icon-score-3:before {
+		content: "\33";
+	}
+	.icon-score-4:before {
+		content: "\34";
+	}
+	.icon-score-5:before {
+		content: "\35";
+	}
+	.icon-score-6:before {
+		content: "\36";
+	}
 
 </style>
 
 <div class="food">
-	<div class="hashtag" data-name="hashtag" contenteditable="true">
+	{{#hashtag}}
+	<div class="hashtag" data-name="hashtag">
 		{{hashtag}}
 	</div>
+	{{/hashtag}}
+	{{#image}}
 	<div class="image">
+		<img src="{{image}}" class="image">
 	</div>
+	{{/image}}
 	<div class="title">
 		{{title}}
 	</div>
 	<div class="ingress">
 		{{ingress}}
 	</div>
-
+	{{#score}}
+	<div class="score">
+		<span class="icon-score-{{score}}"></span>
+	</div>
+	{{/score}}
 </div>
 
 <script type="text/javascript">
@@ -63,3 +108,30 @@
 
 
 </script>
+<!--
+{{#reply}}
+  <ul>
+  {{#DEBUG}}
+    <li>
+    {{#.}}
+        <b>{{.}}</b>
+    {{/.}}
+    </li>
+  {{/DEBUG}}
+  </ul>
+{{/reply}}
+-->
+
+<!--
+{{#reply}}
+  <ul>
+  {{#request}}
+    <li>
+    {{#.}}
+        <b>{{.}}</b>
+    {{/.}}
+    </li>
+  {{/request}}
+  </ul>
+{{/reply}}
+-->

@@ -73,7 +73,13 @@
 		unset($request['submit']);
 	}
 
+	if ((!isset($request['template']) || $request['template'] === "") && isset($request['filename'])) {
+		$request['template'] = $request['filename'];
+	}
+
 	$reply['request'] = $request;
+
+
 
 
 
@@ -225,7 +231,7 @@ catch(Exception $e) {
   			break;
   		}
 		  // create a query that should return a single record
-		  $query = "UPDATE oya_screens SET title ='{$request['title']}', template ='{$request['template']}',data ='{$request['data']}',updated = CURRENT_TIMESTAMP) WHERE id = {$request['id']}";
+		  $query = "UPDATE oya_screens SET title ='{$request['title']}', template ='{$request['template']}',data ='{$request['data']}',updated = CURRENT_TIMESTAMP WHERE id = {$request['id']}";
 		  // execute the query
 		  // query returns FALSE on error, and a result object on success
 		  $sqliteResult = $sqlite->query($query);

@@ -589,6 +589,16 @@
 
 
     /**
+     * (from jQuery)
+     * @param  {Object}  obj The reference to check
+     * @return {Boolean}     True if numeric, false if not
+     */
+    π.isNumeric = function(obj) {
+      return !π.isArray(obj) && (obj - parseFloat(obj) + 1) >= 0;
+    }
+
+
+    /**
      * JS version of PHP's str_pad()
      * 
      * @param  {string} str       The string to pad
@@ -1947,7 +1957,7 @@
 
     elements = document.getElementsByClassName("pi");
     if (!(elements && elements.length)) {
-      pi.log("No pi elements found.");
+      // pi.log("No pi elements found.");
     }
     else {
       pi.log("Bootstrapping : " + elements.length + " " + (elements.length === 1 ? "element" : "elements"));
