@@ -709,7 +709,9 @@
 	  	-moz-columns: 4;
 	  }
 
-
+		#screen-image-preview {
+			height: 584px;
+		}
 
 
 	</style>
@@ -1646,7 +1648,6 @@
 				fieldset = document.getElementsByTagName("fieldset"),
 				hiddens = null,
 				data = {};
-
 			
 			if (this && this.children && this.children.length) {
 
@@ -1699,6 +1700,53 @@
 	<script type="text/javascript">
 
 
+		function reloadScreens () {
+			var
+				url = "assets/php/screens.php";
+
+			console.info("getting screens...");
+			pi.xhr.get(url, function(json) {
+				var
+					data = null;
+
+				try {
+					data = JSON.parse(json);
+					if (!window.data) {
+						window.data = {};
+					}
+					if (data && data.screens && data.screens.length) {
+						for (var i = 0; i < data.screens.length; i++) {
+							if (typeof data.screens[i]['data'] == "string") {
+								// console.info("new screen : " + data.screens[i], data.screens[i]);
+								try {
+								var
+									obj = JSON.parse(data.screens[i]['data']);
+								}
+								catch (e) {
+									console.error(e);
+								}
+
+									for (var key in obj) {
+										if (typeof data.screens[i][key] == "undefined") {
+											data.screens[i][key] = obj[key];
+										}
+									}
+							}
+						}
+						window.data.screens = data.screens;
+						console.info("updating screen list afte reload");
+						updateScreenList();
+					}
+				}
+				catch(e) {
+					console.error("Unable to parse screen list JSON : " + e);
+				}
+
+			}, pi.log); // pi.xhr.get()
+
+		}
+
+
 
 		/**
 		 * global support function
@@ -1712,7 +1760,8 @@
 		    screenSearch = document.getElementById("screen-search"),
 				template = document.getElementById("screen-list-item-template").innerHTML,
 				previews = document.getElementById("screen-preview"),
-				fragment = document.createDocumentFragment();
+				fragment = document.createDocumentFragment(),
+				ul = document.createElement("ul");
 
 			if (!screens || typeof screens.length != "number") {
 				console.error("no screens!");
@@ -1721,13 +1770,19 @@
 	
 			previews.innerHTML = "";
 
+			// fragment.appendChild(document.createElement("ul"));
+
 			for (var i = screens.length-1; i >= 0; i--) {
+				li = document.createElement("li");
 				screen = document.createElement("span");
 				screen.className = "preview-screen";
 				// console.log ("screen : ", screens[i]);
 				screen.innerHTML = Mustache.render(template, screens[i]);
-				fragment.appendChild(screen);
+				li.appendChild(screen);
+				ul.appendChild(li);
 			}
+
+			fragment.appendChild(ul);
 
 			previews.appendChild(fragment);
 
@@ -1895,7 +1950,9 @@
       	submit = document.getElementById("form-screen-submit"),
       	titleField = document.getElementById("form-screen-title");
 
-      submit.addEventListener("click", onScreenSave);
+      if (submit && typeof submit.addEventListener == "function") {
+	      submit.addEventListener("click", onScreenSave);
+      }
       
       enterPreviewMode(tmpl, data);
       console.info("updating previews!!!!");
@@ -1998,7 +2055,9 @@
 	    				response = JSON.parse(this.responseText),
 	    				span = document.createElement("span"),
 	    				preview = document.getElementById("screen-preview");
-	    				// console.info();
+
+	    				console.info("reloading screens!");
+	    				reloadScreens();
     			}
     			catch(e) {
     				console.error(e);
@@ -2054,7 +2113,9 @@
       	submit = document.getElementById("form-screen-submit"),
       	titleField = document.getElementById("form-screen-title");
 
-      submit.addEventListener("click", onScreenSave);
+      if (submit && typeof submit.addEventListener == "function") {
+	      submit.addEventListener("click", onScreenSave);    	
+      }
       enterPreviewMode(tmpl, data);
       console.info("updating previews!!!!");
       updatePreviews(data);
@@ -2384,6 +2445,9 @@
 				image.tags = resp.tags || "";
 				console.info("pushing");
 				window.data.images.unshift(image);
+				if (image.uuid) {
+					setScreenImage(image.uuid);
+				}
 			}
 			else {
 				console.error("trying to add image without necessary properties");
@@ -2397,7 +2461,8 @@
 			var
 				image,
 				screenForm 	= document.getElementById("form-screen-editor-image"),
-				placeholder = document.getElementById("current-screen-image");
+				placeholder = document.getElementById("current-screen-image"),
+				fieldset = document.getElementById("form-screen-fieldset");
 
 			image = findImage(id);
 			if (image) {
@@ -2407,6 +2472,10 @@
 				console.log("to => " + screenForm.value);
 				console.info("found image: " + image, image);
 				hideImageSelector();
+				console.info("fieldSetChange!!!!");
+				if (fieldset) {
+					onFieldsetChange.call(fieldset);
+				}
 				setTimeout(function(){
 					placeholder.style.height = "16em";
 				}, 1);
@@ -3686,7 +3755,7 @@
 			  	<span id="screen-form-status" class="status"></span>
 					<div>
 			    	<div id="screen-image-editor" class="editor"></div>
-			    	<div id="screen-image-preview" class="preview" style="width: 100%;overflow-y: scroll;"></div>
+			    	<div id="screen-image-preview" class="preview" style="width: 100%; overflow-y: scroll;"></div>
 					</div>
 				</div>
 		  </div>
@@ -3770,6 +3839,7 @@
 				      if (window.data && window.data.session) {
 				      	console.info("setting currentImage : " + resp.uri);
 				      	window.data.session.currentImage = resp.uri;
+
 				      }
 				      image.style.display = "inline";
 				      image.style.height 	= "16em";

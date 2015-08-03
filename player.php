@@ -338,7 +338,7 @@
 						console.info("playlist updated!")
 					}
 					else {
-						console.info("no update")
+						// console.info("no update")
 					}
 
 					// console.info("json : " + json);
@@ -349,7 +349,7 @@
 						self = playlist;
 
 					pi.xhr.get(self.jsonfile, self.onupdate, pi.log);
-					console.info("updating playlist..")
+					// console.info("updating playlist..")
 				},
 
 				onload : function(json) {
