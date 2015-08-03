@@ -314,7 +314,7 @@
 		}
 
 		.hashtag.instagram {
-			color: #e6007e;
+			color: #EC008C;
 		}
 
 
@@ -454,13 +454,17 @@
 			}
 
 			/* hide on mobile */
+			header,
 			footer,
+			.pronomen,
+			.screen,
+			#now-playing,
 			#toolbar,
-			#amfiet-header,
-			#vindfruen-header,
-		  .screen, #program1, #program2 {
+			#amfiet-header, #vindfruen-header,
+		  #program1, #program2 {
 		  	display: none;
 		  }
+
 		  .right, .left {
 		  	margin: 0;
 		  	padding: 0;
@@ -468,7 +472,7 @@
 		  	width: 50%;
 		  	max-width: 50%;
 		  	height: auto;
-		  	min-height: 100px;
+		  	min-height: 80px;
 		  }
 		  .middle {
 		  	width: 100%;
@@ -699,6 +703,14 @@
 			background-color: #ff0545;
 		}
 
+		#template-selector ul {
+		  columns: 4;
+		  -webkit-columns: 4;
+	  	-moz-columns: 4;
+	  }
+
+
+
 
 	</style>
 
@@ -849,7 +861,7 @@
 				<div class="coming-up">
 					<h1 id="amfiet-header">Next</h1>
 					<h2 id="amfiet-artist" class="artist">Razika</h2>
-					<span><strong>in</strong></span>
+					<span class="pronomen"><strong>in</strong></span>
 						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days
 						</div>
 					<div class="hour-counter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-hours" class="fat"></span> hours</div>
@@ -865,7 +877,7 @@
 				<div class="coming-up">
 					<h1 id="vindfruen-header">Coming Up</h1>
 					<h2 id="vindfruen-artist" class="artist">The Switch</h2>
-					<span><strong>in</strong></span>
+					<span class="pronomen"><strong>in</strong></span>
 						<div class="day-counter">
 							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days
 						</div>
@@ -896,7 +908,7 @@
 				</header>
 
 				<section id="current">
-					<div class="section-title">Now playing</div>
+					<div id="now-playing" class="section-title">Now playing</div>
 					<ul>
 						<li id="item-0" class="item playing">Weather - today<span class="duration">2:45</span></li>
 					</ul>
@@ -1319,6 +1331,13 @@
 		text-align: left;
 		/*margin-top: .6em;*/
 	}
+
+	#screen-preview ul {
+	  columns: 4;
+	  -webkit-columns: 4;
+  	-moz-columns: 4;
+  }
+
 
 	#screen-preview li {
 		display: block;
@@ -3137,7 +3156,7 @@
 				artist  = document.getElementById(scene + "-artist"),
 
 				// set clock forwards by n weeks
-				now 		= new Date(Date.now() + (2 * 7 * 24 * 60 * 60 * 1000)),
+				now 		= new Date(Date.now() + (1 * 7 * 24 * 60 * 60 * 1000)),
 				days, hours, minutes,
 				remainingDays 		= scene ? document.getElementById(scene + "-days") : document.getElementById("amfiet-days"),
 				remainingHours 		= scene ? document.getElementById(scene + "-hours") : document.getElementById("amfiet-hours"),
@@ -3323,7 +3342,7 @@
 				scene 	= scene || null,
 				program = program || null,
 				result 	= null,
-				dummyDate = dummyDate || new Date(Date.now() + (2 * 7 * 24 * 60 * 60 * 1000)),
+				dummyDate = dummyDate || new Date(Date.now() + (1 * 7 * 24 * 60 * 60 * 1000)),
 				earliest 	= Date(0),
 				concert 	= { artist : null, when : null};
 

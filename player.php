@@ -88,6 +88,10 @@
 							transition: all .4s ease-out;
 		}
 
+		/* hide until loaded, ready and needed */
+		#nextframe {
+			display: none;
+		}
 
 		header {
 			position: relative;
@@ -254,7 +258,7 @@
 	<header id="header">
 		<!-- The centered div ("title") needs to be after the floats, in the HTML -->
 		<div id="clock" class="clock"></div>
-		<div id="weather" class="weather"><img id="symbol" class="symbol" src="assets/img/sym/svg/01d.svg" width="50" height="50"><span id="temperature" class="temperature"></span></div>
+		<div id="weather" class="weather"><img id="symbol" class="symbol" src="" width="50" height="50"><span id="temperature" class="temperature"></span></div>
 		<div class="title">
 			<img src="assets/img/osloby-hvit.png" height="75">
 		</div>
@@ -262,6 +266,7 @@
 
 	<section id="content" class="content">
 		<iframe src="" id="contentframe" class="contentframe"></iframe>
+		<iframe src="" id="nextframe" class="nextframe"></iframe>
 	</section>
 	<footer id="footer">
 		Les mer på osloby.no/oya
@@ -276,15 +281,75 @@
 	document.addEventListener("DOMContentLoaded", function() {
 		var
 			playlist = {
-				updated : Date.now() || 0,
-				_loaded : false,
 
-				onupdate : function() {
-					console.info("playlist updated!")
+				UPDATE_INTERVAL : 10000,
+
+				_updated	: 0,
+				_owner 		: null,
+				_interval : null,
+				jsonfile 	: "assets/php/data/playlist.json",
+				phpfile 	: "assets/php/playlist.php",
+				_loaded 	: false,
+
+
+				init : function(owner) {
+					if (owner) {
+						this._owner = owner;
+					}
+					if (this._interval) {
+						clearInterval(this._interval);
+						this._interval = null;
+					}
+					this._interval = setInterval(this.update, this.UPDATE_INTERVAL);
+				},
+
+				handleUpdatedPlaylist : function (newdata) {
+					var
+						newdata = newdata || null,
+						self = playlist;
+
+					if (!newdata) {
+						console.error("handleUpdatedPlaylist was called wihout a parameter");
+						return false;
+					}
+
+					self._updated = _data.info.lastupdated;
+					if (self._owner && typeof self._owner.onUpdatedPlaylist == "function") {
+						self._owner.onUpdatedPlaylist.call();
+					}
+
+				},
+
+				onupdate : function(json) {
+					var
+						self = playlist,
+						data = null;
+
+					try {
+						data = JSON.parse(json);
+					}
+					catch (e) {
+						console.error("error in onupdate : " + e);
+					}
+
+					if (data && data.info && data.info.lastupdated && data.info.lastupdated > self._updated) {
+						// self._data = data;
+						self.handleUpdatedPlaylist(data);
+						console.info("playlist updated!")
+					}
+					else {
+						console.info("no update")
+					}
+
+					// console.info("json : " + json);
 				},
 
 				update : function() {
-					console.info("updating playlist")
+					var
+						self = playlist;
+
+					pi.xhr.get(self.jsonfile, self.onupdate, pi.log);
+					console.info("updating playlist..")
 				},
 
 				onload : function(json) {
@@ -297,7 +362,7 @@
 							self._loaded = Date.now();
 						}
 
-						// console.info("playlist loaded: " + self._loaded, _data);
+						console.info("playlist loaded.");
 					}
 					else {
 						console.error("No playlist data");
@@ -309,14 +374,15 @@
 						result = null,
 						list = list || "assets/php/playlist.php";
 
-					// console.info("loading playlist");
+					console.info("loading playlist");
 
 					pi.require("xhr", false, false, function() {
 						// console.log("Sending xhr");
 						result = pi.xhr.get(list, callback, onerror);
 					});
 
-				}
+				},
+
 			}; // playlist
 
 
@@ -330,10 +396,13 @@
 					_playlist : playlist,
 					_created 	: Date.now(),
 					_started 	: null,
+					_lastrotation : null,
+					_nextrotation : null,
 
 					init : function() {
 						// sends message to iframe windows
 						this.sendMessage("ping");
+						playlist.init(player);
 					},
 					
 					start : function() {
@@ -343,6 +412,30 @@
 							this._started = Date.now();
 							// console.info("_started : " + this._started);
 						}
+					},
+
+					onUpdatedPlaylist : function (w) {
+						console.info("onUpdatedPlaylist callback was invoked, this : " + this, this);
+						if (this._rotate) {
+							console.info("_rotate is set");
+						}
+						else {
+							console.info("_rotate is NOT set");
+						}
+					},
+
+
+					prepareRotation : function () {
+						this._playlist.update();
+						this._rotate = setTimeout(this.rotatePlaylist, this._nextrotation - Date.now());
+					},
+
+					rotatePlaylist : function () {
+						var
+							self = player;
+
+						self._rotate = null;
+
 					},
 
 					sendMessage: function(msg, domain) {
@@ -377,7 +470,7 @@
 		// listen for messages posted to our window
 		window.addEventListener('message', player.onFrameMessage, false);
 
-		// let's go 
+		// let's go
 		player.start();
 
 	});

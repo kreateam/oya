@@ -4,28 +4,66 @@
 
 	/* template styles */
 	.food {
+		position: relative;
 		font-family: "ClanOT", sans-serif;
 		font-size : 32px;
 	}
 
 	.food .image {
-		height : 10em;
+		/*margin: 4px;*/
+		width: -webkit-calc(100%-8px);
+		width: calc(100%-8px);
+		height: 12em;
 	}
 
+
+	/* widescreen */
+	@media (min-width: 672px) {
+		.food .image {
+			/*margin: 4px;*/
+			width: -webkit-calc(100%-8px);
+			width: calc(100%-8px);
+			height: 7em;
+		}
+
+		#text {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 45%;
+		}
+	}
+
+
 	.food .hashtag {
-		
 	}
 
 	.food .title {
+		margin-top: 8px;
 		font-weight: 800;
 	}
 
 	.food .score{
 		/*color: rgba(38,188,244,1);*/
-		color: #e6007e;
+		position: absolute;
+		top: 3.66em;
+		right: 0.5em;
+		color: #EC008C;
 		font-family: 'aPi';
 		font-size: 96px;
+		z-index: 1;
 	}
+
+@media (min-width: 672px) {
+	.food .score{
+		/*color: rgba(38,188,244,1);*/
+		top: 2.37em;
+		font-size: 72px;
+		left: 3.25em;
+	}
+
+}
+
 
 	.food .ingress {
 		font-size: 80%;
@@ -66,21 +104,21 @@
 	</div>
 	{{/hashtag}}
 	{{#image}}
-	<div class="image">
 		<img src="{{image}}" class="image">
-	</div>
 	{{/image}}
-	<div class="title">
-		{{title}}
-	</div>
-	<div class="ingress">
-		{{ingress}}
-	</div>
 	{{#score}}
 	<div class="score">
 		<span class="icon-score-{{score}}"></span>
 	</div>
 	{{/score}}
+	<div id="text">
+		<div class="title">
+			{{title}}
+		</div>
+		<div class="ingress">
+			{{ingress}}
+		</div>
+	<div>
 </div>
 
 <script type="text/javascript">
