@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
-<link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css">
 <style type="text/css">
 
 	/* template styles */
@@ -17,6 +16,12 @@
 	}
 
 
+	#text {
+		font-size: 48px;
+		text-align: center;
+	}
+
+
 	/* widescreen */
 	@media (min-width: 672px) {
 		.food .image {
@@ -26,96 +31,147 @@
 			height: 7em;
 		}
 
+		.food .hashtag {
+			position: absolute;
+			right: 10px;
+		}
+
 		#text {
 			position: absolute;
 			top: 0;
 			right: 0;
+			margin-top: 16px;
 			width: 45%;
 		}
 	}
 
 
 	.food .hashtag {
+		margin-left: 10px;
+		margin-bottom: 0;
+	}
+
+
+	#title {
+		background-color: #e6007e;
+		padding: 8px 10px 4px;
 	}
 
 	.food .title {
-		margin-top: 8px;
+		color: #fff;
+		margin-top: 32px;
+		text-align: center;
 		font-weight: 800;
 	}
 
 	.food .score{
 		/*color: rgba(38,188,244,1);*/
 		position: absolute;
-		top: 3.66em;
+		top: 3em;
 		right: 0.5em;
-		color: #EC008C;
-		font-family: 'aPi';
+		color: #fff;
 		font-size: 96px;
 		z-index: 1;
 	}
 
-@media (min-width: 672px) {
-	.food .score{
-		/*color: rgba(38,188,244,1);*/
-		top: 2.37em;
-		font-size: 72px;
-		left: 3.25em;
-	}
-
-}
 
 
 	.food .ingress {
-		font-size: 80%;
+		margin-top: 12px;
+		font-size: 40px;
 		font-weight: 600;
 	}
 
 
-	/* icon font */
+	.food .imagecontainer {
+		display: block;
+		overflow: hidden;
+		margin: 8px; 
+		width: -webkit-calc(100%-20px); 
+		width: calc(100%-20px); 
+		height: 328px;
+	}
 
-	.icon-score-0:before {
-		content: "\30";
+	.food .score-medallion {
+		color: #fff;
+		width: 100px;
+		height: 100px;
+		background: #e6007e;
+		font-size: 64px;
+		font-weight: 800;
+		border-radius: 50%;
+		border: none;
+		padding-top: 18px;
+		padding-left: 12px;
 	}
-	.icon-score-1:before {
-		content: "\31";
+
+	.food .score-numerator {
+		color: #fff;
+		background: transparent;
+		opacity: 0.66;
+		font-size: 66%;
+		font-weight: 500;
+		border-radius: 0;
+
 	}
-	.icon-score-2:before {
-		content: "\32";
+
+@media (min-width: 672px) {
+	.food .title {
+		font-size: 40px;
 	}
-	.icon-score-3:before {
-		content: "\33";
+
+	.food .ingress {
+		margin-left: 16px;
+		font-size: 40px;
+		line-height: 44px;
 	}
-	.icon-score-4:before {
-		content: "\34";
+
+	.food .score{
+		/*color: rgba(38,188,244,1);*/
+		top: 136px;
+		font-size: 36px;
+		left: 240px;
+		z-index: 5000;
 	}
-	.icon-score-5:before {
-		content: "\35";
+	.food .score-medallion {
+		width: 72px;
+		height: 72px;
+		font-size: 44px;
 	}
-	.icon-score-6:before {
-		content: "\36";
+	.food .hashtag {
+		visibility: hidden;
 	}
+
+
+	#text {
+		margin-top: 24px;
+		text-align: left;
+	}
+}
+
+
 
 </style>
 
 <div class="food">
-	{{#hashtag}}
 	<div class="hashtag" data-name="hashtag">
-		{{hashtag}}
+		#matfraoya2015
 	</div>
-	{{/hashtag}}
 	{{#image}}
-		<img src="{{image}}" class="image">
+		<div class="imagecontainer">
+			<img src="{{image}}" class="image">
+		</div>
 	{{/image}}
 	{{#score}}
 	<div class="score">
-		<span class="icon-score-{{score}}"></span>
+		<div class="score-medallion">{{score}}<span class="score-numerator">/6</span></div>
 	</div>
 	{{/score}}
 	<div id="text">
 		<div class="title">
-			{{title}}
+			<span id="title" {{#titleSize}} style="font-size: {{titleSize}}%;" {{/titleSize}} >{{title}}</span>
 		</div>
-		<div class="ingress">
+		<div class="ingress" {{#ingressSize}} style="font-size: {{ingressSize}}%;" {{/ingressSize}} >
 			{{ingress}}
 		</div>
 	<div>

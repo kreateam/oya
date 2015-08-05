@@ -1,6 +1,8 @@
 {
-	"title" : "Serveringssted",
-	"ingress" : "",
+	"title" : "Tittel",
+	"titleSize" : 100,
+	"ingress" : "Brødtekst",
+	"ingressSize" : 100,
 	"name" : "Mat",
 	"variant" : "anmeldelse",
 	"tags" : "",

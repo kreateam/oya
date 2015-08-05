@@ -171,7 +171,7 @@
 	<script id="playlist-current-template" type="text/template">
 		<div class="section-title">Now playing</div>
 			<ul>
-				<li id="item-0" class="item playing">{{data}} - {{title}} - {{data.title}}<span class="duration">{{duration}}</span></li>
+				<li id="item-0" class="item playing" data-uuid="{{uuid}}">{{title}} - {{ingress}}<span class="duration">{{duration}}</span></li>
 			</ul>
 	</script>
 
@@ -179,27 +179,17 @@
 		<div class="section-title">Queued</div>
 			<ul>
 			{{#.}}
-				<li id="item-{{id}}" class="item">{{data.title}}<span class="duration">{{duration}}</span></li>
+				<li id="item-{{id}}" class="item" data-uuid="{{uuid}}">{{title}} - {{ingress}}<span class="duration">{{duration}}</span></li>
 			{{/.}}
 			</ul>
 	</script>
 
 	<script id="playlist-next-template" type="text/template">
-		<div class="section-title">Next Items <span id="next-duration" class="queue-total">6:00</span></div>
+		<div class="section-title">Next Items <span id="next-duration" class="queue-total"></span></div>
 			<ul>
 			{{#.}}
-				<li id="item-{{id}}" class="item">
-					<div class="item-menu">
-						<ul>
-						  <li>+<ul>
-						      <li>Play next</li>
-						      <li>Add to Queue</li>
-						      <li>Add to Next tracks</li>
-						    </ul>
-						  </li>
-						</ul>	
-					</div>
-					{{data.title}}
+				<li id="item-{{id}}" class="item" data-uuid="{{uuid}}">
+					{{title}} - {{ingress}}
 					<span class="duration">{{duration}}</span>
 				</li>
 			{{/.}}

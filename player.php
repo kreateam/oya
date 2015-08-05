@@ -1,7 +1,7 @@
 <?php
 	
 	/**
-	 * 
+	 * Player for big screens - Øyafestivalen 2015
 	 */
 
 
@@ -20,8 +20,10 @@
 <!doctype html>
 <html>
 <head>
-	<script type="text/javascript" src="assets/js/errorhandler.js"></script>
-	<meta charset="utf-8">
+<!--  <script type="text/javascript" src="assets/js/errorhandler.js"></script>
+ -->	
+
+ 	<meta charset="utf-8">
 
 	<title>Øyafestivalen 2015</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -86,6 +88,12 @@
 
 			-webkit-transition: all .4s ease-out;
 							transition: all .4s ease-out;
+		}
+
+
+		iframe.contentframe.hidden {
+			position: relative;
+			top 			: -1000px;
 		}
 
 		/* hide until loaded, ready and needed */
@@ -154,6 +162,7 @@
 			-webkit-transition: all .4s ease-out;
 							transition: all .4s ease-out;
 		}
+
 
 		footer {
 			padding 				: 8px 10px 4px;
@@ -272,13 +281,201 @@
 		Les mer på osloby.no/oya
 	</footer>
 
+<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			var
+				screen = document.getElementById("screen1"),
+				templates = {
+					updated : 0
+				},
+				onTemplatesLoaded = function(json) {
+					var
+						data,
+						json = json || null;
+
+					if (json) {
+						data = JSON.parse(json) || null;
+
+						if (data && data.files && data.files.length) {
+							if (!window.data) {
+								window.data = {};
+							}
+							window.data.templates = data.files;
+							// updateTemplateList();
+						}
+					}
+				};
+
+			pi.xhr.get("templates.php", onTemplatesLoaded)
+
+		});
+</script>
+
+<script type="text/javascript">
+
+
+
+	function resetStatusText() {
+		var
+			statusbar = document.getElementById("footer");
+			statusbar.textContent = "Les mer på osloby.no/oya";
+	}
+
+	function setStatusText(txt) {
+		var
+			statusbar = document.getElementById("footer");
+
+		/** @todo Maybe check that footer is showing, and maybe scroll text that is too long */
+		if (typeof txt == "string") {
+			statusbar.textContent = txt;
+		}
+	}
+
+
+	function enterFullscreen() {
+		var
+			container = document.getElementById("content"),
+			header	= document.getElementById("header"),
+			footer	= document.getElementById("footer");
+
+		container.classList.add("fullscreen");
+		header.classList.add("fullscreen");
+		footer.classList.add("fullscreen");
+
+	}
+
+	function exitFullscreen() {
+		var
+			container = document.getElementById("content"),
+			header	= document.getElementById("header"),
+			footer	= document.getElementById("footer");
+
+		container.classList.remove("fullscreen");
+		header.classList.remove("fullscreen");
+		footer.classList.remove("fullscreen");
+
+
+	}
+
+	function loadVideo(id, onready) {
+		var
+			container = document.getElementById("content"),
+			header	= document.getElementById("header"),
+			footer	= document.getElementById("footer"),
+			video = document.createElement("video"),
+			onended = onended || null,
+			data = null;
+
+		if (!pi.isNumeric(id)) {
+			console.error("param id is not a number");
+		}
+		else {
+			console.info("playing video");
+		}
+		if (window.data && window.data.videos && window.data.videos.length) {
+			for (var i = 0; i < window.data.videos.length; i++) {
+				if (window.data.videos[i].id == id) {
+					data = window.data.videos[i];
+					break;
+				}
+			}
+
+			if (data) {
+				enterFullscreen();
+				video.src = encodeURIComponent(data.uri);
+				video.style.display = "block";
+				video.style.position = "absolute";
+				video.style.top = 0;
+
+				// there should only be 1 video at a time
+				video.id = "video";
+				video.setAttribute("preload", true);
+				video.addEventListener("canplay", onready);
+				video.addEventListener("canplaythrough", function (e) {
+					console.info("Event : " + e.type);
+				});
+
+				container.appendChild(video);
+			}
+			else {
+				console.error("No data!");
+			}
+		}
+
+	}
+
+
+	/**
+	 * Load video list
+	 */
+
+	document.addEventListener("DOMContentLoaded", function() {
+		var
+			videos = [],
+			width = window.innerWidth,
+			height = window.innerHeight,
+			url = "assets/php/videos.php";
+
+			url += "?width=" + width + "&height=" + height;
+
+		console.info("Getting URL  :" + url);
+		pi.xhr.get(url, function (json) {
+				var
+					data = null;
+
+				try {
+					// console.log(json);
+					data = JSON.parse(json);
+					if (data && data['videos'] && data['videos'].length) {
+						if (!window.data) {
+							window.data = {};
+						}
+						console.info("Loaded " + data['videos'].length + " videos");
+						window.data.videos = data.videos;
+					}
+				}
+				catch (e) {
+					console.error(e);
+				}
+		}, console.error);
+
+
+	});
+</script>
 
 
 <script>
+
+
+		function getTemplate(name) {
+			var
+				templates, template,
+				name = name || "default";
+
+			if (window.data && window.data.templates && window.data.templates.length) {
+				templates = window.data.templates;
+				for (var i = 0; i < templates.length; i++) {
+					template = templates[i];
+					// console.log("iteration : " + i);
+					if (template.template && template.template == name || template.filename && template.filename == name) {
+						// console.info(template.filename + " matches : " + name);
+						// console.info("returning template");
+						return template.filecontent;
+					}
+					else {
+						// console.error(template.filename + " does not match : " + name);
+					}
+				}
+			}
+			return null;
+		}
+
+
+
 	
 	/* playlist and stuff */
 
-	document.addEventListener("DOMContentLoaded", function() {
+	window.addEventListener("load", function() {
 		var
 			playlist = {
 
@@ -290,9 +487,14 @@
 				jsonfile 	: "assets/php/data/playlist.json",
 				phpfile 	: "assets/php/playlist.php",
 				_loaded 	: false,
+				data 			: null,
+				_lastrotation : null,
+				_nextrotation : null,
 
 
 				init : function(owner) {
+
+					console.info("playlist.init()");
 					if (owner) {
 						this._owner = owner;
 					}
@@ -300,6 +502,7 @@
 						clearInterval(this._interval);
 						this._interval = null;
 					}
+					this.load()
 					this._interval = setInterval(this.update, this.UPDATE_INTERVAL);
 				},
 
@@ -357,9 +560,13 @@
 						self = playlist,
 						_data = JSON.parse(json) || null;
 
-					if (_data) {
+					if (_data && _data.status == "ok") {
 						if (self._loaded === false) {
 							self._loaded = Date.now();
+						}
+						self.data = _data.playlist;
+						if (self._owner && typeof self._owner.onUpdatedPlaylist == "function") {
+							self._owner.onUpdatedPlaylist.call(self._owner);
 						}
 
 						console.info("playlist loaded.");
@@ -372,41 +579,33 @@
 				load : function(list, callback, onerror) {
 					var
 						result = null,
+						callback = callback || playlist.onload,
 						list = list || "assets/php/playlist.php";
 
 					console.info("loading playlist");
-
-					pi.require("xhr", false, false, function() {
-						// console.log("Sending xhr");
-						result = pi.xhr.get(list, callback, onerror);
-					});
-
-				},
+					result = pi.xhr.get(list, callback, onerror);
+				}
 
 			}; // playlist
 
 
-			// heigh ho
-			playlist.load(null, playlist.onload);
 
-
-			var 
+			var
 				player = {
 					_frames 	: document.querySelectorAll("iframe.screen"),
 					_playlist : playlist,
 					_created 	: Date.now(),
 					_started 	: null,
-					_lastrotation : null,
-					_nextrotation : null,
 
 					init : function() {
 						// sends message to iframe windows
+						console.info("player.init()");
 						this.sendMessage("ping");
-						playlist.init(player);
+						this._playlist.init(this);
 					},
 					
 					start : function() {
-						// console.log("player.start called!");
+						console.log("player.start called!");
 						if (this._started === null) {
 							this.init();
 							this._started = Date.now();
@@ -414,14 +613,83 @@
 						}
 					},
 
+					show : function(screen) {
+						var
+							contentframe = document.getElementById("contentframe"),
+							screen = screen || null;
+
+						if (!screen) {
+							console.error("player.show was called without a parameter");
+							return false;
+						}
+
+						// unwrap extra data in JSON format
+						if (screen.data) {
+							try {
+								chunk = JSON.parse(screen.data);
+								console.log("Successfully parsed JSON");
+							}
+							catch(e) {
+								console.error(e);
+							}
+							// add each entry to parent object
+							for (var key in chunk) {
+								screen[key] = chunk[key];
+							}
+						}
+
+						if (screen.statustext) {
+							setStatusText(screen.statustext);
+						}
+
+						if (screen.uri) {
+							contentframe.src = screen.uri;
+						}
+						else {
+							if (screen.template) {
+								html = getTemplate(screen.template);
+								if (!html) {
+									console.error("Couldn't find template : " + screen.template);
+									return false;
+								}
+
+
+								var
+									inner = Mustache.render(html, screen);
+								// console.log("setting innerHTML: " + inner );
+								contentframe.contentWindow.document.body.innerHTML = inner;
+								console.info("RENDERING TEMPLATE : " + screen.template);
+								
+								// contentframe.contentWindow.document.innerHTML = inner;
+							}
+						}
+
+
+					},
+
+					onPlaylistLoaded : function (e) {
+						var
+							self = player;
+
+						console.info("onPlaylistLoaded!");
+					},
+
+
 					onUpdatedPlaylist : function (w) {
+						var
+							self = player;
 						console.info("onUpdatedPlaylist callback was invoked, this : " + this, this);
 						if (this._rotate) {
 							console.info("_rotate is set");
 						}
 						else {
+							console.info("showing : " + self._playlist.data.current, self._playlist.data.current);
+							self.show(self._playlist.data.current);
+
 							console.info("_rotate is NOT set");
 						}
+
+
 					},
 
 

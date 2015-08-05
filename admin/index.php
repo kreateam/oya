@@ -252,6 +252,10 @@
 	    				background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */		
     }
 
+    iframe:hover {
+			opacity: 0.33;
+    }
+
 		header {
 			padding-top: .4em;
 			margin-bottom: .4em;
@@ -332,8 +336,8 @@
 			-webkit-transition: border .4s, opacity .4s, transform .2s;
 							transition: border .4s, opacity .4s, transform .2s;
 
+			pointer-events : none;
 		}
-
 
 
 		.screen.preview {
@@ -791,11 +795,6 @@
 					screens[1].style.opacity = 0;
 				}
 				break;
-			case "N" :
-				var
-					newButton = document.getElementById()
-				 l.click();			
-
 	    case "Z":
 				if (screens[1].style.transform == "scale(1, 1)" || screens[1].style.transform == "scale(1)") {
 					screens[0].style.transform = "scale(0.5, 0.5)";
@@ -983,81 +982,14 @@
 
 
 				<section id="queue">
-					<div class="section-title">Queued <span id="queue-duration" class="queue-total">1:30</span></div>
+					<div class="section-title">Queued <span id="queue-duration" class="queue-total"></span></div>
 					<ul>
-						<li id="item-1" class="item">
-							Food report #32 
-							<span class="duration">0:30</span>
-						</li>
-						<li id="item-2" class="item">
-							Instagram 
-							<span class="hashtag instagram">#osloby #latest</span>
-							<span class="duration">1:00</span>
-						</li>
 					</ul>
 				</section>
 
 				<section id="next-items">
-					<div class="section-title">Next Items <span id="next-duration" class="queue-total">6:00</span></div>
+					<div class="section-title">Next Items <span id="next-duration" class="queue-total"></span></div>
 					<ul>
-						<li class="item">
-							<div class="item-menu">
-								<ul>
-								  <li>+<ul>
-								      <li>Play next</li>
-								      <li>Add to Queue</li>
-								      <li>Add to Next tracks</li>
-								    </ul>
-								  </li>
-								</ul>	
-							</div>
-							Announcement : &lt;TBA&gt;
-							<span class="duration">0:30</span>
-						</li>
-						<li class="item" draggable="true">
-							<div class="item-menu">
-								<ul>
-								  <li>+<ul>
-								      <li>Play next</li>
-								      <li>Add to Queue</li>
-								      <li>Add to Next tracks</li>
-								    </ul>
-								  </li>
-								</ul>	
-							</div>
-							Instagram
-							<span class="hashtag twitter">#osloby</span>
-							<span class="duration">1:30</span>
-						</li>
-						<li class="item" draggable="true">
-							<div class="item-menu">
-								<ul>
-								  <li>+<ul>
-								      <li>Play next</li>
-								      <li>Add to Queue</li>
-								      <li>Add to Next tracks</li>
-								    </ul>
-								  </li>
-								</ul>	
-							</div>
-							Instagram
-							<span class="hashtag twitter">#oya</span>
-							<span class="duration">1:30</span>
-						</li>
-						<li class="item" draggable="true">
-							<div class="item-menu">
-								<ul>
-								  <li>+<ul>
-								      <li>Play next</li>
-								      <li>Add to Queue</li>
-								      <li>Add to Next tracks</li>
-								    </ul>
-								  </li>
-								</ul>	
-							</div>
-							Coming up...
-							<span class="duration">2:30</span>
-						</li>
 					</ul>
 				</section>
 
@@ -1087,6 +1019,57 @@
 					pi.xhr.get("assets/php/playlist.php", self.onload, console.error);
 				},
 
+				processItem : function(item) {
+					var
+						result = {};
+					// json
+					if (item && typeof item.data == "string") {
+						try {
+							var
+								chunk = JSON.parse(item.data);
+							for (var key in chunk) {
+								item[key] = chunk[key];
+							}
+						}
+						catch (e) {
+							console.error(e);
+						}
+						return item;
+					}
+				},
+
+
+				processItems : function(list) {
+					var
+						self = playlist;
+					// json
+					if (list && list.current && typeof list.current.data == "string") {
+						var processed = self.processItem(list.current);
+						if (processed) {
+							list.current = processed;
+						}
+					}
+
+					if (list && list.queue && list.queue.length) {
+						for (var i = 0; i < list.queue.length; i++) {
+							var processed = self.processItem(list.queue[i]);
+							if (processed) {
+								list.queue[i] = processed;
+							}
+						}
+					}
+
+					if (list && list.next && list.next.length) {
+						for (var i = 0; i < list.next.length; i++) {
+							var processed = self.processItem(list.next[i]);
+							if (processed) {
+								list.next[i] = processed;
+							}
+						}
+					}
+					return list;
+				},
+
 				onload : function(json) {
 					var 
 						self = playlist,
@@ -1101,8 +1084,8 @@
 								}
 								console.info("playlist loaded: " + self._loaded, _data.playlist);
 
-								window.data.playlist = _data.playlist;
-								// console.info("calling self.render()");
+								window.data.playlist = self.processItems(_data.playlist);
+								console.info("calling self.render()");
 								self.render();
 							}
 						}
@@ -1416,7 +1399,7 @@
 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-3" />
             <label for="tabstrip-0-3">Instagram</label>
-            <div class="instagram">
+            <div id="instagram" class="instagram">
               <style>
               	.ig-b- { 
               		display: inline-block; 
@@ -1611,8 +1594,12 @@
 					domdoc = contentframe1.contentDocument || contentframe1.contentWindow.document,
 					domwin = contentframe1.contentWindow;
 				// console.info("Rendering : contentframe1, data = ", data);
+				if (data.statustext && typeof window.data.preview.screen1.contentWindow.setStatusText == "function") {
+					console.info("updating statustext");
+					window.data.preview.screen1.contentWindow.setStatusText(data.statustext);
+				}
+
 				domdoc.body.innerHTML = Mustache.render(preview.current, data)
-				// console.info("Result : " + domdoc.innerHTML);
 			}
 			else {
 				console.error("contentframe1 is nought");
@@ -1622,8 +1609,11 @@
 					domdoc = contentframe2.contentDocument || contentframe2.contentWindow.document,
 					domwin = contentframe1.contentWindow;
 				// console.info("Rendering : contentframe2");
-				domdoc.body.innerHTML = Mustache.render(preview.current, data)
-				domwin.postMessage("", "*")
+				domdoc.body.innerHTML = Mustache.render(preview.current, data);
+				if (data.statustext && typeof window.data.preview.screen2.contentWindow.setStatusText == "function") {
+					console.info("updating statustext");
+					window.data.preview.screen2.contentWindow.setStatusText(data.statustext);
+				}
 				// console.info("Result : " + domdoc.body.innerHTML);
 			}
 			else {
@@ -2940,7 +2930,7 @@
 			  console.log("file : ", file);
 			   // populate formdata
 			  data.append("image-upload", file);
-			  data.append("username", "<?php echo $_SESSION['username'];?>");
+			  data.append("username", "<?php echo $_SESSION['user'];?>");
 			  data.append("uuid", pi.uuid());
 
 			  xhr.upload.onprogress = onprogress;
@@ -3225,7 +3215,7 @@
 				artist  = document.getElementById(scene + "-artist"),
 
 				// set clock forwards by n weeks
-				now 		= new Date(Date.now() + (1 * 7 * 24 * 60 * 60 * 1000)),
+				now 		= new Date(Date.now() + (7 * 24 * 60 * 60 * 1000)),
 				days, hours, minutes,
 				remainingDays 		= scene ? document.getElementById(scene + "-days") : document.getElementById("amfiet-days"),
 				remainingHours 		= scene ? document.getElementById(scene + "-hours") : document.getElementById("amfiet-hours"),
@@ -3236,7 +3226,7 @@
 				  	utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(), a.getUTCHours(), a.getMinutes()),
 				  	utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate(), b.getUTCHours(), b.getMinutes());
 
-				  return (utc2 - utc1);
+				  return (utc2 > utc1) ? (utc2 - utc1) : (utc1 - utc2);
 				};
 
 
@@ -3921,7 +3911,7 @@
 			console.info("DO HIDE!");
 		}
 		else {
-			console.log("do NOT hide, this : " + this, this);
+			// console.log("do NOT hide, this : " + this, this);
 		}
 	}
 
@@ -4116,5 +4106,94 @@
 	}
 ?>
 	<script src="assets/js/buttons.js"> </script>
+
+<script type="text/javascript">
+
+
+	function updateInstagramList() {
+		var
+			arr, insta,
+			instadiv = document.getElementById("instagram");
+		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
+			arr = window.data.instagram.liked;
+			instadiv.innerHTML = "";
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i]['type'] == "image") {
+					insta = document.createElement("img");
+					insta.src = arr[i]['images']['standard_resolution']['url'];
+					insta.alt = arr[i]['caption']['text'];
+					insta.title = insta.alt;
+					insta.style.height = "6em";
+					instadiv.appendChild(insta);
+				}
+				else {
+					console.info("Skipping type : " + arr[i]['type']);
+				}
+			}
+		}
+	}
+
+
+
+	function updateInstagram(data) {
+		var
+			data = data || null;
+
+		if (!window.data) {
+			window.data = {};
+		}
+		if (!window.data.instagram) {
+			window.data.instagram = {};
+		}
+		window.data.instagram.liked = [];
+		if (data && data.length) {
+			for (var i = 0; i < data.length; i++) {
+				window.data.instagram.liked.push(data[i]);
+				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
+			}
+			updateInstagramList();
+		}
+		else {
+			console.error("No data in updateInstagram()!");
+		}
+	}
+
+
+	document.addEventListener("DOMContentLoaded", function () {
+		var
+			instaurl = "assets/php/instagram.php",
+			instadiv = document.getElementById("instagram");
+
+		pi.xhr.get(instaurl, function (json) {
+			var
+				data = null,
+				json = json || null;
+			if (json && json.length) {
+
+				try {
+					data = JSON.parse(json);
+					if (data && data.meta && data.meta.code) {
+						if (data.meta.code == 200) {
+							updateInstagram(data.data);
+						}
+						else {
+							console.error("Error loading instagram data, code : " + data.meta.code);
+						}
+					}
+				}
+				catch(e) {
+					console.error("Error : " + e);
+				}
+			}
+			else {
+				console.error("!json &&json.length");
+			}
+
+		}, console.error);
+
+	});
+
+</script>
+
 </body>
 </html>
