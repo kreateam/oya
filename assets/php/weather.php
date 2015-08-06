@@ -4,8 +4,8 @@
 	define('CACHE_FILE', 			__DIR__ . "/data/weather.json");
 	define('CONTROL_FILE', 		__DIR__ . "/data/weather.xml");
 
-	// cache for ten minutes between updates from YR.no API
-	define('CACHE_TIME', 			600);
+	// cache for n seconds between updates from YR.no API
+	define('CACHE_TIME', 			2700);
 
 	// path to SVG weather symbols
 	define('ICON_PATH', 			"assets/img/sym/svg/");

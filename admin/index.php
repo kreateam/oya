@@ -144,6 +144,11 @@
 			 				transition: color .4s;
 		}
 
+		ul {
+	    -webkit-margin-before: 0;
+	    -webkit-margin-after: 0;
+		}
+
 	</style>
 
 	<style type="text/css">
@@ -214,6 +219,9 @@
 		@media (max-width: 1280px) {
 		  html, body {
 		  	font-size: 10px;
+		  }
+		  span.item-menu {
+		  	float: right;
 		  }
 		}
 
@@ -288,6 +296,7 @@
 		}
 
 		.item {
+			vertical-align: bottom;
 			display: block;
 			margin: 1px 0.5em;
 			padding-top: 2px;
@@ -452,97 +461,55 @@
 		}
 
 
-		@media (max-width: 1080px) {
-			body {
-				font-size: 10px;
-			}
-
-			/* hide on mobile */
-			header,
-			footer,
-			.pronomen,
-			.screen,
-			#now-playing,
-			#toolbar,
-			#amfiet-header, #vindfruen-header,
-		  #program1, #program2 {
-		  	display: none;
-		  }
-
-		  .right, .left {
-		  	margin: 0;
-		  	padding: 0;
-
-		  	width: 50%;
-		  	max-width: 50%;
-		  	height: auto;
-		  	min-height: 80px;
-		  }
-		  .middle {
-		  	width: 100%;
-		  	clear: both;
-		  	position: relative;
-		  }
-		  #toolbar {
-		  	font-size: 8px;
-		  }
-		  footer {
-				width: 100%;
-		  }
-
-		}
 
 
 		.section-title {
+			padding-top: 12px;
+			margin-bottom: 6px;
 			font-weight: 900;
 		}
 
 		.duration {
 			float: right;
+			width: 60px;
+			text-align: right;
+			margin-left: 24px;
 		}
 
-		.up-arrow {
-			width : .8em;
-			height : .8em;
-			display: inline-block;
-			position: relative;
-			padding-top: 0.2em;
-			margin-right: 0.1em;
-			margin-left: 0.1em;
+		.item {
+	    overflow: auto;			
+		}
+
+		.item .ingress {
+			font-family: roboto, sans-serif;
+			color: #999;
+			font-style: italic;
 			font-weight: 100;
-			cursor: pointer;
 		}
 
-		.down-arrow {
-			width : .8em;
-			height : .8em;
-			display: inline-block;
-			position: relative;
-			padding-top: 0.2em;
-			margin-right: 0.1em;
-			margin-left: 0.1em;
-			font-weight: 100;
-			cursor: pointer;
-		}
-
-		.arrow-down:hover {
-			color: #fff;
-		}
-
-		.arrow-up:hover {
-			color: #fff;
-		}
 
 		.item-menu {
 			display: inline-block;
-			color: rgba(255,255,255,0.1);
-			/*float: right;*/
-			text-align: left;
-			width: auto;
-			font-size: 1.2em;
-			font-weight: 100;
-			overflow-y: visible;
+			font-family: 'Roboto', sans-serif;
+			float: right;
+			color: #666;
+			font-size: 80%;
+			/*line-height: 29px;*/
+			margin-top: 2px;
+			margin-left: 12px;
+			margin-right: 6px;
 		}
+
+		.item-menu:hover {
+			font-weight: 400;
+			color: #eee;
+		}
+
+		.item.playing .item-menu {
+			display: none;
+			visibility: hidden;
+		}
+
 
 		.coming-up {
 			margin-left 	: 2.5em;
@@ -682,6 +649,14 @@
 
 			-webkit-transition: all 0.4s;
 							transition: all 0.4s;
+
+     	/* Make text non-selectable */
+      -webkit-touch-callout: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+
 		}
 
 		.screen-list-item:hover, .template-selector-item:hover {
@@ -715,6 +690,47 @@
 
 		#screen-image-preview {
 			height: 584px;
+		}
+
+		@media (max-width: 1080px) {
+			body {
+				font-size: 10px;
+			}
+
+			/* hide on mobile */
+			header,
+			footer,
+			.pronomen,
+			.screen,
+			span.item-menu,
+			#now-playing,
+			#toolbar,
+			#amfiet-header, #vindfruen-header,
+		  #program1, #program2 {
+		  	display: none;
+		  }
+
+		  .right, .left {
+		  	margin: 0;
+		  	padding: 0;
+
+		  	width: 50%;
+		  	max-width: 50%;
+		  	height: auto;
+		  	min-height: 80px;
+		  }
+		  .middle {
+		  	width: 100%;
+		  	clear: both;
+		  	position: relative;
+		  }
+		  #toolbar {
+		  	font-size: 8px;
+		  }
+		  footer {
+				width: 100%;
+		  }
+
 		}
 
 
@@ -993,13 +1009,103 @@
 					</ul>
 				</section>
 
-				<section id="demo"></section>
-			</section>
-
-
-
 <script>
+
+
+
+	function addScreenToQueue(e) {
+		if (window.data && window.data.dragging) {
+			console.info("Add to Queue : " + window.data.dragging, window.data.dragging);
+			window.data.dragging = null;
+		}
+
+		if (e.stopPropagation) {
+			e.stopPropagation();
+		}
+		// "this" is now the droptarget
+		return false;
+
+	}
+
+	/**
+	 * Handle drag and drop of screens
+	 * @param {[type]} event [description]
+	 */
+	function addScreenToNext(e) {
+		if (window.data && window.data.dragging) {
+			console.info("Add to Next : " + window.data.dragging, window.data.dragging);
+			window.data.dragging = null;
+		}
+
+		if (e.stopPropagation) {
+			e.stopPropagation();
+		}
+		// "this" is now the droptarget
+		return false;
+	}
+
+	function onDragStart(el) {
+		if (!window.data) {
+			window.data = {};
+		}
+		window.data.dragging = el;
+	}
+
+
+
+	function onDragOver(e) {
+		if (e.preventDefault) {
+			e.preventDefault();
+		}
+		e.dataTransfer.dropEffect = "copy";
+		e.dataTransfer.effectAllowed = "copy";
+		return false;
+	}
+
+
+	/**
+	 * attach dragndrop event listeners
+	 */
+
+	var
+		queueReference = document.getElementById("queue"),
+		nextReference = document.getElementById("next-items");
+
+	if (queueReference) {
+		queueReference.addEventListener("drop", addScreenToQueue);
+		queueReference.addEventListener("dragover", onDragOver);
+	}
+	if (nextReference) {
+		nextReference.addEventListener("drop", addScreenToNext);
+		nextReference.addEventListener("dragover", onDragOver);
+	}
+
+
+
+
+	/**
+	 * global support functions, playlist
+	 */	
 	
+	function deleteItem(id, uuid) {
+		if (confirm("Delete item " + id + "?")) {
+			console.info("Requested deletion of item " + id + ", " + uuid);		
+		}
+		else {
+			console.info("Aborted deletion of item " + id + ", " + uuid);		
+		}
+	}
+
+	function playNext(id, uuid) {
+		console.info("Requested playnext: " + id + ", " + uuid);
+	}
+
+	function addToQueue(id, uuid) {
+		console.info("Requested queue addition of item " + id + ", " + uuid);
+	}
+
+
+
 	/* playlist and stuff */
 
 	document.addEventListener("DOMContentLoaded", function() {
@@ -1028,7 +1134,9 @@
 							var
 								chunk = JSON.parse(item.data);
 							for (var key in chunk) {
-								item[key] = chunk[key];
+								if (key != "id"){
+									item[key] = chunk[key];
+								}
 							}
 						}
 						catch (e) {
@@ -1043,6 +1151,7 @@
 					var
 						self = playlist;
 					// json
+					// debugger;
 					if (list && list.current && typeof list.current.data == "string") {
 						var processed = self.processItem(list.current);
 						if (processed) {
@@ -1595,7 +1704,7 @@
 					domwin = contentframe1.contentWindow;
 				// console.info("Rendering : contentframe1, data = ", data);
 				if (data.statustext && typeof window.data.preview.screen1.contentWindow.setStatusText == "function") {
-					console.info("updating statustext");
+					// console.info("updating statustext");
 					window.data.preview.screen1.contentWindow.setStatusText(data.statustext);
 				}
 
@@ -1611,7 +1720,7 @@
 				// console.info("Rendering : contentframe2");
 				domdoc.body.innerHTML = Mustache.render(preview.current, data);
 				if (data.statustext && typeof window.data.preview.screen2.contentWindow.setStatusText == "function") {
-					console.info("updating statustext");
+					// console.info("updating statustext");
 					window.data.preview.screen2.contentWindow.setStatusText(data.statustext);
 				}
 				// console.info("Result : " + domdoc.body.innerHTML);
@@ -1984,6 +2093,7 @@
 			// console.log("updateTemplateList()!");
 
 			if (window.data && window.data.screens && window.data.screens.length) {
+				screenPreview.innerHTML = "";
 				screens = window.data.screens;
 				for (var i = 0; i < screens.length; i++) {
 					obj = !!screens[i].json ? screens[i].json : screens[i];

@@ -27,6 +27,13 @@
 	$json = file_get_contents(PLAYLIST);
 	$playlist = json_decode($json, true);
 
+	if (!is_array($playlist['next'])) {
+		$playlist['next'] = array();
+	}
+	if (!is_array($playlist['queue'])) {
+		$playlist['queue'] = array();
+	}
+
 	if (isset($playlist['info']) && isset($playlist['info']['updated'])) {
 		if (!$playlist['info']['updated']) {
 			// first run
@@ -113,7 +120,9 @@
 		if ($tracks < 5) {
 			if (count($playlist['history'])) {
 				$playlist['info']['updated'] = time();
-				array_push($playlist['next'], array_shift($playlist['history']));
+				$item = array_shift($playlist['history']);
+				$item['uuid'] = uuid();
+				array_push($playlist['next'], $item);
 			}
 			else {
 				$reply['DEBUG'][] = "nothing in history!";
@@ -128,7 +137,8 @@
 			if ($screens && count($screens)) {
 				foreach($screens as $screen) {
 					// $screen = array_shift($screens);
-					$reply['DEBUG'][] = "Adding screen : " . json_encode($screen);
+					$screen['uuid'] = uuid();
+					$reply['DEBUG'][] = "Adding screen : " . $screen['uuid'];
 					array_push($playlist['next'], $screen);
 				}
 	    	$playlist['info']['updated'] = time();
@@ -188,7 +198,7 @@
 		}
 
 		if (count($playlist['next']) < 5) {
-			$reply['DEBUG'][] = "";
+			$reply['DEBUG'][] = "calling addNextTracks from rotatePlaylist()";
 			addNextTracks();
 		}
 	}
@@ -399,7 +409,7 @@
  	$reply['request'] = $request;
 
 	if (count($playlist['next']) < 5) {
-		$reply['DEBUG'][] = "Adding more tracks";
+		$reply['DEBUG'][] = "Adding more tracks, @ line 405";		
 		addNextTracks();
 	}
 

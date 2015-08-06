@@ -165,7 +165,7 @@
 
 
 		footer {
-			padding 				: 8px 10px 4px;
+			padding 				: 6px 10px 4px;
 			text-align 			: center;
 			color 					: #fff;
 			height 					: 45px;
@@ -306,7 +306,7 @@
 					}
 				};
 
-			pi.xhr.get("templates.php", onTemplatesLoaded)
+			pi.xhr.get("templates.php", onTemplatesLoaded);
 
 		});
 </script>
@@ -356,6 +356,26 @@
 
 
 	}
+
+  function doOnOrientationChange()
+  {
+    switch(window.orientation) 
+    {  
+      case -90:
+      case 90:
+        console.info('landscape');
+        break; 
+      default:
+        console.info('portrait');
+        break; 
+    }
+  }
+
+  window.addEventListener('orientationchange', doOnOrientationChange);
+
+  // Initial execution if needed
+  doOnOrientationChange();
+
 
 	function loadVideo(id, onready) {
 		var
@@ -475,7 +495,7 @@
 	
 	/* playlist and stuff */
 
-	window.addEventListener("load", function() {
+	document.addEventListener("DOMContentLoaded", function() {
 		var
 			playlist = {
 

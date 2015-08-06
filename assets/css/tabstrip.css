@@ -17,6 +17,12 @@
   .tabstrip {
     -webkit-transition : all .4s ease-out;
             transition : all .4s ease-out;
+      /* Make text non-selectable */
+      -webkit-touch-callout: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
   }    
    
   .tabstrip ul,

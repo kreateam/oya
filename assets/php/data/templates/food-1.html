@@ -40,6 +40,7 @@
 			position: absolute;
 			top: 0;
 			right: 0;
+			/*font-size: 44px;*/
 			margin-top: 16px;
 			width: 45%;
 		}
@@ -79,6 +80,7 @@
 	.food .ingress {
 		margin-top: 12px;
 		font-size: 40px;
+		line-height: 40px;
 		font-weight: 600;
 	}
 
@@ -96,13 +98,13 @@
 		color: #fff;
 		width: 100px;
 		height: 100px;
+		text-align: center;
 		background: #e6007e;
 		font-size: 64px;
 		font-weight: 800;
 		border-radius: 50%;
 		border: none;
 		padding-top: 18px;
-		padding-left: 12px;
 	}
 
 	.food .score-numerator {
@@ -128,9 +130,9 @@
 
 	.food .score{
 		/*color: rgba(38,188,244,1);*/
-		top: 136px;
+		top: 120px;
 		font-size: 36px;
-		left: 240px;
+		left: 244px;
 		z-index: 5000;
 	}
 	.food .score-medallion {
@@ -164,7 +166,7 @@
 	{{/image}}
 	{{#score}}
 	<div class="score">
-		<div class="score-medallion">{{score}}<span class="score-numerator">/6</span></div>
+		<div class="score-medallion">{{score}}</div>
 	</div>
 	{{/score}}
 	<div id="text">
