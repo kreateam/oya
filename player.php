@@ -28,6 +28,8 @@
 	<title>Øyafestivalen 2015</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/html5/assets/font/gtwalsheim.css">
+
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
@@ -37,11 +39,13 @@
 			margin  : 0;
 			padding : 0;
       cursor: none;
+			border: none;
 		}
 
 		html, body {
 			color 			: #000;
 			font-family : 'ClanOT', sans-serif;
+			background: transparent;
 
 			/* no scrollbars */
 			overflow: hidden;
@@ -90,11 +94,6 @@
 							transition: all .4s ease-out;
 		}
 
-
-		iframe.contentframe.hidden {
-			position: relative;
-			top 			: -1000px;
-		}
 
 		/* hide until loaded, ready and needed */
 		#nextframe {
@@ -165,12 +164,13 @@
 
 
 		footer {
-			padding 				: 6px 10px 4px;
+			/*padding 				: 6px 10px 4px;*/
 			text-align 			: center;
 			color 					: #fff;
 			height 					: 45px;
-			font-size 			: 36px;
-			line-height 		: 38px;
+			width 					: 100%;
+			font-size 			: 32px;
+			line-height 		: 34px;
 			font-weight 		: 500;
 			background-color: #000;
 			overflow 				: hidden;
@@ -200,16 +200,21 @@
 
 		@media (max-width: 600px) {
 
-			section.content {
-				height: 569px;
+			footer {
+				padding-top: 12px;
+				height: 60px;
 			}
+			section.content {
+				height: 618px;
+			}
+
 			section.content.fullscreen {
 				top: -90px;
-				height: 704px;
+				height: 768px;
 			}
 
 			footer {
-				font-size: 32px;
+				font-size: 28px;
 			}
 		}
 
@@ -254,6 +259,16 @@
 			color: #fff;
 		}
 
+
+		#debug {
+			position: absolute;
+			display: block;
+			bottom: 0;
+			overflow-y: scroll;
+			cursor: none;
+			pointer-events: none;
+		}
+
 	</style>
 
 </head>
@@ -269,7 +284,7 @@
 		<div id="clock" class="clock"></div>
 		<div id="weather" class="weather"><img id="symbol" class="symbol" src="" width="50" height="50"><span id="temperature" class="temperature"></span></div>
 		<div class="title">
-			<img src="assets/img/osloby-hvit.png" height="75">
+			<img src="assets/img/osloby-hvit.png" height="70">
 		</div>
 	</header>
 
@@ -280,37 +295,9 @@
 	<footer id="footer">
 		Les mer på osloby.no/oya
 	</footer>
+	<section id="debug">
 
-<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function() {
-			var
-				screen = document.getElementById("screen1"),
-				templates = {
-					updated : 0
-				},
-				onTemplatesLoaded = function(json) {
-					var
-						data,
-						json = json || null;
-
-					if (json) {
-						data = JSON.parse(json) || null;
-
-						if (data && data.files && data.files.length) {
-							if (!window.data) {
-								window.data = {};
-							}
-							window.data.templates = data.files;
-							// updateTemplateList();
-						}
-					}
-				};
-
-			pi.xhr.get("templates.php", onTemplatesLoaded);
-
-		});
-</script>
-
+	</section>
 <script type="text/javascript">
 
 
@@ -338,10 +325,14 @@
 			header	= document.getElementById("header"),
 			footer	= document.getElementById("footer");
 
+		if (window.player.fullscreen === true) {
+			return false;
+		}
+
 		container.classList.add("fullscreen");
 		header.classList.add("fullscreen");
 		footer.classList.add("fullscreen");
-
+		window.player.fullscreen = true;
 	}
 
 	function exitFullscreen() {
@@ -350,24 +341,29 @@
 			header	= document.getElementById("header"),
 			footer	= document.getElementById("footer");
 
+		if (window.player.fullscreen === false) {
+			return false;
+		}
 		container.classList.remove("fullscreen");
 		header.classList.remove("fullscreen");
 		footer.classList.remove("fullscreen");
-
-
+		window.player.fullscreen = false;
 	}
 
-  function doOnOrientationChange()
-  {
+
+  function doOnOrientationChange() {
     switch(window.orientation) 
-    {  
+    {
       case -90:
       case 90:
-        console.info('landscape');
-        break; 
+        // console.info('landscape');
+        break;
+      case 0:
+        // console.info('portrait');
+        break;
       default:
-        console.info('portrait');
-        break; 
+        // console.info('no orientation : ' + window.orientation);
+        break;
     }
   }
 
@@ -390,7 +386,7 @@
 			console.error("param id is not a number");
 		}
 		else {
-			console.info("playing video");
+			// console.info("playing video");
 		}
 		if (window.data && window.data.videos && window.data.videos.length) {
 			for (var i = 0; i < window.data.videos.length; i++) {
@@ -412,7 +408,7 @@
 				video.setAttribute("preload", true);
 				video.addEventListener("canplay", onready);
 				video.addEventListener("canplaythrough", function (e) {
-					console.info("Event : " + e.type);
+					// console.info("Event : " + e.type);
 				});
 
 				container.appendChild(video);
@@ -434,11 +430,11 @@
 			videos = [],
 			width = window.innerWidth,
 			height = window.innerHeight,
-			url = "assets/php/videos.php";
+			url = "assets/php/videolist.php";
 
 			url += "?width=" + width + "&height=" + height;
 
-		console.info("Getting URL  :" + url);
+		// console.info("Getting URL  :" + url);
 		pi.xhr.get(url, function (json) {
 				var
 					data = null;
@@ -483,7 +479,7 @@
 						return template.filecontent;
 					}
 					else {
-						// console.error(template.filename + " does not match : " + name);
+					
 					}
 				}
 			}
@@ -496,16 +492,15 @@
 	/* playlist and stuff */
 
 	document.addEventListener("DOMContentLoaded", function() {
-		var
-			playlist = {
+		
+			window.playlist = {
 
 				UPDATE_INTERVAL : 10000,
 
-				_updated	: 0,
+				_rotated	: 0,
 				_owner 		: null,
 				_interval : null,
 				jsonfile 	: "assets/php/data/playlist.json",
-				phpfile 	: "assets/php/playlist.php",
 				_loaded 	: false,
 				data 			: null,
 				_lastrotation : null,
@@ -514,7 +509,7 @@
 
 				init : function(owner) {
 
-					console.info("playlist.init()");
+					// console.info("playlist.init()");
 					if (owner) {
 						this._owner = owner;
 					}
@@ -524,6 +519,28 @@
 					}
 					this.load()
 					this._interval = setInterval(this.update, this.UPDATE_INTERVAL);
+				},
+
+				getNext : function() {
+					var
+						result = null,
+						self = playlist;
+
+					if (self && self.data) {
+						if (self.data.queue) {
+							for(var idx in self.data.queue) {
+								result = self.data.queue[idx];
+								return result;
+							}
+						}
+						if (self.data.next) {
+							for(var idx in self.data.next) {
+								result = self.data.next[idx];
+								return result;
+							}
+						}
+					}
+					return result;
 				},
 
 				handleUpdatedPlaylist : function (newdata) {
@@ -536,8 +553,9 @@
 						return false;
 					}
 
-					self._updated = _data.info.lastupdated;
+					self._rotated = newdata.info.rotated;
 					if (self._owner && typeof self._owner.onUpdatedPlaylist == "function") {
+						console.info("calling onUpdatedPlaylist() from handleUpdatedPlaylist");
 						self._owner.onUpdatedPlaylist.call();
 					}
 
@@ -550,20 +568,29 @@
 
 					try {
 						data = JSON.parse(json);
+
+						if (self._rotated && data && data.info && data.info.rotated && data.info.rotated > self._rotated) {
+
+							/**
+							 * For now
+							 */
+							 	location.reload();
+								return;
+							console.info("data.info.rotated : " + data.info.rotated + ", self._rotated : " + self._rotated);
+
+							self._data = data;
+							self._rotated = data.info.rotated;
+							self.handleUpdatedPlaylist(data);
+						}
+						else {
+							self._rotated = data.info.rotated;
+
+							console.info("first run, or no update");
+						}
 					}
 					catch (e) {
-						console.error("error in onupdate : " + e);
+						console.error("error in onupdate : " + e, json);
 					}
-
-					if (data && data.info && data.info.lastupdated && data.info.lastupdated > self._updated) {
-						// self._data = data;
-						self.handleUpdatedPlaylist(data);
-						console.info("playlist updated!")
-					}
-					else {
-						// console.info("no update")
-					}
-
 					// console.info("json : " + json);
 				},
 
@@ -589,7 +616,7 @@
 							self._owner.onUpdatedPlaylist.call(self._owner);
 						}
 
-						console.info("playlist loaded.");
+						// console.info("playlist loaded.");
 					}
 					else {
 						console.error("No playlist data");
@@ -602,7 +629,7 @@
 						callback = callback || playlist.onload,
 						list = list || "assets/php/playlist.php";
 
-					console.info("loading playlist");
+					// console.info("loading playlist");
 					result = pi.xhr.get(list, callback, onerror);
 				}
 
@@ -610,22 +637,23 @@
 
 
 
-			var
-				player = {
+
+				window.player = {
 					_frames 	: document.querySelectorAll("iframe.screen"),
 					_playlist : playlist,
 					_created 	: Date.now(),
 					_started 	: null,
+					fullscreen: false,
 
 					init : function() {
 						// sends message to iframe windows
-						console.info("player.init()");
+						// console.info("player.init()");
 						this.sendMessage("ping");
 						this._playlist.init(this);
 					},
 					
 					start : function() {
-						console.log("player.start called!");
+						// console.log("player.start called!");
 						if (this._started === null) {
 							this.init();
 							this._started = Date.now();
@@ -642,12 +670,15 @@
 							console.error("player.show was called without a parameter");
 							return false;
 						}
+						else {
+							console.info("self.show was triggered");
+						}
 
 						// unwrap extra data in JSON format
 						if (screen.data) {
 							try {
 								chunk = JSON.parse(screen.data);
-								console.log("Successfully parsed JSON");
+								// console.log("Successfully parsed JSON");
 							}
 							catch(e) {
 								console.error(e);
@@ -664,6 +695,12 @@
 
 						if (screen.uri) {
 							contentframe.src = screen.uri;
+							if (screen.fullscreen === true) {
+								enterFullscreen();
+							}
+							else if (player.fullscreen === true) {
+								exitFullscreen();
+							}
 						}
 						else {
 							if (screen.template) {
@@ -677,8 +714,72 @@
 								var
 									inner = Mustache.render(html, screen);
 								// console.log("setting innerHTML: " + inner );
+
+
 								contentframe.contentWindow.document.body.innerHTML = inner;
-								console.info("RENDERING TEMPLATE : " + screen.template);
+
+								if (screen.fullscreen === true) {
+									enterFullscreen();
+								}
+								else if (player.fullscreen === true) {
+									exitFullscreen();
+								}
+								console.info("RENDERING TEMPLATE : ");
+								
+								// contentframe.contentWindow.document.innerHTML = inner;
+							}
+						}
+
+
+					},
+
+					preload : function(screen) {
+						var
+							nextframe = document.getElementById("nextframe"),
+							screen = screen || null;
+
+						if (!screen) {
+							console.error("player.preload was called without a parameter");
+							return false;
+						}
+						else {
+							// console.info("self.show was triggered");
+						}
+
+						// unwrap extra data in JSON format
+						if (screen.data) {
+							try {
+								chunk = JSON.parse(screen.data);
+								// console.log("Successfully parsed JSON");
+							}
+							catch(e) {
+								console.error(e);
+							}
+							// add each entry to parent object
+							for (var key in chunk) {
+								screen[key] = chunk[key];
+							}
+						}
+
+						if (screen.uri) {
+							nextframe.src = screen.uri;
+						}
+						else {
+							if (screen.template) {
+								html = getTemplate(screen.template);
+								if (!html) {
+									console.error("Couldn't find template : " + screen.template);
+									return false;
+								}
+
+								var
+									inner = Mustache.render(html, screen);
+								// console.log("setting innerHTML: " + inner );
+
+
+								nextframe.contentWindow.document.body.innerHTML = inner;
+
+								// console.info("RENDERING TEMPLATE : " + screen.template);
 								
 								// contentframe.contentWindow.document.innerHTML = inner;
 							}
@@ -691,40 +792,34 @@
 						var
 							self = player;
 
-						console.info("onPlaylistLoaded!");
+						// console.info("onPlaylistLoaded!");
 					},
 
 
 					onUpdatedPlaylist : function (w) {
 						var
+							item = null,
 							self = player;
-						console.info("onUpdatedPlaylist callback was invoked, this : " + this, this);
-						if (this._rotate) {
-							console.info("_rotate is set");
+
+						item = self._playlist.data.current;
+						if (item) {
+							if (window.data && window.data.templates) {
+								console.info("templates loaded, calling show()");
+								self.show(self._playlist.data.current);
+							}
+							else {
+								console.info("waiting for templates to load");
+								pi.on("templates.loaded", self.show(self._playlist.data.current));
+							}
+
 						}
 						else {
-							console.info("showing : " + self._playlist.data.current, self._playlist.data.current);
-							self.show(self._playlist.data.current);
-
-							console.info("_rotate is NOT set");
+							console.error("no item");
 						}
-
-
-					},
-
-
-					prepareRotation : function () {
-						this._playlist.update();
-						this._rotate = setTimeout(this.rotatePlaylist, this._nextrotation - Date.now());
-					},
-
-					rotatePlaylist : function () {
-						var
-							self = player;
-
-						self._rotate = null;
+						// console.info("_rotate is NOT set, duration : " + item.duration);
 
 					},
+
 
 					sendMessage: function(msg, domain) {
 						var
@@ -740,7 +835,7 @@
 							for (var i = 0; i < this._frames.length; i++) {
 								iframe = this._frames[i];
 								if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
-									console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
+									// console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
 
 									iframe.contentWindow.postMessage(msg, domain);
 								}
@@ -750,7 +845,7 @@
 
 					onFrameMessage: function(e) {
 						// on reply from iframe
-						console.log("iframe says: " + e, e);
+						// console.log("iframe says: " + e, e);
 					}
 
 			}; // player
@@ -758,8 +853,26 @@
 		// listen for messages posted to our window
 		window.addEventListener('message', player.onFrameMessage, false);
 
-		// let's go
-		player.start();
+		function onTemplatesLoaded(json) {
+			var
+				data,
+				json = json || null;
+
+			if (json) {
+				data = JSON.parse(json) || null;
+
+				if (data && data.files && data.files.length) {
+					if (!window.data) {
+						window.data = {};
+					}
+					window.data.templates = data.files;
+					pi.events.trigger("templates.loaded");
+					player.start();
+				}
+			}
+		};
+
+		pi.xhr.get("templates.php", onTemplatesLoaded);
 
 	});
 

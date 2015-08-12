@@ -62,7 +62,7 @@
 				<label for="title">Title</label>
 				<input type="text" width="32" id="form-screen-editor-title" name="title" value="{{title}}" required />
 				<label for="duration">Duration</label>
-				<input type="number" width="10" id="form-screen-editor-duration" name="duration" value="{{duration}}" min="1" max="300" required />
+				<input type="number" width="10" id="form-screen-editor-duration" name="duration" value="{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}" min="1" max="300" required />
 				<label for="score">Score</label>
 				<input type="number" width="10" id="form-screen-editor-score" name="score" value="{{score}}" min="1" max="6" required  />
 				<label for="tags">Tags</label>
@@ -148,7 +148,7 @@
 
 	<!--  template for screen list items -->
 	<script id="screen-list-item-template" type="text/template">
-		<span class="screen-list-item" draggable="true" data-id="{{id}}" onclick="editScreen('{{id}}')" onDragstart="onDragStart(this);">{{title}}</span>
+		<span class="screen-list-item" draggable="true" data-id="{{id}}" onclick="editScreen('{{id}}')" onDragstart="onDragStart(this);" onDragend="onDragEnd(this);">{{title}}</span>
 	</script>
 
 
@@ -156,12 +156,13 @@
 	<script id="playlist-current-template" type="text/template">
 		<div class="section-title">Now playing</div>
 			<ul>
-				<li id="item-0" class="item playing" data-uuid="{{uuid}}">{{title}} 
+				<li id="item-current" class="item playing" data-id="{{id}}" data-uuid="{{uuid}}">{{title}} 
 					<span class="ingress">{{ingress}}</span>
 					{{#hashtag}}
 						<span class="hashtag">{{hashtag}}</span>
 					{{/hashtag}}
-					<span class="duration">{{duration}}</span>
+					<span class="duration" style="width:120px;margin-left:2px;overflow:hidden;">{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}</span>
+					<span class="current-menu" title="Play next slide in show" onclick="nextSlide();">GO TO NEXT SLIDE</span>
 				</li>
 			</ul>
 	</script>
@@ -170,14 +171,14 @@
 		<div class="section-title">Queued</div>
 			<ul>
 			{{#.}}
+				{{#id}}
 				<li id="item-{{id}}" class="item" data-uuid="{{uuid}}">{{title}} 
 					<span class="ingress">{{ingress}}</span>
-					{{#hashtag}}
-						<span class="hashtag">{{hashtag}}</span>
-					{{/hashtag}}
-					<span class="duration">{{duration}}</span>
-					<span class="duration">DELETE</span>
+					<span class="item-menu" title="Remove from queue" onclick="deleteItem('{{id}}', '{{uuid}}');">×</span>
+					<span class="duration">{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}</span>
+					<span class="current-menu" title="Play next slide in show" onclick="nextSlide();">GO TO NEXT SLIDE</span>
 				</li>
+				{{/id}}
 			{{/.}}
 			</ul>
 	</script>
@@ -186,6 +187,7 @@
 		<div class="section-title">Next Items <span id="next-duration" class="queue-total"></span></div>
 			<ul>
 			{{#.}}
+				{{#id}}
 				<li id="item-{{id}}" class="item" data-uuid="{{uuid}}">
 					<span class="title" onclick="editScreen('{{id}}');" title="Click to Edit">{{title}}</span>
 					<span class="ingress">{{ingress}}</span>
@@ -193,10 +195,21 @@
 						<span class="hashtag">{{hashtag}}</span>
 					{{/hashtag}}
 					<span class="item-menu" title="Delete" onclick="deleteItem('{{id}}', '{{uuid}}');">×</span>
-					<span class="duration" contenteditable="true" title="Click to Edit">{{duration}}</span>
-					<span class="item-menu" title="Play Next" onclick="playNext('{{id}}', '{{uuid}}');">PLAY</span>
+					<span class="duration" contenteditable="true" title="Click to Edit">{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}</span>
+					<span class="current-menu" title="Play next slide in show" onclick="nextSlide();">GO TO NEXT SLIDE</span>
+					<span class="item-menu" title="Play Next" onclick="playNext('{{id}}', '{{uuid}}');">PLAY NEXT</span>
 					<span class="item-menu" title="Add to Queue" onclick="addToQueue('{{id}}', '{{uuid}}');">QUEUE</span>
 				</li>
+				{{/id}}
 			{{/.}}
 			</ul>
+	</script>
+
+
+	<script id="debug-template" type="text/template">
+		<span>REPLY:</span>
+			{{#.}}
+				<div class="debug-line">{{.}}</div>
+			{{/.}}
+			<br>
 	</script>

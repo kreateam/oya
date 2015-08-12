@@ -3,7 +3,6 @@
 
 	define('JSON_FILE',  __DIR__ . '/data/instagram-liked.json');
 
-
 	$userId = "1819276172";
 	$clientId = "833295ad243c4e71aef70011b62084fa";
 	$clientSecret = "e074c2379dd7421dbd27f4e699a2f41e";

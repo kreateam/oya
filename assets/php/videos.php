@@ -63,7 +63,7 @@
 		$file['filetime'] = filemtime($filename);
 
 		$file['tallscreen'] = $baseUri . basename($filename);
-		$file['widescreen'] = $baseUri . str_replace("512x704_", "672x384_", basename($filename));
+		$file['widescreen'] = $baseUri . str_replace("448x768_", "672x384_", basename($filename));
 
 		$file['uri'] = $file[$which];
 		$file['id'] = count($reply['videos']);

@@ -481,8 +481,14 @@
 		}
 
 		.item .ingress {
+			display: inline-block;
 			font-family: roboto, sans-serif;
 			color: #999;
+			width: auto;
+			max-width: 400px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 			font-style: italic;
 			font-weight: 100;
 		}
@@ -500,6 +506,23 @@
 			margin-right: 6px;
 		}
 
+		.current-menu {
+			display: none;
+			font-family: 'Roboto', sans-serif;
+			float: right;
+			color: #aaa;
+			font-size: 80%;
+			/*line-height: 29px;*/
+			margin-top: 2px;
+			margin-left: 12px;
+			margin-right: 6px;
+		}
+
+		.current-menu:hover {
+			font-weight: 400;
+			color: #eee;
+		}
+
 		.item-menu:hover {
 			font-weight: 400;
 			color: #eee;
@@ -510,6 +533,9 @@
 			visibility: hidden;
 		}
 
+		.item.playing .current-menu {
+			display: inline-block;
+		}
 
 		.coming-up {
 			margin-left 	: 2.5em;
@@ -615,7 +641,7 @@
 		}
 
 		#toolbar.active {
-			height: 20em;
+			height: 22em;
 		}
 
 		#toolbar .closebutton {
@@ -624,6 +650,10 @@
 			/*font-weight: 400;*/
 			cursor: pointer;
 			font-size: 100%;
+		}
+
+		section.dragover .section-title {
+			font-size: 150%;
 		}
 
 
@@ -768,6 +798,7 @@
     }
 
 		var
+			debug = document.getElementById("debug"),
 			screens = document.getElementsByClassName("screen"),
 			keynum, key;
 
@@ -809,6 +840,16 @@
 				}
 				else {
 					screens[1].style.opacity = 0;
+				}
+				break;
+			case "D" : 
+				if (debug) {
+					if (debug.style.opacity != 0 ) {
+						debug.style.opacity = 0;
+					}
+					else {
+						debug.style.opacity = 0.6;
+					}
 				}
 				break;
 	    case "Z":
@@ -927,7 +968,7 @@
 				<section id="current">
 					<div id="now-playing" class="section-title">Now playing</div>
 					<ul>
-						<li id="item-0" class="item playing">Weather - today<span class="duration">2:45</span></li>
+						<!-- <li id="item-0" class="item playing">Weather - today<span class="duration">2:45</span></li> -->
 					</ul>
 				</section>
 
@@ -994,6 +1035,23 @@
 	  opacity: 1;
 	  visibility: visible;
 	}
+
+	#debug {
+		text-align: left;
+		font-family: monospace;
+		font-size: 12px;
+		background: #272822;
+		color: #f8f8f2;
+		position: absolute;
+		display: block;
+		bottom: 0;
+		overflow-y: scroll;
+		opacity: 0;
+		z-index: 5001;
+		cursor: none;
+		pointer-events:none;
+	}
+
 </style>
 
 
@@ -1009,22 +1067,55 @@
 					</ul>
 				</section>
 
+<div id="debug"></div>
 <script>
+
+
+	function addDebugText(arr) {
+		var
+			debugTmpl = document.getElementById("debug-template").innerHTML,
+			debug = document.getElementById("debug");
+
+		if (!pi.isArray(arr)) {
+			console.error("param is not an array");
+			return false;
+		}
+		else {
+			debug.innerHTML = Mustache.render(debugTmpl, arr) + debug.innerHTML;
+		}
+	}
 
 
 
 	function addScreenToQueue(e) {
+		var
+			id = null,
+			element = null;
+
 		if (window.data && window.data.dragging) {
-			console.info("Add to Queue : " + window.data.dragging, window.data.dragging);
+			// console.info("Add to Queue : " + window.data.dragging, window.data.dragging);
+			element = window.data.dragging;
+			if (element.hasAttribute("data-id")) {
+				id = parseInt(element.getAttribute("data-id"), 10);
+				addToQueue(id);
+			}
+			else {
+				console.error("Item does not have an id!");
+			}
 			window.data.dragging = null;
+		}
+		else {
+			console.error("window.data.dragging is not set!");
 		}
 
 		if (e.stopPropagation) {
 			e.stopPropagation();
 		}
+
+
+
 		// "this" is now the droptarget
 		return false;
-
 	}
 
 	/**
@@ -1032,14 +1123,32 @@
 	 * @param {[type]} event [description]
 	 */
 	function addScreenToNext(e) {
+		var
+			id = null,
+			element = null;
+
 		if (window.data && window.data.dragging) {
-			console.info("Add to Next : " + window.data.dragging, window.data.dragging);
+			// console.info("Add to Next : " + window.data.dragging, window.data.dragging);
+			element = window.data.dragging;
+			if (element.hasAttribute("data-id")) {
+				id = parseInt(element.getAttribute("data-id"), 10);
+				addToNext(id);
+			}
+			else {
+				console.error("Item does not have an id!");
+			}
 			window.data.dragging = null;
+		}
+		else {
+			console.error("window.data.dragging is not set!");
 		}
 
 		if (e.stopPropagation) {
 			e.stopPropagation();
 		}
+
+
+
 		// "this" is now the droptarget
 		return false;
 	}
@@ -1052,13 +1161,42 @@
 	}
 
 
+	function onDragEnd() {
+		var
+			queueReference = document.getElementById("queue"),
+			nextReference = document.getElementById("next-items");
+
+		queueReference.classList.remove("dragover");
+		nextReference.classList.remove("dragover");		
+	}
+
 
 	function onDragOver(e) {
+		var
+			id = null,
+			queueReference = document.getElementById("queue"),
+			nextReference = document.getElementById("next-items");
 		if (e.preventDefault) {
 			e.preventDefault();
 		}
 		e.dataTransfer.dropEffect = "copy";
 		e.dataTransfer.effectAllowed = "copy";
+
+		if (this && this.hasAttribute("id")) {
+			id = this.getAttribute("id");
+			if (id == "queue") {
+				queueReference.classList.add("dragover");
+				nextReference.classList.remove("dragover");
+			}
+			else if (id == "next-items") {
+				queueReference.classList.remove("dragover");
+				nextReference.classList.add("dragover");
+			}
+			else {
+				queueReference.classList.remove("dragover");
+				nextReference.classList.remove("dragover");
+			}
+		}
 		return false;
 	}
 
@@ -1072,10 +1210,12 @@
 		nextReference = document.getElementById("next-items");
 
 	if (queueReference) {
+		// dragend and dragstart is assigned in HTML template
 		queueReference.addEventListener("drop", addScreenToQueue);
 		queueReference.addEventListener("dragover", onDragOver);
 	}
 	if (nextReference) {
+		// dragend and dragstart is assigned in HTML template
 		nextReference.addEventListener("drop", addScreenToNext);
 		nextReference.addEventListener("dragover", onDragOver);
 	}
@@ -1088,41 +1228,174 @@
 	 */	
 	
 	function deleteItem(id, uuid) {
-		if (confirm("Delete item " + id + "?")) {
-			console.info("Requested deletion of item " + id + ", " + uuid);		
+		if (!confirm("Delete item " + id + "?")) {
+			// console.info("Item deletion aborted : " + id + ", " + uuid);
+			return false;
 		}
-		else {
-			console.info("Aborted deletion of item " + id + ", " + uuid);		
-		}
+		// console.info("Requested deletion of item " + id + ", " + uuid);		
+
+		var
+			data = {
+				action: "delete",
+				id : id,
+				uuid: uuid
+		};
+		pi.xhr.post('assets/php/playlist.php', data, function(json) {
+			var
+				self = window.playlist,
+				_data = null;
+
+			try {
+				_data = JSON.parse(json);
+				if (_data['playlist'] && _data['status'] && _data['status'] == "ok") {
+					if (!window.data) {
+						window.data = {};
+					}
+					// console.info("deleteItem() NEW playlist loaded: " + self._loaded, _data.playlist);
+
+					window.data.playlist = self.processItems(_data.playlist);
+					window.playlist.setInfo(_data['playlist']['info']);
+					// console.info("calling self.render()");
+					self.render();
+				}
+			}
+			catch (e) {
+				console.error(e);
+			}
+		}, console.error);
+
 	}
 
 	function playNext(id, uuid) {
-		console.info("Requested playnext: " + id + ", " + uuid);
+		var
+			data = {
+				action: "playnext",
+				id : id,
+				uuid: uuid
+		}
+		pi.xhr.post('assets/php/playlist.php', data, function(json) {
+			var
+				self = window.playlist,
+				_data = null;
+
+			try {
+				_data = JSON.parse(json);
+				if (_data['playlist'] && _data['status'] && _data['status'] == "ok") {
+					if (!window.data) {
+						window.data = {};
+					}
+					// console.info("playNext() NEW playlist loaded: " + self._loaded, _data.playlist);
+
+					window.data.playlist = self.processItems(_data.playlist);
+					window.playlist.setInfo(_data['info']);
+					// console.info("calling self.render()");
+					self.render();
+				}				
+			}
+			catch (e) {
+				console.error(e);
+			}
+		}, console.error);
 	}
+
 
 	function addToQueue(id, uuid) {
-		console.info("Requested queue addition of item " + id + ", " + uuid);
+		var
+			self = window.playlist,
+			data = {
+				action: "addtoqueue",
+				id : id,
+				uuid: uuid
+		};
+		pi.xhr.post('assets/php/playlist.php', data, function(json) {
+			var
+				_data = null;
+
+			try {
+				_data = JSON.parse(json);
+				if (_data['playlist'] && _data['status'] && _data['status'] == "ok") {
+					if (!window.data) {
+						window.data = {};
+					}
+					// console.info("AddToQueue() NEW playlist loaded: " + self._loaded, _data.playlist);
+
+					window.data.playlist = self.processItems(_data.playlist);
+					window.playlist.setInfo(_data['info']);
+					// console.info("calling self.render()");
+					self.render();
+				}				
+			}
+			catch (e) {
+				console.error(e);
+			}
+		}, console.error);
+		// console.info("Requested queue addition of item " + id + ", " + uuid);
 	}
 
+
+ 
+	function addToNext(id, uuid) {
+		var
+			self = window.playlist,
+			data = {
+				action: "addtonext",
+				id : id,
+				uuid: uuid
+		};
+		pi.xhr.post('assets/php/playlist.php', data, function(json) {
+			var
+				_data = null;
+
+			try {
+				_data = JSON.parse(json);
+				if (_data['playlist'] && _data['status'] && _data['status'] == "ok") {
+					if (!window.data) {
+						window.data = {};
+					}
+					// console.info("AddToNext() NEW playlist loaded: " + self._loaded, _data.playlist);
+
+					window.data.playlist = self.processItems(_data.playlist);
+					window.playlist.setInfo(_data['info']);
+					// console.info("calling self.render()");
+					self.render();
+				}				
+			}
+			catch (e) {
+				console.error(e);
+			}
+		}, console.error);
+		// console.info("Requested queue addition of item " + id + ", " + uuid);
+	}
 
 
 	/* playlist and stuff */
 
 	document.addEventListener("DOMContentLoaded", function() {
-		var
-			playlist = {
+
+			window.playlist = {
 				updated : 0,
 				_data : null,
+				_owner : null,
+				info : null,
 				_loaded : false,
+				paused : false,
 
 				onupdate : function() {
-					console.info("playlist updated!")
+					// console.info("playlist updated!")
 				},
 
 				update : function() {
 					var
 						self = playlist;
 					pi.xhr.get("assets/php/playlist.php", self.onload, console.error);
+				},
+
+				setInfo : function (info) {
+					if (!!info) {
+						window.playlist.info = info;
+						console.log("window.data.playlist.info : " + window.data.playlist.info, window.data.playlist.info);
+						window.data.playlist.info = info;
+					}
 				},
 
 				processItem : function(item) {
@@ -1152,6 +1425,11 @@
 						self = playlist;
 					// json
 					// debugger;
+					// console.info(list);
+
+					if (list['DEBUG']) {
+						addDebugText(list['DEBUG']);
+					}
 					if (list && list.current && typeof list.current.data == "string") {
 						var processed = self.processItem(list.current);
 						if (processed) {
@@ -1194,7 +1472,8 @@
 								console.info("playlist loaded: " + self._loaded, _data.playlist);
 
 								window.data.playlist = self.processItems(_data.playlist);
-								console.info("calling self.render()");
+								window.playlist.setInfo(_data['info']);
+								// console.info("calling self.render()");
 								self.render();
 							}
 						}
@@ -1239,16 +1518,31 @@
 						// console.info("Ready to render : " + playlist, playlist);
 					}
 					if (current && currentTmpl) {
-						// console.info("rendering current : " + playlist.current, playlist.current);
 						current.innerHTML = Mustache.render(currentTmpl, playlist.current);
+						// console.info("rendering current : " + playlist.current, playlist.current);
 					}
 					if (queue && queueTmpl) {
 						if (playlist.queue && playlist.queue.length) {
 							queue.innerHTML = Mustache.render(queueTmpl, playlist.queue);
 							// console.info("rendering queue : ", playlist.queue);
 						}
+						else if (typeof playlist.queue == "object" && typeof playlist.queue.length == "undefined") {	
+							var 
+								arr = [];
+							for (var idx in playlist.queue) {
+								if (typeof parseInt(idx, 10) == "number") {
+									arr.push(playlist.queue[idx]);
+								}
+								else {
+									// console.info("skipping : " + idx);
+								}
+							}
+							playlist.queue = arr;
+							queue.innerHTML = Mustache.render(queueTmpl, playlist.queue);
+						}
 						else {
-							console.info("queue is empty : ", playlist.queue);
+							queue.innerHTML = Mustache.render(queueTmpl, playlist.queue);
+							// console.info("queue is empty : ", playlist.queue);
 						}
 					}
 					if (next && nextTmpl) {
@@ -1256,8 +1550,22 @@
 							// console.info("rendering next-items: ", playlist.next);
 							next.innerHTML = Mustache.render(nextTmpl, playlist.next);
 						}
+						else if (typeof playlist.next == "object" && typeof playlist.next.length == "undefined") {	
+							var 
+								arr = [];
+							for (var idx in playlist.next) {
+								if (typeof parseInt(idx, 10) == "number") {
+									arr.push(playlist.next[idx]);
+								}
+								else {
+									// console.info("skipping : " + idx);
+								}
+							}
+							playlist.next = arr;
+							next.innerHTML = Mustache.render(nextTmpl, playlist.next);
+						}
 						else {
-							console.info("next-items is empty : ", playlist.next);
+							// console.info("next-items is empty : ", playlist.next.length);
 						}
 					}
 					return false;
@@ -1269,8 +1577,7 @@
 			playlist.load(null, playlist.onload, pi.log);
 
 
-			var 
-				player = {
+				window.player = {
 					_frames 	: document.querySelectorAll("iframe.screen"),
 					_playlist : playlist,
 					_created 	: Date.now(),
@@ -1581,7 +1888,7 @@
 
 	</div>
 
-	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="512" height="704" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
 	<iframe id="screen2" class="screen" scrolling="no" src="player.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
 
 	<script type="text/javascript">
@@ -1633,7 +1940,7 @@
 			var
 				preview = window.data.preview;
 
-			console.info("previewItem : " + previewItem, previewItem);
+			// console.info("previewItem : " + previewItem, previewItem);
 			if (!preview.initial.src1) {
 				alert("error : no previous src for preview screens");
 				return false;
@@ -1737,7 +2044,7 @@
 		}
 
 		function onStatusTextUpdate(e) {
-			console.info("onStatusTextUpdate");
+			// console.info("onStatusTextUpdate");
 			onFieldsetChange(e);
 		}
 
@@ -1803,7 +2110,7 @@
 			var
 				url = "assets/php/screens.php";
 
-			console.info("getting screens...");
+			// console.info("getting screens...");
 			pi.xhr.get(url, function(json) {
 				var
 					data = null;
@@ -1833,7 +2140,7 @@
 							}
 						}
 						window.data.screens = data.screens;
-						console.info("updating screen list afte reload");
+						// console.info("updating screen list afte reload");
 						updateScreenList();
 					}
 				}
@@ -1990,7 +2297,7 @@
 
 			screen = getScreen(index);
 			tpl = screen['filename'] ? screen['filename'] : null;
-			console.info("editing screen: " + index, screen);
+			// console.info("editing screen: " + index, screen);
 
 			var
 				tmpl = getTemplate(tpl),
@@ -2054,7 +2361,7 @@
       }
       
       enterPreviewMode(tmpl, data);
-      console.info("updating previews!!!!");
+      // console.info("updating previews!!!!");
       updatePreviews(data);
 
       if (titleField && titleField instanceof HTMLInputElement) {
@@ -2156,7 +2463,7 @@
 	    				span = document.createElement("span"),
 	    				preview = document.getElementById("screen-preview");
 
-	    				console.info("reloading screens!");
+	    				// console.info("reloading screens!");
 	    				reloadScreens();
     			}
     			catch(e) {
@@ -2217,7 +2524,7 @@
 	      submit.addEventListener("click", onScreenSave);    	
       }
       enterPreviewMode(tmpl, data);
-      console.info("updating previews!!!!");
+      // console.info("updating previews!!!!");
       updatePreviews(data);
 
       if (titleField && titleField instanceof HTMLInputElement) {
@@ -2313,9 +2620,9 @@
 				}
 			}
 			else {
-				console.info("No templates!");
+				// console.info("No templates!");
 			}
-			console.info("returning NULL");
+			// console.info("returning NULL");
 			return null;
 		}
 
@@ -2335,16 +2642,16 @@
 							return template.form
 						}
 						else {
-							console.info("returning empty string");
+							// console.info("returning empty string");
 							return "";
 						}
 					}
 				}
 			}
 			else {
-				console.info("No templates!");
+				// console.info("No templates!");
 			}
-			console.info("returning NULL");
+			// console.info("returning NULL");
 			return null;
 		}
 
@@ -2529,7 +2836,7 @@
 				console.error("That image has already been added!");
 				return false;
 			}
-			console.info("adding image now");
+			// console.info("adding image now");
 
 			if (resp.name && resp.type && resp.uri && resp.uuid && resp.filename) {
 				// copy
@@ -2543,7 +2850,7 @@
 				image.title = resp.title || image.name;
 				image.description = resp.description || "";
 				image.tags = resp.tags || "";
-				console.info("pushing");
+				// console.info("pushing");
 				window.data.images.unshift(image);
 				if (image.uuid) {
 					setScreenImage(image.uuid);
@@ -2570,9 +2877,9 @@
 				console.log("Changing " + screenForm.value + " => ");
 				screenForm.value = image.uri;
 				console.log("to => " + screenForm.value);
-				console.info("found image: " + image, image);
+				// console.info("found image: " + image, image);
 				hideImageSelector();
-				console.info("fieldSetChange!!!!");
+				// console.info("fieldSetChange!!!!");
 				if (fieldset) {
 					onFieldsetChange.call(fieldset);
 				}
@@ -2582,7 +2889,7 @@
 			}
 
 
-			console.info("Setting screen image: " + id);
+			// console.info("Setting screen image: " + id);
 		}
 
 
@@ -2591,7 +2898,7 @@
 				selector = document.getElementById("imageselector");
 
 			if (imageselector) {
-				console.info("showing imageselector");
+				// console.info("showing imageselector");
 				imageselector.classList.add("active");
 				updateScreenImages();
 			}
@@ -2623,11 +2930,11 @@
 				return false;
 			}
 			else {
-				console.info("Escaping from instrumentScreenImageSelector()");
+				// console.info("Escaping from instrumentScreenImageSelector()");
 				return false;
 			}
 
-			console.info("instrumenting screenImageSelector");
+			// console.info("instrumenting screenImageSelector");
 			imageSearch.addEventListener("input", function(e) {
 				if (this && this.value) {
 					result = fuzzyMatchImages(this.value);
@@ -2839,7 +3146,7 @@
     		if (this.status == 200) {
     			status.textContent = "Success.";
 	  			status.className = "status";
-    			console.info("Success!");
+    			// console.info("Success!");
     			// console.log("response: " + this.responseText);
     			hideModal();
   				try {
@@ -2851,7 +3158,7 @@
 
 	    			// new image ?
 	    			if (!findImage(response.uuid)) {
-	    				console.info("unshifting uploaded Image");
+	    				// console.info("unshifting uploaded Image");
 							addUploadedImage(response);
 	 	    			// window.data.images.push(response);
 	    			}
@@ -2941,7 +3248,7 @@
 								filename = file.name;
 							}
 
-							console.info("Adding uploaded image");
+							// console.info("Adding uploaded image");
 							// addUploadedImage(resp);
 
 							if (images && images.length) {
@@ -2969,7 +3276,7 @@
 				      	titleField = document.getElementById("form-image-editor-title");
 
 				      submit.addEventListener("click", onImageSave);
-				      console.info("updating previews!!!!");
+				      // console.info("updating previews!!!!");
 				      updatePreviews(data);
 
 				      if (titleField && titleField instanceof HTMLInputElement) {
@@ -3030,7 +3337,7 @@
 			  		alert("File is too large ( > " + window.data.settings['MAX_UPLOAD_SIZE'] + ' bytes');
 			  		return false;
 			  	}
-			  	console.info("Uploading file, " + file.size + " bytes");
+			  	// console.info("Uploading file, " + file.size + " bytes");
 			  }
 
 		  	if (progress) {
@@ -3325,7 +3632,7 @@
 				artist  = document.getElementById(scene + "-artist"),
 
 				// set clock forwards by n weeks
-				now 		= new Date(Date.now() + (7 * 24 * 60 * 60 * 1000)),
+				now 		= new Date(Date.now()),
 				days, hours, minutes,
 				remainingDays 		= scene ? document.getElementById(scene + "-days") : document.getElementById("amfiet-days"),
 				remainingHours 		= scene ? document.getElementById(scene + "-hours") : document.getElementById("amfiet-hours"),
@@ -3511,7 +3818,7 @@
 				scene 	= scene || null,
 				program = program || null,
 				result 	= null,
-				dummyDate = dummyDate || new Date(Date.now() + (1 * 7 * 24 * 60 * 60 * 1000)),
+				dummyDate = dummyDate || new Date(Date.now()),
 				earliest 	= Date(0),
 				concert 	= { artist : null, when : null};
 
@@ -3560,6 +3867,39 @@
 		currentItem = document.querySelectorAll(".item.playing")[0];
 
 	// console.log("data : " + data, data);
+
+	function nextSlide() {
+		var
+			self = window.playlist,
+			data = {
+				action: "rotate"
+		};
+		pi.xhr.post('assets/php/playlist.php', data, function(json) {
+			var
+				_data = null;
+
+			try {
+				_data = JSON.parse(json);
+				if (_data['playlist'] && _data['status'] && _data['status'] == "ok") {
+					if (!window.data) {
+						window.data = {};
+					}
+					if (_data['DEBUG'] && _data['DEBUG'].length) {
+						// console.info(_data['DEBUG']);
+					}
+					// console.info("paused NEW playlist loaded: " + self._loaded, _data.playlist);
+
+					window.data.playlist = self.processItems(_data.playlist);
+					window.playlist.setInfo(_data['info']);
+					// console.info("calling self.render()");
+					self.render();
+				}
+			}
+			catch (e) {
+				console.error(e);
+			}
+		}, console.error);
+	}
 
 
 	function rotatePlaylist() {
@@ -3643,7 +3983,7 @@
 					}
 					else {
 						console.log("rotatePlaylist()");
-						rotatePlaylist();
+						// rotatePlaylist();
 					}
 				}
 				seconds--;
@@ -3651,6 +3991,10 @@
 				return pi.strPad(minutes, 1, "0", true) + ":" + pi.strPad(seconds, 2, "0", true);
 			};
 
+		if (window.data.playlist && window.data.playlist.info && window.data.playlist.info.paused === true) {
+			console.info("paused");
+			return;
+		}
 
 		if (currentItem && currentItem.length) {
 			item = currentItem[0];
@@ -3931,13 +4275,13 @@
 
 							console.log("response : ", JSON.stringify(resp));
 							console.log("image[0] : ", JSON.stringify(window.data.images[0]));
-							console.info("Adding uploaded image to globals");
+							// console.info("Adding uploaded image to globals");
 							addUploadedImage(resp);
 
 				      image.src 					= resp.dataUri;
 				      image.className 		= "zoomInDown";
 				      if (window.data && window.data.session) {
-				      	console.info("setting currentImage : " + resp.uri);
+				      	// console.info("setting currentImage : " + resp.uri);
 				      	window.data.session.currentImage = resp.uri;
 
 				      }
@@ -3968,7 +4312,7 @@
 			  		alert("File is too large ( > " + window.data.settings['MAX_UPLOAD_SIZE'] + ' bytes');
 			  		return false;
 			  	}
-			  	console.info("Uploading file, " + file.size + " bytes");
+			  	// console.info("Uploading file, " + file.size + " bytes");
 			  }
 
 		  	if (progress) {
@@ -4018,7 +4362,7 @@
 			imageselector = document.getElementById("imageselector");
 
 		if (this == imageselector) {
-			console.info("DO HIDE!");
+			// console.info("DO HIDE!");
 		}
 		else {
 			// console.log("do NOT hide, this : " + this, this);
@@ -4040,7 +4384,7 @@
 			playqueue = document.getElementById("playqueue");
 
 		if (toolbar && playqueue) {
-			console.info("Blurring...");
+			// console.info("Blurring...");
 			toolbar.classList.add("blur");
 			playqueue.classList.add("blur");
 		}
@@ -4072,7 +4416,7 @@
 		if (figure) {
 
 			modal.classList.add("active");
-			console.info("calling blurBackground()");
+			// console.info("calling blurBackground()");
 			blurBackground();
 			setTimeout(function() {
 				modal.classList.add("showing");
@@ -4237,7 +4581,7 @@
 					instadiv.appendChild(insta);
 				}
 				else {
-					console.info("Skipping type : " + arr[i]['type']);
+					// console.info("Skipping type : " + arr[i]['type']);
 				}
 			}
 		}

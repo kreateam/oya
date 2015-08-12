@@ -247,7 +247,7 @@
 		@media (max-width: 600px) {
 
 			section.content {
-				height: 569px;
+				height: 633px;
 			}
 
 			footer {
@@ -298,15 +298,6 @@
 
 </head>
 <body>
-	<header id="header">
-		<!-- The centered div ("title") needs to be after the floats, in the HTML -->
-		<div id="clock" class="clock"></div>
-		<div id="weather" class="weather"><img id="symbol" class="symbol" src="assets/img/sym/svg/01d.svg" width="50" height="50"><span id="temperature" class="temperature"></span></div>
-		<div class="title">
-			<img src="assets/img/osloby-hvit.png" height="75">
-		</div>
-	</header>
-
 	<section class="content">
 		<ul></ul>
 		<pre>
@@ -316,10 +307,6 @@
 		</pre>
 		
 	</section>
-	<footer id="footer">
-		Les mer på osloby.no/oya
-	</footer>
-
 
 	<script id="weather-template" type="text/template">
 		<div><strong>{{fromStr}} - {{toStr}}</strong>
@@ -339,9 +326,7 @@
 			forecast 		= <?php print(json_encode($weather)); ?>,
 			section 		= document.getElementsByClassName("content")[0],
 			currentTime = null,
-			clock 			= document.getElementById("clock"),
-			weather 		= document.getElementById("weather"),
-			temperature = document.getElementById("temperature");
+			weather 		= document.getElementById("weather");
 
 
 		/**
@@ -465,14 +450,6 @@
 				element = document.createElement("li");
 				element.className = "period";
 
-				if (!tempSet) {
-					// console.log("Updating temperature: " + chunk.temperature + "&deg;", chunk);
-
-					temperature.innerHTML = chunk.temperature + "&deg;";
-					symbol.style.visibility = "visible";
-					symbol.src = "assets/img/sym/svg/" + chunk.symbol + ".svg";
-					tempSet = true;
-				}
 
 				element.innerHTML = Mustache.render(template, chunk);
 				section.appendChild(element);
@@ -486,11 +463,9 @@
 
 
 		// initial update from data
-		updateTime();
 		updateWeather();
 
 		// update at intervals
-		setInterval(updateTime, 5000);
 		setInterval(updateWeather, 60000);
 
 	});
