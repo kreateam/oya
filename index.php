@@ -17,6 +17,7 @@
 	<style type="text/css">
 
 		html, body {
+			background: #272822;
 			color: #000;
 			margin: 0;
 			padding: 0;
@@ -28,7 +29,7 @@
 
 		iframe {
 			border: solid 16px rgba(38,188,244,0.5);
-			background: none repeat scroll 0% 0% transparent; 
+			background: none repeat scroll 0% 0% #fff; 
 			/*width: 100%;*/
 		}
 
@@ -47,9 +48,8 @@
 	</header>
 
 	<section class="content">
-		<iframe scrolling="no" src="weather.php" width="512" height="704"></iframe>
-		<iframe scrolling="no" src="weather.php" width="672" height="384"></iframe>
-
+		<iframe scrolling="no" src="player.php" width="448" height="768"></iframe>
+		<iframe scrolling="no" src="player.php" width="672" height="384"></iframe>
 	</section>
 
 

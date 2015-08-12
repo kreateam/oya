@@ -232,7 +232,7 @@
 </head>
 <body>
 	<section class="content">
-
+		insta
 	</section>
 
 	<script id="instagram-template" type="text/template">

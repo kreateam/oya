@@ -71,8 +71,8 @@
 			left: 0;
 			border: none;
 			/* fill container */
-			-webkit-transform-origin: top center;
-				transform-origin: top center;
+			-webkit-transform-origin: top left;
+				transform-origin: top left;
 			
 /*			
 		for 2560x1600
@@ -84,12 +84,13 @@
 		for 1920x1080 
 	*/
 
-			-webkit-transform: scale(2.5,2.5);
-							transform: scale(2.5,2.5);
+
+
+			-webkit-transform: scale(2.5,2.734375);
+							transform: scale(2.5,2.734375);
 		}
 
 		#contentframe {
-
 		}
 
 	</style>
@@ -119,6 +120,25 @@
   // Initial execution if needed
   doOnOrientationChange();
 
+
+  /**
+   * scale to fullscren @load
+   */
+  // window.addEventListener("load", function() {
+  // 	var
+  // 		scaleX, scaleY,
+  // 		iframe = document.getElementById("contentframe");
+
+  // 	scaleX = screen.width/iframe.width;
+  // 	console.log("iframe.width: " + iframe.width);
+  // 	scaleY = screen.height/iframe.height;
+  // 	console.log("iframe.height: " + iframe.height);
+
+  // 	iframe.style.transform = "scale(" + scaleX + ", " + scaleY + ")";
+
+  // 	console.log("onload: " + screen.width + "x" + screen.height);
+
+  // });
 
 </script>
 

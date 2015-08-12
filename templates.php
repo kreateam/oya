@@ -6,7 +6,7 @@
 
 	define('TEMPLATE_DIR', __DIR__ . '/assets/php/data/templates');
 	define('TEMPLATEFILE', __DIR__ . '/assets/php/data/templates.json');
-	define('UPDATE_INTERVAL', 10); // in seconds
+	define('UPDATE_INTERVAL', 1); // in seconds
 
 	if (!file_exists(TEMPLATE_DIR)) {
 		if (!mkdir(TEMPLATE_DIR)) {

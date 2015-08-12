@@ -641,7 +641,7 @@
 		}
 
 		#toolbar.active {
-			height: 22em;
+			height: 18em;
 		}
 
 		#toolbar .closebutton {
@@ -3580,6 +3580,8 @@
 		function setNextScene(scene) {
 			var
 				header1, header2,
+				screen1 = document.getElementById("screen1"),
+				screen2 = document.getElementById("screen2"),
 				div, otherdiv,
 				scene = scene || "amfiet";
 
@@ -3591,11 +3593,19 @@
 				otherdiv = document.getElementById("vindfruen");
 				header1 = document.getElementById("vindfruen-header");
 				header2 = document.getElementById("amfiet-header");
+				if (screen1.style.opacity < 1) {
+					screen1.style.opacity = 1;
+					screen2.style.opacity = 0.1;
+				}
 			}
 			else {
 				otherdiv = document.getElementById("amfiet");
 				header2 = document.getElementById("vindfruen-header");
 				header1 = document.getElementById("amfiet-header");
+				if (screen2.style.opacity < 1) {
+					screen2.style.opacity = 1;
+					screen1.style.opacity = 0.1;
+				}
 			}
 
 			div.classList.add("next");

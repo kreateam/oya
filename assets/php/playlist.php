@@ -302,7 +302,7 @@
 		if ($next) {
 			$playlist['info']['rotated'] = floor(1000* microtime(true));
 			if (isset($playlist['current'])) {
-				array_push($playlist['history'], $playlist['current']);
+				array_push($playlist['next'], $playlist['current']);
 			}
 			if (count($playlist['history']) > 30) {
 				array_shift($playlist['history']);

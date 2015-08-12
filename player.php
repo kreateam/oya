@@ -164,7 +164,7 @@
 
 
 		footer {
-			/*padding 				: 6px 10px 4px;*/
+			padding 				: 6px 10px 4px;
 			text-align 			: center;
 			color 					: #fff;
 			height 					: 45px;
@@ -201,7 +201,7 @@
 		@media (max-width: 600px) {
 
 			footer {
-				padding-top: 12px;
+				padding-top: 4px;
 				height: 60px;
 			}
 			section.content {
@@ -300,6 +300,11 @@
 	</section>
 <script type="text/javascript">
 
+	function reloadPlayer () {
+		console.info("reloadPlayer");
+		// document.body.innerHTML = document.body.innerHTML;
+		location.reload();
+	}
 
 
 	function resetStatusText() {
@@ -314,7 +319,7 @@
 
 		/** @todo Maybe check that footer is showing, and maybe scroll text that is too long */
 		if (typeof txt == "string") {
-			statusbar.textContent = txt;
+			// statusbar.textContent = txt;
 		}
 	}
 
@@ -325,8 +330,10 @@
 			header	= document.getElementById("header"),
 			footer	= document.getElementById("footer");
 
+		console.info("entering fullscreen");
 		if (window.player.fullscreen === true) {
-			return false;
+			console.info("aborting");		
+			// return false;
 		}
 
 		container.classList.add("fullscreen");
@@ -373,6 +380,7 @@
   doOnOrientationChange();
 
 
+
 	function loadVideo(id, onready) {
 		var
 			container = document.getElementById("content"),
@@ -398,17 +406,23 @@
 
 			if (data) {
 				enterFullscreen();
+				console.log("entering fullscreen mode");
 				video.src = encodeURIComponent(data.uri);
 				video.style.display = "block";
+				video.style.background = "transparent";
+				video.style.opacity = 0;
 				video.style.position = "absolute";
 				video.style.top = 0;
 
 				// there should only be 1 video at a time
 				video.id = "video";
 				video.setAttribute("preload", true);
+				// video.setAttribute("autoplay", true);
 				video.addEventListener("canplay", onready);
+				video.addEventListener("ended", reloadPlayer);
 				video.addEventListener("canplaythrough", function (e) {
-					// console.info("Event : " + e.type);
+					video.style.opacity = 1;
+					video.play();
 				});
 
 				container.appendChild(video);
@@ -495,7 +509,7 @@
 		
 			window.playlist = {
 
-				UPDATE_INTERVAL : 10000,
+				UPDATE_INTERVAL : 5000,
 
 				_rotated	: 0,
 				_owner 		: null,
@@ -574,8 +588,16 @@
 							/**
 							 * For now
 							 */
-							 	location.reload();
-								return;
+
+							 reloadPlayer();
+							 if (window.data && window.data.videos) {
+							 		var
+							 			videoCount = window.data.videos;
+							 		if (window.data.videos && window.data.videos.length) {
+										// loadVideo(Math.round(Math.random() * window.data.videos.length));
+							 		}
+							 }
+
 							console.info("data.info.rotated : " + data.info.rotated + ", self._rotated : " + self._rotated);
 
 							self._data = data;
