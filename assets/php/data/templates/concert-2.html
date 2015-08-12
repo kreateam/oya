@@ -1,30 +1,35 @@
 <link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+<link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css">
 <style type="text/css">
 
 	/* template styles */
-	.food {
+	.concert {
 		position: relative;
 		font-family: "ClanOT", sans-serif;
 		font-size : 32px;
 	}
 
-	.food .image {
-		/*margin: 4px;*/
-		width: -webkit-calc(100%-8px);
-		width: calc(100%-8px);
-		height: 12em;
+	.concert .image {
+		width: 100%;
+		margin: auto auto;
 	}
 
 
 	#text {
-		background: transparent;
-		font-size: 48px;
+		font-size: 24px;
 		text-align: center;
 	}
 
+	.concert .imagecontainer {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		margin: 8px;
+		height: 348px;
+	}
 
 
-	.food .hashtag {
+	.concert .hashtag {
 		margin-left: 10px;
 		margin-bottom: 0;
 	}
@@ -32,21 +37,21 @@
 
 	#title {
 		background-color: #e6007e;
-		padding: 8px 10px 4px;
+		padding: 2px 10px 2px;
 	}
 
-	.food .title {
+	.concert .title {
 		color: #fff;
-		margin-top: 32px;
+		margin-top: 10px;
 		text-align: center;
 		font-weight: 800;
 	}
 
-	.food .score{
+	.concert .score {
 		/*color: rgba(38,188,244,1);*/
 		position: absolute;
-		top: 2.8em;
-		right: 0.5em;
+		top: 144px;
+		right: 44px;
 		color: #fff;
 		font-size: 96px;
 		z-index: 1;
@@ -54,36 +59,22 @@
 
 
 
-	.food .ingress {
-		margin-top: 12px;
-		font-size: 40px;
-		font-weight: 600;
-	}
 
 
-	.food .imagecontainer {
-		display: block;
-		overflow: hidden;
-		margin: 8px; 
-		width: -webkit-calc(100%-20px); 
-		width: calc(100%-20px); 
-		height: 328px;
-	}
-
-	.food .score-medallion {
+	.concert .score-medallion {
 		color: #fff;
 		width: 100px;
 		height: 100px;
-		text-align: center;
 		background: #e6007e;
 		font-size: 80px;
 		font-weight: 800;
 		border-radius: 50%;
 		border: none;
-		/*padding-top: 18px;*/
+		padding-top: 18px;
+		padding-left: 12px;
 	}
 
-	.food .score-numerator {
+	.concert .score-numerator {
 		color: #fff;
 		background: transparent;
 		opacity: 0.66;
@@ -93,56 +84,53 @@
 
 	}
 
-@media (min-width: 602px) {
-	.food .title {
-		font-size: 40px;
-	}
+	/* widescreen */
+	@media (min-width: 600px) {
 
-	.food .ingress {
-		margin-left: 16px;
-		font-size: 40px;
-		/*line-height: 90%;*/
-	}
+		.concert .ingress {
+			/*position: absolute;*/
+						/*margin-top: 16px;*/
+			margin-left: 16px;
+			font-size: 24px;
+		}
 
-	.food .score {
-		/*color: rgba(38,188,244,1);*/
-		top: 120px;
-		font-size: 36px;
-		left: 244px;
-		z-index: 5000;
-	}
-	.food .score-medallion {
-		width: 72px;
-		height: 72px;
-		font-size: 64px;
-	}
 
-	#text {
-		position: absolute;
-		top: 0;
-		right: 0;
-		/*font-size: 44px;*/
-		margin-top: 16px;
-		width: 45%;
+		#text {
+			margin-top: 8px;
+		}
+		.concert .image {
+			width: 100%
+		}
+	
+		.concert .imagecontainer {
+			width: 50%;
+			height: 249px;
+		}
+
+		.concert .hashtag {
+			position: absolute;
+			right: 10px;
+		}
+
+		#text {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin-top: 0;
+			width: 45%;
+		}
 	}
-
-}
-
 
 
 </style>
 
-<div class="food">
+
+<div class="concert">
 	{{#image}}
-		<div class="imagecontainer">
+		<div class="imagecontainer" style="text-align: center;">
 			<img src="{{image}}" class="image">
 		</div>
 	{{/image}}
-	{{#score}}
-	<div class="score">
-		<div class="score-medallion">{{score}}</div>
-	</div>
-	{{/score}}
 	<div id="text">
 		<div class="title">
 			<span id="title" {{#titleSize}} style="font-size: {{titleSize}}%;" {{/titleSize}} >{{title}}</span>
@@ -150,7 +138,7 @@
 		<div class="ingress" {{#ingressSize}} style="font-size: {{ingressSize}}%;" {{/ingressSize}} >
 			{{ingress}}
 		</div>
-	<div>
+	</div>
 </div>
 
 <script type="text/javascript">

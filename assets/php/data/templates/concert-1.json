@@ -1,0 +1,14 @@
+{
+	"title" : "Artist",
+	"titleSize" : 100,
+	"ingress" : "anmeldelse",
+	"ingressSize" : 100,
+	"name" : "Konsert",
+	"variant" : "anmeldelse",
+	"tags" : "anmeldelse",
+	"description" : null,
+	"duration": 30,
+	"score" : 0,
+	"hashtag": "#oya2015",
+	"frequency" : 10
+}

@@ -1,0 +1,12 @@
+{
+	"title" : "Konsert-teaser",
+	"titleSize" : 100,
+	"ingress" : "",
+	"ingressSize" : 100,
+	"name" : "Konsert",
+	"variant" : "teaser",
+	"tags" : "",
+	"description" : null,
+	"duration": 45,
+	"frequency" : 10
+}

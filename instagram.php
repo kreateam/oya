@@ -11,113 +11,7 @@
 <!doctype html>
 <html>
 <head>
-	<script>
-
-		/**
-		 * Window error handler. Suppresses error messages, and re-routes to server.
-		 * Aborts server reporting if localStorage is not available for counting number of errors.
-		 * Stops reporting after counting 1000 errors.
-		 * 
-		 * NB! Should always be included directly after opening <head> tag
-		 * 
-		 * @param  {str} 	msg  	Error message
-		 * @param  {str} 	url  	Url of the file
-		 * @param  {int} 	line 	The line where the error occurred
-		 * 
-		 * @return {true} 			Always returns true, in order to suppress any visible error messages
-		 */
-		window.onerror = function(msg, url, line) {
-
-			// trap any further errors
-	    try {
-		    var
-		    	errorCount = null,
-
-		    	/**
-		    	 * Property	Description
-						appCodeName	Returns the code name of the browser
-						appName	Returns the name of the browser
-						appVersion	Returns the version information of the browser
-						cookieEnabled	Determines whether cookies are enabled in the browser
-						geolocation	Returns a Geolocation object that can be used to locate the user's position
-						language	Returns the language of the browser
-						onLine	Determines whether the browser is online
-						platform	Returns for which platform the browser is compiled
-						product	Returns the engine name of the browser
-						userAgent	Returns the user-agent header sent by the browser to the server
-		    	 */
-
-		    	data 	= { 
-		    						navigator : { 
-		    							userAgent 		: navigator.userAgent,
-		    							appCodeName 	: navigator.appCodeName,
-		    							appVersion 		: navigator.appVersion,
-		    							cookieEnabled : navigator.cookieEnabled,
-		    							language 			: navigator.language,
-		    							product 			: navigator.product,
-		    							platform 			: navigator.platform,
-		    						}
-		    					},
-
-		    	xhr 	= new XMLHttpRequest(); // var
-
-
-				if (typeof(Storage) != "undefined") {
-
-					// returns null if non-existent
-					errorCount = localStorage.getItem("errorCount");
-					if (errorCount === null) {
-						errorCount = 1;
-					}
-					else {
-
-						// convert to integer, and increment
-						errorCount = parseInt(errorCount, 10);
-						errorCount++;
-					}
-
-					// update localStorage with current value
-					localStorage.setItem("errorCount", errorCount);
-				}
-
-				if (errorCount === null) {
-
-					console.error("No localStorage!");
-					console.error("msg : " + msg);
-					console.error("url : " + url);
-					console.error("line : " + line);
-
-					// don't send to server unless we know we are counting errors locally
-					return true;
-				}
-
-				// collect relevant data
-		    data.msg 	= msg;
-		    data.url 	= url;
-		    data.line = line;
-		    data.location = window.location;
-
-				console.error("Sending to server: " + msg);
-
-		    // send it to the errorlogger
-		    // we don't care if it gets there, that's not our problem
-		    xhr.open('GET', "assets/php/errorlog.php?error=" + JSON.stringify(data), true);
-				xhr.send();
-	    }
-	    catch(e) {
-
-        // suppress any additional error
-        // 
-        // aaand maybe we should do a refresh...
-        // that would have to be only if we know for certain that we can 
-        // write to localStorage, otherwise infinite error loops would be possible
-				console.error("error in window.onerror: " + e);
-	    }
-
-	    // and damn the torpedoes
-	    return true;
-		};
-	</script>
+	<!--script type="text/javascript" src="assets/js/errorhandler.js"></script-->
 
 	<meta charset="utf-8">
 	<title>Øya 2015</title>
@@ -203,6 +97,8 @@
 
 
 		section.content {
+			position: relative;
+			background: #000;
 			max-height: 618px;
 			overflow 	: hidden;
 		}
@@ -227,82 +123,131 @@
 		}
 
 
+		.container {
+			position: relative;
+			text-align: left;
+			width: 100%;
+			height: 224px;
+		}
+
+
+		.image {
+	    display: inline-block;
+	    background: red;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 224px;
+	    height: 224px;
+		}
+
 	</style>
 
 </head>
 <body>
-	<section class="content">
-		insta
-	</section>
-
-	<script id="instagram-template" type="text/template">
-		<div><strong>{{fromStr}} - {{toStr}}</strong>
-			<img src="assets/img/sym/svg/{{symbol}}.svg" width="45" height="45" style="margin: -2px">
-			<span class="temperature">{{temperature}}&deg;</span>
-			<span class="precipitation">{{precipitation}} mm</span>
-			<span class="windSpeed">{{windSpeed}} m/s</span>
+	<section id="instagram" class="content">
+		<div class="container">
+			<div class="message"></div>
+			<div class="image"></div>
 		</div>
-	</script>
+		<div class="container">
+			<div class="image"></div>
+			<div class="image"></div>
+		</div>
+		
+	</section>
 
 	<script type="text/javascript">
 
 
-	document.addEventListener("DOMContentLoaded", function () {
-
+	function updateInstagramList() {
 		var
-			section 		= document.getElementsByClassName("content")[0],
-			currentTime = null,
-			instagram 		= document.getElementById("instagram");
+			arr, insta, item, 
+			imageCount = 5,
+			instas = document.getElementsByClassName("image");
 
-
-		function render(data) {
-			var
-				data = data || null;
-			if (data === null) {
-				console.error("No param in render()");
-				return false;
-			}
-			console.info("Ready to render: ", data);
-		}
-
-
-
-		function onLoaded(json) {
-			var
-				data,
-				json = json || null;
-
-			if (json === null) {
-				console.error("No param in onLoaded()");
-				return false;
-			}
-			try {
-				data = JSON.parse(json);
-				console.log("data: " + data, data);
-				if (!window.data) {
-					window.data = {};
+		imageCount = instas.length;
+		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
+			arr = window.data.instagram.liked;
+			for (var i = 0; (i < arr.length && i < imageCount); i++) {
+				if (arr[i]['type'] == "image") {
+					// instadiv.appendChild(insta);
+					item = instas[i];
+					if (item) {
+						console.info("found one: " + i);
+						console.info("url " + "url('" + arr[i]['images']['standard_resolution']['url'] + "');");
+						item.style.backgroundImage = arr[i]['images']['standard_resolution']['url'];
+					}
+					else {
+						console.info("not found: " + i);
+					}
 				}
-				window.data.instagram = data;
-				render(data);
-			}
-			catch (e) {
-				console.error(e);
+				else {
+					// console.info("Skipping type : " + arr[i]['type']);
+				}
 			}
 		}
+	}
 
 
-		function updateInstagram() {
-			pi.xhr.get("assets/php/instagram.php", onLoaded, console.error);
 
-			// result = pi.strPad(now.getUTCHours(), 2, "0", true) + ":" + pi.strPad(now.getUTCMinutes(), 2, "0", true);
+	function updateInstagram(data) {
+		var
+			data = data || null;
 
+		if (!window.data) {
+			window.data = {};
 		}
+		if (!window.data.instagram) {
+			window.data.instagram = {};
+		}
+		window.data.instagram.liked = [];
+		if (data && data.length) {
+			for (var i = 0; i < data.length; i++) {
+				window.data.instagram.liked.push(data[i]);
+				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
+			}
+			updateInstagramList();
+		}
+		else {
+			console.error("No data in updateInstagram()!");
+		}
+	}
 
 
-		// initial update from data
-		updateInstagram();
+	document.addEventListener("DOMContentLoaded", function () {
+		var
+			instaurl = "assets/php/instagram.php",
+			instadiv = document.getElementById("instagram");
+
+		pi.xhr.get(instaurl, function (json) {
+			var
+				data = null,
+				json = json || null;
+			if (json && json.length) {
+
+				try {
+					data = JSON.parse(json);
+					if (data && data.meta && data.meta.code) {
+						if (data.meta.code == 200) {
+							updateInstagram(data.data);
+						}
+						else {
+							console.error("Error loading instagram data, code : " + data.meta.code);
+						}
+					}
+				}
+				catch(e) {
+					console.error("Error : " + e);
+				}
+			}
+			else {
+				console.error("!json &&json.length");
+			}
+
+		}, console.error);
 
 	});
+
 
 	</script>
 </body>
