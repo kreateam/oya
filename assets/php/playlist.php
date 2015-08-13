@@ -56,7 +56,7 @@
 			$reply['DEBUG'][] = "playlist updated : " . $playlist['info']['updated'];
 			$lastupdated = $playlist['info']['updated'];
 		}
-		if ($playlist['info']['lastrotation'] === null) {
+		if ($playlist['info']['updated'] === null) {
 			$playlist['info']['updated'] = $now;
 		}
 

@@ -20,11 +20,9 @@
 		<legend>New</legend>
 		<label for="title">Title</label>
 		<input type="text" width="32" id="form-screen-title" name="title" value="{{title}}" required style="width:80%;" />
-		<input type="number" width="4" id="form-screen-title-size" name="titleSize" value="{{titleSize}}" min="5" max="1200" step="5" required style="width:auto" /> %
 
 		<label for="ingress">DisplayText</label>
 		<textarea type="textarea" width="40" id="form-screen-ingress" name="ingress" rows="3" style="width:75%;" >{{ingress}}</textarea>
-		<input type="number" width="4" id="form-screen-ingress-size" name="ingressSize" value="{{ingressSize}}" min="5" max="1200" step="5" required  style="width:auto" /> %
 
 		<label for="duration">Duration</label>
 		<input type="number" width="10" id="form-screen-duration" name="duration" value="{{duration}}" min="0" max="300" step="5" required />

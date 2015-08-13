@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
-<link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css">
+<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css"> -->
 <style type="text/css">
 
 	/* template styles */
@@ -7,137 +7,122 @@
 		position: relative;
 		font-family: "ClanOT", sans-serif;
 		font-size : 32px;
+		height: 100%;
 	}
 
-	.concert .image {
+
+	.box {
+	  width: 100%;
+	  height: 50%;
+	  margin: auto;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	}
+
+	.box > img {
+	  position: relative;
+	  z-index: -1;
+	  top: 50%;
+	  left: 50%;
+	  width: 100%;
+	  -webkit-transform: translate(-50%, -50%);
+	      -ms-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);
+	}
+	.box > img.max {
+	  width: auto;
+	  height: 100%;
+	}
+
+	#table {
 		width: 100%;
-		margin: auto auto;
-	}
-
-
-	#text {
-		font-size: 24px;
-		text-align: center;
-	}
-
-	.concert .imagecontainer {
-		position: relative;
-		display: block;
-		overflow: hidden;
-		margin: 8px;
-		height: 348px;
-	}
-
-
-	.concert .hashtag {
-		margin-left: 10px;
-		margin-bottom: 0;
-	}
-
-
-	#title {
-		background-color: #e6007e;
-		padding: 2px 10px 2px;
+		height: 100%;
+		vertical-align: middle;
 	}
 
 	.concert .title {
+		background-color: #e6007e;
+		padding: 8px 10px 4px;
 		color: #fff;
-		margin-top: 10px;
 		text-align: center;
 		font-weight: 800;
 	}
 
-	.concert .score {
-		/*color: rgba(38,188,244,1);*/
+	#image {
 		position: absolute;
-		top: 144px;
-		right: 44px;
-		color: #fff;
-		font-size: 96px;
-		z-index: 1;
+		margin: 0;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50%;
+		overflow: hidden;
 	}
 
-
-
-
-
-	.concert .score-medallion {
-		color: #fff;
-		width: 100px;
-		height: 100px;
-		background: #e6007e;
-		font-size: 80px;
-		font-weight: 800;
-		border-radius: 50%;
-		border: none;
-		padding-top: 18px;
-		padding-left: 12px;
+	#text {
+		position: absolute;
+		/*text-align: center;*/
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		height: 50%;
 	}
 
-	.concert .score-numerator {
-		color: #fff;
-		background: transparent;
-		opacity: 0.66;
-		font-size: 66%;
-		font-weight: 500;
-		border-radius: 0;
+	@media (min-width: 602px) {
 
-	}
-
-	/* widescreen */
-	@media (min-width: 600px) {
-
-		.concert .ingress {
-			/*position: absolute;*/
-						/*margin-top: 16px;*/
-			margin-left: 16px;
-			font-size: 24px;
-		}
-
-
-		#text {
-			margin-top: 8px;
-		}
-		.concert .image {
-			width: 100%
-		}
-	
-		.concert .imagecontainer {
+		#image {
 			width: 50%;
-			height: 249px;
+			height: 100%;
+			overflow: hidden;
 		}
-
-		.concert .hashtag {
-			position: absolute;
-			right: 10px;
-		}
-
 		#text {
-			position: absolute;
-			top: 0;
-			right: 0;
-			margin-top: 0;
-			width: 45%;
+			width: 50%;
+			height: 100%;
 		}
+		#table {
+			font-size: 28px;
+		}
+
 	}
 
-
+	@media (max-width: 601px) {
+		#image {
+			width: 100%;
+			height: 50%;
+			overflow: hidden;
+		}
+		#text {
+			width: 100%;
+			height: 50%;
+		}
+		#table {
+			font-size: 36px;
+		}
+	}
 </style>
 
 
 <div class="concert">
-	{{#image}}
-		<div class="imagecontainer" style="text-align: center;">
-			<img src="{{image}}" class="image">
-		</div>
-	{{/image}}
+	<div id="image">
+		{{#image}}
+			<div class="box">
+				<img src="{{image}}" class="image">
+			</div>
+		{{/image}}
+	</div>
 	<div id="text">
-		<div class="title">
-			<span id="title" {{#titleSize}} style="font-size: {{titleSize}}%;" {{/titleSize}} >{{title}}</span>
-		</div>
-		<div class="ingress" {{#ingressSize}} style="font-size: {{ingressSize}}%;" {{/ingressSize}} >
-			{{ingress}}
-		</div>
+		<table id="table">
+			<tr>
+				<td align="center" valign="middle"><span class="title">{{title}}</span></td>
+			</tr>
+			<tr>
+				<td align="center" valign="top" class="ingress">{{ingress}}</td>
+			</tr>
+		</table>
 	</div>
 </div>
 

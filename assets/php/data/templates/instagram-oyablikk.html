@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
-<link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css">
+<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css"> -->
 <style type="text/css">
 
 	/* template styles */
@@ -7,155 +7,233 @@
 		position: relative;
 		font-family: "ClanOT", sans-serif;
 		font-size : 32px;
-	}
-
-	.instagram .image {
-		/*margin: 4px;*/
-		width: -webkit-calc(100%-8px);
-		width: calc(100%-8px);
-		height: 12em;
+		height: 100%;
 	}
 
 
-	/* widescreen */
-	@media (min-width: 672px) {
-		.instagram .image {
-			/*margin: 4px;*/
-			width: -webkit-calc(100%-8px);
-			width: calc(100%-8px);
-			height: 7em;
-		}
-
-		#text {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 45%;
-		}
+	.box {
+	  width: 100%;
+	  height: 50%;
+	  margin: auto;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
 	}
 
+	.box > img {
+	  position: relative;
+	  z-index: -1;
+	  top: 50%;
+	  left: 50%;
+	  width: 100%;
+	  -webkit-transform: translate(-50%, -50%);
+	      -ms-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);
+	}
 
-	.instagram .hashtag {
+	.box > img.max {
+	  width: auto;
+	  height: 100%;
+	}
+
+	#table {
+		width: 100%;
+		height: 100%;
+		vertical-align: middle;
 	}
 
 	.instagram .title {
-		margin-top: 8px;
-		font-weight: 800;
+		background-color: #e6007e;
+		padding: 0 10px;
+		color: #fff;
+		text-align: center;
+		font-weight: 900;
 	}
 
 	.instagram .score{
 		/*color: rgba(38,188,244,1);*/
+    font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;
+
 		position: absolute;
-		top: 3.66em;
-		right: 0.5em;
-		color: #EC008C;
-		font-family: 'aPi';
-		font-size: 96px;
-		z-index: 1;
+		right: 32px;
+		bottom: 32px;
+		color: #fff;
+		z-index: 5001;
 	}
 
-@media (min-width: 672px) {
-	.instagram .score{
-		/*color: rgba(38,188,244,1);*/
-		top: 2.37em;
-		font-size: 72px;
-		left: 3.25em;
-	}
-
-}
-
-
-	.instagram .ingress {
-		font-size: 80%;
-		font-weight: 600;
-	}
-
-	.instagram .profile_picture {
-		width: 40px;
-		height: 40px;
-		border: 1px solid #cccfd0;
+	.instagram .score-medallion {
+		color: #fff;
+		width: 64px;
+		height: 64px;
+		text-align: center;
+		background: #e6007e;
+		font-size: 52px;
+		font-weight: 900;
 		border-radius: 50%;
+		border: none;
+		/*padding-top: 18px;*/
 	}
 
-
-	/* icon font */
-
-	.icon-score-0:before {
-		content: "\30";
-	}
-	.icon-score-1:before {
-		content: "\31";
-	}
-	.icon-score-2:before {
-		content: "\32";
-	}
-	.icon-score-3:before {
-		content: "\33";
-	}
-	.icon-score-4:before {
-		content: "\34";
-	}
-	.icon-score-5:before {
-		content: "\35";
-	}
-	.icon-score-6:before {
-		content: "\36";
+	#image {
+		position: absolute;
+		margin: 0;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50%;
+		overflow: hidden;
 	}
 
+	#text {
+		position: absolute;
+		/*text-align: center;*/
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		height: 50%;
+	}
+
+	@media (min-width: 602px) {
+
+		#image {
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#text {
+			width: 50%;
+			height: 100%;
+		}
+		#table {
+			font-size: 28px;
+		}
+
+	}
+
+	@media (max-width: 601px) {
+		#image {
+			width: 100%;
+			height: 50%;
+			overflow: hidden;
+		}
+		#text {
+			width: 100%;
+			height: 50%;
+		}
+		#table {
+			font-size: 36px;
+		}
+	}
 </style>
 
+
 <div class="instagram">
-	<div class="hashtag" data-name="hashtag">
-		Del dine #apøyablikk
+	<div id="image">
+			<div class="box">
+				<img id="instaimage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALMw9IgAAAEAdFJOU////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wBT9wclAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGHRFWHRTb2Z0d2FyZQBwYWludC5uZXQgNC4wLjVlhTJlAAACTElEQVR4Xu3QMQEAMBADofo3nVr420ECb5zJCmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFss62D9pFRPOZ7V3gAAAAAElFTkSuQmCC" class="image">
+			</div>
 	</div>
-	{{#image}}
-		<img src="{{image}}" class="image">
-	{{/image}}
-	{{#score}}
-	<div class="score">
-		<span class="icon-score-{{score}}"></span>
-	</div>
-	{{/score}}
 	<div id="text">
-		<div class="title">
-			{{title}}
-		</div>
-		<div class="ingress">
-			{{ingress}}
-		</div>
-	<div>
+		<table id="table">
+			<tr>
+
+				<td align="center" valign="middle"><span class="title">{{title}}</span></td>
+			</tr>
+			<tr>
+				<td align="center" valign="top" class="ingress">{{ingress}}</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
-
-<script type="text/template">
-
-
-</script>
-
 <script type="text/javascript">
-	/**
-	 * Communicate with parent through postMessage
-	 */
-
-		var 
-			parent = null,
-
-			onWindowMessage = function(e) {
-		  	console.info("onmessage: " + e.origin);
-		    if (!parent && e.source) {
-		    	parent = e.source;
-		    }
-
-		    // e.data is the string sent by the origin with postMessage.
-		    if(e.data == 'ping') {
-		      e.source.postMessage('pong:'+document.body.scrollHeight+','+document.body.scrollWidth, e.origin);
-		    }
-		    console.log ("e.data:", e.data);
-			};
-
-		window.addEventListener('message', onWindowMessage, false);
 
 
+
+	function updateInstagramList() {
+		var
+			arr, item, 
+			insta = document.getElementById("instaimage"), 
+			imageCount = 5;
+
+		imageCount = instas.length;
+		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
+			arr = window.data.instagram.liked;
+			insta.src = arr[i]['images']['standard_resolution']['url'];
+			insta.alt = arr[i]['caption']['text'];
+			insta.title = insta.alt;
+			insta.style.height = "6em";
+			item.appendChild(insta);
+			console.info("found one: " + i);
+		}
+	}
+
+
+
+	function updateInstagram(data) {
+		var
+			data = data || null;
+
+		if (!window.data) {
+			window.data = {};
+		}
+		if (!window.data.instagram) {
+			window.data.instagram = {};
+		}
+		window.data.instagram.liked = [];
+		if (data && data.length) {
+			for (var i = 0; i < data.length; i++) {
+				window.data.instagram.liked.push(data[i]);
+				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
+			}
+			updateInstagramList();
+		}
+		else {
+			console.error("No data in updateInstagram()!");
+		}
+	}
+
+
+	function startInstagram() {
+		var
+			instaurl = "assets/php/instagram.php",
+			instadiv = document.getElementById("instagram");
+
+		pi.xhr.get(instaurl, function (json) {
+			var
+				data = null,
+				json = json || null;
+			if (json && json.length) {
+
+				try {
+					data = JSON.parse(json);
+					if (data && data.meta && data.meta.code) {
+						if (data.meta.code == 200) {
+							updateInstagram(data.data);
+						}
+						else {
+							console.error("Error loading instagram data, code : " + data.meta.code);
+						}
+					}
+				}
+				catch(e) {
+					console.error("Error : " + e);
+				}
+			}
+			else {
+				console.error("!json &&json.length");
+			}
+
+		}, console.error);
+
+	}
+
+	console.error("startInstagram!");
+	startInstagram();
 </script>
 <!--
 {{#reply}}

@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css"> -->
 <style type="text/css">
 
 	/* template styles */
@@ -6,151 +7,151 @@
 		position: relative;
 		font-family: "ClanOT", sans-serif;
 		font-size : 32px;
-	}
-
-	.food .image {
-		/*margin: 4px;*/
-		width: -webkit-calc(100%-8px);
-		width: calc(100%-8px);
-		height: 12em;
+		height: 100%;
 	}
 
 
-	#text {
-		background: transparent;
-		font-size: 48px;
-		text-align: center;
+	.box {
+	  width: 100%;
+	  height: 50%;
+	  margin: auto;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
 	}
 
-
-
-	.food .hashtag {
-		margin-left: 10px;
-		margin-bottom: 0;
+	.box > img {
+	  position: relative;
+	  z-index: -1;
+	  top: 50%;
+	  left: 50%;
+	  width: 100%;
+	  -webkit-transform: translate(-50%, -50%);
+	      -ms-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);
 	}
 
+	.box > img.max {
+	  width: auto;
+	  height: 100%;
+	}
 
-	#title {
-		background-color: #e6007e;
-		padding: 8px 10px 4px;
+	#table {
+		width: 100%;
+		height: 100%;
+		vertical-align: middle;
 	}
 
 	.food .title {
+		background-color: #e6007e;
+		padding: 0 10px;
 		color: #fff;
-		margin-top: 32px;
 		text-align: center;
-		font-weight: 800;
+		font-weight: 900;
 	}
 
 	.food .score{
 		/*color: rgba(38,188,244,1);*/
+
 		position: absolute;
-		top: 2.8em;
-		right: 0.5em;
+		right: 32px;
+		bottom: 32px;
 		color: #fff;
-		font-size: 96px;
-		z-index: 1;
-	}
-
-
-
-	.food .ingress {
-		margin-top: 12px;
-		font-size: 40px;
-		font-weight: 600;
-	}
-
-
-	.food .imagecontainer {
-		display: block;
-		overflow: hidden;
-		margin: 8px; 
-		width: -webkit-calc(100%-20px); 
-		width: calc(100%-20px); 
-		height: 328px;
+		z-index: 5001;
 	}
 
 	.food .score-medallion {
+    font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;
 		color: #fff;
-		width: 100px;
-		height: 100px;
+		width: 64px;
+		height: 64px;
 		text-align: center;
 		background: #e6007e;
-		font-size: 80px;
-		font-weight: 800;
+		font-size: 52px;
+		font-weight: 900;
 		border-radius: 50%;
 		border: none;
 		/*padding-top: 18px;*/
 	}
 
-	.food .score-numerator {
-		color: #fff;
-		background: transparent;
-		opacity: 0.66;
-		font-size: 66%;
-		font-weight: 500;
-		border-radius: 0;
-
-	}
-
-@media (min-width: 602px) {
-	.food .title {
-		font-size: 40px;
-	}
-
-	.food .ingress {
-		margin-left: 16px;
-		font-size: 40px;
-		/*line-height: 90%;*/
-	}
-
-	.food .score {
-		/*color: rgba(38,188,244,1);*/
-		top: 120px;
-		font-size: 36px;
-		left: 244px;
-		z-index: 5000;
-	}
-	.food .score-medallion {
-		width: 72px;
-		height: 72px;
-		font-size: 64px;
+	#image {
+		position: absolute;
+		margin: 0;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50%;
+		overflow: hidden;
 	}
 
 	#text {
 		position: absolute;
-		top: 0;
+		/*text-align: center;*/
 		right: 0;
-		/*font-size: 44px;*/
-		margin-top: 16px;
-		width: 45%;
+		bottom: 0;
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		height: 50%;
 	}
 
-}
+	@media (min-width: 602px) {
 
+		#image {
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#text {
+			width: 50%;
+			height: 100%;
+		}
+		#table {
+			font-size: 28px;
+		}
 
+	}
 
+	@media (max-width: 601px) {
+		#image {
+			width: 100%;
+			height: 50%;
+			overflow: hidden;
+		}
+		#text {
+			width: 100%;
+			height: 50%;
+		}
+		#table {
+			font-size: 36px;
+		}
+	}
 </style>
 
+
 <div class="food">
-	{{#image}}
-		<div class="imagecontainer">
-			<img src="{{image}}" class="image">
-		</div>
-	{{/image}}
-	{{#score}}
+	<div id="image">
+		{{#image}}
+			<div class="box">
+				<img src="{{image}}" class="image">
+			</div>
+		{{/image}}
 	<div class="score">
 		<div class="score-medallion">{{score}}</div>
 	</div>
-	{{/score}}
+	</div>
 	<div id="text">
-		<div class="title">
-			<span id="title" {{#titleSize}} style="font-size: {{titleSize}}%;" {{/titleSize}} >{{title}}</span>
-		</div>
-		<div class="ingress" {{#ingressSize}} style="font-size: {{ingressSize}}%;" {{/ingressSize}} >
-			{{ingress}}
-		</div>
-	<div>
+		<table id="table">
+			<tr>
+				<td align="center" valign="middle"><span class="title">{{title}}</span></td>
+			</tr>
+			<tr>
+				<td align="center" valign="top" class="ingress">{{ingress}}</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <script type="text/javascript">

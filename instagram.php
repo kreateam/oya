@@ -22,168 +22,209 @@
 	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
 	<style type="text/css">
 
-		html, body {
-			color 			: #000;
-			margin 			: 0;
-			padding 		: 0;
-			font-family : 'ClanOT', sans-serif;
+	html, body {
+		height: 100%;
+		min-height: 100%;
+	}
 
 
-      -webkit-font-smoothing: antialiased;
+	/* template styles */
+	.instagram {
+		position: relative;
+		font-family: "ClanOT", sans-serif;
+		font-size : 32px;
+		height: 100%;
+		min-height: 100%;
+	}
 
-      -webkit-box-sizing: border-box;
-         -moz-box-sizing: border-box;
-              box-sizing: border-box;
 
-     /* Make text non-selectable */
-      -webkit-touch-callout: none;
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none;
+	.box {
+	  width: 100%;
+	  height: 50%;
+	  margin: auto;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	}
 
-      /* don't display caret, use normal mouse cursor when hovering over text */
-      cursor: pointer;
+	.box > img {
+	  position: relative;
+	  z-index: -1;
+	  top: 50%;
+	  left: 50%;
+	  width: 100%;
+	  -webkit-transform: translate(-50%, -50%);
+	      -ms-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);
+	}
+
+	.box > img.max {
+	  width: auto;
+	  height: 100%;
+	}
+
+	#table {
+		width: 100%;
+		height: 100%;
+		vertical-align: middle;
+	}
+
+	.instagram .title {
+		background-color: #e6007e;
+		padding: 0 10px;
+		color: #fff;
+		text-align: center;
+		font-weight: 900;
+	}
+
+	.instagram .score{
+		/*color: rgba(38,188,244,1);*/
+    font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;
+
+		position: absolute;
+		right: 32px;
+		bottom: 32px;
+		color: #fff;
+		z-index: 5001;
+	}
+
+	.instagram .score-medallion {
+		color: #fff;
+		width: 64px;
+		height: 64px;
+		text-align: center;
+		background: #e6007e;
+		font-size: 52px;
+		font-weight: 900;
+		border-radius: 50%;
+		border: none;
+		/*padding-top: 18px;*/
+	}
+
+	#image {
+		position: absolute;
+		margin: 0;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50%;
+		overflow: hidden;
+	}
+
+	#text {
+		color: #fff;
+		position: absolute;
+		background-color: #26BCF4;
+		/*text-align: center;*/
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		height: 50%;
+	}
+
+	@media (min-width: 602px) {
+
+		#image {
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#text {
+			width: 50%;
+			height: 100%;
+		}
+		#table {
 		}
 
-		::-webkit-scrollbar {
-			width: 0;
-		}
+	}
 
-		::-webkit-scrollbar-track {
-			background: none;
-		}
-
-		::-webkit-scrollbar-thumb {
-			background: none;
-		}
-
-		header {
-			font-weight : 700;
-			height 			: 90px;
-			color 			: #fff;
-			min-width 	: 100%;
-			background 	: rgb(38,188,244);
-			background 	: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(38,188,244,1)), color-stop(50%,rgba(38,188,244,1)), color-stop(51%,rgba(0,173,242,1)), color-stop(100%,rgba(0,173,242,1)));
-			background  : -webkit-linear-gradient(top,  rgba(38,188,244,1) 0%,rgba(38,188,244,1) 50%,rgba(0,173,242,1) 51%,rgba(0,173,242,1) 100%);
-			background  : linear-gradient(to bottom,  rgba(38,188,244,1) 0%,rgba(38,188,244,1) 50%,rgba(0,173,242,1) 51%,rgba(0,173,242,1) 100%);
-		}
-
-
-		ul, li {
-			list-style-type: none;
-			list-style: none;
-		}
-
-		li.period {
-			-webkit-animation: period .4s ;
-		}
-
-		header .instagram {
-			float: right;
-		}
-
-
-		header .title {
-			padding 		: 8px;
-			margin-left : auto;
-			margin-right: auto;
-
-			text-align 	: center;
-
-			background-repeat 	: no-repeat;
-			background-position : center center;
-		}
-
-
-		section.content {
-			position: relative;
-			background: #000;
-			max-height: 618px;
-			overflow 	: hidden;
-		}
-
-
-		@media (max-width: 600px) {
-
-			section.content {
-				height: 618px;
-			}
-
-			footer {
-				font-size: 32px;
-			}
-		}
-
-		@media (min-width: 602px) {
-
-			section.content {
-				height: 249px;
-			}
-		}
-
-
-		.container {
-			position: relative;
-			text-align: left;
+	@media (max-width: 601px) {
+		#image {
 			width: 100%;
-			height: 224px;
+			height: 50%;
+			overflow: hidden;
 		}
-
-
-		.image {
-	    display: inline-block;
-	    background: red;
-	    margin-left: auto;
-	    margin-right: auto;
-	    width: 224px;
-	    height: 224px;
+		#text {
+			width: 100%;
+			height: 50%;
 		}
+		#table {
+			font-size: 48px;
+		}
+	}
 
 	</style>
 
 </head>
 <body>
-	<section id="instagram" class="content">
-		<div class="container">
-			<div class="message"></div>
-			<div class="image"></div>
-		</div>
-		<div class="container">
-			<div class="image"></div>
-			<div class="image"></div>
-		</div>
-		
-	</section>
+<div class="instagram">
+	<div id="image">
+			<div class="box">
+				<img id="instaimage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALMw9IgAAAEAdFJOU////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wBT9wclAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGHRFWHRTb2Z0d2FyZQBwYWludC5uZXQgNC4wLjVlhTJlAAACTElEQVR4Xu3QMQEAMBADofo3nVr420ECb5zJCmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFss62D9pFRPOZ7V3gAAAAAElFTkSuQmCC" class="image">
+			</div>
+	</div>
+	<div id="text">
+		<table id="table">
+			<tr>
+
+				<td align="center" valign="middle">DEL DINE<br>#APØYABLIKK</td>
+			</tr>
+		</table>
+	</div>
+</div>
 
 	<script type="text/javascript">
 
 
+
+	function getCounter() {
+		if (typeof(Storage) != "undefined") {
+
+			// returns null if non-existent
+			instaCount = localStorage.getItem("instaCount");
+			if (instaCount === null) {
+				instaCount = 1;
+			}
+			else if (instaCount > 19) {
+				instaCount = 0;
+			}
+			else {
+
+				// convert to integer, and increment
+				instaCount = parseInt(instaCount, 10);
+				instaCount++;
+			}
+
+			// update localStorage with current value
+			localStorage.setItem("instaCount", instaCount);			
+			return instaCount;
+		}
+		else {
+			return math.floor(Math.random() * window.data.instagram.liked.length);
+		}
+
+	}
+
+
+
 	function updateInstagramList() {
 		var
-			arr, insta, item, 
+			url, arr, insta, item,
 			imageCount = 5,
-			instas = document.getElementsByClassName("image");
+			instaCounter = 0,
+			insta = document.getElementById("instaimage");
 
-		imageCount = instas.length;
 		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
 			arr = window.data.instagram.liked;
-			for (var i = 0; (i < arr.length && i < imageCount); i++) {
-				if (arr[i]['type'] == "image") {
-					// instadiv.appendChild(insta);
-					item = instas[i];
-					if (item) {
-						console.info("found one: " + i);
-						console.info("url " + "url('" + arr[i]['images']['standard_resolution']['url'] + "');");
-						item.style.backgroundImage = arr[i]['images']['standard_resolution']['url'];
-					}
-					else {
-						console.info("not found: " + i);
-					}
-				}
-				else {
-					// console.info("Skipping type : " + arr[i]['type']);
-				}
+			instaCounter = getCounter();
+			url = arr[instaCounter % window.data.instagram.liked.length]['images']['standard_resolution']['url'];
+			if(insta) {
+				console.info("Loading insta: " + url);
+				insta.src = url;
 			}
 		}
 	}
@@ -207,6 +248,7 @@
 				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
 			}
 			updateInstagramList();
+			// setInterval(updateInstagramList, 20000);
 		}
 		else {
 			console.error("No data in updateInstagram()!");

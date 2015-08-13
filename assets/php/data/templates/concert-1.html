@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css"> -->
 <style type="text/css">
 
 	/* template styles */
@@ -6,194 +7,253 @@
 		position: relative;
 		font-family: "ClanOT", sans-serif;
 		font-size : 32px;
-	}
-
-	.concert .image {
-		height: 328px;
-		margin: auto auto;
+		height: 100%;
 	}
 
 
-	#text {
-		font-size: 48px;
-		text-align: center;
+	.box {
+	  width: 100%;
+	  height: 50%;
+	  margin: auto;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
 	}
 
-	.concert .imagecontainer {
-		position: absolute;
-		display: block;
-		overflow: hidden;
-		/*margin: 8px; */
-		margin: 0 auto;
-		text-align: center;		
+	.box > img {
+	  position: relative;
+	  z-index: -1;
+	  top: 50%;
+	  left: 50%;
+	  width: 100%;
+	  -webkit-transform: translate(-50%, -50%);
+	      -ms-transform: translate(-50%, -50%);
+	          transform: translate(-50%, -50%);
+	}
+
+	.box > img.max {
+	  width: auto;
+	  height: 100%;
+	}
+
+	#table {
 		width: 100%;
-		/*width: calc(100%-20px); */
-		height: 328px;
-	}
-
-
-
-	.concert .hashtag {
-		margin-left: 10px;
-		margin-bottom: 0;
-	}
-
-
-	#title {
-		background-color: #e6007e;
-		padding: 8px 10px 4px;
+		height: 100%;
+		vertical-align: middle;
 	}
 
 	.concert .title {
+		background-color: #e6007e;
+		padding: 0 10px;
 		color: #fff;
-		margin-top: 12px;
 		text-align: center;
-		font-weight: 800;
+		font-weight: 900;
 	}
 
 	.concert .score{
 		/*color: rgba(38,188,244,1);*/
+    font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;
+
 		position: absolute;
-		top: 250px;
-		right: 24px;
+		right: 32px;
+		bottom: 32px;
 		color: #fff;
-		font-size: 96px;
-		z-index: 1;
-	}
-
-
-
-	.concert .ingress {
-		margin-top: 12px;
-		font-size: 40px;
-		font-weight: 600;
-	}
-
-
-
-	.concert .score-medallion {
-		color: #fff;
-		width: 100px;
-		height: 100px;
-		background: #e6007e;
-		text-align: center;
-		font-size: 88px;
-		font-weight: 900;
-		border-radius: 50%;
-		border: none;
-	}
-
-
-@media (min-width: 602px) {
-	.concert .title {
-		margin-top: 4px;
-		font-size: 40px;
-	}
-
-	.concert .ingress {
-		margin-left: 16px;
-		font-size: 40px;
-	}
-
-	.concert .score {
-		/*color: rgba(38,188,244,1);*/
-		top: 128px;
-		font-size: 36px;
-		left: 250px;
-		z-index: 5000;
-	}
-
-	.concert .score-medallion {
-		width: 72px;
-		height: 72px;
-		font-size: 66px;
 		z-index: 5001;
 	}
 
-	.concert .hashtag {
-		visibility: hidden;
+	.concert .score-medallion {
+		color: #fff;
+		width: 64px;
+		height: 64px;
+		text-align: center;
+		background: #e6007e;
+		font-size: 52px;
+		font-weight: 900;
+		border-radius: 50%;
+		border: none;
+		/*padding-top: 18px;*/
+	}
+
+	#image {
+		position: absolute;
+		margin: 0;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50%;
+		overflow: hidden;
 	}
 
 	#text {
-		margin-top: 12px;
-		text-align: left;
+		position: absolute;
+		/*text-align: center;*/
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		width: 100%;
+		max-width: 100%;
+		height: 50%;
 	}
-}
 
-	/* widescreen */
 	@media (min-width: 602px) {
-		.concert .image {
-			height: 231px;
-		}
-		.concert .imagecontainer {
-			width: 48%;
-		}
 
-		.concert .hashtag {
-			position: absolute;
-			right: 10px;
+		#image {
+			width: 50%;
+			height: 100%;
+			overflow: hidden;
 		}
-
 		#text {
-			position: absolute;
-			top: 0;
-			right: 0;
-			font-size: 44px;
-			margin-top: 16px;
-			width: 48%;
+			width: 50%;
+			height: 100%;
 		}
+		#table {
+			font-size: 28px;
+		}
+
 	}
 
-
-
+	@media (max-width: 601px) {
+		#image {
+			width: 100%;
+			height: 50%;
+			overflow: hidden;
+		}
+		#text {
+			width: 100%;
+			height: 50%;
+		}
+		#table {
+			font-size: 36px;
+		}
+	}
 </style>
 
+
 <div class="concert">
-	{{#image}}
-		<div class="imagecontainer">
-			<img src="{{image}}" class="image">
-		</div>
-	{{/image}}
-	{{#score}}
+	<div id="image">
+		{{#image}}
+			<div class="box">
+				<img src="{{image}}" class="image">
+			</div>
+		{{/image}}
 	<div class="score">
 		<div class="score-medallion">{{score}}</div>
 	</div>
-	{{/score}}
+	</div>
 	<div id="text">
-		<div class="title">
-			<span id="title" {{#titleSize}} style="font-size: {{titleSize}}%;" {{/titleSize}} >{{title}}</span>
-		</div>
-		<div class="ingress" {{#ingressSize}} style="font-size: {{ingressSize}}%;" {{/ingressSize}} >
-			{{ingress}}
-		</div>
+		<table id="table">
+			<tr>
+				<td align="center" valign="middle"><span class="title">{{title}}</span></td>
+			</tr>
+			<tr>
+				<td align="center" valign="top" class="ingress">{{ingress}}</td>
+			</tr>
+		</table>
 	</div>
 </div>
 
-<script type="text/javascript">
-	/**
-	 * Communicate with parent through postMessage
-	 */
-
-		var 
-			parent = null,
-
-			onWindowMessage = function(e) {
-		  	console.info("onmessage: " + e.origin);
-		    if (!parent && e.source) {
-		    	parent = e.source;
-		    }
-
-		    // e.data is the string sent by the origin with postMessage.
-		    if(e.data == 'ping') {
-		      e.source.postMessage('pong:'+document.body.scrollHeight+','+document.body.scrollWidth, e.origin);
-		    }
-		    console.log ("e.data:", e.data);
-			};
-
-		window.addEventListener('message', onWindowMessage, false);
+	<script type="text/javascript">
 
 
-</script>
+	function updateInstagramList() {
+		var
+			arr, insta, item, 
+			imageCount = 5,
+			instas = document.getElementsByClassName("image");
+
+		imageCount = instas.length;
+		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
+			arr = window.data.instagram.liked;
+			for (var i = 0; (i < arr.length && i < imageCount); i++) {
+				if (arr[i]['type'] == "image") {
+					// instadiv.appendChild(insta);
+					item = instas[i];
+					if (item) {
+						insta = document.createElement("img");
+						insta.src = arr[i]['images']['standard_resolution']['url'];
+						insta.alt = arr[i]['caption']['text'];
+						insta.title = insta.alt;
+						insta.style.height = "6em";
+						item.appendChild(insta);
+						console.info("found one: " + i);
+					}
+					else {
+						console.info("not found: " + i);
+					}
+				}
+				else {
+					// console.info("Skipping type : " + arr[i]['type']);
+				}
+			}
+		}
+	}
+
+
+
+	function updateInstagram(data) {
+		var
+			data = data || null;
+
+		if (!window.data) {
+			window.data = {};
+		}
+		if (!window.data.instagram) {
+			window.data.instagram = {};
+		}
+		window.data.instagram.liked = [];
+		if (data && data.length) {
+			for (var i = 0; i < data.length; i++) {
+				window.data.instagram.liked.push(data[i]);
+				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
+			}
+			updateInstagramList();
+		}
+		else {
+			console.error("No data in updateInstagram()!");
+		}
+	}
+
+
+ 	function loadInstagram() {
+		var
+			instaurl = "assets/php/instagram.php",
+			instadiv = document.getElementById("instagram");
+
+		pi.xhr.get(instaurl, function (json) {
+			var
+				data = null,
+				json = json || null;
+			if (json && json.length) {
+
+				try {
+					data = JSON.parse(json);
+					if (data && data.meta && data.meta.code) {
+						if (data.meta.code == 200) {
+							updateInstagram(data.data);
+						}
+						else {
+							console.error("Error loading instagram data, code : " + data.meta.code);
+						}
+					}
+				}
+				catch(e) {
+					console.error("Error : " + e);
+				}
+			}
+			else {
+				console.error("!json &&json.length");
+			}
+
+		}, console.error);
+
+	}
+
+	loadInstagram();
+
+	</script>
+
 <!--
 {{#reply}}
   <ul>
