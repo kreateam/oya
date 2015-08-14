@@ -44,7 +44,7 @@
 
 		html, body {
 			color 			: #000;
-			font-family : 'ClanOT', sans-serif;
+			font-family : 'Clan OT', 'ClanOT', sans-serif;
 			background: transparent;
 
 			/* no scrollbars */

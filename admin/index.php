@@ -154,7 +154,7 @@
 	<style type="text/css">
 
 
-		::-webkit-scrollbar {
+/*		::-webkit-scrollbar {
 		    width: 10px;
 		}
 		 
@@ -167,7 +167,7 @@
 		    border-radius: 10px;
 		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 		}
-
+*/
 		html, body {
 			color: #000;
 			background: rgb(38,188,244);
@@ -176,7 +176,7 @@
 			margin: 0;
 			padding: 0;
 
-			font-family: 'ClanOT', sans-serif;
+			font-family: 'Clan OT', 'ClanOT', sans-serif;
 
 			/* our canonical em */
 	  	font-size: 8px;
@@ -396,7 +396,7 @@
 		.left {
 			float 		: left;
 			width 		: 17%;
-			height 		: 100%;
+			height 		: 3000px;
 			min-height: 100%;			
 
 			padding-right: 8px;
@@ -417,7 +417,7 @@
 		.right {
 			float 		: right;
 			width 		: 17%;
-			height 		: 100%;
+			height 		: 3000px;
 			min-height: 100%;
 
 			padding-left: 8px;
@@ -439,7 +439,7 @@
 			position 	: relative;
 			width 		: 66%;
 			min-height: 100%;
-			height 		: 100%;
+			height 		: 3000px;
 			margin 		: 0;
 			padding 	: 0;
 
@@ -1040,7 +1040,7 @@
 		text-align: left;
 		font-family: monospace;
 		font-size: 12px;
-		background: #272822;
+		/*background: #272822;*/
 		color: #f8f8f2;
 		position: absolute;
 		display: block;
