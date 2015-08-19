@@ -31,7 +31,7 @@
 	/* template styles */
 	.instagram {
 		position: relative;
-		font-family: 'Clan OT', 'ClanOT', sans-serif;
+		font-family: 'ClanOT', sans-serif;
 		font-size : 32px;
 		height: 100%;
 		min-height: 100%;

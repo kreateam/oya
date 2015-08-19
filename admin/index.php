@@ -176,7 +176,7 @@
 			margin: 0;
 			padding: 0;
 
-			font-family: 'Clan OT', 'ClanOT', sans-serif;
+			font-family: 'ClanOT', sans-serif;
 
 			/* our canonical em */
 	  	font-size: 8px;

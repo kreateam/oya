@@ -136,7 +136,7 @@
 			color 			: #000;
 			margin 			: 0;
 			padding 		: 0;
-			font-family : 'Clan OT', 'ClanOT', sans-serif;
+			font-family : 'ClanOT', sans-serif;
 
 
       -webkit-font-smoothing: antialiased;
