@@ -63,6 +63,7 @@
   $reply['title'] = $data['title'];
   $reply['description'] = $data['description'];
 
+  // add object to stunted JSON file
 	file_put_contents(IMAGE_LIBRARY, "\n" . json_encode($data) . ",", FILE_APPEND);
 
 	if (isset($error)) {
