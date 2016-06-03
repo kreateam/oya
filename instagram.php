@@ -16,7 +16,7 @@
 	<meta charset="utf-8">
 	<title>Øya 2015</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
@@ -71,6 +71,10 @@
 		vertical-align: middle;
 	}
 
+	.instagram .heavy {
+		font-weight: 600;
+	}
+
 	.instagram .title {
 		background-color: #e6007e;
 		padding: 0 10px;
@@ -79,9 +83,20 @@
 		font-weight: 900;
 	}
 
-	.instagram .score{
+	.instagram #caption {
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 400;
+		max-height: 128px;
+	}
+
+
+	.instagram .score {
 		/*color: rgba(38,188,244,1);*/
-    font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;
+    /*font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;*/
+    font-family : ClanOT, sans-serif;
+
+
 
 		position: absolute;
 		right: 32px;
@@ -170,8 +185,10 @@
 	<div id="text">
 		<table id="table">
 			<tr>
-
-				<td align="center" valign="middle">DEL DINE<br>#APØYABLIKK</td>
+				<td id="caption" align="center" valign="middle"></td>
+			</tr>
+			<tr>
+				<td align="center" valign="middle">DEL DINE<br><span class="heavy">#APØYABLIKK</span></td>
 			</tr>
 		</table>
 	</div>
@@ -216,6 +233,8 @@
 			url, arr, insta, item,
 			imageCount = 5,
 			instaCounter = 0,
+			caption = document.getElementById("caption"),
+			captionText,
 			insta = document.getElementById("instaimage");
 
 		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
@@ -223,8 +242,12 @@
 			instaCounter = getCounter();
 			url = arr[instaCounter % window.data.instagram.liked.length]['images']['standard_resolution']['url'];
 			if(insta) {
-				console.info("Loading insta: " + url);
+				console.info("Loading insta: " + url, arr[instaCounter % window.data.instagram.liked.length]);
 				insta.src = url;
+				captionText = arr[instaCounter % window.data.instagram.liked.length]['caption']['text'];
+				if (caption && captionText) {
+					caption.textContent = captionText;
+				}
 			}
 		}
 	}

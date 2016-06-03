@@ -11,7 +11,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Øyafestivalen 2015</title>
+	<title>Øyafestivalen 2016</title>
 
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<style type="text/css">

@@ -218,9 +218,9 @@ catch(Exception $e) {
 		    $reply['DEBUG'][] =  $sqlite->lastErrorMsg();
 		  }
 		  if ($sqliteResult) {
-		  		$reply['id'] = $sqlite->lastInsertRowID();
-		  		$reply['status'] = "ok";
-		      $reply['DEBUG'][] = "Created row";
+	  		$reply['id'] = $sqlite->lastInsertRowID();
+	  		$reply['status'] = "ok";
+	      $reply['DEBUG'][] = "Created row";
 		    // when you are done with the result, finalize it
 		    $sqliteResult->finalize();
 		  }

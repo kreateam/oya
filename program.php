@@ -90,9 +90,9 @@
 	</script>
 
 	<meta charset="utf-8">
-	<title>Øyafestivalen 2015</title>
+	<title>Øyafestivalen 2016</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<style type="text/css">
@@ -254,7 +254,7 @@
 		<div id="clock" class="clock"></div>
 		<div id="program" class="program"><img id="symbol" class="symbol" src="assets/img/sym/svg/01d.svg" width="50" height="50"><span id="temperature" class="temperature"></span></div>
 		<div class="title">
-			<img src="assets/img/osloby-hvit.png" height="75">
+			<img src="/cdn/logo/aftenposten-white.svg" height="75">
 		</div>
 	</header>
 

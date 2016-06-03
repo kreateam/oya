@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * Narrowscreen Player for big screens - Øyafestivalen 2015
+	 * Narrowscreen Player for big screens - Øyafestivalen 2016
 	 */
 ?>
 <!doctype html>
@@ -67,6 +67,8 @@
 			display: block;
 			background: #fff;
 			border: none;
+      width: 448px;
+      height: 768px;
 			/* fill container */
 			-webkit-transform-origin: top center;
 				transform-origin: top center;
@@ -90,7 +92,7 @@
 
 </head>
 <body>
-<iframe src="player-insta.php" id="contentframe" class="contentframe" width="448" height="768"></iframe>
+<iframe src="player-insta.php" id="contentframe" class="contentframe"></iframe>
 <script>
   function doOnOrientationChange() {
     switch(window.orientation) 

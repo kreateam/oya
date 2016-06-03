@@ -125,9 +125,9 @@
 	</script>
 
 	<meta charset="utf-8">
-	<title>Øyafestivalen 2015</title>
+	<title>Øyafestivalen 2016</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<style type="text/css">
@@ -275,13 +275,13 @@
 
 		.temperature {
 			font-size: 32px;
+			font-weight: 500;
 			color: rgb(255, 33, 00);
-
 		}
 
 		.windSpeed {
 			color: rgb(00, 33, 255);
-			font-weight: 600;
+			font-weight: 500;
 		}
 
 
@@ -292,6 +292,12 @@
 
 		#temperature {
 			color: #fff;
+		}
+
+
+
+		div.weather-line {
+			margin-left: 3em;
 		}
 
 	</style>
@@ -309,7 +315,7 @@
 	</section>
 
 	<script id="weather-template" type="text/template">
-		<div><strong>{{fromStr}} - {{toStr}}</strong>
+		<div class="weather-line"><strong>{{fromStr}} - {{toStr}}</strong>
 			<img src="assets/img/sym/svg/{{symbol}}.svg" width="45" height="45" style="margin: -2px">
 			<span class="temperature">{{temperature}}&deg;</span>
 			<span class="precipitation">{{precipitation}} mm</span>

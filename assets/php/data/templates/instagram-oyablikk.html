@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 <!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/aPi.css"> -->
 <style type="text/css">
 
@@ -160,7 +160,7 @@
 			insta = document.getElementById("instaimage"), 
 			imageCount = 5;
 
-		imageCount = instas.length;
+		imageCount = instas.length || imageCount;
 		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
 			arr = window.data.instagram.liked;
 			insta.src = arr[i]['images']['standard_resolution']['url'];

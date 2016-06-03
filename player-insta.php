@@ -1,7 +1,7 @@
 <?php
 	
 	/**
-	 * Player for big screens - Øyafestivalen 2015
+	 * Player for big screens - Øyafestivalen 2016
 	 */
 
 
@@ -25,9 +25,9 @@
 
  	<meta charset="utf-8">
 
-	<title>Øyafestivalen 2015</title>
+	<title>Øyafestivalen 2016</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/gtwalsheim.css"> -->
 
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
@@ -73,9 +73,9 @@
 		}
 		else {
 			if (doc && typeof doc.getElementById == "function") {
-				title = doc.getElementById("title");			
-				ingress = doc.getElementById("ingress");			
-				footer = document.getElementById("footer");			
+				title = doc.getElementById("title");
+				ingress = doc.getElementById("ingress");
+				footer = document.getElementById("footer");
 				console.info("Finding title!");
 				console.info("title: ", title);
 				console.info("Finding ingress!");
@@ -108,10 +108,10 @@
 		footer.style.display = 'none';
     footer.style.display = footerDisp;
 
-		console.info("Setting timeout in refreshFonts");
-		setTimeout(function() {
-			doc.body.innerHTML = doc.body.innerHTML;
-		}, 200); // you can play with this timeout to make it as short as possible		
+		// console.info("Setting timeout in refreshFonts");
+		// setTimeout(function() {
+		// 	doc.body.innerHTML = doc.body.innerHTML;
+		// }, 200); // you can play with this timeout to make it as short as possible		
 	}
 
 
@@ -193,10 +193,11 @@
 			height 			: 90px;
 			color 			: #fff;
 			min-width 	: 100%;
-			background 	: rgb(38,188,244);
-			background 	: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(38,188,244,1)), color-stop(50%, rgba(38,188,244,1)), color-stop(51%, rgba(0,173,242,1)), color-stop(100%, rgba(0,173,242,1)));
-			background  : -webkit-linear-gradient(top, rgba(38,188,244,1) 0%, rgba(38,188,244,1) 50%, rgba(0,173,242,1) 51%, rgba(0,173,242,1) 100%);
-			background  : linear-gradient(to bottom, rgba(38,188,244,1) 0%, rgba(38,188,244,1) 50%, rgba(0,173,242,1) 51%, rgba(0,173,242,1) 100%);
+/* 333333 */
+			background 	: rgb(48,48,48);
+			background 	: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(48, 48, 48, 1)), color-stop(50%, rgba(48, 48, 48, 1)), color-stop(51%, rgba(85, 85, 85, 1)), color-stop(100%, rgba(85, 85, 85, 1)));
+			background  : -webkit-linear-gradient(top, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
+			background  : linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
 			overflow 		: hidden;
 
 			-webkit-transition: all .4s ease-out;
@@ -208,7 +209,7 @@
 		}
 
 		header .title {
-			padding 		: 8px;
+			padding 		: 18px;
 			margin-left : auto;
 			margin-right: auto;
 
@@ -385,7 +386,7 @@
 		<div id="clock" class="clock"></div>
 		<div id="weather" class="weather"><img id="symbol" class="symbol" src="" width="50" height="50"><span id="temperature" class="temperature"></span></div>
 		<div class="title">
-			<img src="assets/img/osloby-hvit.png" height="70">
+			<img src="/cdn/logo/aftenposten-white.svg" height="50">
 		</div>
 	</header>
 
@@ -550,7 +551,7 @@
 			if (data) {
 				enterFullscreen();
 				console.log("entering fullscreen mode");
-				video.src = encodeURIComponent(data.uri);
+				video.src = data.uri;
 				video.style.display = "block";
 				video.style.background = "transparent";
 				video.style.opacity = 0;
@@ -591,9 +592,9 @@
 			videos = [],
 			width = window.innerWidth,
 			height = window.innerHeight,
-			url = "assets/php/videolist.php";
+			url = "assets/php/videolist.php?cb=" + (Math.random() * 10000);
 
-			url += "?width=" + width + "&height=" + height;
+			url += "&width=" + width + "&height=" + height;
 
 		// console.info("Getting URL  :" + url);
 		pi.xhr.get(url, function (json) {
@@ -754,7 +755,7 @@
 						else {
 							self._rotated = data.info.rotated;
 
-							console.info("first run, or no update");
+							// console.info("first run, or no update");
 						}
 					}
 					catch (e) {
@@ -767,7 +768,7 @@
 					var
 						self = playlist;
 
-					pi.xhr.get(self.jsonfile, self.onupdate, pi.log);
+					pi.xhr.get(self.jsonfile + "?cb=" + (Math.random()*10000), self.onupdate, pi.log);
 					// console.info("updating playlist..")
 				},
 
@@ -799,7 +800,7 @@
 						list = list || "assets/php/playlist.php";
 
 					// console.info("loading playlist");
-					result = pi.xhr.get(list, callback, onerror);
+					result = pi.xhr.get(list + "?cb=" + (Math.random()*10000), callback, onerror);
 				}
 
 			}; // playlist
@@ -1035,7 +1036,7 @@
 			}
 		};
 
-		pi.xhr.get("templates.php", onTemplatesLoaded);
+		pi.xhr.get("templates.php" + "?cb=" + (Math.random()*10000), onTemplatesLoaded);
 
 	});
 

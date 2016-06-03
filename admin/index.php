@@ -48,7 +48,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Øyafestivalen 2015</title>
+	<title>Øyafestivalen 2016</title>
 
 	<!-- redirect requests, one dir up -->
 	<base href="../">
@@ -56,13 +56,13 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
-	<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
+	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
 	<!-- needed for buttons.js -->
 	<script src="/html5/assets/js/jquery.min.js"></script>
 	<script src="assets/js/mustache.js"></script>
@@ -357,7 +357,7 @@
 
 		#playqueue {
 			-webkit-transition: -webkit-filter 0.5s ease-out; 
-	 				transition: -webkit-filter 0.5s ease-out; /* easeOutExpo */			
+	 						transition: -webkit-filter 0.5s ease-out; /* easeOutExpo */			
 		}
 
 
@@ -1387,7 +1387,7 @@
 				update : function() {
 					var
 						self = playlist;
-					pi.xhr.get("assets/php/playlist.php", self.onload, console.error);
+					pi.xhr.get("assets/php/playlist.php" + "?cb=" + (Math.random()*10000), self.onload, console.error);
 				},
 
 				setInfo : function (info) {
@@ -1492,7 +1492,7 @@
 
 					pi.require("xhr", false, false, function() {
 						// console.log("Sending xhr");
-						result = pi.xhr.get(list, callback, onerror);
+						result = pi.xhr.get(list + "?cb=" + (Math.random()*10000), callback, onerror);
 					});
 
 				},
@@ -2111,7 +2111,7 @@
 				url = "assets/php/screens.php";
 
 			// console.info("getting screens...");
-			pi.xhr.get(url, function(json) {
+			pi.xhr.get(url + "?cb=" + (Math.random()*10000), function(json) {
 				var
 					data = null;
 
@@ -2681,7 +2681,7 @@
 					}
 				};
 
-			pi.xhr.get("templates.php", onTemplatesLoaded)
+			pi.xhr.get("templates.php" + "?cb=" + (Math.random()*10000), onTemplatesLoaded)
 
 		});
 
@@ -4472,14 +4472,14 @@
 		/**
 		 * load settings
 		 */
-		pi.xhr.get("assets/php/data/settings.json", function(json) {
+		pi.xhr.get("assets/php/data/settings.json" + "?cb=" + (Math.random()*10000), function(json) {
 			if (json) {
 				data.settings = JSON.parse(json);
 				data.session = {
 					user : "<?php print($user); ?>"
 				};
 
-				// pi.log("settings : " + data.settings, data.settings);
+				pi.log("settings : " + data.settings, data.settings);
 			}
 
 		}, pi.log);
@@ -4487,7 +4487,7 @@
 		/**
 		 * load images
 		 */
-		pi.xhr.get("admin/data-load.php?file=images.json", function(json) {
+		pi.xhr.get("admin/data-load.php?file=images.json" + "&cb=" + (Math.random()*10000), function(json) {
 			if (json) {
 				// console.log("Received JSON: " + json);
 				try {
@@ -4519,9 +4519,9 @@
 			data = window.data || {};
 
 		/**
-		 * load settings
+		 * load screens
 		 */
-		pi.xhr.get("assets/php/screens.php", function(json) {
+		pi.xhr.get("assets/php/screens.php" + "?cb=" + (Math.random()*10000), function(json) {
 			if (json) {
 				try {
 					screens = JSON.parse(json);
@@ -4628,7 +4628,7 @@
 			instaurl = "assets/php/instagram.php",
 			instadiv = document.getElementById("instagram");
 
-		pi.xhr.get(instaurl, function (json) {
+		pi.xhr.get(instaurl + "?cb=" + (Math.random()*10000), function (json) {
 			var
 				data = null,
 				json = json || null;

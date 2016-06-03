@@ -1,7 +1,7 @@
 <?php
 	
 	/**
-	 * Player for big screens - Øyafestivalen 2015
+	 * Player for big screens - Øyafestivalen 2016
 	 */
 
 
@@ -25,9 +25,9 @@
 
  	<meta charset="utf-8">
 
-	<title>Øyafestivalen 2015</title>
+	<title>Øyafestivalen 2016</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<link rel="stylesheet" type="text/css" href="/html5/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<link rel="stylesheet" type="text/css" href="/html5/assets/font/gtwalsheim.css">
 
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
@@ -123,7 +123,7 @@
 		}
 
 		header .title {
-			padding 		: 8px;
+			padding 		: 18px;
 			margin-left : auto;
 			margin-right: auto;
 
@@ -284,7 +284,7 @@
 		<div id="clock" class="clock"></div>
 		<div id="weather" class="weather"><img id="symbol" class="symbol" src="" width="50" height="50"><span id="temperature" class="temperature"></span></div>
 		<div class="title">
-			<img src="assets/img/osloby-hvit.png" height="70">
+			<img src="/cdn/logo/aftenposten-white.svg" height="50">
 		</div>
 	</header>
 
@@ -607,7 +607,7 @@
 						else {
 							self._rotated = data.info.rotated;
 
-							console.info("first run, or no update");
+							// console.info("first run, or no update");
 						}
 					}
 					catch (e) {

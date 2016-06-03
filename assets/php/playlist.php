@@ -36,7 +36,12 @@
 	$lastupdated = 0;
 
 	$json = file_get_contents(PLAYLIST);
-	$playlist = json_decode($json, true);
+	if (!$json) {
+		$playlist = array();
+	}
+	else {
+		$playlist = json_decode($json, true);
+	}
 
 	if (!is_array($playlist['next'])) {
 		$playlist['next'] = array();
@@ -663,7 +668,7 @@
  	checkUUIDs();
 
  	// has info.updated been changed by code ?
- 	if ($playlist['info']['updated'] > $lastupdated) {
+ 	if (!file_exists(PLAYLIST) || $playlist['info']['updated'] > $lastupdated) {
  		$reply['DEBUG'][] = "Saving updated playlist.";
 
  		// save updated playlist to disk

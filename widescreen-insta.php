@@ -1,7 +1,7 @@
 <?php
 	
 	/**
-	 * Widescreen Player for big screens - Øyafestivalen 2015
+	 * Widescreen Player for big screens - Øyafestivalen 2016
 	 */
 ?>
 <!doctype html>
