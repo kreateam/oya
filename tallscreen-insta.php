@@ -12,7 +12,7 @@
 
  	<meta charset="utf-8">
 
-	<title>Osloby.no</title>
+	<title>Øyafestivalen 2016</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<style type="text/css">
 

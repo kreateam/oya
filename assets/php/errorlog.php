@@ -1,14 +1,15 @@
 <?php
 
-	$fp = fopen("logs/errorlog", "a");
+	$fp = fopen("logs/error.log", "a");
 
 	if ($fp) {
 		fputs($fp, microtime(true) . ":" . $_SERVER['REQUEST_URI']."\n");
-	}
-	else {
-		file_put_contents("logs/errorlogerror", "no fp!", FILE_APPPEND);
-	}
+  	fclose($fp);
+  }
+  else {
+    file_put_contents("logs/error.log", "no fp!", FILE_APPEND);
+  }
 
-	fclose($fp);
+  
 
 ?>

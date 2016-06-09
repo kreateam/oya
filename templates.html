@@ -161,7 +161,7 @@
 					{{#hashtag}}
 						<span class="hashtag">{{hashtag}}</span>
 					{{/hashtag}}
-					<span class="duration" style="width:120px;margin-left:2px;overflow:hidden;">{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}</span>
+					<span class="duration" style="width:120px;margin-left:2px;overflow:hidden;">{{#duration}}{{duration}}{{/duration}}{{^duration}}20{{/duration}}</span>
 					<span class="current-menu" title="Play next slide in show" onclick="nextSlide();">GO TO NEXT SLIDE</span>
 				</li>
 			</ul>
@@ -176,7 +176,7 @@
 					<span class="title" onclick="editScreen('{{id}}');" title="Click to Edit">{{title}}</span>
 					<span class="ingress">{{ingress}}</span>
 					<span class="item-menu" title="Remove from queue" onclick="deleteItem('{{id}}', '{{uuid}}');">×</span>
-					<span class="duration">{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}</span>
+					<span class="duration">{{#duration}}{{duration}}{{/duration}}{{^duration}}20{{/duration}}</span>
 					<span class="current-menu" title="Play next slide in show" onclick="nextSlide();">GO TO NEXT SLIDE</span>
 				</li>
 				{{/id}}
@@ -196,7 +196,7 @@
 						<span class="hashtag">{{hashtag}}</span>
 					{{/hashtag}}
 					<span class="item-menu" title="Delete" onclick="deleteItem('{{id}}', '{{uuid}}');">×</span>
-					<span class="duration">{{#duration}}{{duration}}{{/duration}}{{^duration}}45{{/duration}}</span>
+					<span class="duration">{{#duration}}{{duration}}{{/duration}}{{^duration}}20{{/duration}}</span>
 					<span class="current-menu" title="Play next slide in show" onclick="nextSlide();">GO TO NEXT SLIDE</span>
 					<span class="item-menu" title="Play Next" onclick="playNext('{{id}}', '{{uuid}}');">PLAY NEXT</span>
 					<span class="item-menu" title="Add to Queue" onclick="addToQueue('{{id}}', '{{uuid}}');">QUEUE</span>

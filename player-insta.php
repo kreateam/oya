@@ -428,6 +428,7 @@
 			localStorage.setItem("slideCount", slideCount);			
 		}
 
+		// one screen, then instagram, another screen, then video. Rinse, repeat.
 		if (slideCount > 2 && (slideCount % 2 == 0)) {
 			console.info("loading video, slideCount : " + slideCount);
 			if (slideCount % 4 == 0) {

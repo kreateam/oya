@@ -92,7 +92,7 @@
 					console.error("url : " + url);
 					console.error("line : " + line);
 
-					// don't send to server unless we know we are counting errors locally
+					// don't send to server unless we know we are reliably counting errors locally
 					return true;
 				}
 
@@ -266,7 +266,7 @@
 		.symbol {
 			visibility 	: hidden;
 			margin 			:0px;
-			margin-bottom: -7px;
+			margin-bottom: -12px;
 			margin-top: 2px;
 			width: 50px;
 			height: 50px;
@@ -282,6 +282,8 @@
 		.windSpeed {
 			color: rgb(00, 33, 255);
 			font-weight: 500;
+			text-align: right;
+			min-width: 80px;
 		}
 
 
@@ -305,13 +307,6 @@
 </head>
 <body>
 	<section class="content">
-		<ul></ul>
-		<pre>
-			<?php
-				// print_r($weather);
-			?>
-		</pre>
-		
 	</section>
 
 	<script id="weather-template" type="text/template">
@@ -337,6 +332,7 @@
 
 		/**
 		 * Recursive function to normalize data, by moving attributes from @attributes to parent object.
+		 * BTW, fuck you very much, people who invented XML. You know who you are.
 		 * 
 		 * @param  {Object} 	obj 	The object to normalize
 		 * 
@@ -396,7 +392,6 @@
 	     */
 				result = pi.strPad(now.getHours(), 2, "0", true) + ":" + pi.strPad(now.getMinutes(), 2, "0", true);
 				if (result != currentTime) {
-					// console.log("Updating clock: " + result);
 					clock.innerHTML = result;
 					currentTime = result;
 				}
@@ -442,15 +437,11 @@
 					return result;
 				};
 
-			// alert(forecast);
-			// section.innerHTML = JSON.stringify(forecast);
-
 			if (!forecast) {
 				console.error("No forecast!");
 			}
 
 
-			// alert(forecast.forecast);
 			for (var i = 0; i < forecast.forecast.length; i++) {
 				chunk 	= format(orderData(forecast.forecast[i]));
 				element = document.createElement("li");
@@ -461,10 +452,7 @@
 				section.appendChild(element);
 			}
 
-			// console.log("Created " + i + " elements.");
 			return i;
-			// result = pi.strPad(now.getUTCHours(), 2, "0", true) + ":" + pi.strPad(now.getUTCMinutes(), 2, "0", true);
-
 		}
 
 

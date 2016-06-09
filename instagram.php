@@ -84,8 +84,8 @@
 	}
 
 	.instagram #caption {
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 24px;
+		line-height: 32px;
 		font-weight: 400;
 		max-height: 128px;
 	}
