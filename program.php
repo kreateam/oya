@@ -268,7 +268,7 @@
 		
 	</section>
 	<footer id="footer">
-		Les mer på osloby.no/oya
+		Les mer på ap.no/oya
 	</footer>
 
 

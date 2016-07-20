@@ -25,6 +25,9 @@
 	html, body {
 		height: 100%;
 		min-height: 100%;
+		background-color: rgb(227, 96, 24);
+		margin: 0;
+		padding: 0;
 	}
 
 
@@ -51,7 +54,7 @@
 
 	.box > img {
 	  position: relative;
-	  z-index: -1;
+	  /*z-index: -1;*/
 	  top: 50%;
 	  left: 50%;
 	  width: 100%;
@@ -66,21 +69,28 @@
 	}
 
 	#table {
+		margin-top: 12px;
 		width: 100%;
 		height: 100%;
 		vertical-align: middle;
-	}
+		font-family: PublicoHeadline, Publico, serif;
+		padding: 0;
+	 	border-spacing: 0;
+    border-collapse: separate;	
+  }
 
 	.instagram .heavy {
-		font-weight: 600;
+		font-weight: 900;
 	}
 
 	.instagram .title {
-		background-color: #e6007e;
-		padding: 0 10px;
-		color: #fff;
+		background-color: rgba(255, 255, 255, .8);
+		/*padding: 0 10px;*/
+		color: rgb(94, 22, 0);
 		text-align: center;
-		font-weight: 900;
+		font-weight: 400;
+		font-size: 44px;
+		line-height: 46px;
 	}
 
 	.instagram #caption {
@@ -89,6 +99,8 @@
 		top: -6px;
 		background-color: rgba(30,130,163,1);
 		*/
+		color: #fff;
+		font-family: ClanOT, sans-serif;
 		font-size: 24px;
 		line-height: 32px;
 		font-weight: 400;
@@ -117,7 +129,7 @@
 		width: 64px;
 		height: 64px;
 		text-align: center;
-		background: #e6007e;
+		background: rgb(227, 96, 24);
 		font-size: 52px;
 		font-weight: 900;
 		border-radius: 50%;
@@ -136,9 +148,9 @@
 	}
 
 	#text {
-		color: #fff;
+		color: rgb(94, 22, 0);
 		position: absolute;
-		background-color: #1D84A3;
+		background-color: rgb(227, 96, 24);
 		/*background-color: #26BCF4;*/
 		/*text-align: center;*/
 		right: 0;
@@ -193,10 +205,10 @@
 	<div id="text">
 		<table id="table">
 			<tr>
-				<td id="caption" align="center" valign="middle"></td>
+				<td align="center" valign="middle" class="title">Del dine<br><span class="heavy">#apøyablikk</span></td>
 			</tr>
 			<tr>
-				<td align="center" valign="middle">DEL DINE<br><span class="heavy">#APØYABLIKK</span></td>
+				<td id="caption" align="center" valign="middle"></td>
 			</tr>
 		</table>
 	</div>
@@ -204,7 +216,21 @@
 
 	<script type="text/javascript">
 
+	document.addEventListener("DOMContentLoaded", function(e) {
+		var
+			msg = {}, 
+			bgColor, fgColor, title, style;
 
+		title = document.querySelector(".title");
+		if (title) {
+			style = getComputedStyle(title, null);
+			console.info("getPropertyValue : "  + style.getPropertyValue("color"));
+			msg.fgColor = style.getPropertyValue("color");
+			style = getComputedStyle(document.body, null);
+			msg.bgColor = style.getPropertyValue("background-color");
+			window.top.postMessage(msg, "*");
+		}
+	});
 
 	function getCounter() {
 		if (typeof(Storage) != "undefined") {

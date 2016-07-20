@@ -180,7 +180,7 @@
   function getFromHistory() {
   	global $playlist;
 
-		if (count($playlist['history'])) {
+		if (isset($playlist['history']) && count($playlist['history'])) {
 			$playlist['info']['updated'] = floor(1000* microtime(true));
 			$item = array_shift($playlist['history']);
 			$item['uuid'] = uuid();
@@ -309,7 +309,7 @@
 			if (isset($playlist['current'])) {
 				array_push($playlist['next'], $playlist['current']);
 			}
-			if (count($playlist['history']) > 30) {
+			if (isset($playlist['history']) && count($playlist['history']) > 30) {
 				array_shift($playlist['history']);
 			}
 

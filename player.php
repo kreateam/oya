@@ -293,7 +293,7 @@
 		<iframe src="" id="nextframe" class="nextframe"></iframe>
 	</section>
 	<footer id="footer">
-		Les mer på osloby.no/oya
+		Les mer på ap.no/oya
 	</footer>
 	<section id="debug">
 
@@ -310,7 +310,7 @@
 	function resetStatusText() {
 		var
 			statusbar = document.getElementById("footer");
-			statusbar.textContent = "Les mer på osloby.no/oya";
+			statusbar.textContent = "Les mer på ap.no/oya";
 	}
 
 	function setStatusText(txt) {

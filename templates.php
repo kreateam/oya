@@ -36,7 +36,7 @@
 				continue;
 			}
 
-			if ($pathinfo['extension'] == "json" || $pathinfo['extension'] == "form") {
+			if ($pathinfo['extension'] == "json" || $pathinfo['extension'] == "form" || $pathinfo['extension'] == "zip") {
 				// only process .html files
 				continue;
 			}
@@ -44,6 +44,7 @@
 				// skip include files 
 				continue;
 			}
+
 
 			$file = array();
 			$file["filename"] = $pathinfo['basename'];
@@ -76,7 +77,7 @@
 	if ($updateCache) {
 		file_put_contents(TEMPLATEFILE, $reply['files']);
 	}
-
+	
 	echo json_encode($reply, JSON_PRETTY_PRINT);
 
 ?>

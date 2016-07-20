@@ -206,11 +206,16 @@
 			/* PURPLE: 	#5B0039 	rgb(90, 0, 56) 		*/
 
 
+			background 	: rgb(69, 128, 223);
+
+/*
 			background 	: rgb(48,48,48);
 			background 	: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(48, 48, 48, 1)), color-stop(50%, rgba(48, 48, 48, 1)), color-stop(51%, rgba(85, 85, 85, 1)), color-stop(100%, rgba(85, 85, 85, 1)));
 			background  : -webkit-linear-gradient(top, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
 			background  : linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
-			overflow 		: hidden;
+*/
+			overflow-x 		: hidden;
+			overflow-y 		: visible;
 
 			-webkit-transition: all .4s ease-out;
 							transition: all .4s ease-out;
@@ -269,8 +274,8 @@
 			width 					: 100%;
 			font-size 			: 32px;
 			line-height 		: 34px;
-			font-weight 		: 500;
-			background-color: #000;
+			font-weight 		: 400;
+			background 			: rgb(27, 49, 98);
 			overflow 				: hidden;
 
 			-webkit-transition : all .4s ease-out;
@@ -407,8 +412,7 @@
 		<iframe src="" id="nextframe" class="nextframe"></iframe>
 	</section>
 	<footer id="footer">
-	<img id="footerlogo" src="assets/img/ap-logo.png" width="34" height="34">
-		Les mer på osloby.no/oya
+		Les mer på ap.no/oya
 	</footer>
 	<section id="debug">
 
@@ -473,7 +477,7 @@
 	function resetStatusText() {
 		var
 			statusbar = document.getElementById("footer");
-			statusbar.textContent = "Les mer på osloby.no/oya";
+			statusbar.textContent = "Les mer på ap.no/oya";
 	}
 
 	function setStatusText(txt) {
@@ -590,6 +594,8 @@
 			}
 			else {
 				console.error("No data!");
+				console.info("data:");
+				console.info(window.data);
 			}
 		}
 
@@ -636,7 +642,6 @@
 
 
 <script>
-
 
 		function getTemplate(name) {
 			var
@@ -826,6 +831,11 @@
 					_playlist : playlist,
 					_created 	: Date.now(),
 					_started 	: null,
+					_header 	: document.querySelector("header"),
+					_footer 	: document.querySelector("footer"),
+					_head			: "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body {margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
+					_tail			: '<\/body><\/html>',
+
 					fullscreen: false,
 
 					init : function() {
@@ -844,20 +854,36 @@
 						}
 					},
 
+					_replaceAll : function(html, search, replace) {
+						while (html.indexOf(search)>-1) {
+							html = html.replace(search, replace);
+						}
+						return html;
+					},
+
+
 					_setIframeContent : function(iframe, html) {
 						var
+							self = player,
 							win,
+							html = self._replaceAll(html, "&#x2F;", "\/"),
 							iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
 
 						win = iframe.contentWindow || (iframe.contentDocument.document || iframe.contentDocument);
 						win.document.open();
+						win.document.write(self._head)
 						win.document.write(html);
+						win.document.write(self._tail);
 						win.document.close();
-						console.info("Updated iframe content!");
+						// console.info("Updated iframe content!");
+						// // console.info(self._head);
+						// console.info(html);
+						// console.info(self._tail);
 					},
 
 					show : function(screen) {
 						var
+							self = player,
 							contentframe = document.getElementById("contentframe"),
 							screen = screen || null;
 
@@ -905,13 +931,16 @@
 									return false;
 								}
 
+								screen.image = "https:\/\/kreateam.io\/html5\/oya\/" + screen.image;
 
 								var
 									inner = Mustache.render(html, screen);
 								// console.log("setting innerHTML: " + inner );
 
 								// _setIframeContent(contentframe, head + inner);
-								contentframe.contentWindow.document.body.innerHTML = inner;
+								self._setIframeContent(contentframe, inner);
+
+								// contentframe.contentWindow.document.body.innerHTML = inner;
 
 								if (screen.fullscreen === true) {
 									enterFullscreen();
@@ -932,6 +961,7 @@
 
 					preload : function(screen) {
 						var
+							self = player,
 							nextframe = document.getElementById("nextframe"),
 							screen = screen || null;
 
@@ -1034,8 +1064,24 @@
 					},
 
 					onFrameMessage: function(e) {
+						var
+							self = player;
+
+						if (!e || !e.data) {
+							return;
+						}
+						if (e.data.bgColor) {
+							if (self._header) {
+								self._header.style.backgroundColor = e.data.bgColor;
+							}
+						}
+						if (e.data.fgColor) {
+							if (self._footer) {
+								self._footer.style.backgroundColor = e.data.fgColor;
+							}
+						}
 						// on reply from iframe
-						// console.log("iframe says: " + e, e);
+						console.log("iframe says: " + e.data, e.data);
 					}
 
 			}; // player
@@ -1049,15 +1095,22 @@
 				json = json || null;
 
 			if (json) {
-				data = JSON.parse(json) || null;
+				try {
 
-				if (data && data.files && data.files.length) {
-					if (!window.data) {
-						window.data = {};
+					data = JSON.parse(json) || null;
+
+					if (data && data.files && data.files.length) {
+						if (!window.data) {
+							window.data = {};
+						}
+						window.data.templates = data.files;
+						pi.events.trigger("templates.loaded");
+						player.start();
 					}
-					window.data.templates = data.files;
-					pi.events.trigger("templates.loaded");
-					player.start();
+				}
+				catch(e) {
+					console.error("Invalid JSON:");
+					console.error(json);
 				}
 			}
 		};
