@@ -28,6 +28,7 @@
 	<title>Øyafestivalen 2016</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/publico.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/gtwalsheim.css"> -->
 
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
@@ -193,7 +194,18 @@
 			height 			: 90px;
 			color 			: #fff;
 			min-width 	: 100%;
-/* 333333 */
+
+			/* HEADER BACKGROUND COLOURS */
+			/* BLUE: 		#4594DF  rgb(69, 128, 223)  */
+			/* ORANGE: 	#E36018  rgb(227, 96, 24)  	*/
+			/* PURPLE: 	#E64BCA  rgb(230, 75, 202)  */
+
+			/* TEXT COLOURS */
+			/* BLUE: 		#1B3162 	rgb(27, 49, 98)  	*/
+			/* ORANGE: 	#5E1600 	rgb(94, 22, 0) 		*/
+			/* PURPLE: 	#5B0039 	rgb(90, 0, 56) 		*/
+
+
 			background 	: rgb(48,48,48);
 			background 	: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(48, 48, 48, 1)), color-stop(50%, rgba(48, 48, 48, 1)), color-stop(51%, rgba(85, 85, 85, 1)), color-stop(100%, rgba(85, 85, 85, 1)));
 			background  : -webkit-linear-gradient(top, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
@@ -411,7 +423,7 @@
 
 		console.info("reloadPlayer");
 
-		if (typeof(Storage) != "undefined") {
+		if (window.Storage) {
 
 			// returns null if non-existent
 			slideCount = localStorage.getItem("slideCount");
@@ -832,6 +844,18 @@
 						}
 					},
 
+					_setIframeContent : function(iframe, html) {
+						var
+							win,
+							iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
+
+						win = iframe.contentWindow || (iframe.contentDocument.document || iframe.contentDocument);
+						win.document.open();
+						win.document.write(html);
+						win.document.close();
+						console.info("Updated iframe content!");
+					},
+
 					show : function(screen) {
 						var
 							contentframe = document.getElementById("contentframe"),
@@ -886,13 +910,14 @@
 									inner = Mustache.render(html, screen);
 								// console.log("setting innerHTML: " + inner );
 
-
+								// _setIframeContent(contentframe, head + inner);
 								contentframe.contentWindow.document.body.innerHTML = inner;
 
 								if (screen.fullscreen === true) {
 									enterFullscreen();
 								}
 								else if (player.fullscreen === true) {
+									// Que?
 									exitFullscreen();
 								}
 								console.info("RENDERING TEMPLATE : ");

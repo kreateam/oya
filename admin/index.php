@@ -21,7 +21,7 @@
 
 	if (!isset($_SERVER['PHP_AUTH_USER'])) {
 		denied("No user.");
-	} 
+	}
 	elseif (!isset($_SERVER['PHP_AUTH_PW'])) {
 		denied("Empty password.");
 	}

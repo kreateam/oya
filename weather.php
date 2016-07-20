@@ -39,7 +39,8 @@
 		    	errorCount = null,
 
 		    	/**
-		    	 * Property	Description
+		    	 * Navigator Object, Property Descriptions
+		    	 * 
 						appCodeName	Returns the code name of the browser
 						appName	Returns the name of the browser
 						appVersion	Returns the version information of the browser
@@ -60,14 +61,14 @@
 		    							cookieEnabled : navigator.cookieEnabled,
 		    							language 			: navigator.language,
 		    							product 			: navigator.product,
-		    							platform 			: navigator.platform,
+		    							platform 			: navigator.platform
 		    						}
 		    					},
 
 		    	xhr 	= new XMLHttpRequest(); // var
 
 
-				if (typeof(Storage) != "undefined") {
+				if (window.Storage) {
 
 					// returns null if non-existent
 					errorCount = localStorage.getItem("errorCount");

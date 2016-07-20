@@ -84,10 +84,17 @@
 	}
 
 	.instagram #caption {
+		/* 
+		position: relative;
+		top: -6px;
+		background-color: rgba(30,130,163,1);
+		*/
 		font-size: 24px;
 		line-height: 32px;
 		font-weight: 400;
 		max-height: 128px;
+		font-style: italic;
+		/*background-blend-mode: multiply;*/
 	}
 
 
@@ -131,7 +138,8 @@
 	#text {
 		color: #fff;
 		position: absolute;
-		background-color: #26BCF4;
+		background-color: #1D84A3;
+		/*background-color: #26BCF4;*/
 		/*text-align: center;*/
 		right: 0;
 		bottom: 0;
@@ -226,6 +234,40 @@
 
 	}
 
+	function removeTrailingHashtags(text) {
+		var
+			arr,
+			token = " #",
+			trailing = true,
+			text = text || null;
+		if (!text) {
+			return false;
+		}
+
+		arr = text.split(token);
+		if (arr && arr.length) {
+			for (var i = arr.length - 1; i >= 1; i--) {
+				if (trailing && arr[i].trim().indexOf(" ") == -1) {
+					// remove from end of array
+					console.info("Removing: " + arr[i]);
+					arr.pop();
+				}
+				else {
+					trailing = false;
+				}
+			};
+			if (arr.length == 1) {
+				console.info("Returning: " + arr[0] + " from '" + text + "'");
+				return arr[0].trim();
+			}
+			else {
+				console.info("Returning join from " + arr.length + " rows");
+				return arr.join(token).trim();
+			}
+		}
+
+		return text.trim();
+	}
 
 
 	function updateInstagramList() {
@@ -243,11 +285,25 @@
 			url = arr[instaCounter % window.data.instagram.liked.length]['images']['standard_resolution']['url'];
 			if(insta) {
 				console.info("Loading insta: " + url, arr[instaCounter % window.data.instagram.liked.length]);
-				insta.src = url;
+				console.info("Type: " + arr[instaCounter % window.data.instagram.liked.length].type);
+				if (arr[instaCounter % window.data.instagram.liked.length].type == "video") {
+					/** @todo embed instaVideo  **/
+				}
+				else {
+					insta.src = url;
+				}
 				captionText = arr[instaCounter % window.data.instagram.liked.length]['caption']['text'];
-				if (caption && captionText) {
+				if (caption && captionText && captionText.length > 20) {
+					caption.textContent = removeTrailingHashtags(captionText);
+					console.info(captionText + " => ");
+					console.info(caption.textContent);
+				}
+				else {
 					caption.textContent = captionText;
 				}
+			}
+			else {
+				console.error("No insta found!");
 			}
 		}
 	}
