@@ -7,6 +7,7 @@
 	session_start();
 
 	define('CACHE_FILE', __DIR__ . '/data/screens.json');
+  define('PLAYLIST', __DIR__ . '/data/playlist.json');
 
 	// cache update interval, in seconds
 	define('CACHE_INTERVAL', 600);
@@ -16,14 +17,25 @@
 	$nocache = false;
 	$doCreate = false;
 
+
+  $reply['DEBUG'][] = "";
+  $reply['DEBUG'][] = "START: " . time();
+  $reply['DEBUG'][] = "-------------------";
+
+
 	if (!file_exists(CACHE_FILE)) {
+    $reply['DEBUG'][] = "No cache file, creating.";
 		$nocache = true;
 	}
 	elseif (time() - filemtime(CACHE_FILE) > CACHE_INTERVAL) {
-		$reply['DEBUG'][] = "Updating cached, time diff: " . (time() - filemtime(CACHE_FILE));
+		$reply['DEBUG'][] = "Updating cached file, bc. time diff: " . (time() - filemtime(CACHE_FILE));
 		$nocache = true;
 	}
+  else {
+    $reply['DEBUG'][] = "Using cache, time diff: " . (time() - filemtime(CACHE_FILE));
+  }
 
+  $playlistNeedsUpdate = false;
 
 
 	$rows = 0;
@@ -60,16 +72,24 @@
 
 	if ($isFormData) {
 		$request = $_REQUEST;
+    $reply['DEBUG'][] = "We have form data!";
+    $reply['DEBUG'][] = "Action: " . $request['action'];
+    $reply['DEBUG'][] = "Title: " . $request['title'];
+    // $reply['DEBUG'][] = "_REQUEST: " . print_r($_REQUEST, true);
 	}
 	else {
+    $reply['DEBUG'][] = "Trying to read JSON from php://input";
 		$request = file_get_contents("php://input");	
 		if ($request) {
+      $reply['DEBUG'][] = "That's a JSON payload!";
+      $reply['DEBUG'][] = "request: " . print_r($request, true);
 			$request = json_decode($request, true);
 		}
 	}
 
 
 	if (isset($request['submit'])) {
+    $reply['DEBUG'][] = "Unsetting submit";
 		unset($request['submit']);
 	}
 
@@ -78,7 +98,6 @@
 	}
 
 	$reply['request'] = $request;
-
 
 
 
@@ -119,10 +138,13 @@
     $reply['DEBUG'][] = "Error connecting to the database : " . $e->getMessage();
   }
 
+   $reply['DEBUG'][] = "_REQUEST: " . print_r($_REQUEST, true);
+   // $reply['DEBUG'][] = "_REQUEST: " . print_r($_REQUEST, true);
 
   if (!$request) {
   	$request = array("action" => "read");
-  	$reply['DEBUG'][] = "No request received : set to default action READ";
+  	$reply['DEBUG'][] = "No request received : set to default request=>action READ";
+    $reply['DEBUG'][] = "request: " . print_r($request, true);
   }
   elseif (!isset($request['action'])) {
   	// default action is to list entire table
@@ -199,6 +221,8 @@ catch(Exception $e) {
 }
 
 
+  $reply['DEBUG'][] = "action : " . $request['action'];
+
 
   switch ($request['action']) {
   	case 'add':
@@ -244,6 +268,7 @@ catch(Exception $e) {
 		  }
 		  if ($sqliteResult) {
 		    // the query was successful
+        $playlistNeedsUpdate = true;
 		    $reply['status'] = "ok";
 
 		    $sqliteResult->finalize();
@@ -268,6 +293,7 @@ catch(Exception $e) {
 		  if ($sqliteResult) {
 		    // the query was successful
 		    $reply['status'] = "ok";
+        $playlistNeedsUpdate = true;
 		    $sqliteResult->finalize();
 		  }
   		break;
@@ -336,6 +362,83 @@ catch(Exception $e) {
   // clean up any objects
   $sqlite->close();
 
+  function updatePlaylist($screen) {
+    global $request, $reply;
+    $updated = false;
+    $playlist = json_decode(file_get_contents(PLAYLIST), true);
+
+    $reply['DEBUG'][] = "CURRENT action: " . $request['action'];
+
+    if ($request['action'] == "update") {
+      if (isset($playlist['next']) && count($playlist['next'])) {
+        foreach ($playlist['next'] as &$item) {
+          if ($item['id'] == $screen['id']) {
+            $updated = true;
+            $reply['DEBUG'][] = "NEXT Screen " . $item['id'] . " was updated: " . $screen['title'];
+            $item['data']   = $screen['data'];
+            $item['title']  = $screen['title'];
+          }
+        }
+      }
+      // queue
+      if (isset($playlist['queue']) && count($playlist['queue'])) {
+        foreach ($playlist['queue'] as &$item) {
+          if ($item['id'] == $screen['id']) {
+            $updated = true;
+            $reply['DEBUG'][] = "QUEUED Screen " . $item['id'] . " was updated: " . $screen['title'];
+            $item['data']   = $screen['data'];
+            $item['title']  = $screen['title'];
+          }
+        }
+      }
+      // current item
+      if (isset($playlist['current']) && $playlist['current']['id'] == $screen['id']) {
+        $updated = true;
+        $reply['DEBUG'][] = "CURRENT Screen (" . $item['id'] . ") was updated: " . $screen['title'];
+        $playlist['current']['data'] = $screen['data'];
+        $playlist['current']['title']  = $screen['title'];
+      }
+    }
+    elseif ($request['action'] == "delete") {
+      if (isset($playlist['next']) && count($playlist['next'])) {
+        foreach ($playlist['next'] as &$item) {
+          if ($item['id'] == $screen['id']) {
+            $updated = true;
+            unset($item);
+          }
+        }
+      }
+      // queue
+      if (isset($playlist['queue']) && count($playlist['queue'])) {
+        foreach ($playlist['queue'] as &$item) {
+          if ($item['id'] == $screen['id']) {
+            $updated = true;
+            unset($item['data']);
+          }
+        }
+      }
+      // current item
+      if (isset($playlist['current']) && $playlist['current']['id'] == $screen['id']) {
+      }
+    }
+    if ($updated) {
+      $reply['DEBUG'][] = "We have updated playlist, so saving to " . PLAYLIST . ".chk";
+      file_put_contents(PLAYLIST . ".chk", json_encode($playlist, JSON_PRETTY_PRINT));
+      file_put_contents(PLAYLIST, json_encode($playlist, JSON_PRETTY_PRINT));
+    }
+    else {
+      $reply['DEBUG'][] = "Error: Playlist was NOT updated!";
+    }
+
+  } // function updatePlaylist
+
+  if ($playlistNeedsUpdate === true) {
+    $reply['DEBUG'][] = "Playlist was updated, looking for necessary changes to playlist.json"; 
+    updatePlaylist($request);
+  }
+  else {
+    $reply['DEBUG'][] = "Playlist was NOT updated, so NOT saving";
+  }
 
 
 	$reply['DEBUG'][] = "Read $rows rows"; 
@@ -345,6 +448,10 @@ catch(Exception $e) {
 		$reply['DEBUG'][] = "Updating cached JSON : " . CACHE_FILE; 
 		file_put_contents(CACHE_FILE, json_encode($reply['screens'], JSON_PRETTY_PRINT));
 	}
-	echo json_encode($reply, JSON_PRETTY_PRINT);
+  if ($request['action'] != "read") {
+  	file_put_contents(PLAYLIST.".debug", json_encode($reply['DEBUG'], JSON_PRETTY_PRINT), FILE_APPEND);  
+  }
+  echo json_encode($reply, JSON_PRETTY_PRINT);
+
 
 ?>

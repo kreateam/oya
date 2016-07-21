@@ -2447,6 +2447,8 @@
 
     	console.log("Sending: " + formData, formData);
 
+   		formData.append("action", "save");
+
     	xhr.open("POST", "assets/php/screens.php");
     	xhr.send(formData);
 
