@@ -4,6 +4,7 @@
 	"name" : "Konsert",
 	"variant" : "Teaser",
 	"tags" : "",
+  "score" : 1,
 	"description" : null,
 	"duration": 20,
 	"frequency" : 10

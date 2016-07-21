@@ -11,10 +11,12 @@
 
 	// support functions for weather
 	require_once("./assets/php/weather.php");
+	$weather = getWeather();
+	require_once("./assets/php/weather.nowcast.php");
+	$nowcast = getNowcast();
 
 	// Mustache engine for PHP
 	require_once("./../assets/php/mustache/Engine.php");
-	$weather = getWeather();
 
 ?>
 <!doctype html>
@@ -949,8 +951,8 @@
 									// Que?
 									exitFullscreen();
 								}
-								console.info("RENDERING TEMPLATE : ");
-								setTimeout(refreshFonts, 100);
+								console.info("RENDERING screen INTO TEMPLATE : ", screen);
+								// setTimeout(refreshFonts, 100);
 								
 								// contentframe.contentWindow.document.innerHTML = inner;
 							}
@@ -1068,8 +1070,11 @@
 							self = player;
 
 						if (!e || !e.data) {
+							console.error("No event");
 							return;
 						}
+						// on reply from iframe
+						console.info("IFRAME says: " + e.data, e.data);
 						if (e.data.bgColor) {
 							if (self._header) {
 								self._header.style.backgroundColor = e.data.bgColor;
@@ -1080,8 +1085,6 @@
 								self._footer.style.backgroundColor = e.data.fgColor;
 							}
 						}
-						// on reply from iframe
-						console.log("iframe says: " + e.data, e.data);
 					}
 
 			}; // player
@@ -1302,5 +1305,8 @@
 
 	});
 	</script>
+	<div style="position: fixed; z-index: 10000; bottom: 0; right: 0; pointer-events: default; -webkit-touch-callout: default;-webkit-user-select: default;-moz-user-select: default;-ms-user-select: default;user-select: default;cursor: default;pointer-events: default;">
+		<script> console.debug('NOWCAST: <?php json_encode($nowcast);	?>');</script>
+	</div>
 </body>
 </html>

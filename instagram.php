@@ -228,9 +228,10 @@
 			msg.fgColor = style.getPropertyValue("color");
 			style = getComputedStyle(document.body, null);
 			msg.bgColor = style.getPropertyValue("background-color");
-			window.top.postMessage(msg, "*");
+			window.parent.postMessage(msg, "*");
 		}
 	});
+
 
 	function getCounter() {
 		if (typeof(Storage) != "undefined") {

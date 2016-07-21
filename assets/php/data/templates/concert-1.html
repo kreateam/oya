@@ -79,6 +79,7 @@
 		font-weight: 900;
 		border-radius: 50%;
 		border: none;
+		box-shadow: 1px 1px 4px rgba(0,0,0,.5);
 		/*padding-top: 18px;*/
 	}
 
@@ -167,6 +168,29 @@
 
 	<script type="text/javascript">
 
+
+	/**
+	 * Communicate with parent through postMessage
+	 */
+
+		var 
+			parent = null,
+
+			onWindowMessage = function(e) {
+		  	console.info("onmessage: " + e.origin);
+		    if (!parent && e.source) {
+		    	parent = e.source;
+		    }
+
+		    // e.data is the string sent by the origin with postMessage.
+		    if(e.data == 'ping') {
+		      e.source.postMessage('pong:'+document.body.scrollHeight+','+document.body.scrollWidth, e.origin);
+		    }
+		    console.log ("e.data:", e.data);
+			};
+
+		window.addEventListener('message', onWindowMessage, false);
+
 	document.addEventListener("DOMContentLoaded", function(e) {
 		var
 			msg = {}, 
@@ -179,10 +203,16 @@
 			msg.fgColor = style.getPropertyValue("color");
 			style = getComputedStyle(document.body, null);
 			msg.bgColor = style.getPropertyValue("background-color");
-			window.top.postMessage(msg, "*");
+			if (parent && parent != window.parent) {
+				console.debug("Posting message to parent", window);
+				// window.parent.postMessage(msg, "*");
+			}
+			else {
+				console.debug("Posting message to window.parent: ", window);
+				window.top.postMessage(msg, "*");
+			}
 		}
 	});
-
 
 
 

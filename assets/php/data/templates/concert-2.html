@@ -142,21 +142,6 @@
 
 <script type="text/javascript">
 
-	document.addEventListener("DOMContentLoaded", function(e) {
-		var
-			msg = {}, 
-			bgColor, fgColor, title, style;
-
-		title = document.querySelector(".title");
-		if (title) {
-			style = getComputedStyle(title, null);
-			console.info("getPropertyValue : "  + style.getPropertyValue("color"));
-			msg.fgColor = style.getPropertyValue("color");
-			style = getComputedStyle(document.body, null);
-			msg.bgColor = style.getPropertyValue("background-color");
-			window.top.postMessage(msg, "*");
-		}
-	});
 
 	/**
 	 * Communicate with parent through postMessage
@@ -180,6 +165,26 @@
 
 		window.addEventListener('message', onWindowMessage, false);
 
+	document.addEventListener("DOMContentLoaded", function(e) {
+		var
+			msg = {}, 
+			bgColor, fgColor, title, style;
+
+		title = document.querySelector(".title");
+		if (title) {
+			style = getComputedStyle(title, null);
+			console.info("getPropertyValue : "  + style.getPropertyValue("color"));
+			msg.fgColor = style.getPropertyValue("color");
+			style = getComputedStyle(document.body, null);
+			msg.bgColor = style.getPropertyValue("background-color");
+			if (parent && parent != window.parent) {
+				parent.postMessage(msg, "*");
+			}
+			else {
+				window.top.postMessage(msg, "*");			
+			}
+		}
+	});
 
 </script>
 

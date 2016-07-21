@@ -80,6 +80,7 @@
 		font-size: 52px;
 		font-weight: 900;
 		border-radius: 50%;
+		box-shadow: 1px 1px 4px rgba(0,0,0,.5);
 		border: none;
 		/*padding-top: 18px;*/
 	}
@@ -180,7 +181,12 @@
 			msg.fgColor = style.getPropertyValue("color");
 			style = getComputedStyle(document.body, null);
 			msg.bgColor = style.getPropertyValue("background-color");
-			window.top.postMessage(msg, "*");
+			if (window.parent) {
+				window.parent.postMessage(msg, "*");
+			}
+			else {
+				window.top.postMessage(msg, "*");
+			}
 		}
 	});
 
