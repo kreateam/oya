@@ -69,8 +69,10 @@
 	<script src="assets/js/pi.core.js"></script>
 	<script src="assets/js/pi.xhr.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="assets/css/pace.css">
+	<script data-pace-options='{ "ajax": true }' src="assets/js/pace.min.js"></script>
+  
   <link rel="stylesheet" type="text/css" href="assets/css/spop.css">
-
   <script src="assets/js/spop.min.js"></script>
 
 
