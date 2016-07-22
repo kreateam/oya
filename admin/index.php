@@ -69,6 +69,11 @@
 	<script src="assets/js/pi.core.js"></script>
 	<script src="assets/js/pi.xhr.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="assets/css/spop.css">
+
+  <script src="assets/js/spop.min.js"></script>
+
+
 	<style type="text/css">
 
 		@-webkit-keyframes zoomInDown {
@@ -153,21 +158,22 @@
 
 	<style type="text/css">
 
+    /* hide the scroll bar */
+    ::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+    /* or make it transparent  */
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    /* and make it this color, if visible */
+    ::-webkit-scrollbar-thumb {
+      background-color: #009cfa;
+      background-color: #f16;
+      /*background-color: #272822;*/
+    }
 
-/*		::-webkit-scrollbar {
-		    width: 10px;
-		}
-		 
-		::-webkit-scrollbar-track {
-		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-		    border-radius: 10px;
-		}
-		 
-		::-webkit-scrollbar-thumb {
-		    border-radius: 10px;
-		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-		}
-*/
 		html, body {
 			color: #000;
 			background: rgb(38,188,244);
@@ -185,7 +191,19 @@
 			min-width: 100%;
 			height: 100%;
 
-      /*-webkit-font-smoothing: antialiased;*/
+
+      /*  scrollbar styling for IE  */
+      scrollbar-3dlight-color:transparent;
+      scrollbar-arrow-color:transparent;
+      scrollbar-base-color:transparent;
+      scrollbar-darkshadow-color:transparent;
+      scrollbar-face-color:#f16;
+      scrollbar-highlight-color:transparent;
+      scrollbar-shadow-color:transparent;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+
+
+      -webkit-font-smoothing: antialiased;
 
 
      	/* Make text non-selectable */

@@ -216,8 +216,8 @@
 			background  : -webkit-linear-gradient(top, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
 			background  : linear-gradient(to bottom, rgba(48, 48, 48, 1) 0%, rgba(48, 48, 48, 1) 50%, rgba(85, 85, 85, 1) 51%, rgba(85, 85, 85, 1) 100%);
 */
-			overflow-x 		: hidden;
-			overflow-y 		: visible;
+			/*overflow 		: hidden;*/
+			overflow 		: visible;
 
 			-webkit-transition: all .4s ease-out;
 							transition: all .4s ease-out;
@@ -250,8 +250,8 @@
 			display 		: block;
 			font-size 	: 40px;
 			line-height : 42px;
-			margin-top 	: 0;
-			margin-right: 10px;
+			margin-top 	: 26px;
+			margin-right: 16px;
 			text-align 	: right;
 		}
 
@@ -295,8 +295,8 @@
 		}
 
 		.clock {
-			margin-top 	: 50px;
-			margin-left : 10px;
+			margin-top 	: 26px;
+			margin-left : 16px;
 			font-size 	: 40px;
 			line-height : 45px;
 		}
@@ -315,11 +315,11 @@
  			}
 
 			footer {
-				padding-top: 4px;
-				height: 60px;
+				padding-top: 6px;
+				height: 45px;
 			}
 			section.content {
-				height: 618px;
+				height: 633px;
 			}
 
 			section.content.fullscreen {
@@ -328,7 +328,8 @@
 			}
 
 			footer {
-				font-size: 28px;
+				font-size: 32px;
+				line-height: 36px;
 			}
 		}
 
@@ -352,6 +353,7 @@
 
 
 		.symbol {
+			display: none;
 			visibility 	: hidden;
 			margin-bottom: -5px;
 			margin-top: 2px;
@@ -390,6 +392,20 @@
 			pointer-events: none;
 		}
 
+		.logo-holder {
+			display: block;
+			margin: 0 auto;
+			position: absolute;
+			top: 6px;
+			text-align: center;
+			width: 100%;
+			height: 110px;
+/*			background-image: url(assets/img/icon-114.png);
+			background-repeat: no-repeat;
+			background-size: 100%;
+*/			z-index: 5003;
+		}
+
 	</style>
 
 </head>
@@ -404,8 +420,8 @@
 		<!-- The centered div ("title") needs to be after the floats, in the HTML -->
 		<div id="clock" class="clock"></div>
 		<div id="weather" class="weather"><img id="symbol" class="symbol" src="" width="50" height="50"><span id="temperature" class="temperature"></span></div>
-		<div class="title">
-			<img src="/cdn/logo/aftenposten-white.svg" height="50">
+		<div class="logo-holder">
+			<img src="assets/img/ap-logo-256.png" width="110" height="110">
 		</div>
 	</header>
 

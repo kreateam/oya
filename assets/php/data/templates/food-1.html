@@ -12,7 +12,9 @@
 		position: relative;
 		font-family: 'ClanOT', sans-serif;
 		font-size : 32px;
-		height:99;
+		height:100%;
+		min-height: 100%;
+		max-height: 100%;
 	}
 
 
@@ -150,9 +152,9 @@
 				<img id="imageElement" src="{{image}}" class="image">
 			</div>
 		{{/image}}
-	<div class="score">
-		<div class="score-medallion">{{score}}</div>
-	</div>
+		<div class="score">
+			<div class="score-medallion">{{score}}</div>
+		</div>
 	</div>
 	<div id="text">
 		<table id="table">

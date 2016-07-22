@@ -10,5 +10,7 @@
 	"duration": 20,
 	"score" : 1,
 	"hashtag": "#matfraoya2015",
-	"frequency" : 10
+	"frequency" : 10,
+  "fgColor" : "red",
+  "bgColor" : "blue"	
 }

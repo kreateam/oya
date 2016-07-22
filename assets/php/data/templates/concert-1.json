@@ -7,5 +7,7 @@
   "score" : 1,
 	"description" : null,
 	"duration": 20,
-	"frequency" : 10
+	"frequency" : 10,
+  "fgColor" : "red",
+  "bgColor" : "blue"
 }
