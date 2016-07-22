@@ -422,7 +422,7 @@
 			padding-right: 8px;
 
 			color: #fff;
-			/*background-color: #C21E29;*/
+			/*background-color: #f16;*/
 			background-color: #0080c3;
 
 			text-align: right;
@@ -498,6 +498,10 @@
 
 		.item {
 	    overflow: auto;			
+		}
+		
+		.item > span.title {
+			cursor: pointer;
 		}
 
 		.item .ingress {
@@ -1710,7 +1714,7 @@
 
 	.error {
 		display: none;
-		background-color: #C21E29;
+		background-color: #f16;
 		/*background-color: #ff0545;*/
 		padding: 0.2em 0.5em;
 		color: #fff;
@@ -3671,6 +3675,14 @@
 				remainingMinutes 	= scene ? document.getElementById(scene + "-minutes") : document.getElementById("amfiet-minutes"),
 				remainingSeconds 	= 0,
 				dateDiff = function(a, b) {
+					if (!a || typeof a.getFullYear != "function") {
+						console.error("That's not a date object (a): " + a, a);
+						return 0;
+					}
+					if (!b || typeof b.getFullYear != "function") {
+						console.error("That's not a date object (b): " + b, b);
+						return 1;
+					}
 				  var
 				  	utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate(), a.getUTCHours(), a.getMinutes()),
 				  	utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate(), b.getUTCHours(), b.getMinutes());
@@ -3746,7 +3758,7 @@
 
 					// console.log("time : " + time);
 					// year, month, day, hours, minutes, seconds, milliseconds);
-					return new Date(2015, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
+					return new Date(2016, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
 
 				},
 
@@ -3799,7 +3811,13 @@
 						continue;
 					}
 					else {
-						concerts.push(chunk);
+						// console.info("CHUNK: " + chunk, chunk);
+						if (chunk.time == "...") {
+							console.error("SKIP invalid time: '" + chunk.time + "'");
+						}
+						else {
+							concerts.push(chunk);						
+						}
 					}
 				}
 			}
@@ -3860,10 +3878,9 @@
 					continue;
 				}
 				if (result === null) {
-					// console.log("Scene : " + scene + ", earliest : " + concerts[i]["date"]);
 					earliest = concerts[i]["date"];
 					if (earliest < dummyDate) {
-
+						console.log("ALREADY STARTED: " + scene + ", earliest : " + concerts[i]["date"]);
 						// already started, on to the next one
 						continue;
 					}

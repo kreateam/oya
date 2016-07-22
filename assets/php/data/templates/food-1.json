@@ -1,10 +1,10 @@
 {
-	"title" : "Matanmeldelse (food-1.html)",
+	"title" : "Matanmeldelse",
 	"titleSize" : 100,
 	"ingress" : "Brødtekst",
 	"ingressSize" : 100,
 	"name" : "Mat",
-	"variant" : "anmeldelse",
+	"variant" : "anmeldelse (food-1.html)",
 	"tags" : "",
 	"description" : null,
 	"duration": 20,
