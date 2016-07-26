@@ -371,7 +371,7 @@ catch(Exception $e) {
 
     if ($request['action'] == "update") {
       if (isset($playlist['next']) && count($playlist['next'])) {
-        foreach ($playlist['next'] as &$item) {
+        foreach ($playlist['next'] as $key => $item) {
           if ($item['id'] == $screen['id']) {
             $updated = true;
             $reply['DEBUG'][] = "NEXT Screen " . $item['id'] . " was updated: " . $screen['title'];
@@ -382,7 +382,7 @@ catch(Exception $e) {
       }
       // queue
       if (isset($playlist['queue']) && count($playlist['queue'])) {
-        foreach ($playlist['queue'] as &$item) {
+        foreach ($playlist['queue'] as $key => $item) {
           if ($item['id'] == $screen['id']) {
             $updated = true;
             $reply['DEBUG'][] = "QUEUED Screen " . $item['id'] . " was updated: " . $screen['title'];
@@ -401,24 +401,25 @@ catch(Exception $e) {
     }
     elseif ($request['action'] == "delete") {
       if (isset($playlist['next']) && count($playlist['next'])) {
-        foreach ($playlist['next'] as &$item) {
+        foreach ($playlist['next'] as $key => $item) {
           if ($item['id'] == $screen['id']) {
             $updated = true;
-            unset($item);
+            unset($playlist["next"][$key]);
           }
         }
       }
       // queue
       if (isset($playlist['queue']) && count($playlist['queue'])) {
-        foreach ($playlist['queue'] as &$item) {
+        foreach ($playlist['queue'] as $key => $item) {
           if ($item['id'] == $screen['id']) {
             $updated = true;
-            unset($item['data']);
+            unset($playlist["queue"][$key]);
           }
         }
       }
       // current item
       if (isset($playlist['current']) && $playlist['current']['id'] == $screen['id']) {
+        $reply['DEBUG'][] = "current screen was deleted, but can't remove";
       }
     }
     if ($updated) {
@@ -427,10 +428,11 @@ catch(Exception $e) {
       file_put_contents(PLAYLIST, json_encode($playlist, JSON_PRETTY_PRINT));
     }
     else {
-      $reply['DEBUG'][] = "Error: Playlist was NOT updated!";
+      $reply['DEBUG'][] = "No changes to playlist necessary.";
     }
 
   } // function updatePlaylist
+
 
   if ($playlistNeedsUpdate === true) {
     $reply['DEBUG'][] = "Playlist was updated, looking for necessary changes to playlist.json"; 

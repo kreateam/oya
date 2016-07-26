@@ -1,23 +1,30 @@
 <style type="text/css">
-	
+
+
 	body {
 		color: #fff;
-		/* BLUE */
+				/* BLUE */
 		background-color: rgb(69, 128, 223);
+		/*background-color: rgb(230, 75, 202);*/
+		text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 	}
+
 
 	/* template styles */
 	.concert {
 		position: relative;
 		font-family: 'ClanOT', sans-serif;
 		font-size : 32px;
-		height: 100%;
+		height:100%;
+		min-height: 100%;
+		max-height: 100%;
 	}
 
 
 	.box {
 	  width: 100%;
 	  height: 50%;
+	  min-height: 44px;
 	  margin: auto;
 	  position: absolute;
 	  top: 0;
@@ -27,16 +34,17 @@
 	}
 
 	.box > img {
-		/*display: block;*/
 	  position: relative;
-	  z-index: -1;
+	  z-index: 1;
 	  top: 50%;
 	  left: 50%;
 	  width: 100%;
+	  height: auto;
 	  -webkit-transform: translate(-50%, -50%);
 	      -ms-transform: translate(-50%, -50%);
 	          transform: translate(-50%, -50%);
 	}
+
 	.box > img.max {
 	  width: auto;
 	  height: 100%;
@@ -48,15 +56,55 @@
 		vertical-align: middle;
 	}
 
-	.concert .title {
-		font-family: PublicoHeadline, Publico, serif;
-		background-color: rgba(255, 255, 255, .8);
-		/*padding: 4px 10px 4px;*/
-		color: rgb(27, 49, 98);
-		margin-top: 12px;
+			/* HEADER BACKGROUND COLOURS */
+			/* PURPLE: 	#E64BCA  rgb(230, 75, 202)  */
 
+			/* TEXT COLOURS */
+			/* PURPLE: 	#5B0039 	rgb(90, 0, 56) 		*/
+
+
+	.concert .title {
+    font-family : PublicoHeadline, Publico, serif;
+		background-color: rgba(255, 255, 255, .7);
+		/*padding: 0 10px;*/
+		margin-top: 20px;
+		/*color: rgb(90, 0, 56);*/
+		color: rgb(27, 49, 98);
 		text-align: center;
-		font-weight: 700;
+		font-weight: 900;
+		text-shadow: none;
+	}	
+
+	.concert .ingress {
+		padding: 0 8px;
+	}
+
+
+
+	.concert .score{
+		/*color: rgba(38,188,244,1);*/
+
+		position: absolute;
+		right: 32px;
+		bottom: 32px;
+		color: #fff;
+		z-index: 5001;
+	}
+
+	.concert .score-medallion {
+    font-family : PublicoHeadline, Publico, serif;
+		color: #fff;
+		width: 64px;
+		height: 64px;
+		text-align: center;
+		background: rgb(230, 75, 202);
+		font-size: 52px;
+		font-weight: 900;
+		border-radius: 50%;
+		box-shadow: 0px 1px 4px rgba(0,0,0,.5);
+		border: none;
+		padding-top: 3px;
+		padding-right: 3px;
 	}
 
 	#image {
@@ -65,7 +113,6 @@
 		left: 0;
 		top: 0;
 		width: 100%;
-		min-height: 440px;
 		height: 50%;
 		overflow: hidden;
 	}
@@ -93,19 +140,19 @@
 			height: 100%;
 		}
 		#table {
-			font-size: 28px;
+			font-size: 26px;
 		}
 		#ingress {
-			font-size: 26px;
-			font-weight: 400;
 			line-height: 26px;
 		}
+
 	}
 
 	@media (max-width: 601px) {
 		#image {
 			width: 100%;
 			height: 50%;
+			background-color: rgba(0,0,0,0.6);
 			overflow: hidden;
 		}
 		#text {
@@ -116,6 +163,12 @@
 			font-size: 36px;
 		}
 	}
+
+
+	#timer {
+		font-weight: 700;
+	}
+
 </style>
 
 
@@ -123,13 +176,12 @@
 	<div id="image">
 		{{#image}}
 			<div class="box">
-				<img id="imageElement" src="{{image}}" class="image" width="100%" height="100%">
-				<!-- <img id="imageElement" src="{{image}}" class="image"> -->
+				<img id="imageElement" src="{{image}}" class="image">
 			</div>
 		{{/image}}
 	</div>
 	<div id="text">
-		<table id="table">
+		<table id="table" cellspacing="0" cellpadding="0">
 			<tr>
 				<td align="center" valign="middle"><div id="title" class="title">{{title}}</div></td>
 			</tr>
@@ -138,11 +190,43 @@
 			</tr>
 		</table>
 	</div>
-	<div style="position: absolute; bottom: 0; right: 0; color: #fff; font-size: 12px;">concert-2.html</div>
+	<div style="position: absolute; bottom: 0; right: 0; color: #fff; font-size: 12px;"><span id="timer"></span> concert-3.html</div>
 </div>
+
 
 <script type="text/javascript">
 
+	document.addEventListener("DOMContentLoaded", function(e) {
+		var
+			time = 0,
+			timer = document.getElementById("timer"),
+			msg = {}, 
+			bgColor, fgColor, title, style;
+
+		function updateTime(){
+			time++;
+			timer.textContent = time + "s";
+		}
+
+		if (timer) {
+			setInterval (updateTime, 1000);
+		}
+
+		title = document.querySelector(".title");
+		if (title) {
+			style = getComputedStyle(title, null);
+			// console.info("getPropertyValue : "  + style.getPropertyValue("color"));
+			msg.fgColor = style.getPropertyValue("color");
+			style = getComputedStyle(document.body, null);
+			msg.bgColor = style.getPropertyValue("background-color");
+			if (window.parent) {
+				window.parent.postMessage(msg, "*");
+			}
+			else {
+				window.top.postMessage(msg, "*");
+			}
+		}
+	});
 
 	/**
 	 * Communicate with parent through postMessage
@@ -152,7 +236,7 @@
 			parent = null,
 
 			onWindowMessage = function(e) {
-		  	console.info("onmessage: " + e.origin);
+		  	// console.info("onmessage: " + e.origin);
 		    if (!parent && e.source) {
 		    	parent = e.source;
 		    }
@@ -161,37 +245,13 @@
 		    if(e.data == 'ping') {
 		      e.source.postMessage('pong:'+document.body.scrollHeight+','+document.body.scrollWidth, e.origin);
 		    }
-		    console.log ("e.data:", e.data);
+		    // console.log ("e.data:", e.data);
 			};
 
 		window.addEventListener('message', onWindowMessage, false);
 
-	document.addEventListener("DOMContentLoaded", function(e) {
-		var
-			msg = {}, 
-			bgColor, fgColor, title, style;
-
-		title = document.querySelector(".title");
-		if (title) {
-			style = getComputedStyle(title, null);
-			console.info("getPropertyValue : "  + style.getPropertyValue("color"));
-			msg.fgColor = style.getPropertyValue("color");
-			style = getComputedStyle(document.body, null);
-			msg.bgColor = style.getPropertyValue("background-color");
-			if (parent && parent != window.parent) {
-				parent.postMessage(msg, "*");
-			}
-			else {
-				window.top.postMessage(msg, "*");			
-			}
-		}
-	});
 
 </script>
-
-
-
-
 <!--
 {{#reply}}
   <ul>

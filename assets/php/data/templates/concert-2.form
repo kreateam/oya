@@ -40,5 +40,6 @@
 		<input type="hidden" name="image" id="form-screen-editor-image" value="{{image}}" />
 		<input type="hidden" id="form-screen-filename" name="filename" value="{{filename}}" />
 		<input id="form-screen-submit" type="submit" name="submit" value="Save" />
+		<input id="form-screen-delete" type="submit" name="submit" value="Delete" />
 	</fieldset>
 </div>

@@ -61,8 +61,10 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
-	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Passion+One:400italic,700italic,900italic,400,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Poppins:400italic,700italic,900italic,400,700,900' rel='stylesheet' type='text/css'>
 	<!-- needed for buttons.js -->
 	<script src="/html5/assets/js/jquery.min.js"></script>
 	<script src="assets/js/mustache.js"></script>
@@ -74,6 +76,13 @@
   
   <link rel="stylesheet" type="text/css" href="assets/css/spop.css">
   <script src="assets/js/spop.min.js"></script>
+  <script type="text/javascript">
+	  spop.defaults = {
+			style     : 'info',
+			autoclose : 5000,
+			position  : 'bottom-left'
+		};
+  </script>
 
 
 	<style type="text/css">
@@ -138,9 +147,9 @@
 
 			-webkit-transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 							transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-			-webkit-transition-duration: .3s;
+/*			-webkit-transition-duration: .3s;
 							transition-duration: .3s;
-		}
+*/		}
 
 	</style>
 
@@ -223,10 +232,11 @@
 		}
 
 		.blur {
-		  -webkit-filter: blur(4px);
-		  -webkit-filter: -webkit-blur(4px);
-		  		-ms-filter: blur(4px);
-							filter: blur(4px);
+		  -webkit-filter: -webkit-blur(4px) grayscale(100%);
+		  -webkit-filter: blur(4px) grayscale(100%);
+		  		-ms-filter: blur(4px) grayscale(100%);
+							filter: blur(4px) grayscale(100%);
+			/*opacity: .4;*/
 		}
 
 		h1, h2, h3, h4, h5, h6 {
@@ -234,6 +244,22 @@
 			text-align: center;
 		}	
 
+		h4 {
+			font-family: 'Passion One', sans-serif;
+			font-weight: 900;
+			/*padding: 2px 0;*/
+			font-size: 4em;
+			line-height: 70%;
+			/*height: auto;*/
+			color: rgba(255, 255, 255, 1);
+			/*color: rgba(0, 0, 0, .5);*/
+			text-transform: uppercase;
+			background-color: rgba(82,83,78,1);
+			-webkit-margin-before: 0.4em;
+			-webkit-margin-after: 1em;
+			-webkit-mix-blend-mode: multiply;
+			mix-blend-mode: multiply;
+		}
 
 
 		@media (max-width: 1280px) {
@@ -382,6 +408,7 @@
 
 
 		#screen1 {
+			display: none;
 			position 	: fixed;
 			left 			: 0;
 			bottom 		: 0;
@@ -419,7 +446,7 @@
 			height 		: 3000px;
 			min-height: 100%;			
 
-			padding-right: 8px;
+			/*padding-right: 8px;*/
 
 			color: #fff;
 			/*background-color: #f16;*/
@@ -440,7 +467,7 @@
 			height 		: 3000px;
 			min-height: 100%;
 
-			padding-left: 8px;
+			/*padding-left: 8px;*/
 
 			color: #fff;
 			background-color: #0080c3;
@@ -471,7 +498,9 @@
 
 			color: #fff;
 			background-color: rgba(39, 40, 34, 0.8);
-
+			background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI5MCI+CjxnIHRyYW5zZm9ybT0ic2NhbGUoMSAxLjUpIj4KPHJlY3Qgd2lkdGg9Ijk5IiBoZWlnaHQ9Ijk5IiBmaWxsPSIjNmQ2OTVjIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI0Mi40MiIgaGVpZ2h0PSI0Mi40MiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAgMCkgcm90YXRlKDQ1KSIgZmlsbD0iIzYyNWY1MyI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iOTkiIGhlaWdodD0iMSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiBmaWxsPSIjNzE2ZjY0Ij48L3JlY3Q+CjxyZWN0IHdpZHRoPSI5OSIgaGVpZ2h0PSIxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDYwKSByb3RhdGUoLTQ1KSIgZmlsbD0iIzcxNmY2NCI+PC9yZWN0Pgo8L2c+Cjwvc3ZnPg==");
+			/*background-size: 10%;*/
+			background-blend-mode: multiply;
 			text-align: center;
 		}
 		
@@ -487,6 +516,7 @@
 			padding-top: 12px;
 			margin-bottom: 6px;
 			font-weight: 900;
+			transition: font-size .17s ease-out;
 		}
 
 		.duration {
@@ -497,7 +527,8 @@
 		}
 
 		.item {
-	    overflow: auto;			
+	    overflow: auto;
+	    padding: 4px 4px 2px;
 		}
 		
 		.item > span.title {
@@ -505,8 +536,8 @@
 		}
 
 		.item .ingress {
-			display: inline-block;
-			font-family: roboto, sans-serif;
+			display: inline;
+			font-family: Lato, sans-serif;
 			color: #999;
 			width: auto;
 			max-width: 400px;
@@ -520,7 +551,7 @@
 
 		.item-menu {
 			display: inline-block;
-			font-family: 'Roboto', sans-serif;
+			font-family: 'ClanOT', sans-serif;
 			float: right;
 			color: #666;
 			font-size: 80%;
@@ -532,7 +563,7 @@
 
 		.current-menu {
 			display: none;
-			font-family: 'Roboto', sans-serif;
+			font-family: 'ClanOT', sans-serif;
 			float: right;
 			color: #aaa;
 			font-size: 80%;
@@ -942,7 +973,7 @@
 				<h4>Amfiet</h4>
 				<div class="coming-up">
 					<h1 id="amfiet-header">Next</h1>
-					<h2 id="amfiet-artist" class="artist">Razika</h2>
+					<h2 id="amfiet-artist" class="artist">...</h2>
 					<span class="pronomen"><strong>in</strong></span>
 						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days
 						</div>
@@ -958,7 +989,7 @@
 				<h4>Vindfruen</h4>
 				<div class="coming-up">
 					<h1 id="vindfruen-header">Coming Up</h1>
-					<h2 id="vindfruen-artist" class="artist">The Switch</h2>
+					<h2 id="vindfruen-artist" class="artist">...</h2>
 					<span class="pronomen"><strong>in</strong></span>
 						<div class="day-counter">
 							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days
@@ -1252,7 +1283,7 @@
 	 */	
 	
 	function deleteItem(id, uuid) {
-		if (!confirm("Delete item " + id + "?")) {
+		if (!confirm("Delete item " + id + " from playlist?")) {
 			// console.info("Item deletion aborted : " + id + ", " + uuid);
 			return false;
 		}
@@ -1493,7 +1524,7 @@
 								if (!window.data) {
 									window.data = {};
 								}
-								console.info("playlist loaded: " + self._loaded, _data.playlist);
+								// console.info("playlist loaded: " + self._loaded, _data.playlist);
 
 								window.data.playlist = self.processItems(_data.playlist);
 								window.playlist.setInfo(_data['info']);
@@ -1622,7 +1653,7 @@
 
 					sendMessage: function(msg, domain) {
 						var
-							domain = domain || null,
+							domain = domain || "*",
 							iframe;
 
 						if (domain === null) {
@@ -1635,16 +1666,28 @@
 								iframe = this._frames[i];
 								if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
 									console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
-
-									iframe.contentWindow.postMessage(msg, domain);
+									iframe.contentWindow.postMessage(msg.data, domain);
 								}
 							}
 						}
 					},
 
 					onFrameMessage: function(e) {
+						var
+							self = player;
 						// on reply from iframe
 						console.log("iframe says: " + e, e);
+						console.info("Should be rePOSTed to preview frames");
+						self.sendMessage(e);
+						// if (self._frames && self._frames.length) {
+						// 	for (var i = 0; i < self._frames.length; i++) {
+						// 		iframe = self._frames[i];
+						// 		if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
+						// 			console.debug("RePOSTing msg to iframe " + i + " : " + e + ", domain: " + domain);
+						// 			iframe.contentWindow.postMessage(e, domain);
+						// 		}
+						// 	}
+						// }
 					}
 
 			}; // player
@@ -1680,7 +1723,7 @@
 	  display: inline-block;
 	  margin: 0;
 	  width: 96%;
-	  font-family: 'Roboto', sans-serif;
+	  font-family: 'ClanOT', sans-serif;
 	  -webkit-appearance: none;
 	  appearance: none;
 	  
@@ -1912,12 +1955,12 @@
 
 	</div>
 
-	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
-	<iframe id="screen2" class="screen" scrolling="no" src="player.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen1" class="screen" scrolling="no" src="player-slave.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen2" class="screen" scrolling="no" src="player-slave.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
 
 	<script type="text/javascript">
 
-		var 
+		var
 			previewProto = {
 				active : false,
 				current : null,
@@ -1977,6 +2020,60 @@
 		}
 
 
+		function _replaceAll(html, search, replace) {
+			while (html.indexOf(search)>-1) {
+				html = html.replace(search, replace);
+			}
+			return html;
+		}
+
+		/**
+		 * Set iframe content, including <head> section
+		 * 
+		 * @param {string|HTMLIFrameElement} 	iframe 	The frame to write content to
+		 * @param {string} 										html   	The html body
+		 */
+		function _setIframeContent(iframe, html) {
+			var
+				_head = "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body {margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
+				_tail = '<\/body><\/html>',
+				win,
+				html = _replaceAll(html, "&#x2F;", "\/"),
+				iframe;
+
+
+			if (!iframe) {
+				console.error("!iframe: " + iframe, iframe);
+				return;
+			}
+			else {
+				console.info("That's an iframe: " + iframe, iframe);
+			}
+
+			iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
+
+			if (!iframe) {
+				console.error("!IFRAME: " + iframe, iframe);
+				return;
+			}
+			else {
+				console.info("That's still an IFRAME: " + iframe, iframe);
+			}
+
+
+			win = iframe.contentWindow || (iframe.contentDocument.document || iframe.contentDocument);
+			win.document.open();
+			win.document.write(_head)
+			win.document.write(html);
+			win.document.write(_tail);
+			win.document.close();
+			// console.info("Updated iframe content!");
+			// // console.info(self._head);
+			// console.info(html);
+			// console.info(self._tail);
+		}
+
+
 		function updatePreviews(data) {
 			var 
 				contentframe1, contentframe2, tmpl,
@@ -2033,25 +2130,28 @@
 				var 
 					domdoc = contentframe1.contentDocument || contentframe1.contentWindow.document,
 					domwin = contentframe1.contentWindow;
-				// console.info("Rendering : contentframe1, data = ", data);
+				console.info("Rendering : contentframe1, data = ", data);
 				if (data.statustext && typeof window.data.preview.screen1.contentWindow.setStatusText == "function") {
-					// console.info("updating statustext");
+					console.info("updating statustext, contentframe1: " + data.statustext);
 					window.data.preview.screen1.contentWindow.setStatusText(data.statustext);
 				}
 
-				domdoc.body.innerHTML = Mustache.render(preview.current, data)
+				// domdoc.body.innerHTML = Mustache.render(preview.current, data)
+				// console.info("Updating iframe: " + contentframe1, contentframe1);
+				_setIframeContent(contentframe1, Mustache.render(preview.current, data));
 			}
 			else {
 				console.error("contentframe1 is nought");
 			}
 			if (contentframe2) {
-				var 
+				var
 					domdoc = contentframe2.contentDocument || contentframe2.contentWindow.document,
 					domwin = contentframe1.contentWindow;
 				// console.info("Rendering : contentframe2");
-				domdoc.body.innerHTML = Mustache.render(preview.current, data);
+				// domdoc.body.innerHTML = Mustache.render(preview.current, data);
+				_setIframeContent(contentframe2, Mustache.render(preview.current, data));
 				if (data.statustext && typeof window.data.preview.screen2.contentWindow.setStatusText == "function") {
-					// console.info("updating statustext");
+					console.info("updating statustext, contentframe2: " + data.statustext);
 					window.data.preview.screen2.contentWindow.setStatusText(data.statustext);
 				}
 				// console.info("Result : " + domdoc.body.innerHTML);
@@ -2068,7 +2168,7 @@
 		}
 
 		function onStatusTextUpdate(e) {
-			// console.info("onStatusTextUpdate");
+			console.info("onStatusTextUpdate");
 			onFieldsetChange(e);
 		}
 
@@ -2377,12 +2477,20 @@
 
 
       var
+      	remove = document.getElementById("form-screen-delete"),
       	submit = document.getElementById("form-screen-submit"),
       	titleField = document.getElementById("form-screen-title");
 
       if (submit && typeof submit.addEventListener == "function") {
+	      submit.removeEventListener("click", onScreenSave);
 	      submit.addEventListener("click", onScreenSave);
       }
+
+      if (remove && typeof remove.addEventListener == "function") {
+	      remove.removeEventListener("click", onScreenDelete);
+	      remove.addEventListener("click", onScreenDelete);
+      }
+
       
       enterPreviewMode(tmpl, data);
       // console.info("updating previews!!!!");
@@ -2404,6 +2512,8 @@
 			}
 			else {
 				modalForm.classList.add("active");
+				console.info("Calling blurBackground()");
+				blurBackground();
 				setTimeout(function(){
 					modalForm.classList.toggle("showing");
 				}, 1);
@@ -2446,6 +2556,7 @@
 
 		function onScreenSave(e) {
     	var
+    		json, data,
     		fields,
     		xhr = new XMLHttpRequest(),
     		fieldset = document.getElementById("form-screen-fieldset").children,
@@ -2459,7 +2570,7 @@
 			if (fieldset && fieldset.length) {
 				for (var i = 0; i < fieldset.length; i++) {
 					if (fieldset[i] instanceof HTMLInputElement || fieldset[i] instanceof HTMLTextAreaElement) {
-						console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
+						// console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
 			    	formData.append(fieldset[i].name || fieldset[i].id, fieldset[i].value);
 					}
 				}
@@ -2482,9 +2593,12 @@
 	  			status.className = "status";
     			console.log("Success!");
     			console.log("response: " + this.responseText);
+    			json = this.responseText;
+    			data = JSON.parse(json);
+	    		spop("Screen saved: " + data.status);
     			hideModal();
   				try {
-	    			var 
+	    			var
 	    				response = JSON.parse(this.responseText),
 	    				span = document.createElement("span"),
 	    				preview = document.getElementById("screen-preview");
@@ -2506,6 +2620,82 @@
 
     }
 
+
+		function onScreenDelete(e) {
+    	var
+    		json, data,
+    		fields,
+    		xhr = new XMLHttpRequest(),
+    		fieldset = document.getElementById("form-screen-fieldset").children,
+    		formData = new FormData(fieldset),
+	      status  = document.getElementById("form-status"),
+	      modalForm = document.getElementById("modal-one");
+
+
+			// console.log("fieldset" + fieldset, fieldset);
+			if (!confirm("Do you really want to delete?")) {
+				spop({
+					template: "Aborted.",
+					style: "info"
+				});
+				return;
+			};
+
+			if (fieldset && fieldset.length) {
+				for (var i = 0; i < fieldset.length; i++) {
+					if (fieldset[i] instanceof HTMLInputElement || fieldset[i] instanceof HTMLTextAreaElement) {
+						// console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
+			    	formData.append(fieldset[i].name || fieldset[i].id, fieldset[i].value);
+					}
+				}
+			}
+
+    	// fieldset.forEach(function(p,i,a) {
+    	// 	console.log(i + " : " + p, p);
+    	// });
+
+    	console.log("Sending: " + formData, formData);
+
+   		formData.append("action", "delete");
+
+    	xhr.open("POST", "assets/php/screens.php");
+    	xhr.send(formData);
+
+    	xhr.onload = function() {
+    		if (this.status == 200) {
+    			status.textContent = "Success.";
+	  			status.className = "status";
+    			console.log("Success!");
+    			console.log("response: " + this.responseText);
+    			json = this.responseText;
+    			data = JSON.parse(json);
+	    		spop("Screen deleted: " + data.status);
+	    		// load new playlist, in case we deleted a screen that was added to the playlist previously
+	    		console.info("Reloading playlist...");
+	    		window.playlist.update();
+    			hideModal();
+  				try {
+	    			var
+	    				response = JSON.parse(this.responseText),
+	    				span = document.createElement("span"),
+	    				preview = document.getElementById("screen-preview");
+
+	    				// console.info("reloading screens!");
+	    				reloadScreens();
+    			}
+    			catch(e) {
+    				console.error(e);
+    			}
+    		}
+    	};
+    	xhr.onerror = function() {
+  			status.textContent = "Success.";
+  			status.className = "error";
+  			console.log("Error!");
+    	};
+
+
+    }
 
 
 		function newFromTemplate(tpl) {
@@ -2563,12 +2753,14 @@
 
 			if (modalForm.classList.contains("active")) {
 				modalForm.classList.remove("showing");
+				unblur();
 				setTimeout(function(){
 					modalForm.classList.remove("active");
 				}, 1000);
 			}
 			else {
 				modalForm.classList.add("active");
+				blurBackground();
 				setTimeout(function(){
 					modalForm.classList.add("showing");
 				}, 1);
@@ -2780,6 +2972,7 @@
 				}, 1000);
 			}
 			else {
+				console.info("Calling blurBackground()");
 				blurBackground();
 				modalForm.classList.add("active");
 				setTimeout(function(){
@@ -3788,6 +3981,7 @@
 							// console.log("Scene: " + result["scene"] + ", index: " + ["sirkus, amfiet"].indexOf(result["scene"]));
 						}
 						else {
+							// console.info("Skipping scene: " + result["scene"]);
 							// skip the scenes we are not interested in
 							return false;
 						}
@@ -3804,22 +3998,31 @@
 
 				while(concerts.pop());
 
+				var skipped = 0;
 				for (var i = 0; i < tr.length; i++) {
 					// console.log("Chunk no. " + i);
 					chunk = format(orderData(tr[i]));
 					if (!chunk) {
+						// console.error("Invalid chunk: " + chunk);
 						continue;
 					}
 					else {
 						// console.info("CHUNK: " + chunk, chunk);
 						if (chunk.time == "...") {
-							console.error("SKIP invalid time: '" + chunk.time + "'");
+							skipped++;
+							console.error("SKIP invalid time (" + chunk.time + "): " + chunk.artist + " - " + chunk.scene.toUpperCase() + ", " + chunk.day);
 						}
 						else {
 							concerts.push(chunk);						
 						}
 					}
 				}
+				spop({
+					title: "title",
+					style: "error",
+					autoclose: 5000,
+					template: "Skipped " + skipped + " artist(s) that had no date"
+				})
 			}
 			else {
 				console.error("No program lines found!");
@@ -4031,7 +4234,8 @@
 						seconds = 60;
 					}
 					else {
-						console.log("rotatePlaylist()");
+						// console.log("rotatePlaylist()");
+						// WTF ???
 						// rotatePlaylist();
 					}
 				}
@@ -4161,13 +4365,62 @@
 		right: 0;
 		color : #fff;
 		background-color: rgba(0, 0, 0, 0.4);
-		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%, rgba(25,128,0,0.26) 100%);
+
+		background:
+			linear-gradient(
+				rgba(50,205,50, 1),
+				transparent
+			),
+			linear-gradient(
+				90deg,
+				rgba(135,206,235, 1),
+				transparent
+			),
+			linear-gradient(
+				-90deg,
+				rgba(255,127,80, 1),
+				transparent
+			);
+	
+		background:
+			linear-gradient(
+				rgba(0,255,255, 0.5),
+				transparent
+			),
+			linear-gradient(
+				-45deg,
+				rgba(255,0,255, 0.5),
+				transparent
+			),
+			linear-gradient(
+				45deg,
+				rgba(255,255,0, 0.5),
+				transparent
+			);
+/*background:
+	linear-gradient(
+		cyan,
+		transparent
+	),
+	linear-gradient(
+		-45deg,
+		magenta,
+		transparent
+	),
+	linear-gradient(
+		45deg,
+		yellow,
+		transparent
+	);
+*/		background-blend-mode: multiply;
+		/*mix-blend-mode: multiply;*/
+/*		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%, rgba(25,128,0,0.26) 100%);
 		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.33)), color-stop(100%,rgba(25,128,0,0.26)));
 		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
-
+*/
 /*rgba(255,0,59,0.4)
 
 		background: -moz-radial-gradient(center, ellipse cover,  rgba(0,128,45,0.5) 0%, rgba(255,0,59,0.25) 100%);
@@ -4186,6 +4439,8 @@
 
 	.modal .relative-wrapper {
 		position: relative;
+		mix-blend-mode: normal;
+		background-blend-mode: multiply;
 	}
 
 	.modal.active {
@@ -4194,6 +4449,8 @@
 
 	.modal.showing {
 		opacity: 1;
+		/*mix-blend-mode: normal;*/
+		/*mix-blend-mode: multiply;*/
 	}
 
 
@@ -4421,21 +4678,23 @@
 
 	function onModalClick(e) {
 		hideModal();
-		console.log("Clicked outside modal dialog. This : ", e);
+		// console.log("Clicked outside modal dialog. This : ", e);
 	}
  	
 
 	function blurBackground() {
 		// disable
-		return;
+		// return;
 		var
+			wrapper = document.getElementById("wrapper"),
 			toolbar = document.getElementById("toolbar"),
 			playqueue = document.getElementById("playqueue");
 
-		if (toolbar && playqueue) {
-			// console.info("Blurring...");
-			toolbar.classList.add("blur");
-			playqueue.classList.add("blur");
+		if (wrapper) {
+			console.info("Blurring...");
+			// toolbar.classList.add("blur");
+			// playqueue.classList.add("blur");
+			wrapper.classList.add("blur");
 		}
 		else {
 			console.error("Not found");
@@ -4444,14 +4703,16 @@
 
 	function unblur() {
 		// disable
-		return;
+		// return;
 		var
+			wrapper = document.getElementById("wrapper"),
 			toolbar = document.getElementById("toolbar"),
 			playqueue = document.getElementById("playqueue");
 
-		if (toolbar && playqueue) {
-			toolbar.classList.remove("blur");
-			playqueue.classList.remove("blur");
+		if (wrapper) {
+			// toolbar.classList.remove("blur");
+			// playqueue.classList.remove("blur");
+			wrapper.classList.remove("blur");
 		}
 	}
 
@@ -4465,11 +4726,11 @@
 		if (figure) {
 
 			modal.classList.add("active");
-			// console.info("calling blurBackground()");
+			console.info("calling blurBackground()");
 			blurBackground();
 			setTimeout(function() {
 				modal.classList.add("showing");
-			}, 1);			
+			}, 1);
 		}
 	}
 
@@ -4480,8 +4741,8 @@
 			modal = document.getElementById("modal-one");
 
 		exitPreviewMode();
-		// console.info("calling unblur()");
-		// unblur();
+		console.info("calling unblur()");
+		unblur();
 		modal.classList.remove("showing");
 		setTimeout(function() {
 			modal.classList.remove("active");
@@ -4518,7 +4779,7 @@
 					user : "<?php print($user); ?>"
 				};
 
-				pi.log("settings : " + data.settings, data.settings);
+				// pi.log("settings : " + data.settings, data.settings);
 			}
 
 		}, pi.log);

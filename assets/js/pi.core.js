@@ -2178,6 +2178,11 @@
     };
 
 
+
+    /**
+     * CUSTOM VERSION OF pi.core.js FOR: //kreateam.io/html5/oya/
+     */
+
   π.events.onWindowMessage = function (msg) {
     pi.log("onWindowMessage : " + msg, msg);
     pi.log("data : " + msg.data);
@@ -2185,7 +2190,7 @@
     pi.log("source : " + msg.source);
   }
 
-  window.addEventListener("message", π.events.onWindowMessage, false, true);
+  // window.addEventListener("message", π.events.onWindowMessage, false, true);
 
 
 

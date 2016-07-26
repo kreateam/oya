@@ -1,40 +1,43 @@
 <style type="text/css">
 
+
 	body {
 		color: #fff;
-		/* PURPLE */
 		background-color: rgb(230, 75, 202);
+		text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 	}
 
+
 	/* template styles */
-	.concert {
+	.food {
 		position: relative;
 		font-family: 'ClanOT', sans-serif;
 		font-size : 32px;
-		height: 100%;
+		height:100%;
+		min-height: 100%;
+		max-height: 100%;
 	}
 
 
 	.box {
 	  width: 100%;
 	  height: 50%;
+	  min-height: 44px;
 	  margin: auto;
 	  position: absolute;
 	  top: 0;
 	  left: 0;
-	  min-height: 44px;
-/*	  right: 0;
+	  right: 0;
 	  bottom: 0;
-*/	}
+	}
 
-
-	/* centered image, horizontally and vertically */
 	.box > img {
 	  position: relative;
-	  z-index: -1;
+	  z-index: 1;
 	  top: 50%;
 	  left: 50%;
 	  width: 100%;
+	  height: auto;
 	  -webkit-transform: translate(-50%, -50%);
 	      -ms-transform: translate(-50%, -50%);
 	          transform: translate(-50%, -50%);
@@ -51,19 +54,32 @@
 		vertical-align: middle;
 	}
 
-	.concert .title {
-		font-family: PublicoHeadline, Publico, serif;
-		background-color: rgba(255, 255, 255, .8);
+			/* HEADER BACKGROUND COLOURS */
+			/* PURPLE: 	#E64BCA  rgb(230, 75, 202)  */
+
+			/* TEXT COLOURS */
+			/* PURPLE: 	#5B0039 	rgb(90, 0, 56) 		*/
+
+
+	.food .title {
+    font-family : PublicoHeadline, Publico, serif;
+		background-color: rgba(255, 255, 255, .7);
 		/*padding: 0 10px;*/
-		margin-top: 12px;
-		color: #5B0039;
+		margin-top: 20px;
+		color: rgb(90, 0, 56);
 		text-align: center;
 		font-weight: 900;
+		text-shadow: none;
 	}
 
-	.concert .score{
+	.food .ingress {
+		padding: 0 8px;
+	}
+
+
+	.food .score{
 		/*color: rgba(38,188,244,1);*/
-    font-family : PublicoHeadline, Publico, serif;
+
 		position: absolute;
 		right: 32px;
 		bottom: 32px;
@@ -71,17 +87,18 @@
 		z-index: 5001;
 	}
 
-	.concert .score-medallion {
+	.food .score-medallion {
+    font-family : PublicoHeadline, Publico, serif;
 		color: #fff;
 		width: 64px;
 		height: 64px;
 		text-align: center;
-		background-color: rgb(230, 75, 202);
+		background: rgb(230, 75, 202);
 		font-size: 52px;
 		font-weight: 900;
 		border-radius: 50%;
-		border: none;
 		box-shadow: 0px 1px 4px rgba(0,0,0,.5);
+		border: none;
 		padding-top: 3px;
 		padding-right: 3px;
 	}
@@ -122,7 +139,6 @@
 			font-size: 26px;
 		}
 		#ingress {
-			font-weight: 400;
 			line-height: 26px;
 		}
 
@@ -132,6 +148,7 @@
 		#image {
 			width: 100%;
 			height: 50%;
+			background-color: rgba(0,0,0,0.6);
 			overflow: hidden;
 		}
 		#text {
@@ -142,35 +159,73 @@
 			font-size: 36px;
 		}
 	}
+
+
+	#timer {
+		font-weight: 700;
+	}
+
 </style>
 
 
-<div class="concert">
+<div class="food">
 	<div id="image">
 		{{#image}}
 			<div class="box">
-				<img id="imageElement" src="{{image}}" class="image" width="320" height="320">
+				<img id="imageElement" src="{{image}}" class="image">
 			</div>
 		{{/image}}
-	<div class="score">
-		<div class="score-medallion">{{score}}</div>
-	</div>
+		<div class="score">
+			<div class="score-medallion">{{score}}</div>
+		</div>
 	</div>
 	<div id="text">
-		<table id="table">
+		<table id="table" cellspacing="0" cellpadding="0">
 			<tr>
-				<td align="center" valign="middle"><div id="title" class="title">concert-1: {{title}}</div></td>
+				<td align="center" valign="middle"><div id="title" class="title">{{title}}</div></td>
 			</tr>
 			<tr>
 				<td align="center" valign="top" id="ingress" class="ingress">{{ingress}}</td>
 			</tr>
 		</table>
 	</div>
+	<div style="position: absolute; bottom: 0; right: 0; color: #fff; font-size: 12px;"><span id="timer"></span> concert-1.html</div>
 </div>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
+	document.addEventListener("DOMContentLoaded", function(e) {
+		var
+			time = 0,
+			timer = document.getElementById("timer"),
+			msg = {}, 
+			bgColor, fgColor, title, style;
+
+		function updateTime(){
+			time++;
+			timer.textContent = time + "s";
+		}
+		if (timer) {
+			setInterval (updateTime, 1000);
+		}
+
+
+		title = document.querySelector(".title");
+		if (title) {
+			style = getComputedStyle(title, null);
+			// console.info("getPropertyValue : "  + style.getPropertyValue("color"));
+			msg.fgColor = style.getPropertyValue("color");
+			style = getComputedStyle(document.body, null);
+			msg.bgColor = style.getPropertyValue("background-color");
+			if (window.parent) {
+				window.parent.postMessage(msg, "*");
+			}
+			else {
+				window.top.postMessage(msg, "*");
+			}
+		}
+	});
 
 	/**
 	 * Communicate with parent through postMessage
@@ -180,7 +235,7 @@
 			parent = null,
 
 			onWindowMessage = function(e) {
-		  	console.info("onmessage: " + e.origin);
+		  	// console.info("onmessage: " + e.origin);
 		    if (!parent && e.source) {
 		    	parent = e.source;
 		    }
@@ -189,133 +244,13 @@
 		    if(e.data == 'ping') {
 		      e.source.postMessage('pong:'+document.body.scrollHeight+','+document.body.scrollWidth, e.origin);
 		    }
-		    console.log ("e.data:", e.data);
+		    // console.log ("e.data:", e.data);
 			};
 
 		window.addEventListener('message', onWindowMessage, false);
 
-	document.addEventListener("DOMContentLoaded", function(e) {
-		var
-			msg = {}, 
-			bgColor, fgColor, title, style;
 
-		title = document.querySelector(".title");
-		if (title) {
-			style = getComputedStyle(title, null);
-			console.info("getPropertyValue : "  + style.getPropertyValue("color"));
-			msg.fgColor = style.getPropertyValue("color");
-			style = getComputedStyle(document.body, null);
-			msg.bgColor = style.getPropertyValue("background-color");
-			if (parent && parent != window.parent) {
-				console.debug("Posting message to parent", window);
-				// window.parent.postMessage(msg, "*");
-			}
-			else {
-				console.debug("Posting message to window.parent: ", window);
-				window.top.postMessage(msg, "*");
-			}
-		}
-	});
-
-
-
-	function updateInstagramList() {
-		var
-			arr, insta, item, 
-			imageCount = 5,
-			instas = document.getElementsByClassName("image");
-
-		imageCount = instas.length;
-		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
-			arr = window.data.instagram.liked;
-			for (var i = 0; (i < arr.length && i < imageCount); i++) {
-				if (arr[i]['type'] == "image") {
-					// instadiv.appendChild(insta);
-					item = instas[i];
-					if (item) {
-						insta = document.createElement("img");
-						insta.src = arr[i]['images']['standard_resolution']['url'];
-						insta.alt = arr[i]['caption']['text'];
-						insta.title = insta.alt;
-						insta.style.height = "6em";
-						item.appendChild(insta);
-						console.info("found one: " + i);
-					}
-					else {
-						console.info("not found: " + i);
-					}
-				}
-				else {
-					// console.info("Skipping type : " + arr[i]['type']);
-				}
-			}
-		}
-	}
-
-
-
-	function updateInstagram(data) {
-		var
-			data = data || null;
-
-		if (!window.data) {
-			window.data = {};
-		}
-		if (!window.data.instagram) {
-			window.data.instagram = {};
-		}
-		window.data.instagram.liked = [];
-		if (data && data.length) {
-			for (var i = 0; i < data.length; i++) {
-				window.data.instagram.liked.push(data[i]);
-				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
-			}
-			updateInstagramList();
-		}
-		else {
-			console.error("No data in updateInstagram()!");
-		}
-	}
-
-
- 	function loadInstagram() {
-		var
-			instaurl = "assets/php/instagram.php",
-			instadiv = document.getElementById("instagram");
-
-		pi.xhr.get(instaurl, function (json) {
-			var
-				data = null,
-				json = json || null;
-			if (json && json.length) {
-
-				try {
-					data = JSON.parse(json);
-					if (data && data.meta && data.meta.code) {
-						if (data.meta.code == 200) {
-							updateInstagram(data.data);
-						}
-						else {
-							console.error("Error loading instagram data, code : " + data.meta.code);
-						}
-					}
-				}
-				catch(e) {
-					console.error("Error : " + e);
-				}
-			}
-			else {
-				console.error("!json &&json.length");
-			}
-
-		}, console.error);
-
-	}
-
-	loadInstagram();
-
-	</script>
-
+</script>
 <!--
 {{#reply}}
   <ul>

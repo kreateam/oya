@@ -50,7 +50,7 @@
 			disp;  // don't worry about previous display style
 
 
-		console.log("contentframe : " + contentframe + ", type : " + typeof contentframe, contentframe);
+		// console.log("contentframe : " + contentframe + ", type : " + typeof contentframe, contentframe);
 
 		win = contentframe.contentWindow; // reference to iframe's window
 		// reference to document in iframe
@@ -79,10 +79,10 @@
 				title = doc.getElementById("title");
 				ingress = doc.getElementById("ingress");
 				footer = document.getElementById("footer");
-				console.info("Finding title!");
-				console.info("title: ", title);
-				console.info("Finding ingress!");
-				console.info("ingress: ", ingress);
+				// console.info("Finding title!");
+				// console.info("title: ", title);
+				// console.info("Finding ingress!");
+				// console.info("ingress: ", ingress);
 			}
 			else {
 				console.error("Still no title!");
@@ -209,6 +209,7 @@
 
 
 			background 	: rgb(69, 128, 223);
+			text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 
 /*
 			background 	: rgb(48,48,48);
@@ -279,6 +280,7 @@
 			font-weight 		: 400;
 			background 			: rgb(27, 49, 98);
 			overflow 				: hidden;
+			text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 
 			-webkit-transition : all .4s ease-out;
 							transition : all .4s ease-out;
@@ -426,7 +428,7 @@
 	</header>
 
 	<section id="content" class="content">
-		<iframe src="" id="contentframe" class="contentframe"></iframe>
+		<iframe src="" id="contentframe" scrolling="no" class="contentframe" name="contentframe"></iframe>
 		<iframe src="" id="nextframe" class="nextframe"></iframe>
 	</section>
 	<footer id="footer">
@@ -443,7 +445,6 @@
 		var
 			slideCount = 0;
 
-		console.info("reloadPlayer");
 
 		if (window.Storage) {
 
@@ -464,7 +465,7 @@
 
 		// one screen, then instagram, another screen, then video. Rinse, repeat.
 		if (slideCount > 2 && (slideCount % 2 == 0)) {
-			console.info("loading video, slideCount : " + slideCount);
+			// console.info("loading video, slideCount : " + slideCount);
 			if (slideCount % 4 == 0) {
 				loadInsta();
 			}
@@ -474,19 +475,26 @@
 			// document.body.innerHTML = document.body.innerHTML;
 		}
 		else {
-			console.info("not loading video, slideCount : " + slideCount);
-			location.reload();
+			window.location.reload();
 		}
 	}
 
 
 	function loadInsta() {
-		var 
+		var
 			contentframe = document.getElementById("contentframe");
 
-		contentframe.src = "instagram.php";
+		if (contentframe) {
+			setTimeout(function() {
+				contentframe.src = "instagram.php";
+				// console.log("contentframe.src is now '" + contentframe.src + "'");
+			}, 1000);
+		}
+		else {
+			console.error("No contentframe found!");
+		}
 
-		console.info("loading insta")
+		// console.info("loading insta")
 		// setTimeout(location.reload, 20000);
 	}
 
@@ -515,9 +523,9 @@
 			header	= document.getElementById("header"),
 			footer	= document.getElementById("footer");
 
-		console.info("entering fullscreen");
+		// console.info("entering fullscreen");
 		if (window.player.fullscreen === true) {
-			console.info("aborting");		
+			// console.info("aborting");		
 			// return false;
 		}
 
@@ -585,7 +593,7 @@
 			data = window.data.videos[id % window.data.videos.length];
 			if (data) {
 				enterFullscreen();
-				console.log("entering fullscreen mode");
+				// console.log("entering fullscreen mode");
 				video.src = data.uri;
 				video.style.display = "block";
 				video.style.background = "transparent";
@@ -645,7 +653,7 @@
 						if (!window.data) {
 							window.data = {};
 						}
-						console.info("Loaded " + data['videos'].length + " videos");
+						// console.info("Loaded " + data['videos'].length + " videos");
 						window.data.videos = data.videos;
 					}
 				}
@@ -753,7 +761,7 @@
 
 					self._rotated = newdata.info.rotated;
 					if (self._owner && typeof self._owner.onUpdatedPlaylist == "function") {
-						console.info("calling onUpdatedPlaylist() from handleUpdatedPlaylist");
+						// console.info("calling onUpdatedPlaylist() from handleUpdatedPlaylist");
 						self._owner.onUpdatedPlaylist.call();
 					}
 
@@ -782,7 +790,7 @@
 							 		}
 							 }
 
-							console.info("data.info.rotated : " + data.info.rotated + ", self._rotated : " + self._rotated);
+							// console.info("data.info.rotated : " + data.info.rotated + ", self._rotated : " + self._rotated);
 
 							self._data = data;
 							self._rotated = data.info.rotated;
@@ -910,7 +918,7 @@
 							return false;
 						}
 						else {
-							console.info("self.show was triggered");
+							// console.info("self.show was triggered");
 						}
 
 						// unwrap extra data in JSON format
@@ -967,7 +975,7 @@
 									// Que?
 									exitFullscreen();
 								}
-								console.info("RENDERING screen INTO TEMPLATE : ", screen);
+								// console.info("RENDERING screen INTO TEMPLATE : ", screen);
 								// setTimeout(refreshFonts, 100);
 								
 								// contentframe.contentWindow.document.innerHTML = inner;
@@ -1020,7 +1028,6 @@
 								var
 									inner = Mustache.render(html, screen);
 
-								console.log("setting innerHTML: " + inner );
 								nextframe.contentWindow.document.body.innerHTML = inner;
 							}
 						}
@@ -1042,7 +1049,7 @@
 						item = self._playlist.data.current;
 						if (item) {
 							if (window.data && window.data.templates) {
-								console.info("templates loaded, calling show()");
+								// console.info("templates loaded, calling show()");
 								self.show(self._playlist.data.current);
 							}
 							else {
@@ -1090,7 +1097,6 @@
 							return;
 						}
 						// on reply from iframe
-						console.info("IFRAME says: " + e.data, e.data);
 						if (e.data.bgColor) {
 							if (self._header) {
 								self._header.style.backgroundColor = e.data.bgColor;
@@ -1322,7 +1328,6 @@
 	});
 	</script>
 	<div style="position: fixed; z-index: 10000; bottom: 0; right: 0; pointer-events: default; -webkit-touch-callout: default;-webkit-user-select: default;-moz-user-select: default;-ms-user-select: default;user-select: default;cursor: default;pointer-events: default;">
-		<script> console.debug('NOWCAST: <?php json_encode($nowcast);	?>');</script>
 	</div>
 </body>
 </html>

@@ -94,6 +94,31 @@
 <body>
 <iframe src="player-insta.php" id="contentframe" class="contentframe"></iframe>
 <script>
+
+  function sendMessage(msg, domain) {
+    var
+      domain = domain || "*",
+      iframe = document.getElementById("contentframe");
+
+    if (domain === null) {
+      var 
+        l = window.location;
+        domain = l.protocol + "//" + l.host;
+    }
+    if (iframe && iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
+      // console.debug("sending msg to iframe: " + msg + ", domain: " + domain);
+      iframe.contentWindow.postMessage(msg.data, domain);
+    }
+  }
+
+  /**
+   * Workaround: redirect messages sent to window.top to content frame
+   */
+  function onFrameMessage(e) {
+    sendMessage(e);
+  }
+
+
   function doOnOrientationChange() {
     switch(window.orientation) 
     {
@@ -110,6 +135,7 @@
     }
   }
 
+  window.addEventListener("message", onFrameMessage);
   window.addEventListener('orientationchange', doOnOrientationChange);
 
   // Initial execution if needed

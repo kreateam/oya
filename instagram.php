@@ -17,6 +17,7 @@
 	<title>Øya 2015</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
+	<link rel="stylesheet" type="text/css" href="/assets/font/publico.css">
 	<script type="text/javascript" src="assets/js/mustache.js"></script>
 	<script type="text/javascript" src="assets/js/pi.core.js"></script>
 	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
@@ -38,6 +39,7 @@
 		font-size : 32px;
 		height: 100%;
 		min-height: 100%;
+		text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 	}
 
 
@@ -55,12 +57,12 @@
 	.box > img {
 	  position: relative;
 	  /*z-index: -1;*/
-	  top: 50%;
+	  top: -50%;
 	  left: 50%;
 	  width: 100%;
-	  -webkit-transform: translate(-50%, -50%);
-	      -ms-transform: translate(-50%, -50%);
-	          transform: translate(-50%, -50%);
+	  -webkit-transform: translateX(-50%);
+	      -ms-transform: translateX(-50%);
+	          transform: translateX(-50%);
 	}
 
 	.box > img.max {
@@ -69,7 +71,7 @@
 	}
 
 	#table {
-		margin-top: 12px;
+		margin-top: 20px;
 		width: 100%;
 		height: 100%;
 		vertical-align: middle;
@@ -84,13 +86,15 @@
 	}
 
 	.instagram .title {
-		background-color: rgba(255, 255, 255, .8);
+		background-color: rgba(255, 255, 255, .7);
 		/*padding: 0 10px;*/
 		color: rgb(94, 22, 0);
 		text-align: center;
 		font-weight: 400;
 		font-size: 44px;
 		line-height: 46px;
+		height: 108px;
+		text-shadow: none;
 	}
 
 	.instagram #caption {
@@ -101,10 +105,11 @@
 		*/
 		color: #fff;
 		font-family: ClanOT, sans-serif;
-		font-size: 24px;
+		font-size: 28px;
 		line-height: 32px;
 		font-weight: 400;
 		max-height: 128px;
+		padding: 0 6px;
 		font-style: italic;
 		/*background-blend-mode: multiply;*/
 	}
@@ -112,7 +117,7 @@
 
 	.instagram .score {
 		/*color: rgba(38,188,244,1);*/
-    /*font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', Roboto, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;*/
+    /*font-family : 'AvenirNext-Heavy', 'AvenirNext-Bold ', 'Avenir Black', 'Arial Black', Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', ClanOT, Futura, 'HelveticaNeue', 'Segoe UI', sans-serif;*/
     font-family : ClanOT, sans-serif;
 
 
@@ -203,7 +208,7 @@
 			</div>
 	</div>
 	<div id="text">
-		<table id="table">
+		<table id="table" cellspacing="0" cellpadding="0">
 			<tr>
 				<td align="center" valign="middle" class="title">Del dine<br><span class="heavy">#apøyablikk</span></td>
 			</tr>
@@ -224,7 +229,6 @@
 		title = document.querySelector(".title");
 		if (title) {
 			style = getComputedStyle(title, null);
-			console.info("getPropertyValue : "  + style.getPropertyValue("color"));
 			msg.fgColor = style.getPropertyValue("color");
 			style = getComputedStyle(document.body, null);
 			msg.bgColor = style.getPropertyValue("background-color");
@@ -276,7 +280,7 @@
 			for (var i = arr.length - 1; i >= 1; i--) {
 				if (trailing && arr[i].trim().indexOf(" ") == -1) {
 					// remove from end of array
-					console.info("Removing: " + arr[i]);
+					// console.info("Removing: " + arr[i]);
 					arr.pop();
 				}
 				else {
@@ -284,11 +288,11 @@
 				}
 			};
 			if (arr.length == 1) {
-				console.info("Returning: " + arr[0] + " from '" + text + "'");
+				// console.info("Returning: " + arr[0] + " from '" + text + "'");
 				return arr[0].trim();
 			}
 			else {
-				console.info("Returning join from " + arr.length + " rows");
+				// console.info("Returning join from " + arr.length + " rows");
 				return arr.join(token).trim();
 			}
 		}
@@ -311,9 +315,10 @@
 			instaCounter = getCounter();
 			url = arr[instaCounter % window.data.instagram.liked.length]['images']['standard_resolution']['url'];
 			if(insta) {
-				console.info("Loading insta: " + url, arr[instaCounter % window.data.instagram.liked.length]);
-				console.info("Type: " + arr[instaCounter % window.data.instagram.liked.length].type);
+				// console.info("Loading insta: " + url, arr[instaCounter % window.data.instagram.liked.length]);
+				// console.info("Type: " + arr[instaCounter % window.data.instagram.liked.length].type);
 				if (arr[instaCounter % window.data.instagram.liked.length].type == "video") {
+					console.error("That's an Instagram video!");
 					/** @todo embed instaVideo  **/
 				}
 				else {
@@ -322,8 +327,8 @@
 				captionText = arr[instaCounter % window.data.instagram.liked.length]['caption']['text'];
 				if (caption && captionText && captionText.length > 20) {
 					caption.textContent = removeTrailingHashtags(captionText);
-					console.info(captionText + " => ");
-					console.info(caption.textContent);
+					// console.info(captionText + " => ");
+					// console.info(caption.textContent);
 				}
 				else {
 					caption.textContent = captionText;
