@@ -443,7 +443,7 @@
 		.left {
 			float 		: left;
 			width 		: 17%;
-			height 		: 3000px;
+			/*height 		: 3000px;*/
 			min-height: 100%;			
 
 			/*padding-right: 8px;*/
@@ -464,7 +464,7 @@
 		.right {
 			float 		: right;
 			width 		: 17%;
-			height 		: 3000px;
+			/*height 		: 3000px;*/
 			min-height: 100%;
 
 			/*padding-left: 8px;*/
@@ -486,7 +486,7 @@
 			position 	: relative;
 			width 		: 66%;
 			min-height: 100%;
-			height 		: 3000px;
+			/*height 		: 3000px;*/
 			margin 		: 0;
 			padding 	: 0;
 
@@ -1667,7 +1667,7 @@
 							for (var i = 0; i < this._frames.length; i++) {
 								iframe = this._frames[i];
 								if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
-									console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
+									// console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
 									iframe.contentWindow.postMessage(msg.data, domain);
 								}
 							}
