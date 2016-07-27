@@ -21,7 +21,7 @@
 
 	if (!isset($_SERVER['PHP_AUTH_USER'])) {
 		denied("No user.");
-	}
+	} 
 	elseif (!isset($_SERVER['PHP_AUTH_PW'])) {
 		denied("Empty password.");
 	}
@@ -61,29 +61,13 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Passion+One:400italic,700italic,900italic,400,700,900' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Poppins:400italic,700italic,900italic,400,700,900' rel='stylesheet' type='text/css'>
 	<!-- needed for buttons.js -->
 	<script src="/html5/assets/js/jquery.min.js"></script>
 	<script src="assets/js/mustache.js"></script>
 	<script src="assets/js/pi.core.js"></script>
 	<script src="assets/js/pi.xhr.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="assets/css/pace.css">
-	<script data-pace-options='{ "ajax": true }' src="assets/js/pace.min.js"></script>
-  
-  <link rel="stylesheet" type="text/css" href="assets/css/spop.css">
-  <script src="assets/js/spop.min.js"></script>
-  <script type="text/javascript">
-	  spop.defaults = {
-			style     : 'info',
-			autoclose : 5000,
-			position  : 'bottom-left'
-		};
-  </script>
-
 
 	<style type="text/css">
 
@@ -147,9 +131,9 @@
 
 			-webkit-transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 							transition-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-/*			-webkit-transition-duration: .3s;
+			-webkit-transition-duration: .3s;
 							transition-duration: .3s;
-*/		}
+		}
 
 	</style>
 
@@ -169,21 +153,20 @@
 
 	<style type="text/css">
 
-    /* hide the scroll bar */
-    ::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-    /* or make it transparent  */
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    /* and make it this color, if visible */
-    ::-webkit-scrollbar-thumb {
-      background-color: #009cfa;
-      background-color: #f16;
-      /*background-color: #272822;*/
-    }
+
+		::-webkit-scrollbar {
+		    width: 10px;
+		}
+		 
+		::-webkit-scrollbar-track {
+		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+		    border-radius: 10px;
+		}
+		 
+		::-webkit-scrollbar-thumb {
+		    border-radius: 10px;
+		    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+		}
 
 		html, body {
 			color: #000;
@@ -202,19 +185,7 @@
 			min-width: 100%;
 			height: 100%;
 
-
-      /*  scrollbar styling for IE  */
-      scrollbar-3dlight-color:transparent;
-      scrollbar-arrow-color:transparent;
-      scrollbar-base-color:transparent;
-      scrollbar-darkshadow-color:transparent;
-      scrollbar-face-color:#f16;
-      scrollbar-highlight-color:transparent;
-      scrollbar-shadow-color:transparent;
-      -ms-overflow-style: -ms-autohiding-scrollbar;
-
-
-      -webkit-font-smoothing: antialiased;
+      /*-webkit-font-smoothing: antialiased;*/
 
 
      	/* Make text non-selectable */
@@ -232,11 +203,10 @@
 		}
 
 		.blur {
-		  -webkit-filter: -webkit-blur(4px) grayscale(100%);
-		  -webkit-filter: blur(4px) grayscale(100%);
-		  		-ms-filter: blur(4px) grayscale(100%);
-							filter: blur(4px) grayscale(100%);
-			/*opacity: .4;*/
+		  -webkit-filter: blur(4px);
+		  -webkit-filter: -webkit-blur(4px);
+		  		-ms-filter: blur(4px);
+							filter: blur(4px);
 		}
 
 		h1, h2, h3, h4, h5, h6 {
@@ -244,22 +214,6 @@
 			text-align: center;
 		}	
 
-		h4 {
-			font-family: 'Passion One', sans-serif;
-			font-weight: 900;
-			/*padding: 2px 0;*/
-			font-size: 4em;
-			line-height: 70%;
-			/*height: auto;*/
-			color: rgba(255, 255, 255, 1);
-			/*color: rgba(0, 0, 0, .5);*/
-			text-transform: uppercase;
-			background-color: rgba(82,83,78,1);
-			-webkit-margin-before: 0.4em;
-			-webkit-margin-after: 1em;
-			-webkit-mix-blend-mode: multiply;
-			mix-blend-mode: multiply;
-		}
 
 
 		@media (max-width: 1280px) {
@@ -403,12 +357,11 @@
 
 		#playqueue {
 			-webkit-transition: -webkit-filter 0.5s ease-out; 
-	 						transition: -webkit-filter 0.5s ease-out; /* easeOutExpo */			
+	 				transition: -webkit-filter 0.5s ease-out; /* easeOutExpo */			
 		}
 
 
 		#screen1 {
-			display: none;
 			position 	: fixed;
 			left 			: 0;
 			bottom 		: 0;
@@ -443,13 +396,13 @@
 		.left {
 			float 		: left;
 			width 		: 17%;
-			height 		: 3000px;
+			height 		: 100%;
 			min-height: 100%;			
 
-			/*padding-right: 8px;*/
+			padding-right: 8px;
 
 			color: #fff;
-			/*background-color: #f16;*/
+			/*background-color: #C21E29;*/
 			background-color: #0080c3;
 
 			text-align: right;
@@ -464,10 +417,10 @@
 		.right {
 			float 		: right;
 			width 		: 17%;
-			height 		: 3000px;
+			height 		: 100%;
 			min-height: 100%;
 
-			/*padding-left: 8px;*/
+			padding-left: 8px;
 
 			color: #fff;
 			background-color: #0080c3;
@@ -486,7 +439,7 @@
 			position 	: relative;
 			width 		: 66%;
 			min-height: 100%;
-			height 		: 3000px;
+			height 		: 100%;
 			margin 		: 0;
 			padding 	: 0;
 
@@ -498,11 +451,7 @@
 
 			color: #fff;
 			background-color: rgba(39, 40, 34, 0.8);
-			background: rgba(39, 40, 34, 0.8);
-			background-color: #6D695C;
-			background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI5MCI+CjxnIHRyYW5zZm9ybT0ic2NhbGUoMSAxLjUpIj4KPHJlY3Qgd2lkdGg9Ijk5IiBoZWlnaHQ9Ijk5IiBmaWxsPSIjNmQ2OTVjIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI0Mi40MiIgaGVpZ2h0PSI0Mi40MiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAgMCkgcm90YXRlKDQ1KSIgZmlsbD0iIzYyNWY1MyI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iOTkiIGhlaWdodD0iMSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiBmaWxsPSIjNzE2ZjY0Ij48L3JlY3Q+CjxyZWN0IHdpZHRoPSI5OSIgaGVpZ2h0PSIxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDYwKSByb3RhdGUoLTQ1KSIgZmlsbD0iIzcxNmY2NCI+PC9yZWN0Pgo8L2c+Cjwvc3ZnPg==");
-			/*background-size: 10%;*/
-			/*background-blend-mode: multiply;*/
+
 			text-align: center;
 		}
 		
@@ -518,7 +467,6 @@
 			padding-top: 12px;
 			margin-bottom: 6px;
 			font-weight: 900;
-			transition: font-size .17s ease-out;
 		}
 
 		.duration {
@@ -529,17 +477,12 @@
 		}
 
 		.item {
-	    overflow: auto;
-	    padding: 4px 4px 2px;
-		}
-		
-		.item > span.title {
-			cursor: pointer;
+	    overflow: auto;			
 		}
 
 		.item .ingress {
-			display: inline;
-			font-family: Lato, sans-serif;
+			/*display: inline-block;*/
+			font-family: roboto, sans-serif;
 			color: #999;
 			width: auto;
 			max-width: 400px;
@@ -553,7 +496,7 @@
 
 		.item-menu {
 			display: inline-block;
-			font-family: 'ClanOT', sans-serif;
+			font-family: 'Roboto', sans-serif;
 			float: right;
 			color: #666;
 			font-size: 80%;
@@ -565,7 +508,7 @@
 
 		.current-menu {
 			display: none;
-			font-family: 'ClanOT', sans-serif;
+			font-family: 'Roboto', sans-serif;
 			float: right;
 			color: #aaa;
 			font-size: 80%;
@@ -686,7 +629,7 @@
 			position: relative;
 			z-index: 100;
 
-			font-family: Roboto, Helvetica, Lato, sans-serif;
+			font-family: ClanOT, Helvetica, Lato, sans-serif;
 			font-weight: 300;
 			font-size: 66%;
 			height: 32px;
@@ -975,7 +918,7 @@
 				<h4>Amfiet</h4>
 				<div class="coming-up">
 					<h1 id="amfiet-header">Next</h1>
-					<h2 id="amfiet-artist" class="artist">...</h2>
+					<h2 id="amfiet-artist" class="artist">Razika</h2>
 					<span class="pronomen"><strong>in</strong></span>
 						<div class="day-counter">&nbsp;&nbsp;&nbsp;&nbsp;<span id="amfiet-days" class="fat"></span> days
 						</div>
@@ -991,7 +934,7 @@
 				<h4>Vindfruen</h4>
 				<div class="coming-up">
 					<h1 id="vindfruen-header">Coming Up</h1>
-					<h2 id="vindfruen-artist" class="artist">...</h2>
+					<h2 id="vindfruen-artist" class="artist">The Switch</h2>
 					<span class="pronomen"><strong>in</strong></span>
 						<div class="day-counter">
 							&nbsp;&nbsp;&nbsp;&nbsp;<span id="vindfruen-days" class="fat"></span> days
@@ -1097,7 +1040,7 @@
 		text-align: left;
 		font-family: monospace;
 		font-size: 12px;
-		/*background: #272822;*/
+		background: #272822;
 		color: #f8f8f2;
 		position: absolute;
 		display: block;
@@ -1285,7 +1228,7 @@
 	 */	
 	
 	function deleteItem(id, uuid) {
-		if (!confirm("Delete item " + id + " from playlist?")) {
+		if (!confirm("Delete item " + id + "?")) {
 			// console.info("Item deletion aborted : " + id + ", " + uuid);
 			return false;
 		}
@@ -1526,7 +1469,7 @@
 								if (!window.data) {
 									window.data = {};
 								}
-								// console.info("playlist loaded: " + self._loaded, _data.playlist);
+								console.info("playlist loaded: " + self._loaded, _data.playlist);
 
 								window.data.playlist = self.processItems(_data.playlist);
 								window.playlist.setInfo(_data['info']);
@@ -1655,7 +1598,7 @@
 
 					sendMessage: function(msg, domain) {
 						var
-							domain = domain || "*",
+							domain = domain || null,
 							iframe;
 
 						if (domain === null) {
@@ -1668,28 +1611,16 @@
 								iframe = this._frames[i];
 								if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
 									console.debug("sending msg to iframe " + i + " : " + msg + ", domain: " + domain);
-									iframe.contentWindow.postMessage(msg.data, domain);
+
+									iframe.contentWindow.postMessage(msg, domain);
 								}
 							}
 						}
 					},
 
 					onFrameMessage: function(e) {
-						var
-							self = player;
 						// on reply from iframe
 						console.log("iframe says: " + e, e);
-						console.info("Should be rePOSTed to preview frames");
-						self.sendMessage(e);
-						// if (self._frames && self._frames.length) {
-						// 	for (var i = 0; i < self._frames.length; i++) {
-						// 		iframe = self._frames[i];
-						// 		if (iframe.contentWindow && typeof iframe.contentWindow.postMessage == "function") {
-						// 			console.debug("RePOSTing msg to iframe " + i + " : " + e + ", domain: " + domain);
-						// 			iframe.contentWindow.postMessage(e, domain);
-						// 		}
-						// 	}
-						// }
 					}
 
 			}; // player
@@ -1725,7 +1656,7 @@
 	  display: inline-block;
 	  margin: 0;
 	  width: 96%;
-	  font-family: 'ClanOT', sans-serif;
+	  font-family: 'Roboto', sans-serif;
 	  -webkit-appearance: none;
 	  appearance: none;
 	  
@@ -1759,7 +1690,7 @@
 
 	.error {
 		display: none;
-		background-color: #f16;
+		background-color: #C21E29;
 		/*background-color: #ff0545;*/
 		padding: 0.2em 0.5em;
 		color: #fff;
@@ -1918,20 +1849,7 @@
 
 							<a target="_blank" href="http://instagram.com/osloby_no?ref=badge" class="ig-b- ig-b-48"><img src="//badges.instagram.com/static/images/ig-badge-48.png" alt="Osloby.no - Instagram" />osloby.no</a>
 
-              <p>There are many variations of passages of Lorem Ipsum available, 
-                  but the majority have suffered alteration in some form, 
-                  by injected humour, or randomised words which don't look 
-                  even slightly believable. If you are going to use a 
-                  passage of Lorem Ipsum, you need to be sure there isn't 
-                  anything embarrassing hidden in the middle of text. All 
-                  the Lorem Ipsum generators on the Internet tend to 
-                  repeat predefined chunks as necessary, making this the 
-                  first true generator on the Internet. It uses a dictionary
-                  of over 200 Latin words, combined with a handful of model 
-                  sentence structures, to generate Lorem Ipsum which looks 
-                  reasonable. The generated Lorem Ipsum is therefore 
-                  always free from repetition, injected humour, or 
-                  non-characteristic words etc.
+              <p>
               </p>
             </div>
 	        </li>
@@ -1957,12 +1875,12 @@
 
 	</div>
 
-	<iframe id="screen1" class="screen" scrolling="no" src="player-slave.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
-	<iframe id="screen2" class="screen" scrolling="no" src="player-slave.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen1" class="screen" scrolling="no" src="player.php" width="448" height="768" onload="iframeloaded(this)"></iframe>
+	<iframe id="screen2" class="screen" scrolling="no" src="player.php" width="672" height="384" onload="iframeloaded(this)"></iframe>
 
 	<script type="text/javascript">
 
-		var
+		var 
 			previewProto = {
 				active : false,
 				current : null,
@@ -2022,60 +1940,6 @@
 		}
 
 
-		function _replaceAll(html, search, replace) {
-			while (html.indexOf(search)>-1) {
-				html = html.replace(search, replace);
-			}
-			return html;
-		}
-
-		/**
-		 * Set iframe content, including <head> section
-		 * 
-		 * @param {string|HTMLIFrameElement} 	iframe 	The frame to write content to
-		 * @param {string} 										html   	The html body
-		 */
-		function _setIframeContent(iframe, html) {
-			var
-				_head = "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body {margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
-				_tail = '<\/body><\/html>',
-				win,
-				html = _replaceAll(html, "&#x2F;", "\/"),
-				iframe;
-
-
-			if (!iframe) {
-				console.error("!iframe: " + iframe, iframe);
-				return;
-			}
-			else {
-				console.info("That's an iframe: " + iframe, iframe);
-			}
-
-			iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
-
-			if (!iframe) {
-				console.error("!IFRAME: " + iframe, iframe);
-				return;
-			}
-			else {
-				console.info("That's still an IFRAME: " + iframe, iframe);
-			}
-
-
-			win = iframe.contentWindow || (iframe.contentDocument.document || iframe.contentDocument);
-			win.document.open();
-			win.document.write(_head)
-			win.document.write(html);
-			win.document.write(_tail);
-			win.document.close();
-			// console.info("Updated iframe content!");
-			// // console.info(self._head);
-			// console.info(html);
-			// console.info(self._tail);
-		}
-
-
 		function updatePreviews(data) {
 			var 
 				contentframe1, contentframe2, tmpl,
@@ -2132,28 +1996,25 @@
 				var 
 					domdoc = contentframe1.contentDocument || contentframe1.contentWindow.document,
 					domwin = contentframe1.contentWindow;
-				console.info("Rendering : contentframe1, data = ", data);
+				// console.info("Rendering : contentframe1, data = ", data);
 				if (data.statustext && typeof window.data.preview.screen1.contentWindow.setStatusText == "function") {
-					console.info("updating statustext, contentframe1: " + data.statustext);
+					// console.info("updating statustext");
 					window.data.preview.screen1.contentWindow.setStatusText(data.statustext);
 				}
 
-				// domdoc.body.innerHTML = Mustache.render(preview.current, data)
-				// console.info("Updating iframe: " + contentframe1, contentframe1);
-				_setIframeContent(contentframe1, Mustache.render(preview.current, data));
+				domdoc.body.innerHTML = Mustache.render(preview.current, data)
 			}
 			else {
-				console.error("contentframe1 is nought");
+				console.error("contentframe1 is nil");
 			}
 			if (contentframe2) {
-				var
+				var 
 					domdoc = contentframe2.contentDocument || contentframe2.contentWindow.document,
 					domwin = contentframe1.contentWindow;
 				// console.info("Rendering : contentframe2");
-				// domdoc.body.innerHTML = Mustache.render(preview.current, data);
-				_setIframeContent(contentframe2, Mustache.render(preview.current, data));
+				domdoc.body.innerHTML = Mustache.render(preview.current, data);
 				if (data.statustext && typeof window.data.preview.screen2.contentWindow.setStatusText == "function") {
-					console.info("updating statustext, contentframe2: " + data.statustext);
+					// console.info("updating statustext");
 					window.data.preview.screen2.contentWindow.setStatusText(data.statustext);
 				}
 				// console.info("Result : " + domdoc.body.innerHTML);
@@ -2170,7 +2031,7 @@
 		}
 
 		function onStatusTextUpdate(e) {
-			console.info("onStatusTextUpdate");
+			// console.info("onStatusTextUpdate");
 			onFieldsetChange(e);
 		}
 
@@ -2479,20 +2340,12 @@
 
 
       var
-      	remove = document.getElementById("form-screen-delete"),
       	submit = document.getElementById("form-screen-submit"),
       	titleField = document.getElementById("form-screen-title");
 
       if (submit && typeof submit.addEventListener == "function") {
-	      submit.removeEventListener("click", onScreenSave);
 	      submit.addEventListener("click", onScreenSave);
       }
-
-      if (remove && typeof remove.addEventListener == "function") {
-	      remove.removeEventListener("click", onScreenDelete);
-	      remove.addEventListener("click", onScreenDelete);
-      }
-
       
       enterPreviewMode(tmpl, data);
       // console.info("updating previews!!!!");
@@ -2514,8 +2367,6 @@
 			}
 			else {
 				modalForm.classList.add("active");
-				console.info("Calling blurBackground()");
-				blurBackground();
 				setTimeout(function(){
 					modalForm.classList.toggle("showing");
 				}, 1);
@@ -2558,7 +2409,6 @@
 
 		function onScreenSave(e) {
     	var
-    		json, data,
     		fields,
     		xhr = new XMLHttpRequest(),
     		fieldset = document.getElementById("form-screen-fieldset").children,
@@ -2572,7 +2422,7 @@
 			if (fieldset && fieldset.length) {
 				for (var i = 0; i < fieldset.length; i++) {
 					if (fieldset[i] instanceof HTMLInputElement || fieldset[i] instanceof HTMLTextAreaElement) {
-						// console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
+						console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
 			    	formData.append(fieldset[i].name || fieldset[i].id, fieldset[i].value);
 					}
 				}
@@ -2584,8 +2434,6 @@
 
     	console.log("Sending: " + formData, formData);
 
-   		formData.append("action", "save");
-
     	xhr.open("POST", "assets/php/screens.php");
     	xhr.send(formData);
 
@@ -2595,12 +2443,9 @@
 	  			status.className = "status";
     			console.log("Success!");
     			console.log("response: " + this.responseText);
-    			json = this.responseText;
-    			data = JSON.parse(json);
-	    		spop("Screen saved: " + data.status);
     			hideModal();
   				try {
-	    			var
+	    			var 
 	    				response = JSON.parse(this.responseText),
 	    				span = document.createElement("span"),
 	    				preview = document.getElementById("screen-preview");
@@ -2622,82 +2467,6 @@
 
     }
 
-
-		function onScreenDelete(e) {
-    	var
-    		json, data,
-    		fields,
-    		xhr = new XMLHttpRequest(),
-    		fieldset = document.getElementById("form-screen-fieldset").children,
-    		formData = new FormData(fieldset),
-	      status  = document.getElementById("form-status"),
-	      modalForm = document.getElementById("modal-one");
-
-
-			// console.log("fieldset" + fieldset, fieldset);
-			if (!confirm("Do you really want to delete?")) {
-				spop({
-					template: "Aborted.",
-					style: "info"
-				});
-				return;
-			};
-
-			if (fieldset && fieldset.length) {
-				for (var i = 0; i < fieldset.length; i++) {
-					if (fieldset[i] instanceof HTMLInputElement || fieldset[i] instanceof HTMLTextAreaElement) {
-						// console.log(typeof fieldset[i] + " : " + fieldset[i], fieldset[i]);
-			    	formData.append(fieldset[i].name || fieldset[i].id, fieldset[i].value);
-					}
-				}
-			}
-
-    	// fieldset.forEach(function(p,i,a) {
-    	// 	console.log(i + " : " + p, p);
-    	// });
-
-    	console.log("Sending: " + formData, formData);
-
-   		formData.append("action", "delete");
-
-    	xhr.open("POST", "assets/php/screens.php");
-    	xhr.send(formData);
-
-    	xhr.onload = function() {
-    		if (this.status == 200) {
-    			status.textContent = "Success.";
-	  			status.className = "status";
-    			console.log("Success!");
-    			console.log("response: " + this.responseText);
-    			json = this.responseText;
-    			data = JSON.parse(json);
-	    		spop("Screen deleted: " + data.status);
-	    		// load new playlist, in case we deleted a screen that was added to the playlist previously
-	    		console.info("Reloading playlist...");
-	    		window.playlist.update();
-    			hideModal();
-  				try {
-	    			var
-	    				response = JSON.parse(this.responseText),
-	    				span = document.createElement("span"),
-	    				preview = document.getElementById("screen-preview");
-
-	    				// console.info("reloading screens!");
-	    				reloadScreens();
-    			}
-    			catch(e) {
-    				console.error(e);
-    			}
-    		}
-    	};
-    	xhr.onerror = function() {
-  			status.textContent = "Success.";
-  			status.className = "error";
-  			console.log("Error!");
-    	};
-
-
-    }
 
 
 		function newFromTemplate(tpl) {
@@ -2755,14 +2524,12 @@
 
 			if (modalForm.classList.contains("active")) {
 				modalForm.classList.remove("showing");
-				unblur();
 				setTimeout(function(){
 					modalForm.classList.remove("active");
 				}, 1000);
 			}
 			else {
 				modalForm.classList.add("active");
-				blurBackground();
 				setTimeout(function(){
 					modalForm.classList.add("showing");
 				}, 1);
@@ -2974,7 +2741,6 @@
 				}, 1000);
 			}
 			else {
-				console.info("Calling blurBackground()");
 				blurBackground();
 				modalForm.classList.add("active");
 				setTimeout(function(){
@@ -3885,7 +3651,6 @@
 				  return (utc2 > utc1) ? (utc2 - utc1) : (utc1 - utc2);
 				};
 
-
 			remainingSeconds = Math.round(dateDiff(now, concert.when)/1000);
 
 			days 		= Math.floor(remainingSeconds / (60 * 60 * 24));
@@ -3953,7 +3718,7 @@
 
 					// console.log("time : " + time);
 					// year, month, day, hours, minutes, seconds, milliseconds);
-					return new Date(2016, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
+					return new Date(2015, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
 
 				},
 
@@ -3983,7 +3748,6 @@
 							// console.log("Scene: " + result["scene"] + ", index: " + ["sirkus, amfiet"].indexOf(result["scene"]));
 						}
 						else {
-							// console.info("Skipping scene: " + result["scene"]);
 							// skip the scenes we are not interested in
 							return false;
 						}
@@ -4000,7 +3764,6 @@
 
 				while(concerts.pop());
 
-				var skipped = 0;
 				for (var i = 0; i < tr.length; i++) {
 					// console.log("Chunk no. " + i);
 					chunk = format(orderData(tr[i]));
@@ -4011,7 +3774,7 @@
 					else {
 						// console.info("CHUNK: " + chunk, chunk);
 						if (chunk.time == "...") {
-							skipped++;
+							// skipped++;
 							console.error("SKIP invalid time (" + chunk.time + "): " + chunk.artist + " - " + chunk.scene.toUpperCase() + ", " + chunk.day);
 						}
 						else {
@@ -4019,12 +3782,6 @@
 						}
 					}
 				}
-				spop({
-					title: "title",
-					style: "error",
-					autoclose: 5000,
-					template: "Skipped " + skipped + " artist(s) that had no date"
-				})
 			}
 			else {
 				console.error("No program lines found!");
@@ -4083,9 +3840,10 @@
 					continue;
 				}
 				if (result === null) {
+					// console.log("Scene : " + scene + ", earliest : " + concerts[i]["date"]);
 					earliest = concerts[i]["date"];
 					if (earliest < dummyDate) {
-						console.log("ALREADY STARTED: " + scene + ", earliest : " + concerts[i]["date"]);
+
 						// already started, on to the next one
 						continue;
 					}
@@ -4230,14 +3988,18 @@
 					}
 				}
 
+				if (seconds == 45) {
+					seconds = 20;
+				}
+
 				if (seconds == 0) {
 					if (minutes > 0) {
 						minutes--;
 						seconds = 60;
 					}
 					else {
-						// console.log("rotatePlaylist()");
-						// WTF ???
+						nextSlide();
+						console.log("rotatePlaylist()");
 						// rotatePlaylist();
 					}
 				}
@@ -4357,7 +4119,7 @@
 
 
 	.modal {
-		font-family: Roboto, sans-serif;
+		font-family: ClanOT, sans-serif;
 		position: fixed;
 		display: none;
 		opacity: 0;
@@ -4367,62 +4129,13 @@
 		right: 0;
 		color : #fff;
 		background-color: rgba(0, 0, 0, 0.4);
-
-		background:
-			linear-gradient(
-				rgba(50,205,50, 1),
-				transparent
-			),
-			linear-gradient(
-				90deg,
-				rgba(135,206,235, 1),
-				transparent
-			),
-			linear-gradient(
-				-90deg,
-				rgba(255,127,80, 1),
-				transparent
-			);
-	
-		background:
-			linear-gradient(
-				rgba(0,255,255, 0.5),
-				transparent
-			),
-			linear-gradient(
-				-45deg,
-				rgba(255,0,255, 0.5),
-				transparent
-			),
-			linear-gradient(
-				45deg,
-				rgba(255,255,0, 0.5),
-				transparent
-			);
-/*background:
-	linear-gradient(
-		cyan,
-		transparent
-	),
-	linear-gradient(
-		-45deg,
-		magenta,
-		transparent
-	),
-	linear-gradient(
-		45deg,
-		yellow,
-		transparent
-	);
-*/		background-blend-mode: multiply;
-		/*mix-blend-mode: multiply;*/
-/*		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%, rgba(25,128,0,0.26) 100%);
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%, rgba(25,128,0,0.26) 100%);
 		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,0,59,0.33)), color-stop(100%,rgba(25,128,0,0.26)));
 		background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 		background: -o-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 		background: -ms-radial-gradient(center, ellipse cover,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
 		background: radial-gradient(ellipse at center,  rgba(255,0,59,0.33) 0%,rgba(25,128,0,0.26) 100%);
-*/
+
 /*rgba(255,0,59,0.4)
 
 		background: -moz-radial-gradient(center, ellipse cover,  rgba(0,128,45,0.5) 0%, rgba(255,0,59,0.25) 100%);
@@ -4441,8 +4154,6 @@
 
 	.modal .relative-wrapper {
 		position: relative;
-		mix-blend-mode: normal;
-		background-blend-mode: multiply;
 	}
 
 	.modal.active {
@@ -4451,8 +4162,6 @@
 
 	.modal.showing {
 		opacity: 1;
-		/*mix-blend-mode: normal;*/
-		/*mix-blend-mode: multiply;*/
 	}
 
 
@@ -4460,7 +4169,7 @@
 	#imageselector {
 		display: none;
     position:fixed;
-		font-family: Roboto, sans-serif;
+		font-family: ClanOT, sans-serif;
 			/*opacity: 1;*/
     top: 0;
     left: 0;
@@ -4472,7 +4181,7 @@
     background: transparent;
     z-index: 5001;
 
-/*		font-family: Roboto, sans-serif;
+/*		font-family: ClanOT, sans-serif;
 		position: fixed;
 		display: none;
 		opacity: 0;
@@ -4680,23 +4389,21 @@
 
 	function onModalClick(e) {
 		hideModal();
-		// console.log("Clicked outside modal dialog. This : ", e);
+		console.log("Clicked outside modal dialog. This : ", e);
 	}
  	
 
 	function blurBackground() {
 		// disable
-		// return;
+		return;
 		var
-			wrapper = document.getElementById("wrapper"),
 			toolbar = document.getElementById("toolbar"),
 			playqueue = document.getElementById("playqueue");
 
-		if (wrapper) {
-			console.info("Blurring...");
-			// toolbar.classList.add("blur");
-			// playqueue.classList.add("blur");
-			wrapper.classList.add("blur");
+		if (toolbar && playqueue) {
+			// console.info("Blurring...");
+			toolbar.classList.add("blur");
+			playqueue.classList.add("blur");
 		}
 		else {
 			console.error("Not found");
@@ -4705,16 +4412,14 @@
 
 	function unblur() {
 		// disable
-		// return;
+		return;
 		var
-			wrapper = document.getElementById("wrapper"),
 			toolbar = document.getElementById("toolbar"),
 			playqueue = document.getElementById("playqueue");
 
-		if (wrapper) {
-			// toolbar.classList.remove("blur");
-			// playqueue.classList.remove("blur");
-			wrapper.classList.remove("blur");
+		if (toolbar && playqueue) {
+			toolbar.classList.remove("blur");
+			playqueue.classList.remove("blur");
 		}
 	}
 
@@ -4728,11 +4433,11 @@
 		if (figure) {
 
 			modal.classList.add("active");
-			console.info("calling blurBackground()");
+			// console.info("calling blurBackground()");
 			blurBackground();
 			setTimeout(function() {
 				modal.classList.add("showing");
-			}, 1);
+			}, 1);			
 		}
 	}
 
@@ -4743,8 +4448,8 @@
 			modal = document.getElementById("modal-one");
 
 		exitPreviewMode();
-		console.info("calling unblur()");
-		unblur();
+		// console.info("calling unblur()");
+		// unblur();
 		modal.classList.remove("showing");
 		setTimeout(function() {
 			modal.classList.remove("active");
@@ -4821,7 +4526,7 @@
 			data = window.data || {};
 
 		/**
-		 * load screens
+		 * load settings
 		 */
 		pi.xhr.get("assets/php/screens.php" + "?cb=" + (Math.random()*10000), function(json) {
 			if (json) {

@@ -1,0 +1,12 @@
+{
+	"title" : "NY TEMPLATE TEST",
+	"ingress" : "",
+	"name" : "Konsert",
+	"variant" : "concert-3.html",
+	"tags" : "",
+	"description" : null,
+	"duration": 20,
+	"frequency" : 10,
+  "fgColor" : "red",
+  "bgColor" : "blue"
+}
