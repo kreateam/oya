@@ -60,3 +60,12 @@
     display: block;
     resize: vertical;
   }
+
+  fieldset .form-fields {
+    height: auto;
+    overflow: hidden;
+  }
+
+  fieldset .form-fields.collapsed {
+    height: 0;
+  }

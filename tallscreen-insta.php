@@ -65,7 +65,7 @@
 
 		iframe {
 			display: block;
-			background: #fff;
+			background: #000;
 			border: none;
       width: 448px;
       height: 768px;
@@ -74,7 +74,7 @@
 				transform-origin: top center;
 
 /*
-		for 1920x1080 
+		for 1920x1080 -> 768px*1.40625 = 1080px
 	*/
 
 			-webkit-transform: scale(1.40625, 1.40625);

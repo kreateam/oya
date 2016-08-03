@@ -26,20 +26,23 @@
 
 		<label for="duration">Duration</label>
 		<input type="number" width="10" id="form-screen-duration" name="duration" value="{{duration}}" min="0" max="300" step="5" required />
-		<label for="frequency">Max. Frequency</label>
-		<input type="number" width="10" id="form-screen-frequency" name="frequency" value="{{frequency}}" min="0" max="100" required  />
 		<label for="statustext">Footer/status bar</label>
 		<input type="text" width="32" id="form-screen-statustext" name="statustext" value="{{statustext}}" required onupdate="onStatusTextUpdate()" />
+		<div class="form-fields collapsed">
+			<label for="frequency">Max. Frequency</label>
+			<input type="number" width="10" id="form-screen-frequency" name="frequency" value="{{frequency}}" min="0" max="100" required  />
 
-		<label for="tags">Tags</label>
-		<input type="text" width="32" id="form-screen-tags" name="tags" value="{{tags}}" />
-		<label for="description">Description</label>
-		<textarea type="textarea" width="32" id="form-screen-description" name="description" rows="2">{{description}}</textarea>
-
+			<label for="tags">Tags</label>
+			<input type="text" width="32" id="form-screen-tags" name="tags" value="{{tags}}" />
+			<label for="description">Description</label>
+			<textarea type="textarea" width="32" id="form-screen-description" name="description" rows="2">{{description}}</textarea>
+		</div>
 		<input type="hidden" id="form-screen-id" name="id" value="{{id}}" />
 		<input type="hidden" name="image" id="form-screen-editor-image" value="{{image}}" />
 		<input type="hidden" id="form-screen-filename" name="filename" value="{{filename}}" />
 		<input id="form-screen-submit" type="submit" name="submit" value="Save" />
+		{{#deleteButton}}
 		<input id="form-screen-delete" type="submit" name="submit" value="Delete" />
+		{{/deleteButton}}
 	</fieldset>
 </div>

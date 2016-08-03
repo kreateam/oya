@@ -17,7 +17,7 @@
 </div>
 <div class="modal-body">
 	<fieldset id="form-screen-fieldset">
-		<legend>New</legend>
+		<legend>{{purpose}}</legend>
 		<label for="title">Title</label>
 		<input type="text" width="32" id="form-screen-title" name="title" value="{{title}}" required style="width:80%;" />
 
@@ -29,20 +29,23 @@
 		<label for="score">Score</label>
 		<input type="number" width="10" id="form-screen-score" name="score" value="{{score}}" min="1" max="6" required  />
 
-		<label for="frequency">Max. Frequency</label>
-		<input type="number" width="10" id="form-screen-frequency" name="frequency" value="{{frequency}}" min="0" max="100" required  />
 		<label for="statustext">Footer/status bar</label>
 		<input type="text" width="32" id="form-screen-statustext" name="statustext" value="{{statustext}}" required onupdate="onStatusTextUpdate()" />
 
-		<label for="tags">Tags</label>
-		<input type="text" width="32" id="form-screen-tags" name="tags" value="{{tags}}" />
-		<label for="description">Description</label>
-		<textarea type="textarea" width="32" id="form-screen-description" name="description" rows="2">{{description}}</textarea>
-
+		<div class="form-fields collapsed">
+			<label for="tags">Tags</label>
+			<input type="text" width="32" id="form-screen-tags" name="tags" value="{{tags}}" />
+			<label for="description">Description</label>
+			<textarea type="textarea" width="32" id="form-screen-description" name="description" rows="2">{{description}}</textarea>
+			<label for="frequency">Max. Frequency</label>
+			<input type="number" width="10" id="form-screen-frequency" name="frequency" value="{{frequency}}" min="0" max="100" required  />
+		</div>
 		<input type="hidden" id="form-screen-id" name="id" value="{{id}}" />
 		<input type="hidden" name="image" id="form-screen-editor-image" value="{{image}}" />
 		<input type="hidden" id="form-screen-filename" name="filename" value="{{filename}}" />
 		<input id="form-screen-submit" type="submit" name="submit" value="Save" />
+		{{#deleteButton}}
 		<input id="form-screen-delete" type="submit" name="submit" value="Delete" />
+		{{/deleteButton}}
 	</fieldset>
 </div>

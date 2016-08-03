@@ -27,7 +27,7 @@
 	if (isset($_GET['width']) && isset($_GET['height'])) {
 		$width = $_GET['width'];
 		$reply['DEBUG'][] = "updating aspect from GET params";
-		$aspect = $_GET['width']/$_GET['height'];
+		$aspect = $_GET['height'] ? $_GET['width']/$_GET['height'] : 1;
 		if ($aspect < 1) {
 			$which = "tallscreen";
 			$width = "448";

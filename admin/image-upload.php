@@ -5,6 +5,10 @@
 	define('IMAGE_PATH', __DIR__ . '/../assets/php/data/files');
 	define('IMAGE_LIBRARY', __DIR__ . '/../assets/php/data/images.json');
 
+	define('IMAGE_THUMB', __DIR__ . '/../assets/php/data/thumbnail.jpg');
+
+	define('IMAGE_LOG', __DIR__ . '/../assets/php/data/images.log');
+
 	$status = "ok";
 
 	if (!file_exists(IMAGE_PATH)) {
@@ -18,7 +22,40 @@
 	}
 
 
+	function logIt($msg, $obj = null) {
+		$loglines = "$msg\n";
+
+		if ($obj !== null) {
+			$loglines .= print_r($obj, true) . "\n";
+		}
+		file_put_contents(IMAGE_LOG, $loglines, FILE_APPEND);
+	}
+
 	$filecontent = file_get_contents($_FILES['image-upload']['tmp_name']);
+
+	$exifdata = exif_read_data($_FILES['image-upload']['tmp_name'], NULL, false, true);
+	$exifthumb = exif_read_data($_FILES['image-upload']['tmp_name'], NULL, false, true);
+
+	$fileinfo = getimagesize($_FILES['image-upload']['tmp_name']);
+
+	if (is_numeric($fileinfo[0]) && is_numeric($fileinfo[1])) {
+		$width = $fileinfo[0];
+		$height = $fileinfo[1];
+	  $size = $width."x".$height;
+	  $pixels = $width * $height;
+	  logIt("We have fileinfo: ", $fileinfo);
+	  if ($exifthumb) {
+		  logIt("We have an exif thumbnail: ", $exifdata);
+		  file_put_contents(IMAGE_THUMB, $exifdata['THUMBNAIL']['THUMBNAIL']);
+	  }
+	  if ($exifdata) {
+		  logIt("We also have exif: ", $exifdata);
+	  }
+	  if ($width > 448) {
+		  logIt("Should resize image: $size => ?");
+	  }
+	}
+
 
 
 	$name 		= $_FILES['image-upload']['name'];
@@ -45,19 +82,19 @@
 	  'dataUri' => $dataUri,
 	  'uri' 		=> $uri,
 	  'filename' => $filename,
-	  'user' => $_REQUEST['user'],
-	  'uuid' => $_REQUEST['uuid']
+	  'user' => isset($_REQUEST['user']) ? $_REQUEST['user'] : "guest",
+	  'uuid' => isset($_REQUEST['uuid']) ? $_REQUEST['uuid'] : "unknown-uuid-" . uniqid()
 	);
 
 	$data['title'] = isset($_REQUEST['title']) ? $_REQUEST['title'] : $name;
-	$data['description'] = $_REQUEST['description'];
-	$data['tags'] = $_REQUEST['tags'];
+	$data['description'] = isset($_REQUEST['description']) ? $_REQUEST['description'] : "No description.";
+	$data['tags'] = isset($_REQUEST['tags']) ? $_REQUEST['tags'] : "";
   $data['name'] = $name;
   $data['type'] = $filetype;
   $data['uri'] 	= $uri;
   $data['filename'] = $filename;
-  $data['user'] = $_REQUEST['user'];
-  $data['uuid'] = $_REQUEST['uuid'];
+  $data['user'] = $reply['user'];
+  $data['uuid'] = $reply['uuid'];
 
   $reply['tags'] = $data['tags'];
   $reply['title'] = $data['title'];

@@ -65,9 +65,9 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
 	<!-- needed for buttons.js -->
 	<script src="/html5/assets/js/jquery.min.js"></script>
-	<script src="assets/js/mustache.js"></script>
-	<script src="assets/js/pi.core.js"></script>
-	<script src="assets/js/pi.xhr.js"></script>
+	<script src="/assets/js/lib/mustache.min.js"></script>
+	<script src="/assets/js/pi.core.js"></script>
+	<script src="/assets/js/pi.xhr.js"></script>
 
 	<style type="text/css">
 
@@ -3709,16 +3709,16 @@
 
 				getDate  	= function (dateStr) {
 					var
+						currentYear = new Date().getFullYear(),
 						tmp, time,
-						day, hour, min = 0;
+						year, day, hour, min = 0;
 
 					tmp = dateStr.split("-");
 					day = tmp[0];
 					time = tmp[1].split(":");
-
-					// console.log("time : " + time);
+	
 					// year, month, day, hours, minutes, seconds, milliseconds);
-					return new Date(2015, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
+					return new Date(currentYear, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
 
 				},
 

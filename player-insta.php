@@ -33,9 +33,9 @@
 	<link rel="stylesheet" type="text/css" href="/assets/font/publico.css">
 	<!-- <link rel="stylesheet" type="text/css" href="/html5/assets/font/gtwalsheim.css"> -->
 
-	<script type="text/javascript" src="assets/js/mustache.js"></script>
-	<script type="text/javascript" src="assets/js/pi.core.js"></script>
-	<script type="text/javascript" src="assets/js/pi.xhr.js"></script>
+	<script type="text/javascript" src="/assets/js/lib/mustache.min.js"></script>
+	<script type="text/javascript" src="/assets/js/pi.core.js"></script>
+	<script type="text/javascript" src="/assets/js/pi.xhr.js"></script>
 	<script type="text/javascript">	
 
 	function refreshFonts() {
@@ -175,7 +175,7 @@
 			height: 100%;
 			min-height: 100%;
 
-			/*background-color: rgba(255,5,45,0.7);*/
+			background-color: rgba(0,0,0,1);
 			border: none;
 
 			-webkit-transition: all .4s ease-out;
@@ -208,7 +208,8 @@
 			/* PURPLE: 	#5B0039 	rgb(90, 0, 56) 		*/
 
 
-			background 	: rgb(69, 128, 223);
+			/*background 	: rgb(69, 128, 223);*/
+			background 	: #323232;
 			text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 
 /*
@@ -278,7 +279,7 @@
 			font-size 			: 32px;
 			line-height 		: 34px;
 			font-weight 		: 400;
-			background 			: rgb(27, 49, 98);
+			background 			: #323232;
 			overflow 				: hidden;
 			text-shadow: 0px 1px 4px rgba(0,0,0,.33);
 
@@ -573,6 +574,10 @@
   doOnOrientationChange();
 
 
+  function onVideoEnd(e) {
+  	console.debug("Video ended: " + e, e);
+  	reloadPlayer()
+  }
 
 	function loadVideo(id, onready) {
 		var
@@ -610,7 +615,7 @@
 				video.setAttribute("preload", true);
 				// video.setAttribute("autoplay", true);
 				// video.addEventListener("canplay", onready);
-				video.addEventListener("ended", reloadPlayer);
+				video.addEventListener("ended", onVideoEnd);
 				video.addEventListener("canplay", function (e) {
 					video.style.opacity = 1;
 					video.play();
@@ -859,7 +864,7 @@
 					_started 	: null,
 					_header 	: document.querySelector("header"),
 					_footer 	: document.querySelector("footer"),
-					_head			: "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body {margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
+					_head			: "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body { background: #000; margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
 					_tail			: '<\/body><\/html>',
 
 					fullscreen: false,
@@ -895,7 +900,7 @@
 							html = self._replaceAll(html, "&#x2F;", "\/"),
 							iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
 
-						win = iframe.contentWindow || (iframe.contentDocument.document || iframe.contentDocument);
+						win = iframe.contentWindow;
 						win.document.open();
 						win.document.write(self._head)
 						win.document.write(html);
@@ -1096,6 +1101,8 @@
 							console.error("No event");
 							return;
 						}
+						// console.debug("windowMessage: " + e, e);
+
 						// on reply from iframe
 						if (e.data.bgColor) {
 							if (self._header) {
@@ -1223,7 +1230,7 @@
 				result = pi.strPad(now.getHours(), 2, "0", true) + ":" + pi.strPad(now.getMinutes(), 2, "0", true);
 				if (result != currentTime) {
 					// console.log("Updating clock: " + result);
-					clock.innerHTML = result;
+					clock.textContent = result;
 					currentTime = result;
 				}
 		}

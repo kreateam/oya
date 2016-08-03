@@ -28,18 +28,25 @@
 
 // https://api.instagram.com/v1/tags/oya2015/media/recent?client_id=CLIENT-ID
 
-	$json = file_get_contents("https://api.instagram.com/v1/users/self/media/liked?access_token=179286384.3c3f487.ecb6f464967345dfbcca3266d5139094");
+	$json = file_get_contents("https://api.instagram.com/v1/users/self/media/liked?client_id=3c3f48734ad64fdabf398290304844e4&access_token=179286384.3c3f487.ecb6f464967345dfbcca3266d5139094&count=20");
+
+	$jsonFileSize = 0;
+
+	if (!file_exists(JSON_FILE)) {
+		$jsonFileSize = 0;
+	}
+	else {
+		$jsonFileSize = filesize(JSON_FILE);
+	}
+
 
 	if (!$json) {
-		if (!file_exists(JSON_FILE)) {
-			// echo file_get_contents(RECENT_FILE);
-		}
-		else {
+		if (file_exists(JSON_FILE)) {
 			echo file_get_contents(JSON_FILE);
 		}
 	}
 	else {
-		if (strlen($json) != filesize(JSON_FILE)) {
+		if (strlen($json) != $jsonFileSize) {
 			$data = json_decode($json, true);
 			if ($data['meta']['code'] == 200) {
 				// write to cache file

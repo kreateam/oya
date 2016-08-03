@@ -58,18 +58,16 @@
 
 	<link rel="stylesheet" type="text/css" href="/assets/font/clan.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/tabstrip.css" />
-	<link rel="stylesheet" type="text/css" href="assets/css/buttons.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/forms.css" />
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,400italic,500,700,900' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Passion+One:400italic,700italic,900italic,400,700,900' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Poppins:400italic,700italic,900italic,400,700,900' rel='stylesheet' type='text/css'>
-	<!-- needed for buttons.js -->
-	<script src="/html5/assets/js/jquery.min.js"></script>
-	<script src="assets/js/mustache.js"></script>
-	<script src="assets/js/pi.core.js"></script>
-	<script src="assets/js/pi.xhr.js"></script>
+
+	<script src="/assets/js/lib/mustache.min.js"></script>
+	<script src="/assets/js/pi.core.js"></script>
+	<script src="/assets/js/pi.xhr.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="assets/css/pace.css">
 	<script data-pace-options='{ "ajax": true }' src="assets/js/pace.min.js"></script>
@@ -127,8 +125,8 @@
 		  -webkit-animation-name: zoomInDown;
 		  				animation-name: zoomInDown;
 
-		 	-webkit-animation-duration: .4s;
-		  			 	animation-duration: .4s;
+		 	-webkit-animation-duration: .17s;
+		  			 	animation-duration: .17s;
 
 		  -webkit-animation-fill-mode: both;
 		  				animation-fill-mode: both;
@@ -139,8 +137,8 @@
 		* {
 			-webkit-animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 							animation-timing-function: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-			-webkit-animation-duration: 1s;
-							animation-duration: 1s;
+			-webkit-animation-duration: .17s;
+							animation-duration: .17s;
 
 			-webkit-animation-fill-mode: both;
 							animation-fill-mode: both;
@@ -156,8 +154,8 @@
 	<style type="text/css">
 
 		span {
-			-webkit-transition: color .4s;
-			 				transition: color .4s;
+			-webkit-transition: color .17s;
+			 				transition: color .17s;
 		}
 
 		ul {
@@ -297,7 +295,7 @@
 
 
 		iframe {
-			background-color: #fff;
+			background-color: #000;
 			border: solid 1.5em rgba(0, 0, 0, 0.3);
 			/*background: none repeat scroll 0% 0% transparent; */
 			/*width: 100%;*/
@@ -326,8 +324,8 @@
 			font-size: 1.5em;
 			background-color: #272822;
 
-			-webkit-transition: height .4s;
-							transition: height .4s;
+			-webkit-transition: height .17s;
+							transition: height .17s;
 		}
 
 		.highlighted {
@@ -348,8 +346,8 @@
 			padding-top: 2px;
 			text-align: left;
 			background-color: rgba(39, 40, 34, 0.6);
-			-webkit-transition: top .4s;
-							transition: top .4s;
+			-webkit-transition: top .17s;
+							transition: top .17s;
 		}
 
 		.item::before {
@@ -387,9 +385,9 @@
 			-webkit-transform: scale(0.5, 0.5);
 							transform: scale(0.5, 0.5);
 
-			-webkit-transition: border .4s, opacity .4s, -webkit-transform .2s; /* Safari */
-			-webkit-transition: border .4s, opacity .4s, transform .2s;
-							transition: border .4s, opacity .4s, transform .2s;
+			-webkit-transition: border .17s, opacity .17s, -webkit-transform .2s; /* Safari */
+			-webkit-transition: border .17s, opacity .17s, transform .2s;
+							transition: border .17s, opacity .17s, transform .2s;
 
 			pointer-events : none;
 		}
@@ -453,8 +451,8 @@
 			background-color: #0080c3;
 
 			text-align: right;
-			-webkit-transition: background-color .4s;
-			transition: background-color .4s;
+			-webkit-transition: background-color .17s;
+			transition: background-color .17s;
 		}
 
 		.right ::selection {
@@ -473,8 +471,8 @@
 			background-color: #0080c3;
 
 			text-align: right;
-			-webkit-transition: background-color .4s;
-			transition: background-color .4s;
+			-webkit-transition: background-color .17s;
+			transition: background-color .17s;
 		}
 
 		.left.next, .right.next {
@@ -734,8 +732,8 @@
 			padding-right: 1em;
 			cursor: pointer;
 
-			-webkit-transition: all 0.4s;
-							transition: all 0.4s;
+			-webkit-transition: all 0.17s;
+							transition: all 0.17s;
 
      	/* Make text non-selectable */
       -webkit-touch-callout: none;
@@ -760,8 +758,8 @@
 			padding-right: 1em;
 			cursor: pointer;
 
-			-webkit-transition: all 0.4s;
-							transition: all 0.4s;
+			-webkit-transition: all 0.17s;
+							transition: all 0.17s;
 		}
 
 		.template-selector-item-menu:hover {
@@ -1113,13 +1111,13 @@
 
 
 				<section id="queue">
-					<div class="section-title">Queued <span id="queue-duration" class="queue-total"></span></div>
+					<div class="section-title">QUEUE<span id="queue-duration" class="queue-total"></span></div>
 					<ul>
 					</ul>
 				</section>
 
 				<section id="next-items">
-					<div class="section-title">Next Items <span id="next-duration" class="queue-total"></span></div>
+					<div class="section-title">Next Items<span id="next-duration" class="queue-total"></span></div>
 					<ul>
 					</ul>
 				</section>
@@ -1678,8 +1676,8 @@
 						var
 							self = player;
 						// on reply from iframe
-						console.log("iframe says: " + e, e);
-						console.info("Should be rePOSTed to preview frames");
+						// console.log("iframe says: " + e, e);
+						// console.info("Should be rePOSTed to preview frames");
 						self.sendMessage(e);
 						// if (self._frames && self._frames.length) {
 						// 	for (var i = 0; i < self._frames.length; i++) {
@@ -2037,7 +2035,7 @@
 		 */
 		function _setIframeContent(iframe, html) {
 			var
-				_head = "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body {margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
+				_head = "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body { background: #000; margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
 				_tail = '<\/body><\/html>',
 				win,
 				html = _replaceAll(html, "&#x2F;", "\/"),
@@ -2049,7 +2047,7 @@
 				return;
 			}
 			else {
-				console.info("That's an iframe: " + iframe, iframe);
+				// console.info("That's an iframe: " + iframe, iframe);
 			}
 
 			iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
@@ -2059,7 +2057,7 @@
 				return;
 			}
 			else {
-				console.info("That's still an IFRAME: " + iframe, iframe);
+				// console.info("That's still an IFRAME: " + iframe, iframe);
 			}
 
 
@@ -2132,7 +2130,7 @@
 				var 
 					domdoc = contentframe1.contentDocument || contentframe1.contentWindow.document,
 					domwin = contentframe1.contentWindow;
-				console.info("Rendering : contentframe1, data = ", data);
+				// console.info("Rendering : contentframe1, data = ", data);
 				if (data.statustext && typeof window.data.preview.screen1.contentWindow.setStatusText == "function") {
 					console.info("updating statustext, contentframe1: " + data.statustext);
 					window.data.preview.screen1.contentWindow.setStatusText(data.statustext);
@@ -2443,6 +2441,10 @@
 			else {
 				filename = data.name;
 			}
+			if(!data.purpose) {
+				data.purpose = "edit";
+				data.deleteButton = true;
+			}
 
 			if (iframes && iframes.length) {
 				for (var i = 0; i < iframes.length; i++) {
@@ -2514,7 +2516,7 @@
 			}
 			else {
 				modalForm.classList.add("active");
-				console.info("Calling blurBackground()");
+				// console.info("Calling blurBackground()");
 				blurBackground();
 				setTimeout(function(){
 					modalForm.classList.toggle("showing");
@@ -2718,6 +2720,11 @@
 			else {
 				filename = data.name;
 			}
+			if(!data.purpose) {
+				data.purpose = "new";
+				data.deleteButton = false;
+			}
+
 
 			// console.info("data : " + JSON.stringify(data));
 			// console.info("tmpl : " + tmpl);
@@ -3627,7 +3634,7 @@
 
 			   // populate formdata
 			  data.append("video-upload", file);
-			  data.append("username", "<?php echo $_SESSION['username'];?>");
+			  data.append("username", "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'guest'; ?>");
 			  data.append("uuid", pi.uuid());
 
 			  xhr.upload.onprogress = onprogress;
@@ -4434,8 +4441,8 @@
 */
 		z-index: 4998;
 
-		-webkit-transition: opacity 0.4s;
-		transition: opacity 0.4s;
+		-webkit-transition: opacity 0.17s;
+		transition: opacity 0.17s;
 
 	}
 
@@ -4630,7 +4637,7 @@
 			  console.log("file : ", file);
 			   // populate formdata
 			  data.append("image-upload", file);
-			  data.append("username", "<?php echo $_SESSION['username'];?>");
+			  data.append("username", "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'guest'; ?>");
 			  data.append("uuid", pi.uuid());
 
 			  xhr.upload.onprogress = onprogress;
@@ -4693,7 +4700,7 @@
 			playqueue = document.getElementById("playqueue");
 
 		if (wrapper) {
-			console.info("Blurring...");
+			// console.info("Blurring...");
 			// toolbar.classList.add("blur");
 			// playqueue.classList.add("blur");
 			wrapper.classList.add("blur");
@@ -4728,7 +4735,7 @@
 		if (figure) {
 
 			modal.classList.add("active");
-			console.info("calling blurBackground()");
+			// console.info("calling blurBackground()");
 			blurBackground();
 			setTimeout(function() {
 				modal.classList.add("showing");
@@ -4743,7 +4750,7 @@
 			modal = document.getElementById("modal-one");
 
 		exitPreviewMode();
-		console.info("calling unblur()");
+		// console.info("calling unblur()");
 		unblur();
 		modal.classList.remove("showing");
 		setTimeout(function() {
@@ -4871,7 +4878,6 @@
 		echo $DEBUG;
 	}
 ?>
-	<script src="assets/js/buttons.js"> </script>
 
 <script type="text/javascript">
 

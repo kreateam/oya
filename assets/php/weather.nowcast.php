@@ -89,7 +89,6 @@
 
 				$json = json_encode($sXml, JSON_PRETTY_PRINT);
 
-				$sXml = json_decode(json_encode(simplexml_load_string($xmlDetailed)), true);
 				if ($sXml && isset($sXml['product']['time']) && count($sXml['product']['time'])) {
 		      $result['debug'][] = "ADDING nowcast";
 					$result['detailed'] = $sXml['product']['time'];

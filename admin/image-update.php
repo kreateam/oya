@@ -22,12 +22,12 @@
 
 	// $request = json_decode($json);
 
-	$title = $_REQUEST['title'];
+	$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : "Untitled";
 	$filename =  $_REQUEST['filename'];
 	$uri = "assets/php/data/files/" . $filename;
-	$tags = $_REQUEST['tags'];
-	$description = $_REQUEST['description'];
-	$uuid =  $_REQUEST['uuid'];
+	$tags = isset($_REQUEST['tags']) ? $_REQUEST['tags'] : "";
+	$description = isset($_REQUEST['description']) ? $_REQUEST['description'] : "No description";
+	$uuid =  isset($_REQUEST['uuid']) ? $_REQUEST['uuid'] : "unknown-uuid-" . uniqid();
 
 	$DEBUG[] = "POST data:";
 	$DEBUG[] = "Title : $title";
