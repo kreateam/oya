@@ -4,7 +4,7 @@
 	"ingress" : "Brødtekst",
 	"ingressSize" : 100,
 	"name" : "Mat",
-	"variant" : "anmeldelse (food-1.html)",
+	"variant" : "Anmeldelse",
 	"tags" : "",
 	"description" : null,
 	"duration": 20,

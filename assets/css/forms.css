@@ -69,3 +69,7 @@
   fieldset .form-fields.collapsed {
     height: 0;
   }
+
+  fieldset input[type="submit"] {
+    margin-top: 1em;
+  }  

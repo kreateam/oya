@@ -433,7 +433,7 @@
 		<iframe src="" id="nextframe" class="nextframe"></iframe>
 	</section>
 	<footer id="footer">
-		Les mer på ap.no/oya
+		Les mer på ap.no/osloby
 	</footer>
 	<section id="debug">
 
