@@ -404,6 +404,25 @@
 	 						transition: -webkit-filter 0.5s ease-out; /* easeOutExpo */			
 		}
 
+		.top-right-button {
+			position: absolute;
+			top: 1em;
+			right: .5em;
+			width: auto;
+		}
+
+		.top-right-button > a {
+			text-decoration: none;
+			background-color: #313131;
+			color: #fff;
+			padding: 10px;
+			font-weight: 700;
+		}
+		.top-right-button > a:hover {
+			background-color: #f14;
+			/*color: #fff;*/
+		}
+
 
 		#screen1 {
 			display: none;
@@ -1019,7 +1038,7 @@
 				<header>
 					Play Queue
 				</header>
-
+				<div class="top-right-button"><a href="https://kreateam.io/html5/oya/admin/instagram.php" target="_insta">INSTAGRAM</a></div>
 				<section id="current">
 					<div id="now-playing" class="section-title">Now playing</div>
 					<ul>
@@ -1854,6 +1873,17 @@
             </div>
 	        </li>
 	        <li>
+            <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
+            <label for="tabstrip-0-2">Screens</label>
+            <div class="screens">
+            	<img src="assets/img/search.svg" height="24" class="searchsymbol">
+            	<input type="text" name="screen-search" id="screen-search" />
+							<div>
+	            	<div id="screen-preview" class="preview"></div>
+							</div>
+            </div>
+	        </li>
+	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-1" checked="checked" />
             <label for="tabstrip-0-1">Images</label>
             <div class="images">
@@ -1868,18 +1898,7 @@
 							</div>
             </div>
 	        </li>
-	        <li>
-            <input type="radio" name="tabstrip-0" id="tabstrip-0-2" />
-            <label for="tabstrip-0-2">Screens</label>
-            <div class="screens">
-            	<img src="assets/img/search.svg" height="24" class="searchsymbol">
-            	<input type="text" name="screen-search" id="screen-search" />
-							<div>
-	            	<div id="screen-preview" class="preview"></div>
-							</div>
-            </div>
-	        </li>
-	        <li>
+<!-- 	        <li>
             <input type="radio" name="tabstrip-0" id="tabstrip-0-3" />
             <label for="tabstrip-0-3">Instagram</label>
             <div id="instagram" class="instagram">
@@ -1944,7 +1963,7 @@
 							</div>
             </div>
 	        </li>
-	        <li class="closebutton">
+ -->	        <li class="closebutton">
             <input type="radio" name="tabstrip-0" id="tabstrip-0-5" />
             <label for="tabstrip-0-5" class="closebutton">×</label>
 	        </li>
@@ -2476,7 +2495,7 @@
 				}
 			}
 
-      // console.log("rendering : " + form, data);
+      console.log("rendering : " + form, data);
       editor.innerHTML = Mustache.render(form, data);
 
 
@@ -2738,7 +2757,8 @@
 				}
 			}
 
-      // console.log("file.name : " + file.name);
+      console.log("render form : ", data);
+      data.title = "";
       editor.innerHTML = Mustache.render(form, data);
 
       var
@@ -3960,7 +3980,7 @@
 
 					// console.log("time : " + time);
 					// year, month, day, hours, minutes, seconds, milliseconds);
-					return new Date(2016, 7, 11 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
+					return new Date(2016, 7, 9 + parseInt(day, 10), parseInt(time[0], 10), parseInt(time[1], 10), 0, 0);
 
 				},
 

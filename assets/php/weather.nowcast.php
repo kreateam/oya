@@ -10,7 +10,7 @@
 	// path to SVG weather symbols
 	define('NOWCAST_ICON_PATH', 			"assets/img/sym/svg/");
 
-	define('NOWCAST_URL', 		"http://api.met.no/weatherapi/nowcast/0.9/?lat=59.9173873;lon=10.7774978");
+	define('NOWCAST_URL', 		"https://api.met.no/weatherapi/nowcast/0.9/?lat=59.9173873;lon=10.7774978");
 
 
 	function getNowcast() {

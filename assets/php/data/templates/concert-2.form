@@ -19,13 +19,13 @@
 	<fieldset id="form-screen-fieldset">
 		<legend>New</legend>
 		<label for="title">Title</label>
-		<input type="text" width="32" id="form-screen-title" name="title" value="{{title}}" required style="width:80%;" />
+		<input type="text" width="32" id="form-screen-title" name="title" value="{{title}}" required style="width:80%;" spellcheck="true"/>
 
 		<label for="ingress">DisplayText</label>
-		<textarea type="textarea" width="40" id="form-screen-ingress" name="ingress" rows="3" style="width:75%;" >{{ingress}}</textarea>
+		<textarea type="textarea" width="40" id="form-screen-ingress" name="ingress" rows="3" style="width:75%;" spellcheck="true">{{ingress}}</textarea>
 
 		<label for="statustext">Footer/status bar</label>
-		<input type="text" width="32" id="form-screen-statustext" name="statustext" value="{{statustext}}" required onupdate="onStatusTextUpdate()" />
+		<input type="text" width="32" id="form-screen-statustext" name="statustext" value="{{statustext}}" required onupdate="onStatusTextUpdate()" spellcheck="true"/>
 
 		<div class="form-fields collapsed">
 			<label for="duration">Duration</label>
