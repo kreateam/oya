@@ -281,7 +281,7 @@
 			background 			: rgb(27, 49, 98);
 			overflow 				: hidden;
 			text-shadow: 0px 1px 4px rgba(0,0,0,.33);
-
+			white-space: nowrap;
 			-webkit-transition : all .4s ease-out;
 							transition : all .4s ease-out;
 		}
@@ -440,6 +440,8 @@
 <script type="text/javascript">
 
 
+	var
+		DEFAULT_STATUS_TEXT = "Les mer på ap.no/oya";
 
 	function reloadPlayer () {
 		var
@@ -505,7 +507,7 @@
 	function resetStatusText() {
 		var
 			statusbar = document.getElementById("footer");
-			statusbar.textContent = "Les mer på ap.no/oya";
+			statusbar.textContent = DEFAULT_STATUS_TEXT;
 	}
 
 	function setStatusText(txt) {
@@ -514,7 +516,7 @@
 
 		/** @todo Maybe check that footer is showing, and maybe scroll text that is too long */
 		if (typeof txt == "string") {
-			// statusbar.textContent = txt;
+			// statusbar.textContent = txt + " * " + DEFAULT_STATUS_TEXT;
 		}
 	}
 

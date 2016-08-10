@@ -74,9 +74,7 @@
 				transform-origin: top center;
 
 /*
-		for 1920x1080 -> 768px*1.40625 = 1080px
-	*/
-
+		1920x1080 ->   768px*1.40625 = 1080px 	*/
 			-webkit-transform: scale(1.40625, 1.40625);
 							transform: scale(1.40625, 1.40625);
 

@@ -26,7 +26,7 @@
 	html, body {
 		height: 100%;
 		min-height: 100%;
-		background-color: rgb(227, 96, 24);
+		background-color: rgb(180, 96, 24);
 
 		margin: 0;
 		padding: 0;
@@ -153,7 +153,7 @@
 		width: 64px;
 		height: 64px;
 		text-align: center;
-		background: rgb(227, 96, 24);
+		background: rgb(180, 96, 24);
 		font-size: 52px;
 		font-weight: 900;
 		border-radius: 50%;
@@ -174,7 +174,7 @@
 	#text {
 		color: rgb(94, 22, 0);
 		position: absolute;
-		background-color: rgb(227, 96, 24);
+		background-color: rgb(180, 96, 24);
 		/*background-color: #26BCF4;*/
 		/*text-align: center;*/
 		right: 0;
@@ -217,12 +217,24 @@
 		}
 	}
 
+	#username {
+		position: absolute;
+		z-index: 4999;
+		bottom: .33em;
+		right: .5em;
+		color: #fff;
+		font-size: 16px;
+		font-weight: 500;
+		text-shadow: 0px 0px 2px #000;
+	}
+
 	</style>
 
 </head>
 <body>
 <div class="instagram">
 	<div id="image">
+			<div id="username"></div>
 			<div class="box">
 				<img id="instaimage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMAUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALMw9IgAAAEAdFJOU////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wBT9wclAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGHRFWHRTb2Z0d2FyZQBwYWludC5uZXQgNC4wLjVlhTJlAAACTElEQVR4Xu3QMQEAMBADofo3nVr420ECb5zJCmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFss62D9pFRPOZ7V3gAAAAAElFTkSuQmCC" class="image">
 			</div>
@@ -378,27 +390,30 @@
 			instaCounter = 0,
 			caption = document.getElementById("caption"),
 			captionText,
+			username = document.getElementById("username"),
 			container = document.getElementById("image"),
 			insta = document.getElementById("instaimage");
 
 		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
 			arr = window.data.instagram.liked;
 			instaCounter = getCounter();
-			url = arr[instaCounter % window.data.instagram.liked.length]['images']['standard_resolution']['url'];
+			url = arr[instaCounter % window.data.instagram.liked.length]['url'];
+			item = arr[instaCounter % window.data.instagram.liked.length];
 			if(insta) {
 				// console.info("Loading insta: " + url, arr[instaCounter % window.data.instagram.liked.length]);
 				// console.info("Type: " + arr[instaCounter % window.data.instagram.liked.length].type);
-				if (arr[instaCounter % window.data.instagram.liked.length].type == "video") {
-					videourl = arr[instaCounter % window.data.instagram.liked.length]['videos']['standard_resolution']['url'];
+				if (arr[instaCounter % window.data.instagram.liked.length].isVideo) {
+					videourl = arr[instaCounter % window.data.instagram.liked.length]['url'];
 					console.debug("That's an Instagram video: " + videourl);
 					playInstagramVideo(videourl);
 					/** @todo embed instaVideo  **/
 				}
 				else {
+					console.debug("That's an Instagram image: " + url);
 					// container.innerHTML = instaEmbedCode;
 					insta.src = url;
 				}
-				captionText = arr[instaCounter % window.data.instagram.liked.length]['caption']['text'];
+				captionText = arr[instaCounter % window.data.instagram.liked.length]['caption'];
 				if (caption && captionText && captionText.length > 20) {
 					caption.textContent = removeTrailingHashtags(captionText);
 					// console.info(captionText + " => ");
@@ -407,6 +422,10 @@
 				else {
 					caption.textContent = captionText;
 				}
+				if (item.ownerName) {
+					username.textContent = "@" + item.ownerName;
+				}
+
 			}
 			else {
 				console.error("No insta found!");
@@ -443,8 +462,10 @@
 
 	document.addEventListener("DOMContentLoaded", function () {
 		var
-			instaurl = "assets/php/instagram.php?cb=" + Math.random() * 10000, // cache-buster is needed
+			instaurl = "assets/php/instagram-get-playlist.php?cb=" + Math.random() * 10000, // cache-buster is needed
 			instadiv = document.getElementById("instagram");
+
+// https://kreateam.io/html5/oya/admin/instagram-get-playlist.php
 
 		pi.xhr.get(instaurl, function (json) {
 			var
@@ -454,15 +475,14 @@
 
 				try {
 					data = JSON.parse(json);
-					if (data && data.meta && data.meta.code) {
-						if (data.meta.code == 200) {
-							// console.debug("received instagram list: " + data.data, data.data);
-							updateInstagram(data.data);
-						}
-						else {
-							console.error("Error loading instagram data, code : " + data.meta.code);
-						}
+					if (data && data.posts && data.posts.length) {
+						console.debug("received instagram list: " + data, data);
+						updateInstagram(data.posts);
 					}
+					else {
+						console.error("Error loading instagram data");
+					}
+
 				}
 				catch(e) {
 					console.error("Error : " + e);

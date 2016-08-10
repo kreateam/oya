@@ -44,13 +44,13 @@
 	  $size = $width."x".$height;
 	  $pixels = $width * $height;
 	  logIt("We have fileinfo: ", $fileinfo);
-	  if ($exifthumb) {
-		  logIt("We have an exif thumbnail: ", $exifdata);
-		  file_put_contents(IMAGE_THUMB, $exifdata['THUMBNAIL']['THUMBNAIL']);
-	  }
-	  if ($exifdata) {
-		  logIt("We also have exif: ", $exifdata);
-	  }
+	  // if ($exifthumb) {
+		 //  logIt("We have an exif thumbnail: ", $exifdata);
+		 //  file_put_contents(IMAGE_THUMB, $exifdata['THUMBNAIL']['THUMBNAIL']);
+	  // }
+	  // if ($exifdata) {
+		 //  logIt("We also have exif: ", $exifdata);
+	  // }
 	  if ($width > 448) {
 		  logIt("Should resize image: $size => ?");
 	  }

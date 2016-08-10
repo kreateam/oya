@@ -179,7 +179,7 @@
     /* and make it this color, if visible */
     ::-webkit-scrollbar-thumb {
       background-color: #009cfa;
-      background-color: #f16;
+      background-color: #f15;
       /*background-color: #272822;*/
     }
 
@@ -415,17 +415,18 @@
 			text-decoration: none;
 			background-color: #313131;
 			color: #fff;
-			padding: 10px;
+			padding: 12px 16px 8px;
 			font-weight: 700;
+			transition: background-color .2s ease;
 		}
 		.top-right-button > a:hover {
-			background-color: #f14;
+			background-color: #d16;
 			/*color: #fff;*/
 		}
 
 
 		#screen1 {
-			display: none;
+			/*display: none;*/
 			position 	: fixed;
 			left 			: 0;
 			bottom 		: 0;
@@ -1493,7 +1494,6 @@
 					}
 				},
 
-
 				processItems : function(list) {
 					var
 						self = playlist;
@@ -2054,7 +2054,7 @@
 		 */
 		function _setIframeContent(iframe, html) {
 			var
-				_head = "<!doctype html> <html> <head> <title><\/title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body { background: #000; margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
+				_head = "<!doctype html> <html> <head> <title><\/title> <base href=\"../\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/clan.css\"> <link rel=\"stylesheet\" type=\"text\/css\" href=\"\/assets\/font\/publico.css\"><script type=\"text\/javascript\" src=\"assets\/js\/mustache.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.core.js\"><\/script> <script type=\"text\/javascript\" src=\"assets\/js\/pi.xhr.js\"><\/script> <style type=\"text\/css\"> html,body { background: #000; margin: 0; padding: 0; height: 100%; min-height: 100%; text-align: center} <\/style> <\/head> <body>",
 				_tail = '<\/body><\/html>',
 				win,
 				html = _replaceAll(html, "&#x2F;", "\/"),
@@ -2069,7 +2069,7 @@
 				// console.info("That's an iframe: " + iframe, iframe);
 			}
 
-			iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
+			// iframe = iframe instanceof HTMLIFrameElement ? iframe : document.getElementById(iframe);
 
 			if (!iframe) {
 				console.error("!IFRAME: " + iframe, iframe);
@@ -2094,7 +2094,7 @@
 
 
 		function updatePreviews(data) {
-			var 
+			var
 				contentframe1, contentframe2, tmpl,
 				previews = [],
 				iframes = null,
@@ -2115,6 +2115,7 @@
 			// if we already have a handle to the contentElement within the iframe's body,
 			// and if the handle is still valid
 			if (preview.contentElements && preview.contentElements.length >= 2 && preview.contentElements[0].contentDocument) {
+				console.info("We have refs to the contentframes");
 				contentframe1 = preview.contentElements[0];
 				contentframe2 = preview.contentElements[1];
 			}
@@ -2151,7 +2152,7 @@
 					domwin = contentframe1.contentWindow;
 				// console.info("Rendering : contentframe1, data = ", data);
 				if (data.statustext && typeof window.data.preview.screen1.contentWindow.setStatusText == "function") {
-					console.info("updating statustext, contentframe1: " + data.statustext);
+					console.info("updating statustext, contentframe1: " + data.statustext, window.data.preview.screen1.contentWindow);
 					window.data.preview.screen1.contentWindow.setStatusText(data.statustext);
 				}
 
@@ -2495,7 +2496,7 @@
 				}
 			}
 
-      console.log("rendering : " + form, data);
+      // console.log("rendering : " + form, data);
       editor.innerHTML = Mustache.render(form, data);
 
 
@@ -3611,64 +3612,6 @@
 
 	<script type="text/javascript">
 
-		document.querySelector('#video-upload').addEventListener('change', function(e) {
-			  var
-			  	progress = document.getElementById("video-upload-progress"),
-			  	file 	= this.files[0],
-			  	data 	= new FormData(),
-			  	xhr 	= new XMLHttpRequest(),
-
-			  	// @todo Maybe some visual feedback on upload progress
-			  	onprogress = function(e) {
-				    if (e.lengthComputable) {
-				      var
-				      	percentComplete = (e.loaded / e.total) * 100;
-
-				      if (progress) {
-				      	progress.value = percentComplete;
-				      }
-				      console.log(percentComplete + '% uploaded');
-				    }
-				    else {
-				    	console.error("Length not computable!");
-				    }
-				  },
-
-				  /**
-				   * When video link is returned from server
-				   * @return {void}
-				   */
-				  onload = function() {
-				    if (this.status == 200) {
-				    	console.log("uploaded");
-				    }
-				    else {
-				    	// throws to window.onerror, where we trap and redirect to server
-				    	throw "Xhr error: " + this.status;
-				    }
-			    };
-
-		  	if (progress) {
-		  		progress.style.visibility = "visible";
-		  	}
-
-			   // populate formdata
-			  data.append("video-upload", file);
-			  data.append("username", "<?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'guest'; ?>");
-			  data.append("uuid", pi.uuid());
-
-			  xhr.upload.onprogress = onprogress;
-			  xhr.onload = onload;
-
-			  xhr.open('POST', 'admin/video-upload.php', true);
-			  xhr.send(data);
-
-			}, false);
-	</script>
-
-
-	<script type="text/javascript">
-
 
 
 		/**
@@ -3842,25 +3785,24 @@
 				header1 = document.getElementById("vindfruen-header");
 				header2 = document.getElementById("amfiet-header");
 				if (screen1.style.opacity < 1) {
-					screen1.style.opacity = 1;
-					screen2.style.opacity = 0.1;
+					// screen1.style.opacity = 1;
+					// screen2.style.opacity = 0.1;
 				}
 			}
 			else {
 				otherdiv = document.getElementById("amfiet");
 				header2 = document.getElementById("vindfruen-header");
 				header1 = document.getElementById("amfiet-header");
-				if (screen2.style.opacity < 1) {
-					screen2.style.opacity = 1;
-					screen1.style.opacity = 0.1;
-				}
+			}
+			if (screen2.style.opacity < 1) {
+				screen2.style.opacity = 1;
+				screen1.style.opacity = 0.1;
 			}
 
 			div.classList.add("next");
 			otherdiv.classList.remove("next");
 			header1.textContent = "Next";
 			header2.textContent = "Coming Up";
-
 
 		}
 
@@ -4046,12 +3988,14 @@
 						}
 					}
 				}
-				spop({
-					title: "title",
-					style: "error",
-					autoclose: 5000,
-					template: "Skipped " + skipped + " artist(s) that had no date"
-				})
+				if (skipped) {
+					spop({
+						title: "title",
+						style: "error",
+						autoclose: 5000,
+						template: "Skipped " + skipped + " artist(s) that had no date"
+					})					
+				}
 			}
 			else {
 				console.error("No program lines found!");
@@ -4899,93 +4843,6 @@
 	}
 ?>
 
-<script type="text/javascript">
-
-
-	function updateInstagramList() {
-		var
-			arr, insta,
-			instadiv = document.getElementById("instagram");
-		if (window.data && window.data.instagram && window.data.instagram.liked && window.data.instagram.liked.length) {
-			arr = window.data.instagram.liked;
-			instadiv.innerHTML = "";
-			for (var i = 0; i < arr.length; i++) {
-				if (arr[i]['type'] == "image") {
-					insta = document.createElement("img");
-					insta.src = arr[i]['images']['standard_resolution']['url'];
-					insta.alt = arr[i]['caption']['text'];
-					insta.title = insta.alt;
-					insta.style.height = "6em";
-					instadiv.appendChild(insta);
-				}
-				else {
-					// console.info("Skipping type : " + arr[i]['type']);
-				}
-			}
-		}
-	}
-
-
-
-	function updateInstagram(data) {
-		var
-			data = data || null;
-
-		if (!window.data) {
-			window.data = {};
-		}
-		if (!window.data.instagram) {
-			window.data.instagram = {};
-		}
-		window.data.instagram.liked = [];
-		if (data && data.length) {
-			for (var i = 0; i < data.length; i++) {
-				window.data.instagram.liked.push(data[i]);
-				// console.info("INSTAGRAM : " + data[i].type + ", " +data[i]['images']['standard_resolution']['url']);
-			}
-			updateInstagramList();
-		}
-		else {
-			console.error("No data in updateInstagram()!");
-		}
-	}
-
-
-	document.addEventListener("DOMContentLoaded", function () {
-		var
-			instaurl = "assets/php/instagram.php",
-			instadiv = document.getElementById("instagram");
-
-		pi.xhr.get(instaurl + "?cb=" + (Math.random()*10000), function (json) {
-			var
-				data = null,
-				json = json || null;
-			if (json && json.length) {
-
-				try {
-					data = JSON.parse(json);
-					if (data && data.meta && data.meta.code) {
-						if (data.meta.code == 200) {
-							updateInstagram(data.data);
-						}
-						else {
-							console.error("Error loading instagram data, code : " + data.meta.code);
-						}
-					}
-				}
-				catch(e) {
-					console.error("Error : " + e);
-				}
-			}
-			else {
-				console.error("!json &&json.length");
-			}
-
-		}, console.error);
-
-	});
-
-</script>
 
 </body>
 </html>

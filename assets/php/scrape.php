@@ -72,10 +72,17 @@ else {
           throw new DBException(__FUNCTION__ . "," . __LINE__ . ", Connection error ({$mysqli->connect_errno}): " . $mysqli->connect_error);
         }
 
-        $stmt = $mysqli->prepare("INSERT IGNORE into instagram (code, instaId, ownerId, tagId, time, isvideo, url, caption, json) VALUES(?,?,?,?,?,?,?,?,?);");
+        $stmt = $mysqli->prepare("INSERT IGNORE into instagram (code, instaId, ownerId, ownerName, tagId, time, isvideo, url, caption, json) VALUES(?,?,?,?,?,?,?,?,?,?);");
 // INSERT INTO myCity (Name, CountryCode, District) VALUES (?,?,?)
         foreach ($posts as $item) {
           // print($item->id."|".$item->caption ."\n");
+          $owner = Instagram::getAccountById($item->ownerId);
+          $username = "Unknown";
+          if ($owner && isset($owner->username)) {
+            var_dump($owner);
+            $username = $owner->username;
+          }
+          
           $isvideo = ($item->type == "video");
           $url = "";
           $json = json_encode($item, JSON_PRETTY_PRINT);
@@ -85,7 +92,7 @@ else {
           else {
             $url = $item->imageStandardResolutionUrl;
           }
-          $stmt->bind_param("siiiiisss", $item->code, $item->id, $item->ownerId, $tagId, $item->createdTime, $isvideo, $url, $item->caption, $json);
+          $stmt->bind_param("siisiiisss", $item->code, $item->id, $item->ownerId, $username, $tagId, $item->createdTime, $isvideo, $url, $item->caption, $json);
           $success = $stmt->execute();
           if ($success) {
             $succeeded++;
@@ -130,10 +137,18 @@ else {
           throw new DBException(__FUNCTION__ . "," . __LINE__ . ", Connection error ({$mysqli->connect_errno}): " . $mysqli->connect_error);
         }
 
-        $stmt = $mysqli->prepare("INSERT IGNORE into instagram (code, instaId, ownerId, tagId, time, isvideo, url, thumbnail, caption, json) VALUES(?,?,?,?,?,?,?,?,?,?);");
+        $stmt = $mysqli->prepare("INSERT IGNORE into instagram (code, instaId, ownerId, ownerName, tagId, time, isvideo, url, thumbnail, caption, json) VALUES(?,?,?,?,?,?,?,?,?,?,?);");
 // INSERT INTO myCity (Name, CountryCode, District) VALUES (?,?,?)
         foreach ($posts as $item) {
           //print($item->id."|".$item->caption ."\n");
+          $owner = Instagram::getAccountById($item->ownerId);
+
+          $username = "Unknown";
+          if ($owner && isset($owner->username)) {
+            var_dump($owner);
+            $username = $owner->username;
+          }
+
           $isvideo = ($item->type == "video");
           $url = "";
           $json = json_encode($item, JSON_PRETTY_PRINT);
@@ -145,7 +160,7 @@ else {
             $url = $item->imageStandardResolutionUrl;
             $thumbnail = $item->imageThumbnailUrl;
           }
-          $stmt->bind_param("siiiiissss", $item->code, $item->id, $item->ownerId, $tagId, $item->createdTime, $isvideo, $url, $thumbnail, $item->caption, $json);
+          $stmt->bind_param("siisiiissss", $item->code, $item->id, $item->ownerId, $username, $tagId, $item->createdTime, $isvideo, $url, $thumbnail, $item->caption, $json);
           $success = $stmt->execute();
           if ($success) {
             $succeeded++;
